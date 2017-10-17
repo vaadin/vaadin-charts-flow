@@ -1,0 +1,13 @@
+*.iml
+target/
+
+.idea
+.classpath
+.project
+.settings
+rebel.xml
+
+**/bower_components
+
+# Mac
+*.DS_Store
