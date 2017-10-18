@@ -25,7 +25,6 @@
 
         <!-- Dependencies -->
         <servlet.api.version>3.1.0</servlet.api.version>
-        <selenium.server.version>3.4.0</selenium.server.version>
 
         <!-- Plugins -->
         <frontend.maven.plugin.version>1.4</frontend.maven.plugin.version>

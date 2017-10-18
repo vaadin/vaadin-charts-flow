@@ -35,8 +35,8 @@
     <url>http://vaadin.com/charts</url>
 
     <scm>
-        <connection>scm:git:https://github.com/vaadin/charts.git</connection>
-        <developerConnection>scm:git:https://github.com/vaadin/charts.git</developerConnection>
+        <connection>scm:git:https://github.com/vaadin/vaadin-charts-flow.git</connection>
+        <developerConnection>scm:git:https://github.com/vaadin/vaadin-charts-flow.git</developerConnection>
     </scm>
 
     <licenses>
@@ -68,19 +68,6 @@
                 <version>${vaadin.version}</version>
             </dependency>
 
-            <!-- Testing -->
-            <dependency>
-                <groupId>com.vaadin</groupId>
-                <artifactId>vaadin-testbench-core</artifactId>
-                <version>5.1.0.alpha1</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>com.vaadin</groupId>
-                <artifactId>vaadin-testbench-api</artifactId>
-                <version>${vaadin.version}</version>
-                <scope>test</scope>
-            </dependency>
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
