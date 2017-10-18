@@ -1,6 +1,6 @@
 # Vaadin Charts
 
-Vaadin Charts for Flow is a UI component add-on for Vaadin 10 which provides means to create multiple different types of charts in Vaadin applications.
+Vaadin Charts is a UI component add-on for Vaadin 10 which provides means to create multiple different types of charts in Vaadin applications.
 
 ## License & Author
 
