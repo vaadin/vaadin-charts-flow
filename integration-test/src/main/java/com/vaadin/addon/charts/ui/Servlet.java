@@ -15,28 +15,28 @@
  */
 package com.vaadin.addon.charts.ui;
 
-import javax.servlet.annotation.WebServlet;
-
-import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.addon.charts.ui.Servlet.MyRouterConfigurator;
+import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.flow.router.RouterConfiguration;
 import com.vaadin.flow.router.RouterConfigurator;
 import com.vaadin.server.VaadinServlet;
+
+import javax.servlet.annotation.WebServlet;
 
 @WebServlet(urlPatterns = "/*", name = "UIServlet", asyncSupported = true)
 @VaadinServletConfiguration(routerConfigurator = MyRouterConfigurator.class, productionMode = false)
 public class Servlet extends VaadinServlet {
 
-    /**
-     * The router configurator defines the how to map URLs to views.
-     */
-    public static class MyRouterConfigurator implements RouterConfigurator {
-        @Override
-        public void configure(RouterConfiguration configuration) {
-            /*
-             * For the root, only show the main view without any sub view
-             */
-            configuration.setRoute("", MainView.class);
-        }
-    }
+	/**
+	 * The router configurator defines the how to map URLs to views.
+	 */
+	public static class MyRouterConfigurator implements RouterConfigurator {
+		@Override
+		public void configure(RouterConfiguration configuration) {
+			/*
+			 * For the root, only show the main view without any sub view
+			 */
+			configuration.setRoute("", MainView.class);
+		}
+	}
 }
