@@ -528,7 +528,7 @@ public class ZAxis extends Axis {
 	 * automatically calculated. If the <code>endOnTick</code> option is true,
 	 * the <code>max</code> value might be rounded up.
 	 * </p>
-	 * 
+	 *
 	 * <p>
 	 * If a <a href="#yAxis.tickAmount">tickAmount</a> is set, the axis may be
 	 * extended beyond the set max in order to reach the given number of ticks.
