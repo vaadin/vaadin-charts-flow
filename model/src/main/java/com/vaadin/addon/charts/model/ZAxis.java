@@ -73,7 +73,6 @@ public class ZAxis extends Axis {
 	private Boolean uniqueNames;
 	private ArrayList<TimeUnitMultiples> units;
 	private Boolean visible;
-	private Number pane;
 
 	public ZAxis() {
 	}
@@ -1467,22 +1466,6 @@ public class ZAxis extends Axis {
 	 */
 	public void setVisible(Boolean visible) {
 		this.visible = visible;
-	}
-
-	public Number getPane() {
-		return pane;
-	}
-
-	public void setPane(Number pane) {
-		this.pane = pane;
-	}
-
-	public void setPane(Pane pane) {
-		if (pane.getPaneIndex() == null) {
-			throw new IllegalStateException(
-					"Pane must be attached to configuration");
-		}
-		this.pane = pane.getPaneIndex();
 	}
 
 	public void setTitle(String title) {
