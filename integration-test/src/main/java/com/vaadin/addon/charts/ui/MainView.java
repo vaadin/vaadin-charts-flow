@@ -35,7 +35,7 @@ public class MainView extends Composite<Div> implements HasChildView {
 		chart.getConfiguration().getChart().setType(ChartType.AREA);
 		getContent().add(chart);
 
-		configuration.addSeries(new ListSeries("Tokio", 20, 12,34,23,65,8,4,7,76, 19, 20,8));
+		configuration.addSeries(new ListSeries("Tokyo", 20, 12,34,23,65,8,4,7,76, 19, 20,8));
 		configuration.addSeries(new ListSeries("Miami", 34, 29,23,65,8,4,7,7, 59,8, 9, 19));
 
 		XAxis x = new XAxis();
@@ -49,71 +49,14 @@ public class MainView extends Composite<Div> implements HasChildView {
 		configuration.addyAxis(y);
 
 		NativeButton changeTitleButton = new NativeButton();
+		changeTitleButton.setId("change_title");
 		changeTitleButton.setText("Change title");
 		changeTitleButton.addClickListener(e -> {
-			configuration.setTitle("First Chart for Flow changed!");
+			configuration.setTitle("First Chart for Flow - title changed");
 			chart.drawChart();
 		});
 
-		NativeButton changeTypeToColumnButton = new NativeButton();
-		changeTypeToColumnButton.setText("Change to Column");
-		changeTypeToColumnButton.addClickListener(e -> {
-			configuration.getChart().setType(ChartType.COLUMN);
-			chart.drawChart(true);
-		});
-
-		NativeButton changeTypeToAreaButton = new NativeButton();
-		changeTypeToAreaButton.setText("Change to Area");
-		changeTypeToAreaButton.addClickListener(e -> {
-			configuration.getChart().setType(ChartType.AREA);
-			chart.drawChart(true);
-		});
-
-		NativeButton changeTypeToLineButton = new NativeButton();
-		changeTypeToLineButton.setText("Change to Line");
-		changeTypeToLineButton.addClickListener(e -> {
-			configuration.getChart().setType(ChartType.LINE);
-			chart.drawChart(true);
-		});
-
 		getContent().add(changeTitleButton);
-		getContent().add(changeTypeToColumnButton);
-		getContent().add(changeTypeToLineButton);
-		getContent().add(changeTypeToAreaButton);
-
-		VaadinChart stackedChart = new VaadinChart();
-
-		Configuration conf = stackedChart.getConfiguration();
-		conf.getChart().setType(ChartType.BAR);
-
-		conf.setTitle("Stacked bar chart");
-
-		x = new XAxis();
-		x.setCategories("Apples", "Oranges", "Pears", "Grapes", "Bananas");
-		conf.addxAxis(x);
-
-		y = new YAxis();
-		y.setMin(0);
-		y.setTitle("Total fruit consumption");
-		conf.addyAxis(y);
-
-		Legend legend = new Legend();
-		legend.setReversed(true);
-
-		Tooltip tooltip = new Tooltip();
-		tooltip.setFormatter("this.series.name +': '+ this.y");
-		conf.setTooltip(tooltip);
-
-		PlotOptionsSeries plot = new PlotOptionsSeries();
-		plot.setStacking(Stacking.NORMAL);
-		conf.setPlotOptions(plot);
-
-		conf.addSeries(new ListSeries("John", 5, 3, 4, 7, 2));
-		conf.addSeries(new ListSeries("Jane", 2, 2, 3, 2, 1));
-		conf.addSeries(new ListSeries("Joe", 3, 4, 4, 2, 5));
-
-		getContent().add(stackedChart);
-
 	}
 
 	@Override
