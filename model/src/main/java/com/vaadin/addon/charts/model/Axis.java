@@ -18,10 +18,6 @@ package com.vaadin.addon.charts.model;
  */
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.vaadin.addon.charts.model.AxisTitle;
-import com.vaadin.addon.charts.model.Labels;
-import com.vaadin.addon.charts.model.PlotBand;
-import com.vaadin.addon.charts.model.PlotLine;
 import com.vaadin.addon.charts.model.style.Color;
 import com.vaadin.addon.charts.util.Util;
 
@@ -125,7 +121,7 @@ public abstract class Axis extends AbstractConfigurationObject {
     }
 
     /**
-     * The minimun and maximum value of the axis as Date.
+     * The minimum and maximum value of the axis as Date.
      *
      * @see #setExtremes(Number, Number)
      */
@@ -148,7 +144,7 @@ public abstract class Axis extends AbstractConfigurationObject {
     }
 
     /**
-     * The minimun and maximum value of the axis as Date.
+     * The minimum and maximum value of the axis as Date.
      *
      * @see #setExtremes(Number, Number, boolean)
      */
@@ -179,7 +175,7 @@ public abstract class Axis extends AbstractConfigurationObject {
     }
 
     /**
-     * The minimun and maximum value of the axis as Date.
+     * The minimum and maximum value of the axis as Date.
      *
      * @see #setExtremes(Number, Number, boolean, boolean)
      */
