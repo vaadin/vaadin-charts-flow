@@ -33,10 +33,25 @@ public class VaadinChart extends PolymerTemplate<TemplateModel> {
 		});
 	}
 
+	/**
+	 * Draws a chart with the given configuration as a starting point.
+	 *
+	 * @see #drawChart(boolean)
+	 */
 	public void drawChart() {
 		drawChart(false);
 	}
 
+	/**
+	 * Draws a chart with the given configuration as a starting point.
+	 * <p>
+	 *     Note that you don't need to call this method if {@link Configuration} is
+	 *     ready before element is attached.
+	 * </p>
+	 *
+	 * @see #getConfiguration()
+	 * @param resetConfiguration defines whether the chart should be redrawn or not
+	 */
 	public void drawChart(boolean resetConfiguration) {
 		Configuration configuration = getConfiguration();
 
@@ -46,6 +61,9 @@ public class VaadinChart extends PolymerTemplate<TemplateModel> {
 		getElement().callFunction("update", configurationNode, resetConfiguration);
 	}
 
+	/**
+	 * @return the chart configuration that is used for this chart
+	 */
 	public Configuration getConfiguration() {
 		return configuration;
 	}
