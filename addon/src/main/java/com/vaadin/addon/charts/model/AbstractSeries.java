@@ -148,7 +148,7 @@ public abstract class AbstractSeries extends AbstractConfigurationObject
      * configuration are wished to be applied at once.
      *
      * @see #setVisible(Boolean)
-     * @see Chart#drawChart()
+     * @see VaadinChart#drawChart()
      *
      * @param visible
      *            true if the series should be displayed, false if not

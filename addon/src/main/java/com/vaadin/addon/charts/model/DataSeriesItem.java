@@ -21,7 +21,6 @@ import java.time.Instant;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-//import com.vaadin.addon.charts.DrilldownCallback;
 import com.vaadin.addon.charts.model.style.Color;
 
 /**

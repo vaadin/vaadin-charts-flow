@@ -58,6 +58,7 @@ public class Configuration extends AbstractConfigurationObject
     private NoData noData;
     private Navigator navigator;
 
+    //TODO Enable it again
 //    @JsonIgnore
 //    private final List<ConfigurationChangeListener> changeListeners = new ArrayList<ConfigurationChangeListener>();
 
@@ -838,6 +839,7 @@ public class Configuration extends AbstractConfigurationObject
      * @param shift
      */
     void fireDataAdded(Series series, DataSeriesItem item, boolean shift) {
+        //TODO Enable it again
 //        DataAddedEvent dataAddedEvent = new DataAddedEvent(series, item, shift);
 //        for (ConfigurationChangeListener listener : changeListeners) {
 //            listener.dataAdded(dataAddedEvent);
@@ -854,6 +856,7 @@ public class Configuration extends AbstractConfigurationObject
 
     /** Notifies listeners that a data point has been updated */
     void fireDataUpdated(Series series, Number value, int pointIndex) {
+        //TODO Enable it again
 //        DataUpdatedEvent dataUpdatedEvent = new DataUpdatedEvent(series, value,
 //                pointIndex);
 //        for (ConfigurationChangeListener listener : changeListeners) {
@@ -863,6 +866,7 @@ public class Configuration extends AbstractConfigurationObject
 
     /** Notifies listeners that a data point has been updated */
     void fireDataUpdated(Series series, DataSeriesItem item, int pointIndex) {
+        //TODO Enable it again
 //        DataUpdatedEvent dataUpdatedEvent = new DataUpdatedEvent(series, item,
 //                pointIndex);
 //        for (ConfigurationChangeListener listener : changeListeners) {
@@ -877,6 +881,7 @@ public class Configuration extends AbstractConfigurationObject
      *            The updated series
      */
     void fireSeriesChanged(Series series) {
+        //TODO Enable it again
 //        SeriesChangedEvent event = new SeriesChangedEvent(series);
 //        for (ConfigurationChangeListener listener : changeListeners) {
 //            listener.seriesChanged(event);
@@ -885,6 +890,7 @@ public class Configuration extends AbstractConfigurationObject
 
     /** Notifies listeners that a series is enabled or disabled */
     void fireSeriesEnabled(Series series, boolean enabled) {
+        //TODO Enable it again
 //        SeriesStateEvent seriesEnablationEvent = new SeriesStateEvent(series,
 //                enabled);
 //        for (ConfigurationChangeListener listener : changeListeners) {
@@ -899,6 +905,7 @@ public class Configuration extends AbstractConfigurationObject
      *            Whether or not animation has been changed.
      */
     void fireAnimationChanged(boolean animation) {
+        //TODO Enable it again
 //        for (ConfigurationChangeListener listener : changeListeners) {
 //            listener.animationChanged(animation);
 //        }
@@ -912,6 +919,7 @@ public class Configuration extends AbstractConfigurationObject
      * @return Dimension, as defined in ChartClientRpc.
      */
     private short getAxisDimension(Axis axis) {
+        //TODO Enable it again
 //        if (xAxis.contains(axis)) {
 //            return ChartClientRpc.X_AXIS;
 //        } else if (yAxis.contains(axis)) {
@@ -935,6 +943,7 @@ public class Configuration extends AbstractConfigurationObject
      * @return Index of the axis at given dimension.
      */
     private int getAxisIndex(short dimension, Axis axis) {
+        //TODO Enable it again
 //        switch (dimension) {
 //        case ChartClientRpc.X_AXIS:
 //            return xAxis.indexOf(axis);
@@ -966,7 +975,7 @@ public class Configuration extends AbstractConfigurationObject
     @Override
     public void fireAxesRescaled(Axis axis, Number minimum, Number maximum,
             boolean redraw, boolean animate) {
-
+        //TODO Enable it again
 //        // determine the dimension of the axis, either x or y
 //        short axisType = getAxisDimension(axis);
 //
@@ -995,6 +1004,7 @@ public class Configuration extends AbstractConfigurationObject
      *            Whether or not to animate.
      */
     public void resetZoom(boolean redraw, boolean animate) {
+        //TODO Enable it again
 //        for (ConfigurationChangeListener listener : changeListeners) {
 //            listener.resetZoom(redraw, animate);
 //        }
@@ -1011,6 +1021,7 @@ public class Configuration extends AbstractConfigurationObject
      */
     void fireItemSliced(Series series, int index, boolean sliced,
             boolean redraw, boolean animation) {
+        //TODO Enable it again
 //        ItemSlicedEvent event = new ItemSlicedEvent(series, index, sliced,
 //                redraw, animation);
 //        for (ConfigurationChangeListener listener : changeListeners) {
@@ -1029,6 +1040,7 @@ public class Configuration extends AbstractConfigurationObject
      *            Listener to add.
 //     */
 //    public void addChangeListener(ConfigurationChangeListener listener) {
+        //TODO Enable it again
 //        if (!changeListeners.contains(listener)) {
 //            changeListeners.add(listener);
 //        }
@@ -1041,6 +1053,7 @@ public class Configuration extends AbstractConfigurationObject
      *            Listener to remove.
      */
 //    public void removeChangeListener(ConfigurationChangeListener listener) {
+        //TODO Enable it again
 //        changeListeners.remove(listener);
 //    }
 

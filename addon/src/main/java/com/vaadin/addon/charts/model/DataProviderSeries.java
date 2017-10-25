@@ -42,7 +42,8 @@ import com.vaadin.shared.Registration;
  */
 public class DataProviderSeries<T> extends AbstractSeries {
 
-    @JsonIgnore
+    //TODO Enable it again
+//    @JsonIgnore
 //    private final DataProvider<T, ?> dataProvider;
 
     public static final String X_ATTRIBUTE = "x";
@@ -54,6 +55,7 @@ public class DataProviderSeries<T> extends AbstractSeries {
     public static final String OPEN_PROPERTY = "open";
     public static final String CLOSE_PROPERTY = "close";
 
+    //TODO Enable it again
 //    @JsonIgnore
 //    private final Map<String, Function<T, Object>> chartAttributeToCallback;
 
@@ -63,7 +65,8 @@ public class DataProviderSeries<T> extends AbstractSeries {
     @JsonIgnore
     private Registration dataProviderRegistration;
 
-    @JsonIgnore
+    //TODO Enable it again
+//    @JsonIgnore
 //    private DataProviderListener<T> listener = (DataProviderListener<T>) event -> {
 //        if (getConfiguration() != null) {
 //            getConfiguration().fireSeriesChanged(DataProviderSeries.this);
@@ -88,6 +91,7 @@ public class DataProviderSeries<T> extends AbstractSeries {
      * @param dataProvider
      *            the data provider which contains the data
      */
+    //TODO Enable it again
 //    public DataProviderSeries(DataProvider<T, ?> dataProvider) {
 //        this.dataProvider = dataProvider;
 //        chartAttributeToCallback = new HashMap<>();
@@ -104,6 +108,7 @@ public class DataProviderSeries<T> extends AbstractSeries {
      * @param callBack
      *            the function which retrieves the y values
      */
+    //TODO Enable it again
 //    public DataProviderSeries(DataProvider<T, ?> dataProvider,
 //            Function<T, Object> callBack) {
 //        this(dataProvider);
@@ -120,6 +125,7 @@ public class DataProviderSeries<T> extends AbstractSeries {
      *            the function which retrieves the value for the property
      */
     public void setProperty(String propertyName, Function<T, Object> callBack) {
+        //TODO Enable it again
 //        chartAttributeToCallback.put(propertyName, callBack);
     }
 
@@ -219,6 +225,7 @@ public class DataProviderSeries<T> extends AbstractSeries {
      *
      * @return the underlying data provider.
      */
+    //TODO Enable it again
 //    public DataProvider<T, ?> getDataProvider() {
 //        return dataProvider;
 //    }
@@ -231,7 +238,7 @@ public class DataProviderSeries<T> extends AbstractSeries {
      */
 
     public List<Map<String, Optional<Object>>> getValues() {
-
+        //TODO Enable it again
 //        return dataProvider
 //            .fetch(new Query<>())
 //            .map((item) ->
@@ -256,6 +263,7 @@ public class DataProviderSeries<T> extends AbstractSeries {
      */
     public Set<String> getChartAttributes() {
         return Collections.emptySet();
+        //TODO Enable it again
 //        return chartAttributeToCallback.keySet();
     }
 
@@ -281,6 +289,7 @@ public class DataProviderSeries<T> extends AbstractSeries {
 
         if (automaticChartUpdateEnabled) {
             if (dataProviderRegistration == null) {
+                //TODO Enable it again
 //                dataProviderRegistration = dataProvider.addDataProviderListener(listener);
             }
         } else {
