@@ -1,6 +1,7 @@
 package com.vaadin.addon.charts;
 
 
+import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.util.ChartSerialization;
 import com.vaadin.annotations.HtmlImport;
@@ -18,8 +19,22 @@ public class VaadinChart extends PolymerTemplate<TemplateModel> {
 
 	private Configuration configuration;
 
+	/**
+	 * Creates a new chart with default configuration
+	 */
 	public VaadinChart() {
 		this.configuration = new Configuration();
+	}
+
+	/**
+	 * Creates a new chart with the given type
+	 *
+	 * @see #VaadinChart()
+	 * @param type
+	 */
+	public VaadinChart(ChartType type) {
+		this();
+		getConfiguration().getChart().setType(type);
 	}
 
 	@Override
