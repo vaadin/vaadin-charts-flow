@@ -39,11 +39,6 @@ public class VaadinChartIT extends ParallelTest {
 		getDriver().get("http://" + findAutoHostname() + ":8080");
 	}
 
-	@After
-	public void tearDown() {
-
-	}
-
 	private WebElement getChartElement() {
 		waitUntilPresent(By.tagName("vaadin-chart"));
 		final WebElement chart = findElement(By.tagName("vaadin-chart"));

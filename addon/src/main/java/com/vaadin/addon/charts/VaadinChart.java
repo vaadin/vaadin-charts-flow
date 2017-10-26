@@ -18,6 +18,7 @@ import elemental.json.impl.JreJsonFactory;
 public class VaadinChart extends PolymerTemplate<TemplateModel> {
 
 	private Configuration configuration;
+	private final JreJsonFactory jsonFactory = new JreJsonFactory();
 
 	/**
 	 * Creates a new chart with default configuration
@@ -43,7 +44,7 @@ public class VaadinChart extends PolymerTemplate<TemplateModel> {
 
 		final UI ui = attachEvent.getUI();
 
-	 	ui.beforeClientResponse(this, () -> {
+		ui.beforeClientResponse(this, () -> {
 			drawChart();
 		});
 	}
@@ -70,7 +71,6 @@ public class VaadinChart extends PolymerTemplate<TemplateModel> {
 	public void drawChart(boolean resetConfiguration) {
 		Configuration configuration = getConfiguration();
 
-		final JreJsonFactory jsonFactory = new JreJsonFactory();
 		final JsonObject configurationNode = jsonFactory.parse(ChartSerialization.toJSON(configuration));
 
 		getElement().callFunction("update", configurationNode, resetConfiguration);
