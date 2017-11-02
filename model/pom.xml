@@ -5,35 +5,19 @@
          
     <parent>
         <groupId>com.vaadin</groupId>
-        <artifactId>vaadin-charts-parent</artifactId>
+        <artifactId>vaadin-charts-flow-parent</artifactId>
         <version>6.0-SNAPSHOT</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.vaadin</groupId>
-    <artifactId>vaadin-charts-model</artifactId>
+    <artifactId>vaadin-charts-flow-model</artifactId>
     <version>6.0-SNAPSHOT</version>
-    <name>Vaadin Charts Model</name>
 
-    <repositories>
-        <repository>
-            <id>flow-internal-release</id>
-            <url>https://repo.vaadin.com/nexus/content/repositories/flow</url>
-        </repository>
-
-        <repository>
-            <id>vaadin-addons</id>
-            <url>http://maven.vaadin.com/vaadin-addons</url>
-        </repository>
-    </repositories>
+    <name>Vaadin Charts for Flow Model</name>
 
     <dependencies>
-        <dependency>
-            <groupId>com.vaadin</groupId>
-            <artifactId>flow</artifactId>
-            <version>0.1.22</version>
-        </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-annotations</artifactId>
@@ -45,17 +29,4 @@
             <version>2.5.2</version>
         </dependency>
     </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 </project>

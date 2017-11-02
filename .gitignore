@@ -10,7 +10,6 @@ rebel.xml
 **/bower_components
 **/node_modules
 **/frontend/node
-addon/src/main/frontend/package-lock.json
 
 # Mac
 *.DS_Store
