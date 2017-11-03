@@ -17,6 +17,7 @@
         <module>addon</module>
         <module>model</module>
         <module>integration-test</module>
+        <module>examples</module>
     </modules>
 
     <organization>
