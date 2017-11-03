@@ -6,6 +6,6 @@ import com.vaadin.server.VaadinServletConfiguration;
 import javax.servlet.annotation.WebServlet;
 
 @WebServlet("/*")
-@VaadinServletConfiguration(productionMode = false)
+@VaadinServletConfiguration(productionMode = false, ui = ChartsDemoUI.class)
 public class DemoServlet extends VaadinServlet {
 }
