@@ -1,4 +1,4 @@
-package com.vaadin.addon.charts.examples.defaultchart;
+package com.vaadin.addon.charts.examples.basic;
 
 import com.vaadin.addon.charts.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.VaadinChart;

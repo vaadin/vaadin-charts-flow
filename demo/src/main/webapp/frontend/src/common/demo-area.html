@@ -22,6 +22,7 @@
         background-color: white;
         padding: 16px;
         width: 100%;
+        min-height: calc(100vh - 30px);
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
       }
@@ -29,8 +30,8 @@
       #buttons {
         color: #808F8F;
         position: absolute;
+        bottom: 70px;
         z-index: 1;
-        bottom: 0;
         left: calc(50% - 165px);
         width: 330px;
         border: 1px solid white;
@@ -68,15 +69,13 @@
         border-bottom: 1px solid #00B2EF;
       }
     </style>
+    <div id="background"></div>
     <div id="buttons">
       <span id="buttons-header">Viewport:</span>
       <paper-icon-button noink active id="full" icon="vaadin:expand-square"></paper-icon-button>
       <paper-icon-button noink id="desktop" icon="vaadin:desktop"></paper-icon-button>
       <paper-icon-button noink id="tablet" icon="vaadin:tablet"></paper-icon-button>
       <paper-icon-button noink id="mobile" icon="vaadin:mobile"></paper-icon-button>
-    </div>
-    <div id="background">
-      <slot name="demo-content" id="content"></slot>
     </div>
   </template>
 

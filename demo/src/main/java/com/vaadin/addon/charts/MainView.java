@@ -7,10 +7,9 @@ import com.vaadin.router.WildcardParameter;
 import com.vaadin.router.event.BeforeNavigationEvent;
 import com.vaadin.ui.Tag;
 import com.vaadin.ui.common.HtmlImport;
-import com.vaadin.ui.html.Div;
-import com.vaadin.ui.html.H2;
 import com.vaadin.ui.polymertemplate.Id;
 import com.vaadin.ui.polymertemplate.PolymerTemplate;
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 import org.reflections.Reflections;
@@ -38,13 +37,11 @@ public class MainView extends PolymerTemplate<MainView.Model> implements HasUrlP
     private static final Map<String, List<Class<? extends AbstractVaadinChartExample>>> GROUPS;
     private static final Map<String, Class<? extends AbstractVaadinChartExample>> NAME_INDEXED_SUBTYPES;
 
+    @Id("demo-snippet")
+    private DemoSnippet snippet;
+
     @Id("demo-sources-area")
-    private DemoPlusSourcesArea demoPlusSourcesArea;
-
-//    @Id("content")
-//    private Div div;
-
-    private boolean attached;
+    private DemoArea demoPlusSourcesArea;
 
     static {
         NAME_INDEXED_SUBTYPES = new Reflections("com.vaadin.addon.charts.examples")
@@ -79,18 +76,10 @@ public class MainView extends PolymerTemplate<MainView.Model> implements HasUrlP
             final Class<? extends AbstractVaadinChartExample> exampleClass
                     = NAME_INDEXED_SUBTYPES.get(currentExample.getValue());
 
-            final VaadinChart chart = exampleClass.newInstance().getChart();
-
-//            div.getElement().removeAllChildren();
-//            div.getElement().appendChild(new H2(Category.splitCamelCase(currentExample.getValue())).getElement(), chart.getElement());
-            demoPlusSourcesArea.setHeader(currentExample.getValue());
-            demoPlusSourcesArea.setMarkdown("```This is a wonderful chart, believe me.```");
-            demoPlusSourcesArea.setContent(chart);
-
-//            chartDemo.getDemoPlusSourcesArea().setMarkdown("```java\n"
-//                    + IOUtils.toString(getClass().getResourceAsStream(
-//                            "/examples/" + currentExample.getKey() + "/" + currentExample.getValue() + ".java"))
-//                    + "\n```");
+            demoPlusSourcesArea.setContent(exampleClass.newInstance().getChart());
+//            demoPlusSourcesArea.setHeader(currentExample.getValue());
+            snippet.setSource(IOUtils.toString(getClass().getResourceAsStream(
+                    "/examples/" + currentExample.getKey() + "/" + currentExample.getValue() + ".java")));
         } catch (Exception e) {
             e.printStackTrace();
         }

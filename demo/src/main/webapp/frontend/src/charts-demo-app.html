@@ -4,19 +4,88 @@
 <link rel="import" href="../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../bower_components/iron-selector/iron-selector.html">
 <link rel="import" href="../bower_components/vaadin-charts/vaadin-chart.html">
+<link rel="import" href="../bower_components/vaadin-split-layout/vaadin-split-layout.html">
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../bower_components/vaadin-icons/vaadin-icons.html">
 <link rel="import" href="../bower_components/iron-resizable-behavior/iron-resizable-behavior.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="my-icons.html">
 <link rel="import" href="demo-menu.html">
+<link rel="import" href="common/demo-snippet.html">
 <link rel="import" href="common/header-bar.html">
-<link rel="import" href="chart-demo/chart-demo.html">
+
+<head>
+  <script>
+    if (window.location.pathname.indexOf("es5") == -1) {
+      if (window.navigator.userAgent.indexOf("Trident/") != -1) {
+        window.location = "/";
+      }
+    } else {
+      if (window.navigator.userAgent.indexOf("Trident/") == -1) {
+        window.location = "/";
+      }
+    }
+  </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+  <title>Vaadin Charts Demo</title>
+  <meta name="description" content="vaadin-charts demo">
+
+  <link rel="icon" href="./images/favicon.ico">
+
+  <!-- See https://goo.gl/OOhYW5 -->
+  <link rel="manifest" href="manifest.json">
+
+  <!-- See https://goo.gl/qRE0vM -->
+  <meta name="theme-color" content="#00B4F0">
+
+  <!-- Add to homescreen for Chrome on Android. Fallback for manifest.json -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="My App">
+
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="My App">
+
+  <!-- Homescreen icons -->
+  <link rel="apple-touch-icon" href="./images/manifest/icon-48x48.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="./images/manifest/icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="96x96" href="./images/manifest/icon-96x96.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="./images/manifest/icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="192x192" href="./images/manifest/icon-192x192.png">
+
+  <!-- Tile icon for Windows 8 (144x144 + tile color) -->
+  <meta name="msapplication-TileImage" content="./images/manifest/icon-144x144.png">
+  <meta name="msapplication-TileColor" content="#3f51b5">
+  <meta name="msapplication-tap-highlight" content="no">
+
+  <!-- Load webcomponents-loader.js to check and load any polyfills your browser needs -->
+  <script src="./bower_components/webcomponentsjs/webcomponents-loader.js"></script>
+
+  <!-- Load your application shell -->
+  <link rel="import" href="./src/charts-demo-app.html">
+
+  <!-- Add any global styles for body, document, etc. -->
+  <style>
+    html {
+      height: 100%;
+    }
+    body {
+      margin: 0;
+      font-family: 'Roboto', 'Noto', sans-serif;
+      line-height: 1.5;
+      height: 100%;
+    }
+  </style>
+</head>
 
 <dom-module id="charts-demo-app">
   <template>
     <style>
-       :host {
+      :host {
         --water: #00B4F0;
         --charcoal: #33383A;
 
@@ -209,6 +278,72 @@
         vertical-align: middle;
       }
 
+      #layout {
+        flex-grow: 1;
+        height: 100%;
+      }
+
+      #container {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        width: 100%;
+      }
+
+      .nav-panel {
+        background-color: #1B2021;
+        color: #808F8F;
+        font: 400 13px "Open Sans", Verdana, sans-serif;
+        text-transform: uppercase;
+      }
+
+      .nav-panel__tabs__button {
+        border-bottom: 1px solid transparent;
+        border-radius: 0;
+        padding: 0;
+        padding-bottom: 6px;
+        margin: 0;
+        margin-left: 24px;
+        min-width: auto;
+        color: #00B2EF;
+        font-family: "Open Sans", Verdana, sans-serif;
+        -webkit-font-smoothing: auto;
+      }
+
+      .nav-panel__tabs__button[active] {
+        border-bottom: 1px solid var(--app-primary-color);
+        color: #ffffff;
+      }
+
+      #source-label {
+        padding-left: 36px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        display: inline-block;
+      }
+
+      #htmlbutton {
+        display: none;
+      }
+
+      #closebutton {
+        float: right;
+        padding-top: 16px;
+        padding-bottom: 16px;
+        color: #00B2EF;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      :host(.hiddensplitter) {
+        --vaadin-split-layout-splitter: {
+          display: none;
+          opacity: 0;
+        }
+      }
+
       @media screen and (max-width: 799px) {
         #sideMenu {
           transform: translateX(-100%);
@@ -290,12 +425,21 @@
 
     <!-- Main content -->
     <div id="content">
-      <!--<slot name="content"></slot>-->
-      <demo-plus-sources-area id="demo-sources-area"></demo-plus-sources-area>
-
-      <!--<iron-pages id="iron-pages" selected="[[page]]" attr-for-selected="demo" fallback-selection="view404" role="main">-->
-        <!--&lt;!&ndash;<chart-demo id="my-chart-demo" category="defaultChart" demo="EmptyChart"></chart-demo>&ndash;&gt;-->
-      <!--</iron-pages>-->
+      <div class="nav-panel">
+        <span id="source-label">Source:</span>
+        <paper-button id="htmlbutton" class="nav-panel__tabs__button" on-click="showSource" noink toggles
+                      source-type="html">HTML</paper-button>
+        <paper-button id="javabutton" class="nav-panel__tabs__button" on-click="showSource" noink toggles
+                      source-type="java">Java</paper-button>
+        <paper-button style="display:none;" id="closebutton" on-click="_close" noink
+                      icon="vaadin:close-circle-o">
+          <iron-icon icon="vaadin:eye-slash" style="padding-right:8px;"></iron-icon> Hide source
+        </paper-button>
+      </div>
+      <vaadin-split-layout id="layout" vertical>
+        <demo-snippet id="demo-snippet" class="hidden"></demo-snippet>
+        <demo-area id="demo-sources-area"></demo-area>
+      </vaadin-split-layout>
     </div>
   </template>
 
@@ -330,6 +474,7 @@
 
       connectedCallback() {
         super.connectedCallback();
+        this.classList.add('hiddensplitter');
 
         // If it is the first load and the it is at root path, defaults to the first chart
         // Change the route and create an event, so app-route will listen and react 
@@ -357,10 +502,6 @@
         this.$.menu.updateSelection();
       }
 
-      _showPage404() {
-        this.page = '404';
-      }
-
       _openMenu() {
         this.$.curtain.classList.add('open');
         this.$.sideMenu.classList.add('open');
@@ -369,6 +510,18 @@
       _closeMenu() {
         this.$.curtain.classList.remove('open');
         this.$.sideMenu.classList.remove('open');
+      }
+
+      _close() {
+        this.$['demo-snippet'].classList.add("hidden");
+        this.$.closebutton.style.display = "none";
+        this.classList.add('hiddensplitter');
+      }
+
+      showSource(e) {
+        this.classList.remove("hiddensplitter");
+        this.$['demo-snippet'].classList.remove("hidden");
+        this.$.closebutton.style.display = "";
       }
     }
 
