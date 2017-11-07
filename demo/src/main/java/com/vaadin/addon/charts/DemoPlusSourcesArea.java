@@ -1,5 +1,6 @@
 package com.vaadin.addon.charts;
 
+import com.vaadin.flow.dom.Element;
 import com.vaadin.flow.model.TemplateModel;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.Tag;
@@ -22,14 +23,16 @@ public class DemoPlusSourcesArea extends PolymerTemplate<DemoPlusSourcesArea.Mod
     }
 
     @Id("example")
-    private DemoArea demoArea;
+    private Element demoArea;
 
     public void setHeader(String header) {
         getModel().setHeader(header);
     }
 
     public void setContent(Component content) {
-        demoArea.getElement().appendChild(content.getElement());
+        content.getElement().setAttribute("slot", "demo-content");
+        demoArea.removeAllChildren();
+        demoArea.appendChild(content.getElement());
     }
 
     public void setMarkdown(String markdown) {
