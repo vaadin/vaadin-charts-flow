@@ -1,0 +1,40 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../shared-styles.html">
+<link rel="import" href="../common/demo-plus-sources-area.html">
+<link rel="import" href="../../bower_components/vaadin-charts/vaadin-charts.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../bower_components/vaadin-grid/vaadin-grid.html">
+
+<dom-module id="chart-demo">
+  <template>
+    <style include="shared-styles">
+       :host {
+        height: 100%;
+      }
+    </style>
+
+    <demo-plus-sources-area id="demo-sources-area"></demo-plus-sources-area>
+  </template>
+
+  <script>
+    class ChartDemo extends Polymer.Element {
+      static get is() { return 'chart-demo'; }
+      static get properties() {
+        return {
+          demo: String,
+          category: String,
+          htmlValue: String
+        }
+      }
+      constructor() {
+        super();
+        this.__initialized = false;
+      }
+      connectedCallback() {
+        super.connectedCallback();
+      }
+    }
+
+    window.customElements.define(ChartDemo.is, ChartDemo);
+  </script>
+</dom-module>
