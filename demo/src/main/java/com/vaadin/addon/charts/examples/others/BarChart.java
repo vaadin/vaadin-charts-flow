@@ -11,7 +11,7 @@ import com.vaadin.addon.charts.model.YAxis;
 public class BarChart extends AbstractVaadinChartExample {
     @Override
     protected VaadinChart getChart() {
-        final VaadinChart chart = new VaadinChart();
+        VaadinChart chart = new VaadinChart();
 
         Configuration configuration = chart.getConfiguration();
         configuration.setTitle("Example Bar Chart");

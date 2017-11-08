@@ -1,86 +1,11 @@
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
-<link rel="import" href="../bower_components/app-route/app-location.html">
-<link rel="import" href="../bower_components/app-route/app-route.html">
-<link rel="import" href="../bower_components/iron-pages/iron-pages.html">
-<link rel="import" href="../bower_components/iron-selector/iron-selector.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../bower_components/vaadin-charts/vaadin-chart.html">
-<link rel="import" href="../bower_components/vaadin-split-layout/vaadin-split-layout.html">
-<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
-<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../bower_components/vaadin-icons/vaadin-icons.html">
-<link rel="import" href="../bower_components/iron-resizable-behavior/iron-resizable-behavior.html">
-<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
-<link rel="import" href="my-icons.html">
-<link rel="import" href="demo-menu.html">
-<link rel="import" href="common/demo-snippet.html">
-<link rel="import" href="common/header-bar.html">
-
-<head>
-  <script>
-    if (window.location.pathname.indexOf("es5") == -1) {
-      if (window.navigator.userAgent.indexOf("Trident/") != -1) {
-        window.location = "/";
-      }
-    } else {
-      if (window.navigator.userAgent.indexOf("Trident/") == -1) {
-        window.location = "/";
-      }
-    }
-  </script>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
-
-  <title>Vaadin Charts Demo</title>
-  <meta name="description" content="vaadin-charts demo">
-
-  <link rel="icon" href="./images/favicon.ico">
-
-  <!-- See https://goo.gl/OOhYW5 -->
-  <link rel="manifest" href="manifest.json">
-
-  <!-- See https://goo.gl/qRE0vM -->
-  <meta name="theme-color" content="#00B4F0">
-
-  <!-- Add to homescreen for Chrome on Android. Fallback for manifest.json -->
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="application-name" content="My App">
-
-  <!-- Add to homescreen for Safari on iOS -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="My App">
-
-  <!-- Homescreen icons -->
-  <link rel="apple-touch-icon" href="./images/manifest/icon-48x48.png">
-  <link rel="apple-touch-icon" sizes="72x72" href="./images/manifest/icon-72x72.png">
-  <link rel="apple-touch-icon" sizes="96x96" href="./images/manifest/icon-96x96.png">
-  <link rel="apple-touch-icon" sizes="144x144" href="./images/manifest/icon-144x144.png">
-  <link rel="apple-touch-icon" sizes="192x192" href="./images/manifest/icon-192x192.png">
-
-  <!-- Tile icon for Windows 8 (144x144 + tile color) -->
-  <meta name="msapplication-TileImage" content="./images/manifest/icon-144x144.png">
-  <meta name="msapplication-TileColor" content="#3f51b5">
-  <meta name="msapplication-tap-highlight" content="no">
-
-  <!-- Load webcomponents-loader.js to check and load any polyfills your browser needs -->
-  <script src="./bower_components/webcomponentsjs/webcomponents-loader.js"></script>
-
-  <!-- Load your application shell -->
-  <link rel="import" href="./src/charts-demo-app.html">
-
-  <!-- Add any global styles for body, document, etc. -->
-  <style>
-    html {
-      height: 100%;
-    }
-    body {
-      margin: 0;
-      font-family: 'Roboto', 'Noto', sans-serif;
-      line-height: 1.5;
-      height: 100%;
-    }
-  </style>
-</head>
+<link rel="import" href="../bower_components/vaadin-split-layout/vaadin-split-layout.html">
+<link rel="import" href="./common/demo-snippet.html">
+<link rel="import" href="./demo-menu.html">
+<link rel="import" href="./my-icons.html">
 
 <dom-module id="charts-demo-app">
   <template>
@@ -103,10 +28,6 @@
         margin-bottom: 20px;
       }
 
-      .drawer-list {
-        margin: 0 20px;
-      }
-
       .drawer-list a {
         display: block;
         padding: 8px 16px;
@@ -120,23 +41,6 @@
 
       .drawer-list a.iron-selected .menu-item-description {
         color: white;
-      }
-
-      .menu-item-header {
-        display: block;
-        color: white;
-        line-height: 24px;
-      }
-
-      .menu-item-description {
-        display: block;
-        color: #808080;
-        line-height: 20px;
-        font-size: 12px;
-      }
-
-      #iron-pages {
-        height: 100%;
       }
 
       #sideMenu {
@@ -218,10 +122,6 @@
         width: 100%;
       }
 
-      #header {
-        transition: all 0.3s ease-in-out;
-      }
-
       #menuTree {
         overflow-y: auto;
       }
@@ -283,13 +183,6 @@
         height: 100%;
       }
 
-      #container {
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-        width: 100%;
-      }
-
       .nav-panel {
         background-color: #1B2021;
         color: #808F8F;
@@ -322,10 +215,6 @@
         display: inline-block;
       }
 
-      #htmlbutton {
-        display: none;
-      }
-
       #closebutton {
         float: right;
         padding-top: 16px;
@@ -347,10 +236,6 @@
       @media screen and (max-width: 799px) {
         #sideMenu {
           transform: translateX(-100%);
-        }
-
-        #header {
-          transform: translateY(0);
         }
       }
 
@@ -376,10 +261,6 @@
           display: none;
         }
 
-        #header {
-          transform: translateY(-100%);
-        }
-
         #closeMenu {
           display: none;
         }
@@ -390,14 +271,11 @@
       }
     </style>
 
-    <app-location route="{{route}}" use-hash-as-path></app-location>
-    <app-route route="{{route}}" pattern="/:category/:page" data="{{routeData}}" tail="{{subroute}}"></app-route>
-
     <div id="curtain" on-click="_closeMenu"></div>
     <div id="sideMenu" on-transitionend="_sideMenuTransitionend">
       <div id="menuHeader">
         <div id="logoandname">
-          <img id="logo" src="./images/charts-logo.svg">
+          <img id="logo" src="../images/charts-logo.svg">
           <div id="productname">Vaadin Charts</div>
         </div>
         <paper-icon-button id="closeMenu" icon="vaadin:close" on-click="_closeMenu"></paper-icon-button>
@@ -421,24 +299,21 @@
       </div>
     </div>
 
-    <header-bar id="header" demo=[[page]] on-open-menu="_openMenu"></header-bar>
-
     <!-- Main content -->
     <div id="content">
       <div class="nav-panel">
         <span id="source-label">Source:</span>
-        <paper-button id="htmlbutton" class="nav-panel__tabs__button" on-click="showSource" noink toggles
-                      source-type="html">HTML</paper-button>
-        <paper-button id="javabutton" class="nav-panel__tabs__button" on-click="showSource" noink toggles
+        <paper-button id="javabutton" class="nav-panel__tabs__button" on-click="_showSource" noink
                       source-type="java">Java</paper-button>
-        <paper-button style="display:none;" id="closebutton" on-click="_close" noink
+        <paper-button style="display:none;" id="closebutton" on-click="_closeSource" noink
                       icon="vaadin:close-circle-o">
           <iron-icon icon="vaadin:eye-slash" style="padding-right:8px;"></iron-icon> Hide source
         </paper-button>
       </div>
+
       <vaadin-split-layout id="layout" vertical>
         <demo-snippet id="demo-snippet" class="hidden"></demo-snippet>
-        <demo-area id="demo-sources-area"></demo-area>
+        <demo-area id="demo-area"></demo-area>
       </vaadin-split-layout>
     </div>
   </template>
@@ -468,20 +343,8 @@
 
       static get observers() {
         return [
-          '_routePageChanged(routeData.category,routeData.page)',
+          '_routePageChanged(category,page)',
         ];
-      }
-
-      connectedCallback() {
-        super.connectedCallback();
-        this.classList.add('hiddensplitter');
-
-        // If it is the first load and the it is at root path, defaults to the first chart
-        // Change the route and create an event, so app-route will listen and react 
-        if (this.route.path === '/' || this.route.path === '') {
-          window.history.pushState({}, '', '/demo/column_and_bar/bar-with-negative-stack');
-          window.dispatchEvent(new CustomEvent('location-changed'));
-        }
       }
 
       _sideMenuTransitionend(el) {
@@ -490,15 +353,6 @@
       }
 
       _routePageChanged(category, page) {
-        // Polymer 2.0 will call with `undefined` on initialization.
-        // Ignore until we are properly called with a string.
-        if (page === undefined) {
-          return;
-        }
-        // If no page was found in the route data, page will be an empty string.
-        // Default to 'column_and_bar/bar-with-negative-stack' in that case.
-        this.category = category || 'column_and_bar';
-        this.page = page || 'bar-with-negative-stack';
         this.$.menu.updateSelection();
       }
 
@@ -512,13 +366,13 @@
         this.$.sideMenu.classList.remove('open');
       }
 
-      _close() {
+      _closeSource() {
+        this.classList.add('hiddensplitter');
         this.$['demo-snippet'].classList.add("hidden");
         this.$.closebutton.style.display = "none";
-        this.classList.add('hiddensplitter');
       }
 
-      showSource(e) {
+      _showSource() {
         this.classList.remove("hiddensplitter");
         this.$['demo-snippet'].classList.remove("hidden");
         this.$.closebutton.style.display = "";

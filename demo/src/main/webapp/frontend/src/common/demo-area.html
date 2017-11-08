@@ -13,7 +13,7 @@
         box-sizing: border-box;
         display: flex;
         justify-content: center;
-        background-image: url("../../images/empty-background.png");
+        background-image: url("../../../images/empty-background.png");
         background-repeat: repeat;
         background-size: 8px 8px;
       }
@@ -30,7 +30,7 @@
       #buttons {
         color: #808F8F;
         position: absolute;
-        bottom: 70px;
+        bottom: 55px;
         z-index: 1;
         left: calc(50% - 165px);
         width: 330px;
@@ -105,9 +105,6 @@
           }
         }
       }
-      constructor() {
-        super();
-      }
 
       _sizeChange(mode) {
         for (let key in this.buttons) {
@@ -132,11 +129,6 @@
           this.buttons[id] = button;
         });
       }
-
-      connectedCallback() {
-        super.connectedCallback();
-      }
-
     }
     customElements.define(DemoArea.is, DemoArea);
   </script>

@@ -12,7 +12,7 @@ public class ColumnChart extends AbstractVaadinChartExample {
 
     @Override
     protected VaadinChart getChart() {
-        final VaadinChart chart = new VaadinChart();
+        VaadinChart chart = new VaadinChart();
 
         Configuration configuration = chart.getConfiguration();
         configuration.setTitle("Example Column Chart");

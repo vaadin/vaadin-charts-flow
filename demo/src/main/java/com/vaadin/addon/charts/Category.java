@@ -67,7 +67,7 @@ public class Category {
         }
 
         public Demo(String component) {
-            this.component = component;
+            this.component = component.toLowerCase();
             this.caption = splitCamelCase(component);
         }
 

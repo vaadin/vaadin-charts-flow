@@ -54,7 +54,7 @@
           </div>
           <app-menu slot="submenu-content" class="submenu">
             <template is="dom-repeat" items="[[category.demos]]" as="demo">
-              <a router-link category="[[category.name]]" id="[[demo.component]]" name="[[demo.component]]" href="/demo/[[category.name]]/[[demo.component]]"
+              <a router-link category="[[category.name]]" id="[[demo.component]]" name="[[demo.component]]" href="/[[category.name]]/[[demo.component]]"
                 class="app-menu-item">[[demo.caption]]</a>
             </template>
           </app-menu>
@@ -75,19 +75,25 @@
           },
 
           category: String,
-          page: String,
-          oldPage: String
+          page: String
         };
       }
 
       updateSelection() {
         Polymer.RenderStatus.beforeNextRender(this, () => {
           if (this.category !== '' && this.page !== '') {
-            const category = this.shadowRoot.querySelector(`[id='${this.category}']`);
-            if (category && this.page !== this.oldPage) {
-              const menuItem = category.querySelector(`#${this.page}`);
-              menuItem && menuItem.click();
-              this.oldPage = this.page;
+            const categoryElement = this.shadowRoot.querySelector(`[id='${this.category}']`);
+            if (!this.oldPage || this.page !== this.oldPage['id']) {
+              const menuItem = categoryElement.querySelector(`#${this.page}`);
+              menuItem.setAttribute('aria-selected', '');
+              this.oldPage && this.oldPage.removeAttribute('aria-selected');
+              this.oldPage = menuItem;
+            }
+
+            if (categoryElement !== this.oldCategory) {
+              this.oldCategory && this.oldCategory.close();
+              categoryElement.open();
+              this.oldCategory = categoryElement;
             }
           }
         });

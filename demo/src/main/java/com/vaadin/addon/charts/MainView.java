@@ -2,11 +2,14 @@ package com.vaadin.addon.charts;
 
 import com.vaadin.flow.model.TemplateModel;
 import com.vaadin.router.HasUrlParameter;
+import com.vaadin.router.PageTitle;
 import com.vaadin.router.Route;
 import com.vaadin.router.WildcardParameter;
 import com.vaadin.router.event.BeforeNavigationEvent;
 import com.vaadin.ui.Tag;
 import com.vaadin.ui.common.HtmlImport;
+import com.vaadin.ui.common.StyleSheet;
+import com.vaadin.ui.event.AttachEvent;
 import com.vaadin.ui.polymertemplate.Id;
 import com.vaadin.ui.polymertemplate.PolymerTemplate;
 import org.apache.commons.io.IOUtils;
@@ -16,6 +19,7 @@ import org.reflections.Reflections;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.function.Function;
 
 import static java.util.Comparator.comparing;
@@ -23,12 +27,22 @@ import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toMap;
 
+@Route("")
+@PageTitle("Vaadin Charts for Flow Demo")
 @Tag("charts-demo-app")
-@Route("demo")
+@StyleSheet("frontend://style.css")
 @HtmlImport("frontend://src/charts-demo-app.html")
 public class MainView extends PolymerTemplate<MainView.Model> implements HasUrlParameter<String> {
 
     public interface Model extends TemplateModel {
+        String getCategory();
+
+        void setCategory(String category);
+
+        String getPage();
+
+        void setPage(String page);
+
         List<Category> getCategories();
 
         void setCategories(List<Category> categories);
@@ -40,15 +54,17 @@ public class MainView extends PolymerTemplate<MainView.Model> implements HasUrlP
     @Id("demo-snippet")
     private DemoSnippet snippet;
 
-    @Id("demo-sources-area")
-    private DemoArea demoPlusSourcesArea;
+    @Id("demo-area")
+    private DemoArea demoArea;
+
+    private Pair<String, String> currentExample;
 
     static {
         NAME_INDEXED_SUBTYPES = new Reflections("com.vaadin.addon.charts.examples")
                 .getSubTypesOf(AbstractVaadinChartExample.class)
                 .stream()
                 .filter(e -> !e.isAnnotationPresent(SkipFromDemo.class))
-                .collect(toMap(Class::getSimpleName, Function.identity()));
+                .collect(toMap(e -> e.getSimpleName().toLowerCase(), Function.identity()));
 
         GROUPS = NAME_INDEXED_SUBTYPES
                 .values()
@@ -68,38 +84,50 @@ public class MainView extends PolymerTemplate<MainView.Model> implements HasUrlP
     }
 
     @Override
-    public void setParameter(BeforeNavigationEvent event, @WildcardParameter String parameter) {
+    public void onAttach(AttachEvent e) {
+        getElement().getClassList().add("hiddensplitter");
+        // TODO(sayo-vaadin): Workaround for Flow not properly handling reroute for wildcard parameters.
+        if (currentExample == null) {
+            setParameter(null, null);
+        }
+    }
 
-        Pair<String, String> currentExample = getTargetExample(parameter);
+    @Override
+    public void setParameter(BeforeNavigationEvent event, @WildcardParameter String parameter) {
+        currentExample = getTargetExample(parameter);
+        getModel().setCategory(currentExample.getKey());
+        getModel().setPage(currentExample.getValue());
 
         try {
-            final Class<? extends AbstractVaadinChartExample> exampleClass
+            Class<? extends AbstractVaadinChartExample> exampleClass
                     = NAME_INDEXED_SUBTYPES.get(currentExample.getValue());
 
-            demoPlusSourcesArea.setContent(exampleClass.newInstance().getChart());
-//            demoPlusSourcesArea.setHeader(currentExample.getValue());
+            demoArea.setContent(exampleClass.newInstance().getChart());
             snippet.setSource(IOUtils.toString(getClass().getResourceAsStream(
-                    "/examples/" + currentExample.getKey() + "/" + currentExample.getValue() + ".java")));
+                    "/examples/" + currentExample.getKey()
+                            + "/" + exampleClass.getSimpleName() + ".java")));
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     private Pair<String, String> getTargetExample(String route) {
-        System.out.println(route);
-
-        if (route == null || route.isEmpty()) {
-            return new ImmutablePair<>("defaultchart", "EmptyChart");
+        Optional<Pair<String, String>> categoryPagePair = split(route);
+        if (!categoryPagePair.isPresent()
+                || !NAME_INDEXED_SUBTYPES.containsKey(categoryPagePair.get().getValue())) {
+            return new ImmutablePair<>("basic", "emptychart");
         }
 
-        final String[] tokens = route.split("/");
-        final int count = tokens.length;
+        return categoryPagePair.get();
+    }
 
-        if (count <= 1 || !NAME_INDEXED_SUBTYPES.containsKey(tokens[count - 1])) {
-            return new ImmutablePair<>("defaultchart", "EmptyChart");
+    private Optional<Pair<String, String>> split(String route) {
+        if (route == null || !route.contains("/")) {
+            return Optional.empty();
         }
 
-        return new ImmutablePair<>(tokens[count - 2], tokens[count - 1]);
+        String[] tokens = route.split("/");
+        return Optional.of(new ImmutablePair<>(tokens[tokens.length - 2], tokens[tokens.length - 1]));
     }
 
     private static String lastTokenInPackageName(Class<? extends AbstractVaadinChartExample> clazz) {

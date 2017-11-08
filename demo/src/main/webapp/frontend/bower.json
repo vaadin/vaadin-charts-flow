@@ -34,12 +34,11 @@
     "vaadin-icons": "4.0.0",
     "vaadin-grid": "^3.0.0",
     "vaadin-split-layout": "1.1.0",
-    "webcomponentsjs": "webcomponents/webcomponentsjs#^1.0.0"
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^1.0.17"
   },
   "devDependencies": {
     "web-component-tester": "^6.1.5"
   },
-  "private": true,
   "resolutions": {
     "iron-flex-layout": "2.0.0",
     "iron-iconset-svg": "2.0.0",
