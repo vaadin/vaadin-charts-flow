@@ -9,7 +9,7 @@ import com.vaadin.ui.polymertemplate.Id;
 import com.vaadin.ui.polymertemplate.PolymerTemplate;
 
 @Tag("demo-area")
-@HtmlImport("frontend://src/common/demo-area.html")
+@HtmlImport("frontend://src/demo-area.html")
 public class DemoArea extends PolymerTemplate<TemplateModel> {
 
     private Component currentChart;
