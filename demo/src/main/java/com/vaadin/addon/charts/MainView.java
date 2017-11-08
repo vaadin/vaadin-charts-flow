@@ -17,7 +17,10 @@ import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 import org.reflections.Reflections;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -71,11 +74,19 @@ public class MainView extends PolymerTemplate<MainView.Model> implements HasUrlP
                 .filter(e -> !e.isAnnotationPresent(SkipFromDemo.class))
                 .collect(toMap(e -> e.getSimpleName().toLowerCase(), Function.identity()));
 
-        GROUPS = NAME_INDEXED_SUBTYPES
+        Comparator<ImmutablePair<String, ? extends Class<? extends AbstractChartExample>>>
+                groupSorter = comparing(e -> GROUP_ORDER.indexOf(e.getKey()));
+
+        GROUPS = new LinkedHashMap<>();
+        NAME_INDEXED_SUBTYPES
                 .values()
                 .stream()
-                .sorted(comparing(Class::getSimpleName))
-                .collect(groupingBy(MainView::lastTokenInPackageName));
+                .map(e -> new ImmutablePair<>(lastTokenInPackageName(e), e))
+                .sorted(groupSorter.thenComparing(e -> e.getRight().getSimpleName()))
+                .forEach(e -> {
+                    GROUPS.putIfAbsent(e.getKey(), new ArrayList<>());
+                    GROUPS.get(e.getKey()).add(e.getValue());
+                });
     }
 
     public MainView() {
@@ -84,9 +95,7 @@ public class MainView extends PolymerTemplate<MainView.Model> implements HasUrlP
             category.setDemos(group.getValue().stream().map(e -> new Category.Demo(e.getSimpleName()))
                     .collect(toList()));
             return category;
-        })
-        .sorted(comparing(e -> GROUP_ORDER.indexOf(e.getName())))
-        .collect(toList());
+        }).collect(toList());
         getModel().setCategories(categories);
     }
 
