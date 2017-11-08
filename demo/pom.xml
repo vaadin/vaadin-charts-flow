@@ -85,11 +85,6 @@
                     <exclude>**/config.properties</exclude>
                 </excludes>
             </resource>
-            <resource>
-                <directory>../examples/src/main/java/com/vaadin/addon/charts/examples</directory>
-                <targetPath>examples</targetPath>
-                <filtering>false</filtering>
-            </resource>
         </resources>
 
         <plugins>

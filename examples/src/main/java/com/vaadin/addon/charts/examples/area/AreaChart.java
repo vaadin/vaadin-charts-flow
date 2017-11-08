@@ -1,5 +1,6 @@
 package com.vaadin.addon.charts.examples.area;
 
+import com.vaadin.addon.charts.SkipFromDemo;
 import com.vaadin.addon.charts.VaadinChart;
 import com.vaadin.addon.charts.AbstractChartExample;
 import com.vaadin.addon.charts.model.ChartType;
@@ -9,6 +10,7 @@ import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.ui.html.NativeButton;
 
+@SkipFromDemo
 public class AreaChart extends AbstractChartExample {
 
     @Override

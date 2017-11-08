@@ -3,7 +3,7 @@
   "description": "Vaadin Charts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/vaadin/charts"
+    "url": "https://github.com/vaadin/vaadin-charts-flow"
   },
   "version": "1.0.0",
   "main": "",
@@ -16,6 +16,5 @@
     "prodMode": "bower install && polymer build",
     "devMode": "bower install"
   },
-  "author": "",
-  "license": "Apache-2.0"
+  "author": "Vaadin Ltd"
 }
