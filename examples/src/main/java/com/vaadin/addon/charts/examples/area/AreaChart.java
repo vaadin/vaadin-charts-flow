@@ -1,6 +1,7 @@
-package com.vaadin.addon.charts.examples;
+package com.vaadin.addon.charts.examples.area;
 
 import com.vaadin.addon.charts.VaadinChart;
+import com.vaadin.addon.charts.AbstractChartExample;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.ListSeries;
@@ -8,11 +9,10 @@ import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.ui.html.NativeButton;
 
-public class DefaultExample extends AbstractChartExample {
+public class AreaChart extends AbstractChartExample {
 
     @Override
     public void initDemo() {
-
         final VaadinChart chart = new VaadinChart();
 
         Configuration configuration = chart.getConfiguration();
@@ -44,7 +44,6 @@ public class DefaultExample extends AbstractChartExample {
         });
 
         add(changeTitleButton);
-
     }
 
 }

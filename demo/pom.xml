@@ -38,6 +38,10 @@
             <groupId>com.vaadin</groupId>
             <artifactId>vaadin-charts-flow</artifactId>
             <version>${project.version}</version>
+        </dependency><dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-charts-flow-examples</artifactId>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>com.vaadin</groupId>
@@ -82,7 +86,7 @@
                 </excludes>
             </resource>
             <resource>
-                <directory>src/main/java/com/vaadin/addon/charts/examples</directory>
+                <directory>../examples/src/main/java/com/vaadin/addon/charts/examples</directory>
                 <targetPath>examples</targetPath>
                 <filtering>false</filtering>
             </resource>

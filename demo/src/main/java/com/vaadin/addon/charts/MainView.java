@@ -48,8 +48,8 @@ public class MainView extends PolymerTemplate<MainView.Model> implements HasUrlP
         void setCategories(List<Category> categories);
     }
 
-    private static final Map<String, List<Class<? extends AbstractVaadinChartExample>>> GROUPS;
-    private static final Map<String, Class<? extends AbstractVaadinChartExample>> NAME_INDEXED_SUBTYPES;
+    private static final Map<String, List<Class<? extends AbstractChartExample>>> GROUPS;
+    private static final Map<String, Class<? extends AbstractChartExample>> NAME_INDEXED_SUBTYPES;
 
     @Id("demo-snippet")
     private DemoSnippet snippet;
@@ -61,7 +61,7 @@ public class MainView extends PolymerTemplate<MainView.Model> implements HasUrlP
 
     static {
         NAME_INDEXED_SUBTYPES = new Reflections("com.vaadin.addon.charts.examples")
-                .getSubTypesOf(AbstractVaadinChartExample.class)
+                .getSubTypesOf(AbstractChartExample.class)
                 .stream()
                 .filter(e -> !e.isAnnotationPresent(SkipFromDemo.class))
                 .collect(toMap(e -> e.getSimpleName().toLowerCase(), Function.identity()));
@@ -99,10 +99,10 @@ public class MainView extends PolymerTemplate<MainView.Model> implements HasUrlP
         getModel().setPage(currentExample.getValue());
 
         try {
-            Class<? extends AbstractVaadinChartExample> exampleClass
+            Class<? extends AbstractChartExample> exampleClass
                     = NAME_INDEXED_SUBTYPES.get(currentExample.getValue());
 
-            demoArea.setContent(exampleClass.newInstance().getChart());
+            demoArea.setContent(exampleClass.newInstance());
             snippet.setSource(IOUtils.toString(getClass().getResourceAsStream(
                     "/examples/" + currentExample.getKey()
                             + "/" + exampleClass.getSimpleName() + ".java")));
@@ -130,7 +130,7 @@ public class MainView extends PolymerTemplate<MainView.Model> implements HasUrlP
         return Optional.of(new ImmutablePair<>(tokens[tokens.length - 2], tokens[tokens.length - 1]));
     }
 
-    private static String lastTokenInPackageName(Class<? extends AbstractVaadinChartExample> clazz) {
+    private static String lastTokenInPackageName(Class<? extends AbstractChartExample> clazz) {
         String name = clazz.getPackage().getName();
         return name.substring(name.lastIndexOf('.') + 1);
     }
