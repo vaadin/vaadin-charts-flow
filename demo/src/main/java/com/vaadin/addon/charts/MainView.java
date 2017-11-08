@@ -17,10 +17,6 @@ import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 import org.reflections.Reflections;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -52,9 +48,8 @@ public class MainView extends PolymerTemplate<MainView.Model> implements HasUrlP
         void setCategories(List<Category> categories);
     }
 
-    private static final String GROUP_ORDER;
-    private static final Map<String, List<Class<? extends AbstractChartExample>>> GROUPS;
     private static final Map<String, Class<? extends AbstractChartExample>> NAME_INDEXED_SUBTYPES;
+    private static final List<Category> CATEGORIES;
 
     @Id("demo-snippet")
     private DemoSnippet snippet;
@@ -65,38 +60,36 @@ public class MainView extends PolymerTemplate<MainView.Model> implements HasUrlP
     private Pair<String, String> currentExample;
 
     static {
-        GROUP_ORDER = "basic,column,bar,pie,area,lineandscatter,dynamic,combinations,"
+        final String GROUP_ORDER = "basic,column,bar,pie,area,lineandscatter,dynamic,combinations,"
                 + "other,dataprovider,timeline,threed,declarative,container";
 
         NAME_INDEXED_SUBTYPES = new Reflections("com.vaadin.addon.charts.examples")
                 .getSubTypesOf(AbstractChartExample.class)
                 .stream()
-                .filter(e -> !e.isAnnotationPresent(SkipFromDemo.class))
+                .filter(example -> !example.isAnnotationPresent(SkipFromDemo.class))
                 .collect(toMap(e -> e.getSimpleName().toLowerCase(), Function.identity()));
 
-        Comparator<ImmutablePair<String, ? extends Class<? extends AbstractChartExample>>>
-                groupSorter = comparing(e -> GROUP_ORDER.indexOf(e.getKey()));
-
-        GROUPS = new LinkedHashMap<>();
-        NAME_INDEXED_SUBTYPES
+        CATEGORIES = NAME_INDEXED_SUBTYPES
                 .values()
                 .stream()
-                .map(e -> new ImmutablePair<>(lastTokenInPackageName(e), e))
-                .sorted(groupSorter.thenComparing(e -> e.getRight().getSimpleName()))
-                .forEach(e -> {
-                    GROUPS.putIfAbsent(e.getKey(), new ArrayList<>());
-                    GROUPS.get(e.getKey()).add(e.getValue());
-                });
+                .sorted(comparing(Class::getSimpleName))
+                .collect(groupingBy(MainView::lastTokenInPackageName))
+                .entrySet()
+                .stream()
+                .map(group -> {
+                    Category category = new Category(group.getKey());
+                    category.setDemos(group.getValue()
+                            .stream()
+                            .map(demo -> new Category.Demo(demo.getSimpleName()))
+                            .collect(toList()));
+                    return category;
+                })
+                .sorted(comparing(category -> GROUP_ORDER.indexOf(category.getName())))
+                .collect(toList());
     }
 
     public MainView() {
-        final List<Category> categories = GROUPS.entrySet().stream().map(group -> {
-            Category category = new Category(group.getKey());
-            category.setDemos(group.getValue().stream().map(e -> new Category.Demo(e.getSimpleName()))
-                    .collect(toList()));
-            return category;
-        }).collect(toList());
-        getModel().setCategories(categories);
+        getModel().setCategories(CATEGORIES);
     }
 
     @Override
