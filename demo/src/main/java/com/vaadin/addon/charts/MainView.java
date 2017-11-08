@@ -17,6 +17,7 @@ import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 import org.reflections.Reflections;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -48,6 +49,7 @@ public class MainView extends PolymerTemplate<MainView.Model> implements HasUrlP
         void setCategories(List<Category> categories);
     }
 
+    private static final String GROUP_ORDER;
     private static final Map<String, List<Class<? extends AbstractChartExample>>> GROUPS;
     private static final Map<String, Class<? extends AbstractChartExample>> NAME_INDEXED_SUBTYPES;
 
@@ -60,6 +62,9 @@ public class MainView extends PolymerTemplate<MainView.Model> implements HasUrlP
     private Pair<String, String> currentExample;
 
     static {
+        GROUP_ORDER = "basic,column,bar,pie,area,lineandscatter,dynamic,combinations,"
+                + "other,dataprovider,timeline,threed,declarative,container";
+
         NAME_INDEXED_SUBTYPES = new Reflections("com.vaadin.addon.charts.examples")
                 .getSubTypesOf(AbstractChartExample.class)
                 .stream()
@@ -79,7 +84,9 @@ public class MainView extends PolymerTemplate<MainView.Model> implements HasUrlP
             category.setDemos(group.getValue().stream().map(e -> new Category.Demo(e.getSimpleName()))
                     .collect(toList()));
             return category;
-        }).collect(toList());
+        })
+        .sorted(comparing(e -> GROUP_ORDER.indexOf(e.getName())))
+        .collect(toList());
         getModel().setCategories(categories);
     }
 
