@@ -14,6 +14,7 @@
     <description>Parent project for Charts addon, demos and packaging</description>
 
     <modules>
+        <module>webjar</module>
         <module>addon</module>
         <module>model</module>
         <module>integration-test</module>
@@ -40,6 +41,7 @@
         <vaadin.version>10.0-SNAPSHOT</vaadin.version>
         <flow.version>1.0.0.alpha8</flow.version>
         <jetty.version>9.3.9.v20160517</jetty.version>
+        <frontend.maven.plugin.version>1.6</frontend.maven.plugin.version>
     </properties>
 
     <url>http://vaadin.com/charts</url>
@@ -71,6 +73,13 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>com.vaadin</groupId>
+                <artifactId>vaadin-bom</artifactId>
+                <version>${vaadin.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
             <!-- Vaadin -->
             <dependency>
                 <groupId>com.vaadin</groupId>
