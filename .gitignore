@@ -8,8 +8,8 @@ target/
 rebel.xml
 
 **/bower_components
-**/node_modules
-**/frontend/node
+**/build-tools/node_modules
+**/build-tools/node
 
 # Mac
 *.DS_Store
