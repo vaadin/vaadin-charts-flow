@@ -15,7 +15,7 @@
  */
 package com.vaadin.addon.charts.ui;
 
-import com.vaadin.addon.charts.VaadinChart;
+import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.ListSeries;
@@ -33,7 +33,7 @@ import com.vaadin.ui.html.NativeButton;
 public class MainView extends Composite<Div> implements RouterLayout {
 
 	public MainView() {
-		final VaadinChart chart = new VaadinChart();
+		final Chart chart = new Chart();
 
 		Configuration configuration = chart.getConfiguration();
 		configuration.setTitle("First Chart for Flow");
