@@ -55,7 +55,7 @@
           <app-menu slot="submenu-content" class="submenu">
             <template is="dom-repeat" items="[[category.demos]]" as="demo">
               <a router-link category="[[category.name]]" id="[[demo.component]]" name="[[demo.component]]"
-                 href="[[_contextRoot()]]/[[category.name]]/[[demo.component]]"
+                 href="[[_contextRoot]]/[[category.name]]/[[demo.component]]"
                  class="app-menu-item">[[demo.caption]]</a>
             </template>
           </app-menu>
@@ -80,6 +80,12 @@
         };
       }
 
+      constructor() {
+        super();
+        const path = window.location.pathname.split("/").filter(e => e.length > 0);
+        this._contextRoot = [0, 2].includes(path.length) ? "" : `/${path[0]}`;
+      }
+
       updateSelection() {
         Polymer.RenderStatus.beforeNextRender(this, () => {
           if (this.category !== '' && this.page !== '') {
@@ -98,11 +104,6 @@
             }
           }
         });
-      }
-
-      _contextRoot() {
-        var pathTokens = window.location.pathname.split("/").filter(e => e.length > 0)
-        return pathTokens.length === 1 || pathTokens.length > 2 ? "/" + pathTokens[0] : "";
       }
     }
 
