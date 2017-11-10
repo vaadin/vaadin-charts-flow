@@ -7,8 +7,6 @@ target/
 .settings
 rebel.xml
 
-**/bower_components
-**/frontend/node
 **/build-tools/bin/
 **/build-tools/etc/
 **/build-tools/lib/
