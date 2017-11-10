@@ -27,13 +27,6 @@
         <maven.failsafe.plugin.version>2.20</maven.failsafe.plugin.version>
         <maven.war.plugin.version>3.1.0</maven.war.plugin.version>
         <flow.maven.plugin.version>1.0-SNAPSHOT</flow.maven.plugin.version>
-
-        <!-- Frontend -->
-        <node.version>v8.1.2</node.version>
-        <yarn.version>v0.27.5</yarn.version>
-        <buildtools.directory>build-tools</buildtools.directory>
-        <frontend.working.directory>src/main/webapp/frontend</frontend.working.directory>
-        <vaadin.frontend.path>VAADIN/static/frontend</vaadin.frontend.path>
     </properties>
 
     <repositories>
