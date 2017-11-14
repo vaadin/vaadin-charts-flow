@@ -10,6 +10,9 @@ rebel.xml
 **/bower_components
 **/build-tools/node_modules
 **/build-tools/node
+**/frontend/node_modules
+**/frontend/node
+
 
 # Mac
 *.DS_Store
