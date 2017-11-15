@@ -11,8 +11,8 @@
     </parent>
 
     <artifactId>vaadin-charts-flow-webjar</artifactId>
-    <!-- Needs to be kept manually in sync with charts version in addon 
-        bower.json, addon pom.xml and in integration-test bower.json -->
+    <!-- Needs to be kept manually in sync with charts version dependency
+         in addon pom.xml and in webjar bower.json -->
     <version>6.0.0-alpha2</version>
     <packaging>jar</packaging>
 
