@@ -32,12 +32,6 @@
         <maven.war.plugin.version>3.1.0</maven.war.plugin.version>
         <maven.resources.plugin.version>3.0.2</maven.resources.plugin.version>
 
-        <!-- Frontend -->
-        <!-- Not the newest version because of https://www.polymer-project.org/2.0/docs/tools/node-support -->
-        <node.version>v7.10.1</node.version>
-        <yarn.version>v0.27.5</yarn.version>
-        <npm.version>5.3.0</npm.version>
-
         <!-- Needs to be kept manually in sync with charts version in bower.json -->
         <highcharts.version>5.0.14</highcharts.version>
 
