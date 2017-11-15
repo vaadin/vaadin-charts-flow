@@ -7,12 +7,15 @@ target/
 .settings
 rebel.xml
 
+**/bower_components/
 **/build-tools/bin/
 **/build-tools/etc/
 **/build-tools/lib/
 **/build-tools/node/
 **/build-tools/node_modules/
 addon/src/main/frontend/package-lock.json
+addon/build-tools/yarn.lock
+webjar/build-tools/yarn.lock
 
 # Mac
 *.DS_Store
