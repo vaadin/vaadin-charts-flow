@@ -67,7 +67,7 @@ public class AreaSpline extends AbstractChartExample {
 		conf.setPlotOptions(plotOptions);
 
 		ListSeries o = new ListSeries("John", 3, 4, 3, 5, 4, 10);
-		// Add last value separately
+		// You can also add values separately 
 		o.addData(12);
 		conf.addSeries(o);
 		conf.addSeries(new ListSeries("Jane", 1, 3, 4, 3, 3, 5, 4));
