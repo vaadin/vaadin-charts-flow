@@ -13,8 +13,6 @@ rebel.xml
 **/build-tools/lib/
 **/build-tools/node/
 **/build-tools/node_modules/
-addon/src/main/frontend/package-lock.json
-addon/build-tools/yarn.lock
 webjar/build-tools/yarn.lock
 integration-test/**/frontend/node_modules
 integration-test/**/frontend/node
