@@ -50,7 +50,7 @@ public class SplineUpdatingEachSecond extends AbstractChartExample {
                 series.add(new DataSeriesItem(x, y), true, true);
                 chart.drawChart();
             }
-        }, 1000, 100);
+        }, 1000, 1000);
 
         configuration.setSeries(series);
 

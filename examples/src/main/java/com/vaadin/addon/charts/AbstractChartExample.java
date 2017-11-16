@@ -37,7 +37,7 @@ public abstract class AbstractChartExample extends Div {
             public void run() {
                 try {
                     Thread.sleep(initialPause);
-                    while (component.getUI().get() != null) {
+                    while (component.getUI().isPresent()) {
                         Future<Void> future = component.getUI().get().access(task);
                         future.get();
                         Thread.sleep(interval);
