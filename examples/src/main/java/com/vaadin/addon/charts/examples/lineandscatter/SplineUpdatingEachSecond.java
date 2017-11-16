@@ -42,7 +42,6 @@ public class SplineUpdatingEachSecond extends AbstractChartExample {
 
 		YAxis yAxis = configuration.getyAxis();
 		yAxis.setTitle(new AxisTitle("Value"));
-		yAxis.setPlotLines(new PlotLine(0, 1, new SolidColor("#808080")));
 
 		configuration.getTooltip().setEnabled(false);
 		configuration.getLegend().setEnabled(false);
