@@ -46,8 +46,7 @@ public class Category {
         String camelCased = categoryName
                 .replace("and", "And")
                 .replace("bar", "Bar")
-                .replace("scatter", "Scatter")
-                .replace("provider", "Provider");
+                .replace("scatter", "Scatter");
 
         return splitCamelCase(camelCased);
     }
