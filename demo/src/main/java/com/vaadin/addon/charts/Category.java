@@ -15,7 +15,7 @@ public class Category {
 
     public Category(String name) {
         this.name = name;
-        this.caption = splitCamelCase(name);
+        this.caption = toCaption(name);
     }
 
     public String getName() {
@@ -40,6 +40,16 @@ public class Category {
 
     public void setDemos(List<Demo> demos) {
         this.demos = demos;
+    }
+
+    private static String toCaption(String categoryName) {
+        String camelCased = categoryName
+                .replace("and", "And")
+                .replace("bnd", "Bar")
+                .replace("scatter", "Scatter")
+                .replace("provider", "Provider");
+
+        return splitCamelCase(camelCased);
     }
 
     static String splitCamelCase(String s) {
