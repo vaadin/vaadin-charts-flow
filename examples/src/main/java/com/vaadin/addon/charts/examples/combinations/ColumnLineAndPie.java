@@ -34,10 +34,11 @@ public class ColumnLineAndPie extends AbstractChartExample {
         conf.addxAxis(x);
 
         Style labelStyle = new Style();
-        labelStyle.setTop("8px");
-        labelStyle.setLeft("40px");
-        conf.setLabels(new HTMLLabels(labelStyle, new HTMLLabelItem(
-                "Total fruit consumption")));
+        labelStyle.setTop("18px");
+        labelStyle.setLeft("50px");
+        labelStyle.setColor(new SolidColor("black"));
+        conf.setLabels(new HTMLLabels(new HTMLLabelItem(
+                "Total fruit consumption", labelStyle)));
 
         DataSeries series = new DataSeries();
         PlotOptionsColumn plotOptions = new PlotOptionsColumn();
@@ -86,7 +87,6 @@ public class ColumnLineAndPie extends AbstractChartExample {
         PlotOptionsPie plotOptionsPie = new PlotOptionsPie();
         plotOptionsPie.setSize("100px");
         plotOptionsPie.setCenter("100px", "80px");
-        plotOptionsPie.setShowInLegend(false);
         plotOptionsPie.setShowInLegend(false);
         series.setPlotOptions(plotOptionsPie);
         conf.addSeries(series);
