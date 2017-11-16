@@ -1,0 +1,73 @@
+package com.vaadin.addon.charts.examples.lineandscatter;
+
+
+import java.util.Random;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import com.vaadin.addon.charts.AbstractChartExample;
+import com.vaadin.addon.charts.Chart;
+import com.vaadin.addon.charts.model.AxisTitle;
+import com.vaadin.addon.charts.model.AxisType;
+import com.vaadin.addon.charts.model.ChartType;
+import com.vaadin.addon.charts.model.Configuration;
+import com.vaadin.addon.charts.model.DataSeries;
+import com.vaadin.addon.charts.model.DataSeriesItem;
+import com.vaadin.addon.charts.model.PlotLine;
+import com.vaadin.addon.charts.model.PlotOptionsSpline;
+import com.vaadin.addon.charts.model.XAxis;
+import com.vaadin.addon.charts.model.YAxis;
+import com.vaadin.addon.charts.model.style.SolidColor;
+import com.vaadin.server.Command;
+import com.vaadin.ui.Component;
+import com.vaadin.ui.UI;
+
+public class SplineUpdatingEachSecond extends AbstractChartExample {
+
+	@Override
+	public void initDemo() {
+		final Random random = new Random();
+
+		final Chart chart = new Chart();
+
+		final Configuration configuration = chart.getConfiguration();
+		configuration.getChart().setType(ChartType.SPLINE);
+		configuration.getTitle().setText("Live random data");
+
+		XAxis xAxis = configuration.getxAxis();
+		xAxis.setType(AxisType.DATETIME);
+		xAxis.setTickPixelInterval(150);
+
+		YAxis yAxis = configuration.getyAxis();
+		yAxis.setTitle(new AxisTitle("Value"));
+		yAxis.setPlotLines(new PlotLine(0, 1, new SolidColor("#808080")));
+
+		configuration.getTooltip().setEnabled(false);
+		configuration.getLegend().setEnabled(false);
+
+		final DataSeries series = new DataSeries();
+		series.setPlotOptions(new PlotOptionsSpline());
+		series.setName("Random data");
+		for (int i = -19; i <= 0; i++) {
+			series.add(new DataSeriesItem(
+					System.currentTimeMillis() + i * 1000, random.nextDouble()));
+		}
+
+		runWhileAttached(chart, new Command() {
+			@Override public void execute() {
+				final long x = System.currentTimeMillis();
+				final double y = random.nextDouble();
+				series.add(new DataSeriesItem(x, y), true, true);
+				chart.drawChart();
+			}
+		}, 1000, 100);
+
+		configuration.setSeries(series);
+
+		add(chart);
+	}
+}
+
+
