@@ -45,14 +45,14 @@ public class Category {
     private static String toCaption(String categoryName) {
         String camelCased = categoryName
                 .replace("and", "And")
-                .replace("bnd", "Bar")
+                .replace("bar", "Bar")
                 .replace("scatter", "Scatter")
                 .replace("provider", "Provider");
 
         return splitCamelCase(camelCased);
     }
 
-    static String splitCamelCase(String s) {
+    private static String splitCamelCase(String s) {
         String replaced = s.replaceAll(String.format("%s|%s|%s",
                 "(?<=[A-Z])(?=[A-Z][a-z])", "(?<=[^A-Z])(?=[A-Z])",
                 "(?<=[A-Za-z])(?=[^A-Za-z])"), " ");
