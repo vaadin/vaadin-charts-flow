@@ -18,7 +18,6 @@ public class Candlestick extends AbstractChartExample {
     @Override
     public void initDemo() {
         final Chart chart = new Chart(ChartType.CANDLESTICK);
-        chart.getElement().setAttribute("style", "height: 450px; width: 100%");
 
         Configuration configuration = chart.getConfiguration();
         configuration.getTitle().setText("AAPL Stock Price");

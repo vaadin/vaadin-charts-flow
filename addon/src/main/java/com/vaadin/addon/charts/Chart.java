@@ -42,7 +42,7 @@ public class Chart extends Component {
     }
 
     private Configuration configuration;
-    private Initialization initialization;
+    private Initialization initialization = Initialization.CHART;
     private final JreJsonFactory jsonFactory = new JreJsonFactory();
 
     /**
