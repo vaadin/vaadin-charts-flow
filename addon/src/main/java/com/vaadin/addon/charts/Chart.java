@@ -30,7 +30,19 @@ import elemental.json.impl.JreJsonFactory;
 @HtmlImport("frontend://bower_components/vaadin-charts/vaadin-chart.html")
 public class Chart extends Component {
 
+    public enum Initialization {
+        CHART("chart"),
+        STOCK_CHART("stockChart");
+
+        private final String type;
+
+        Initialization(String type) {
+            this.type = type;
+        }
+    }
+
     private Configuration configuration;
+    private Initialization initialization;
     private final JreJsonFactory jsonFactory = new JreJsonFactory();
 
     /**
@@ -85,7 +97,21 @@ public class Chart extends Component {
                 .parse(ChartSerialization.toJSON(configuration));
 
         getElement().callFunction("update", configurationNode,
-                resetConfiguration);
+                resetConfiguration, initialization.type);
+    }
+
+    /**
+     * @return the chart initialization mode
+     */
+    public Initialization getInitialization() {
+        return initialization;
+    }
+
+    /**
+     * @param initialization the charts initialization mode
+     */
+    public void setInitialization(Initialization initialization) {
+        this.initialization = initialization;
     }
 
     /**
