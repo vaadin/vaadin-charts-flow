@@ -45,8 +45,8 @@ public class VaadinChartIT extends ParallelTest {
 
     @Override
     protected String getHubURL() {
-        final String username = System.getProperty("SAUCE_USERNAME");
-        final String accessKey = System.getProperty("SAUCE_ACCESS_KEY");
+        final String username = System.getProperty("sauce.user");
+        final String accessKey = System.getProperty("sauce.sauceAccessKey");
         return "http://" + username + ":" + accessKey
                 + "@localhost:4445/wd/hub";
     }

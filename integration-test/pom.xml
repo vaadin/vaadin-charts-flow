@@ -91,6 +91,8 @@
                 <configuration>
                     <systemPropertyVariables>
                         <webdriver.chrome.driver>${webdriver.chrome.driver}</webdriver.chrome.driver>
+                        <sauce.user>${sauce.user}</sauce.user>
+                        <sauce.sauceAccessKey>${sauce.sauceAccessKey}</sauce.sauceAccessKey>
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
@@ -168,8 +170,8 @@
                             </dependency>
                         </dependencies>
                         <configuration>
-                            <sauceUsername>${SAUCE_USERNAME}</sauceUsername>
-                            <sauceAccessKey>${SAUCE_ACCESS_KEY}</sauceAccessKey>
+                            <sauceUsername>${sauce.user}</sauceUsername>
+                            <sauceAccessKey>${sauce.sauceAccessKey}</sauceAccessKey>
                         </configuration>
                         <executions>
                             <!-- Start Sauce Connect prior to running the integration tests -->
