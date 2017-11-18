@@ -91,7 +91,7 @@
                 <configuration>
                     <systemPropertyVariables>
                         <webdriver.chrome.driver>${webdriver.chrome.driver}</webdriver.chrome.driver>
-                        <sauce.user>${sauce.user}></sauce.user>
+                        <sauce.user>${sauce.user}</sauce.user>
                         <sauce.sauceAccessKey>${sauce.sauceAccessKey}</sauce.sauceAccessKey>
                     </systemPropertyVariables>
                 </configuration>
