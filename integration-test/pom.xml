@@ -160,7 +160,8 @@
                         <groupId>com.saucelabs.maven.plugin</groupId>
                         <artifactId>sauce-connect-plugin</artifactId>
                         <version>2.1.23</version>
-                        <dependencies>
+			<dependencies>
+				<!--touch -->
                             <dependency>
                                 <groupId>com.saucelabs</groupId>
                                 <artifactId>ci-sauce</artifactId>
