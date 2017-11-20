@@ -31,7 +31,6 @@ import elemental.json.impl.JreJsonFactory;
 public class Chart extends Component {
 
     private Configuration configuration;
-    private boolean timeline;
     private final JreJsonFactory jsonFactory = new JreJsonFactory();
 
     /**
@@ -86,7 +85,7 @@ public class Chart extends Component {
                 .parse(ChartSerialization.toJSON(configuration));
 
         getElement().callFunction("update", configurationNode,
-                resetConfiguration, this.timeline);
+                resetConfiguration);
     }
 
     /**
@@ -95,7 +94,6 @@ public class Chart extends Component {
      * @param timeline true for timeline chart
      */
     public void setTimeline(Boolean timeline) {
-        this.timeline = timeline;
         getElement().setProperty("timeline", timeline);
     }
 
