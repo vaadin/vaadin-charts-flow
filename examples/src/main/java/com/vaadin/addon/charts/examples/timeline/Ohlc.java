@@ -44,8 +44,7 @@ public class Ohlc extends AbstractChartExample {
         rangeSelector.setSelected(1);
         configuration.setRangeSelector(rangeSelector);
 
-        chart.setInitialization(Chart.Initialization.STOCK_CHART);
-
+        chart.setTimeline(true);
         add(chart);
     }
 }
