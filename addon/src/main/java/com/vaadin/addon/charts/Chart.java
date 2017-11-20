@@ -30,19 +30,8 @@ import elemental.json.impl.JreJsonFactory;
 @HtmlImport("frontend://bower_components/vaadin-charts/vaadin-chart.html")
 public class Chart extends Component {
 
-    public enum Initialization {
-        CHART("chart"),
-        STOCK_CHART("stockChart");
-
-        private final String type;
-
-        Initialization(String type) {
-            this.type = type;
-        }
-    }
-
     private Configuration configuration;
-    private Initialization initialization = Initialization.CHART;
+    private boolean timeline;
     private final JreJsonFactory jsonFactory = new JreJsonFactory();
 
     /**
@@ -97,21 +86,17 @@ public class Chart extends Component {
                 .parse(ChartSerialization.toJSON(configuration));
 
         getElement().callFunction("update", configurationNode,
-                resetConfiguration, initialization.type);
+                resetConfiguration, this.timeline);
     }
 
     /**
-     * @return the chart initialization mode
+     * Determines if the chart is a timeline chart or a normal chart.
+     *
+     * @param timeline true for timeline chart
      */
-    public Initialization getInitialization() {
-        return initialization;
-    }
-
-    /**
-     * @param initialization the charts initialization mode
-     */
-    public void setInitialization(Initialization initialization) {
-        this.initialization = initialization;
+    public void setTimeline(Boolean timeline) {
+        this.timeline = timeline;
+        getElement().setProperty("timeline", timeline);
     }
 
     /**

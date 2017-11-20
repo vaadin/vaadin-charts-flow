@@ -44,8 +44,7 @@ public class Candlestick extends AbstractChartExample {
         rangeSelector.setSelected(4);
         configuration.setRangeSelector(rangeSelector);
 
-        chart.setInitialization(Chart.Initialization.STOCK_CHART);
-
+        chart.setTimeline(true);
         add(chart);
     }
 }
