@@ -6,6 +6,8 @@
 
     <groupId>com.vaadin</groupId>
     <artifactId>vaadin-charts-flow-webjar</artifactId>
+    <!-- Needs to be kept manually in sync with charts version dependency
+         in addon pom.xml -->
     <version>6.0.0-alpha2</version>
     <packaging>jar</packaging>
 
@@ -31,8 +33,8 @@
         <maven.clean.plugin.version>3.0.0</maven.clean.plugin.version>
         <maven.resources.plugin.version>3.0.2</maven.resources.plugin.version>
 
-	<vaadin.charts.version>${project.version}</vaadin.charts.version>
-    <!-- Needs to be manually kept in sync with the highcharts version available 
+        <vaadin.charts.version>${project.version}</vaadin.charts.version>
+        <!-- Needs to be manually kept in sync with the highcharts version available 
         in project.version of vaadin-chart -->
         <highcharts.version>5.0.14</highcharts.version>
 
