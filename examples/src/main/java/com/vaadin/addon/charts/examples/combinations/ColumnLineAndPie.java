@@ -7,13 +7,10 @@ import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
 import com.vaadin.addon.charts.model.HTMLLabelItem;
 import com.vaadin.addon.charts.model.HTMLLabels;
-import com.vaadin.addon.charts.model.Marker;
 import com.vaadin.addon.charts.model.PlotOptionsColumn;
 import com.vaadin.addon.charts.model.PlotOptionsPie;
 import com.vaadin.addon.charts.model.PlotOptionsSpline;
 import com.vaadin.addon.charts.model.XAxis;
-import com.vaadin.addon.charts.model.style.SolidColor;
-import com.vaadin.addon.charts.model.style.Style;
 
 public class ColumnLineAndPie extends AbstractChartExample {
 
@@ -26,19 +23,13 @@ public class ColumnLineAndPie extends AbstractChartExample {
         conf.setTitle("Combined Chart");
 
         conf.setExporting(true);
-        conf.getExporting().setWidth(800);
 
         XAxis x = new XAxis();
         x.setCategories(new String[] { "Apples", "Oranges", "Pears", "Bananas",
                 "Plums" });
         conf.addxAxis(x);
 
-        Style labelStyle = new Style();
-        labelStyle.setTop("18px");
-        labelStyle.setLeft("50px");
-        labelStyle.setColor(new SolidColor("black"));
-        conf.setLabels(new HTMLLabels(new HTMLLabelItem(
-                "Total fruit consumption", labelStyle)));
+        conf.setLabels(new HTMLLabels(new HTMLLabelItem("Total fruit consumption")));
 
         DataSeries series = new DataSeries();
         PlotOptionsColumn plotOptions = new PlotOptionsColumn();
@@ -63,12 +54,6 @@ public class ColumnLineAndPie extends AbstractChartExample {
 
         series = new DataSeries();
         PlotOptionsSpline splinePlotOptions = new PlotOptionsSpline();
-        Marker marker = new Marker();
-        marker.setLineWidth(2);
-        marker.setLineColor(new SolidColor("black"));
-        marker.setFillColor(new SolidColor("white"));
-        splinePlotOptions.setMarker(marker);
-        splinePlotOptions.setColor(new SolidColor("black"));
         series.setPlotOptions(splinePlotOptions);
         series.setName("Average");
         series.setData(3, 2.67, 3, 6.33, 3.33);
