@@ -22,16 +22,16 @@ package com.vaadin.addon.charts.model;
  */
 public enum DrillUpButtonRelativeTo implements ChartEnum {
 
-	PLOTBOX("plotBox"), SPACINGBOX("spacingBox");
+    PLOTBOX("plotBox"), SPACINGBOX("spacingBox");
 
-	DrillUpButtonRelativeTo(String box) {
-		this.box = box;
-	}
+    DrillUpButtonRelativeTo(String box) {
+        this.box = box;
+    }
 
-	private String box;
+    private String box;
 
-	@Override
-	public String toString() {
-		return box;
-	}
+    @Override
+    public String toString() {
+        return box;
+    }
 }
