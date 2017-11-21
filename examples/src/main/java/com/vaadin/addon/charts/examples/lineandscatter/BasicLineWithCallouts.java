@@ -46,8 +46,6 @@ public class BasicLineWithCallouts extends AbstractChartExample {
                 13.9, 9.6);
         DataLabels callout = new DataLabels(true);
         callout.setShape(Shape.CALLOUT);
-        callout.setBackgroundColor(SolidColor.BLANCHEDALMOND);
-        callout.setY(-12);
         ds.get(5).setDataLabels(callout);
         configuration.addSeries(ds);
 
@@ -55,7 +53,7 @@ public class BasicLineWithCallouts extends AbstractChartExample {
         ds.setName("London");
         ds.setData(3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6,
                 4.8);
-        ds.get(7).setDataLabels(callout);
+        ds.get(6).setDataLabels(callout);
         configuration.addSeries(ds);
 
         add(chart);
