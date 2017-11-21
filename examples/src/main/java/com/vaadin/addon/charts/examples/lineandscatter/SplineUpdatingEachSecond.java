@@ -13,7 +13,6 @@ import com.vaadin.addon.charts.model.DataSeriesItem;
 import com.vaadin.addon.charts.model.PlotOptionsSpline;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
-import com.vaadin.server.Command;
 
 public class SplineUpdatingEachSecond extends AbstractChartExample {
 
@@ -43,16 +42,14 @@ public class SplineUpdatingEachSecond extends AbstractChartExample {
             series.add(new DataSeriesItem(System.currentTimeMillis() + i * 1000, random.nextDouble()));
         }
 
-        runWhileAttached(chart, new Command() {
-            @Override public void execute() {
+        configuration.setSeries(series);
+
+        runWhileAttached(chart, () -> {
                 final long x = System.currentTimeMillis();
                 final double y = random.nextDouble();
                 series.add(new DataSeriesItem(x, y), true, true);
                 chart.drawChart();
-            }
         }, 1000, 1000);
-
-        configuration.setSeries(series);
 
         add(chart);
     }

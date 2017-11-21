@@ -2,12 +2,12 @@ package com.vaadin.addon.charts;
 
 import com.vaadin.server.Command;
 import com.vaadin.ui.Component;
-import com.vaadin.ui.UI;
 import com.vaadin.ui.html.Div;
 
-import java.util.concurrent.Future;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Abstract class for all chart examples.
@@ -28,30 +28,23 @@ public abstract class AbstractChartExample extends Div {
      * @param initialPause
      *            a timeout after tas is started
      */
-    public static void runWhileAttached(final Component component,
-            final Command task, final int interval, final int initialPause) {
-        UI.getCurrent().setPollInterval(interval);
+    public static void runWhileAttached(Component component, Command task,
+            final int interval, final int initialPause) {
+        component.addAttachListener(event -> {
+            ScheduledExecutorService executor = Executors
+                    .newScheduledThreadPool(1);
 
-        final Thread thread = new Thread() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(initialPause);
-                    while (component.getUI().isPresent()) {
-                        Future<Void> future = component.getUI().get().access(task);
-                        future.get();
-                        Thread.sleep(interval);
-                    }
-                } catch (Exception e) {
-                    Logger.getLogger(this.getClass().getName())
-                            .log(Level.WARNING,
-                                    "Unexpected exception while running scheduled update",
-                                    e);
-                }
-                Logger.getLogger(this.getClass().getName()).log(Level.INFO,
-                        "Thread stopped");
-            }
-        };
-        thread.start();
+            component.getUI().ifPresent(ui -> ui.setPollInterval(interval));
+
+            final ScheduledFuture<?> scheduledFuture = executor
+                    .scheduleAtFixedRate(() -> {
+                        component.getUI().ifPresent(ui -> ui.access(task));
+                    }, initialPause, interval, TimeUnit.MILLISECONDS);
+
+            component.addDetachListener(detach -> {
+                scheduledFuture.cancel(true);
+                detach.getUI().setPollInterval(-1);
+            });
+        });
     }
 }
