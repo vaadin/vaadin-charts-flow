@@ -46,6 +46,7 @@ public class BasicLineWithCallouts extends AbstractChartExample {
                 13.9, 9.6);
         DataLabels callout = new DataLabels(true);
         callout.setShape(Shape.CALLOUT);
+        callout.setY(-12);
         ds.get(5).setDataLabels(callout);
         configuration.addSeries(ds);
 
