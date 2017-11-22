@@ -64,17 +64,17 @@ public class BeanSerializerDelegator<T> extends BeanSerializerBase {
     @Override
     public BeanSerializerBase withObjectIdWriter(
             ObjectIdWriter objectIdWriter) {
-        return new BeanSerializerDelegator(this, objectIdWriter);
+        return new BeanSerializerDelegator<>(this, objectIdWriter);
     }
 
     @Override
     protected BeanSerializerBase withIgnorals(String[] toIgnore) {
-        return new BeanSerializerDelegator(this, toIgnore);
+        return new BeanSerializerDelegator<>(this, toIgnore);
     }
 
     @Override
     protected BeanSerializerBase withFilterId(Object filterId) {
-        return new BeanSerializerDelegator(this, filterId);
+        return new BeanSerializerDelegator<>(this, filterId);
     }
 
     @Override
