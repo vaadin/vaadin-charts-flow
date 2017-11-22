@@ -61,7 +61,7 @@ public class MainView extends PolymerTemplate<MainView.Model> implements HasUrlP
     private Pair<String, String> currentExample;
 
     static {
-        final String GROUP_ORDER = "basic,column,bar,pie,area,lineandscatter,dynamic,combinations,"
+        final String GROUP_ORDER = "column,bar,pie,area,lineandscatter,dynamic,combinations,"
                 + "other,timeline,declarative,container";
 
         NAME_INDEXED_SUBTYPES = new Reflections("com.vaadin.addon.charts.examples")
