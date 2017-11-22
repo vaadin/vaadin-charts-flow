@@ -13,10 +13,14 @@ rebel.xml
 **/build-tools/lib/
 **/build-tools/node/
 **/build-tools/node_modules/
-webjar/build-tools/yarn.lock
+**/build-tools/yarn.lock
 webjar/src/main/frontend/bower.json
 integration-test/**/frontend/node_modules
 integration-test/**/frontend/node
+demo/src/main/webapp/frontend/bower_components/
+demo/src/main/webapp/frontend/build/
+demo/src/main/webapp/frontend-es5/
+demo/src/main/webapp/frontend-es6/
 
 # Mac
 *.DS_Store
