@@ -4,6 +4,12 @@
 *.java text
 *.xml text
 *.md text
+*.properties text
+*.txt text
+*.css text
+*.js text
+*.json text
+*.svg text
 
 .gitattributes text
 .gitignore text
