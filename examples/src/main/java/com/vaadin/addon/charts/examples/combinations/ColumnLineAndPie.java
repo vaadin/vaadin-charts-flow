@@ -12,7 +12,6 @@ import com.vaadin.addon.charts.model.PlotOptionsPie;
 import com.vaadin.addon.charts.model.PlotOptionsSpline;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.style.Style;
-import com.vaadin.addon.charts.util.ChartSerialization;
 
 public class ColumnLineAndPie extends AbstractChartExample {
 
