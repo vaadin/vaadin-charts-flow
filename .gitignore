@@ -14,7 +14,6 @@ rebel.xml
 **/build-tools/node/
 **/build-tools/node_modules/
 **/build-tools/yarn.lock
-webjar/src/main/frontend/bower.json
 integration-test/**/frontend/node_modules
 integration-test/**/frontend/node
 demo/src/main/webapp/frontend/bower_components/
