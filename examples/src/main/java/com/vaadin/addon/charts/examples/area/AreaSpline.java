@@ -40,8 +40,7 @@ public class AreaSpline extends AbstractChartExample {
 		conf.setLegend(legend);
 
 		XAxis xAxis = new XAxis();
-		xAxis.setCategories(new String[] { "Monday", "Tuesday", "Wednesday",
-				"Thursday", "Friday", "Saturday", "Sunday" });
+		xAxis.setCategories("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday");
 		// add blue background for the weekend
 		PlotBand plotBand = new PlotBand(4.5, 6.5, LIGHT_BLUE);
 		plotBand.setZIndex(1);
