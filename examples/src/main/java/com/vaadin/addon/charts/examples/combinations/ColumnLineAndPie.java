@@ -26,8 +26,7 @@ public class ColumnLineAndPie extends AbstractChartExample {
         conf.setExporting(true);
 
         XAxis x = new XAxis();
-        x.setCategories(new String[] { "Apples", "Oranges", "Pears", "Bananas",
-                "Plums" });
+        x.setCategories("Apples", "Oranges", "Pears", "Bananas", "Plums");
         conf.addxAxis(x);
 
         Style labelStyle = new Style();
