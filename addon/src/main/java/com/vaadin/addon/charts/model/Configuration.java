@@ -912,7 +912,7 @@ public class Configuration extends AbstractConfigurationObject
             return AxisDimension.COLOR_AXIS;
         } else if (axis instanceof XAxis) {
             return AxisDimension.X_AXIS;
-        } else if (axis instanceof XAxis) {
+        } else if (axis instanceof YAxis) {
             return AxisDimension.Y_AXIS;
         } else if (axis instanceof ZAxis) {
             return AxisDimension.Z_AXIS;
