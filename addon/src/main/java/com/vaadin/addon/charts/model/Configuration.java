@@ -42,10 +42,6 @@ import com.vaadin.addon.charts.events.SeriesStateEvent;
 public class Configuration extends AbstractConfigurationObject
         implements ChartConfiguration {
 
-    enum AxisDimension {
-        X_AXIS, Y_AXIS, Z_AXIS, COLOR_AXIS
-    }
-
     private ChartModel chart;
     private Title title;
     private Subtitle subtitle;
@@ -912,14 +908,14 @@ public class Configuration extends AbstractConfigurationObject
      * @return Dimension, as defined in ChartClientRpc.
      */
     private AxisDimension getAxisDimension(Axis axis) {
-        if (xAxis.contains(axis)) {
-            return AxisDimension.X_AXIS;
-        } else if (yAxis.contains(axis)) {
-            return AxisDimension.Y_AXIS;
-        } else if (zAxis.getAxes().contains(axis)) {
-            return AxisDimension.Z_AXIS;
-        } else if (colorAxis.getAxes().contains(axis)) {
+        if (axis instanceof ColorAxis) {
             return AxisDimension.COLOR_AXIS;
+        } else if (axis instanceof XAxis) {
+            return AxisDimension.X_AXIS;
+        } else if (axis instanceof XAxis) {
+            return AxisDimension.Y_AXIS;
+        } else if (axis instanceof ZAxis) {
+            return AxisDimension.Z_AXIS;
         } else {
             return null;
         }
@@ -943,7 +939,7 @@ public class Configuration extends AbstractConfigurationObject
         case Z_AXIS:
             return zAxis.indexOf(axis);
         case COLOR_AXIS:
-            return colorAxis.getAxes().indexOf(axis);
+            return colorAxis.indexOf(axis);
         default:
             return -1;
         }
@@ -970,7 +966,7 @@ public class Configuration extends AbstractConfigurationObject
         AxisDimension axisType = getAxisDimension(axis);
         if (axisType != null) {
             int axisIndex = getAxisIndex(axisType, axis);
-            AxisRescaledEvent event = new AxisRescaledEvent(axisType.ordinal(),
+            AxisRescaledEvent event = new AxisRescaledEvent(axisType.getIndex(),
                     axisIndex, minimum, maximum, redraw, animate);
             for (ConfigurationChangeListener listener : changeListeners) {
                 listener.axisRescaled(event);

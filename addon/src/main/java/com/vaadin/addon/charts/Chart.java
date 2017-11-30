@@ -16,6 +16,9 @@
  */
 package com.vaadin.addon.charts;
 
+import static com.vaadin.addon.charts.model.AxisDimension.X_AXIS;
+import static com.vaadin.addon.charts.model.AxisDimension.Y_AXIS;
+
 import com.vaadin.addon.charts.events.AbstractSeriesEvent;
 import com.vaadin.addon.charts.events.AxisRescaledEvent;
 import com.vaadin.addon.charts.events.ConfigurationChangeListener;
@@ -122,12 +125,14 @@ public class Chart extends Component {
             for (int i = 0; i < chart.getConfiguration()
                     .getNumberOfxAxes(); i++) {
                 chart.getElement().callFunction("__callAxisFunction",
-                        "setExtremes", 0, i, null, null, redraw, animate);
+                        "setExtremes", X_AXIS.getIndex(), i, null, null, redraw,
+                        animate);
             }
             for (int i = 0; i < chart.getConfiguration()
                     .getNumberOfyAxes(); i++) {
                 chart.getElement().callFunction("__callAxisFunction",
-                        "setExtremes", 1, i, null, null, redraw, animate);
+                        "setExtremes", Y_AXIS.getIndex(), i, null, null, redraw,
+                        animate);
             }
         }
 
