@@ -69,8 +69,7 @@ public class MainView extends PolymerTemplate<MainView.Model> implements HasUrlP
                 .getSubTypesOf(AbstractChartExample.class)
                 .stream()
                 .filter(example -> !example.isAnnotationPresent(SkipFromDemo.class))
-                        .collect(toMap(e -> e.getSimpleName(),
-                                Function.identity()));
+                        .collect(toMap(e -> e.getSimpleName(), Function.identity()));
 
         CATEGORIES = NAME_INDEXED_SUBTYPES
                 .values()
