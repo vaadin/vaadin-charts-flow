@@ -48,6 +48,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       :host(.heatmap) .highcharts-point-hover {
         fill: #3090f0 !important;
+        animation-name: jiggle;
+        animation-duration:0.1s;
+      }
+
+      @keyframes jiggle {
+        0% { transform: none; }
+        25% { transform: translateY(5px); }
+        50% { transform: none; }
+        75% { transform: translateY(-5px); }
+        100% { transform: none; }
       }
     </style>
   </template>
