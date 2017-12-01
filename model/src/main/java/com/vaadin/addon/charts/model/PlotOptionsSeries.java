@@ -22,7 +22,6 @@ public class PlotOptionsSeries extends AbstractPlotOptions {
 	private Boolean connectNulls;
 	private Number cropThreshold;
 	private Cursor cursor;
-	private DashStyle dashStyle;
 	private DataLabels dataLabels;
 	private String description;
 	private Boolean enableMouseTracking;
@@ -30,7 +29,6 @@ public class PlotOptionsSeries extends AbstractPlotOptions {
 	private Dimension findNearestPointBy;
 	private Boolean getExtremesFromAll;
 	private ArrayList<String> keys;
-	private Number lineWidth;
 	private String linecap;
 	private String linkedTo;
 	private Marker marker;
@@ -245,38 +243,6 @@ public class PlotOptionsSeries extends AbstractPlotOptions {
 	}
 
 	/**
-	 * @see #setDashStyle(DashStyle)
-	 */
-	public DashStyle getDashStyle() {
-		return dashStyle;
-	}
-
-	/**
-	 * A name for the dash style to use for the graph. Applies only to series
-	 * type having a graph, like <code>line</code>, <code>spline</code>,
-	 * <code>area</code> and <code>scatter</code> in case it has a
-	 * <code>lineWidth</code>. The value for the <code>dashStyle</code> include:
-	 * <ul>
-	 * <li>Solid</li>
-	 * <li>ShortDash</li>
-	 * <li>ShortDot</li>
-	 * <li>ShortDashDot</li>
-	 * <li>ShortDashDotDot</li>
-	 * <li>Dot</li>
-	 * <li>Dash</li>
-	 * <li>LongDash</li>
-	 * <li>DashDot</li>
-	 * <li>LongDashDot</li>
-	 * <li>LongDashDotDot</li>
-	 * </ul>
-	 * <p>
-	 * Defaults to: Solid
-	 */
-	public void setDashStyle(DashStyle dashStyle) {
-		this.dashStyle = dashStyle;
-	}
-
-	/**
 	 * @see #setDataLabels(DataLabels)
 	 */
 	public DataLabels getDataLabels() {
@@ -456,22 +422,6 @@ public class PlotOptionsSeries extends AbstractPlotOptions {
 	 */
 	public void removeKey(String key) {
 		this.keys.remove(key);
-	}
-
-	/**
-	 * @see #setLineWidth(Number)
-	 */
-	public Number getLineWidth() {
-		return lineWidth;
-	}
-
-	/**
-	 * Pixel with of the graph line.
-	 * <p>
-	 * Defaults to: 2
-	 */
-	public void setLineWidth(Number lineWidth) {
-		this.lineWidth = lineWidth;
 	}
 
 	/**
