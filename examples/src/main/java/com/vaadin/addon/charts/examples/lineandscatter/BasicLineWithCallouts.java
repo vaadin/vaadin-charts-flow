@@ -38,6 +38,7 @@ public class BasicLineWithCallouts extends AbstractChartExample {
         PlotOptionsLine plotOptions = new PlotOptionsLine();
 //        plotOptions.setEnableMouseTracking(false);
         plotOptions.setAllowPointSelect(true);
+        plotOptions.setShowCheckbox(true);
         configuration.setPlotOptions(plotOptions);
 
         DataSeries ds = new DataSeries();

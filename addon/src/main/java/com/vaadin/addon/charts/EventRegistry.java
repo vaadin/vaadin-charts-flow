@@ -19,7 +19,11 @@ import com.vaadin.addon.charts.events.domevents.PointRemoveEvent;
 import com.vaadin.addon.charts.events.domevents.PointSelectEvent;
 import com.vaadin.addon.charts.events.domevents.PointUnselectEvent;
 import com.vaadin.addon.charts.events.domevents.PointUpdateEvent;
+import com.vaadin.addon.charts.events.domevents.SeriesAfterAnimateEvent;
+import com.vaadin.addon.charts.events.domevents.SeriesClickEvent;
 import com.vaadin.addon.charts.events.domevents.SeriesHideEvent;
+import com.vaadin.addon.charts.events.domevents.SeriesMouseOutEvent;
+import com.vaadin.addon.charts.events.domevents.SeriesMouseOverEvent;
 import com.vaadin.addon.charts.events.domevents.SeriesShowEvent;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
@@ -150,6 +154,16 @@ public class EventRegistry {
         return delegate.addListener(LegendItemClickEvent.class, listener);
     }
 
+    public Registration addSeriesAfterAnimateListener(
+            ComponentEventListener<SeriesAfterAnimateEvent> listener) {
+        return delegate.addListener(SeriesAfterAnimateEvent.class, listener);
+    }
+
+    public Registration addSeriesClickListener(
+            ComponentEventListener<SeriesClickEvent> listener) {
+        return delegate.addListener(SeriesClickEvent.class, listener);
+    }
+
     /**
      * Adds a series hide listener, which will be notified when a series is
      * hidden
@@ -159,6 +173,16 @@ public class EventRegistry {
     public Registration addSeriesHideListener(
             ComponentEventListener<SeriesHideEvent> listener) {
         return delegate.addListener(SeriesHideEvent.class, listener);
+    }
+
+    public Registration addSeriesMouseOutListener(
+            ComponentEventListener<SeriesMouseOutEvent> listener) {
+        return delegate.addListener(SeriesMouseOutEvent.class, listener);
+    }
+
+    public Registration addSeriesMouseOverListener(
+            ComponentEventListener<SeriesMouseOverEvent> listener) {
+        return delegate.addListener(SeriesMouseOverEvent.class, listener);
     }
 
     /**

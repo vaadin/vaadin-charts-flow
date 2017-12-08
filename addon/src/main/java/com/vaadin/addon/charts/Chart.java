@@ -129,6 +129,22 @@ public class Chart extends Component {
 //            System.out.printf("Chart selected! X=%.2f, Y=%.2f, X2=%.2f, Y2=%.2f\n",
 //                    e.getSelectionStart(), e.getValueStart(), e.getSelectionEnd(), e.getValueEnd());
 //        });
+        eventRegistry.addSeriesAfterAnimateListener(e -> System.out.printf("Series animated! Series=%s\n",
+                configuration.getSeries().get(e.getSeriesItemIndex()).getName()));
+        eventRegistry.addSeriesClickListener(e -> System.out.printf("Series clicked! Series=%s\n",
+                configuration.getSeries().get(e.getSeriesItemIndex()).getName()));
+        eventRegistry.addSeriesMouseOutListener(e -> System.out.printf("Series mouse out! Series=%s\n",
+                configuration.getSeries().get(e.getSeriesItemIndex()).getName()));
+        eventRegistry.addSeriesMouseOverListener(e -> System.out.printf("Series mouse over! Series=%s\n",
+                configuration.getSeries().get(e.getSeriesItemIndex()).getName()));
+        eventRegistry.addLegendItemClickListener(e -> System.out.printf("Legend item clicked! Series=%s\n",
+                configuration.getSeries().get(e.getSeriesItemIndex()).getName()));
+        eventRegistry.addSeriesHideListener(e -> System.out.printf("Series hidden! Series=%s\n",
+                configuration.getSeries().get(e.getSeriesItemIndex()).getName()));
+        eventRegistry.addSeriesShowListener(e -> System.out.printf("Series shown! Series=%s\n",
+                configuration.getSeries().get(e.getSeriesItemIndex()).getName()));
+        eventRegistry.addCheckBoxClickListener(e -> System.out.printf("Checkbox! Series=%s, Checked=%b\n",
+                configuration.getSeries().get(e.getSeriesItemIndex()).getName(), e.isChecked()));
     }
 
     /**
