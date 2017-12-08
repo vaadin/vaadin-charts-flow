@@ -4,10 +4,10 @@ import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.events.domevents.details.MouseEventDetails;
 import com.vaadin.addon.charts.events.domevents.details.MouseEventDetails.MouseButton;
 import com.vaadin.addon.charts.model.ChartType;
-import com.vaadin.addon.charts.model.Series;
 import com.vaadin.addon.charts.util.Util;
 import com.vaadin.ui.event.ComponentEvent;
 import com.vaadin.ui.event.DomEvent;
+import com.vaadin.ui.event.EventData;
 
 
 /*
@@ -34,6 +34,10 @@ import com.vaadin.ui.event.DomEvent;
 @DomEvent("point-click")
 public class PointClickEvent extends ComponentEvent<Chart> {
 
+    private final int seriesItemIndex;
+    private final String category;
+    private final double value;
+    private final int pointIndex;
     private MouseEventDetails details;
 
     /**
@@ -46,12 +50,20 @@ public class PointClickEvent extends ComponentEvent<Chart> {
      * @param pointIndex
      */
     public PointClickEvent(Chart source, boolean fromClient,
-                           MouseEventDetails details,
-                           Series series,
-                           String category,
-                           int pointIndex) {
+                           @EventData("event.detail.originalEvent.chartX") int chartX,
+                           @EventData("event.detail.originalEvent.chartY") int chartY,
+                           @EventData("event.detail.originalEvent.point.series.index") int seriesItemIndex,
+                           @EventData("event.detail.originalEvent.point.category") String category,
+                           @EventData("event.detail.originalEvent.point.y") double value,
+                           @EventData("event.detail.originalEvent.point.index") int pointIndex) {
         super(source, fromClient);
-        this.details = details;
+        this.seriesItemIndex = seriesItemIndex;
+        this.category = category;
+        this.value = value;
+        this.pointIndex = pointIndex;
+        this.details = new MouseEventDetails();
+        this.details.setAbsoluteX(chartX);
+        this.details.setAbsoluteY(chartY);
     }
 
     /**
@@ -60,7 +72,7 @@ public class PointClickEvent extends ComponentEvent<Chart> {
      * Note, that if the axis type is Date, the value is "unix timestamp" which
      * is shifted to UTF time zone that is used by the client side
      * implementation. If you have used Date object as value, you most likely
-     * want to pass the value thru {@link Util#toServerDate(double)} method
+     * want to pass the value through {@link Util#toServerDate(double)} method
      * before actually using the value.
      * <p>
      * This value might be zero in a chart without axes like
@@ -140,4 +152,19 @@ public class PointClickEvent extends ComponentEvent<Chart> {
         return details.isShiftKey();
     }
 
+    public int getSeriesItemIndex() {
+        return seriesItemIndex;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public double getValue() {
+        return value;
+    }
+
+    public int getPointIndex() {
+        return pointIndex;
+    }
 }

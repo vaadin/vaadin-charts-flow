@@ -7,6 +7,7 @@ import com.vaadin.addon.charts.events.DataAddedEvent;
 import com.vaadin.addon.charts.events.DataRemovedEvent;
 import com.vaadin.addon.charts.events.DataUpdatedEvent;
 import com.vaadin.addon.charts.events.ItemSlicedEvent;
+import com.vaadin.addon.charts.events.SeriesAddedEvent;
 import com.vaadin.addon.charts.events.SeriesChangedEvent;
 import com.vaadin.addon.charts.events.SeriesStateEvent;
 import com.vaadin.addon.charts.model.AbstractConfigurationObject;
@@ -82,6 +83,12 @@ class ProxyChangeForwarder implements ConfigurationChangeListener {
         chart.getElement().callFunction("__callPointFunction", "slice",
                 getSeriesIndex(event), event.getIndex(), event.isSliced(),
                 event.isRedraw(), event.isAnimation());
+    }
+
+    @Override
+    public void seriesAdded(SeriesAddedEvent event) {
+        chart.getElement().callFunction("__callChartFunction", "addSeries",
+                jsonFactory.parse(ChartSerialization.toJSON((AbstractConfigurationObject) event.getSeries())));
     }
 
     @Override

@@ -1,18 +1,28 @@
 package com.vaadin.addon.charts;
 
+import com.vaadin.addon.charts.events.domevents.ChartAddSeriesEvent;
+import com.vaadin.addon.charts.events.domevents.ChartAfterPrintEvent;
+import com.vaadin.addon.charts.events.domevents.ChartBeforePrintEvent;
 import com.vaadin.addon.charts.events.domevents.ChartClickEvent;
+import com.vaadin.addon.charts.events.domevents.ChartDrillupAllEvent;
 import com.vaadin.addon.charts.events.domevents.ChartDrillupEvent;
+import com.vaadin.addon.charts.events.domevents.ChartLoadEvent;
+import com.vaadin.addon.charts.events.domevents.ChartRedrawEvent;
 import com.vaadin.addon.charts.events.domevents.ChartSelectionEvent;
 import com.vaadin.addon.charts.events.domevents.CheckboxClickEvent;
 import com.vaadin.addon.charts.events.domevents.DrilldownEvent;
 import com.vaadin.addon.charts.events.domevents.LegendItemClickEvent;
 import com.vaadin.addon.charts.events.domevents.PointClickEvent;
+import com.vaadin.addon.charts.events.domevents.PointMouseOutEvent;
+import com.vaadin.addon.charts.events.domevents.PointMouseOverEvent;
+import com.vaadin.addon.charts.events.domevents.PointRemoveEvent;
 import com.vaadin.addon.charts.events.domevents.PointSelectEvent;
 import com.vaadin.addon.charts.events.domevents.PointUnselectEvent;
+import com.vaadin.addon.charts.events.domevents.PointUpdateEvent;
 import com.vaadin.addon.charts.events.domevents.SeriesHideEvent;
 import com.vaadin.addon.charts.events.domevents.SeriesShowEvent;
-import com.vaadin.addon.charts.events.domevents.XAxesExtremesChangeEvent;
-import com.vaadin.addon.charts.events.domevents.YAxesExtremesChangeEvent;
+import com.vaadin.addon.charts.model.DataSeries;
+import com.vaadin.addon.charts.model.DataSeriesItem;
 import com.vaadin.shared.Registration;
 import com.vaadin.ui.event.ComponentEventListener;
 
@@ -23,7 +33,22 @@ public class EventRegistry {
     public EventRegistry(Chart delegate) {
         this.delegate = delegate;
     }
-    
+
+    public Registration addChartAddSeriesListener(
+            ComponentEventListener<ChartAddSeriesEvent> listener) {
+        return delegate.addListener(ChartAddSeriesEvent.class, listener);
+    }
+
+    public Registration addChartAfterPrintListener(
+            ComponentEventListener<ChartAfterPrintEvent> listener) {
+        return delegate.addListener(ChartAfterPrintEvent.class, listener);
+    }
+
+    public Registration addChartBeforePrintListener(
+            ComponentEventListener<ChartBeforePrintEvent> listener) {
+        return delegate.addListener(ChartBeforePrintEvent.class, listener);
+    }
+
     /**
      * Adds chart click listener, which will be notified of clicks on the chart
      * area
@@ -47,6 +72,27 @@ public class EventRegistry {
     }
 
     /**
+     * Adds chart drillupall listener, which will be notified after all the series
+     * have been drilled up in a chart with multiple drilldown series.
+     *
+     * @param listener
+     */
+    public Registration addChartDrillupAllListener(
+            ComponentEventListener<ChartDrillupAllEvent> listener) {
+        return delegate.addListener(ChartDrillupAllEvent.class, listener);
+    }
+
+    public Registration addChartLoadListener(
+            ComponentEventListener<ChartLoadEvent> listener) {
+        return delegate.addListener(ChartLoadEvent.class, listener);
+    }
+
+    public Registration addChartRedrawListener(
+            ComponentEventListener<ChartRedrawEvent> listener) {
+        return delegate.addListener(ChartRedrawEvent.class, listener);
+    }
+
+    /**
      * Adds checkbox click listener, which will be notified when user has
      * clicked a checkbox in the legend
      *
@@ -57,29 +103,18 @@ public class EventRegistry {
         return delegate.addListener(CheckboxClickEvent.class, listener);
     }
 
-//    /**
-//     * Sets the Chart drilldown handler that's responsible for returning the
-//     * drilldown series for each drilldown callback when doing async drilldown
-//     *
-//     * @see DataSeries#addItemWithDrilldown(com.vaadin.addon.charts.model.series.DataSeriesItem)
-//     *      addItemWithDrilldown to find out how to enable async drilldown
-//     *
-//     * @param listener
-//     */
-//    public Registration addDrilldownListener(
-//            ComponentEventListener<DrilldownEvent> listener) {
-//        return delegate.addListener(DrilldownEvent.class, listener);
-//    }
-
     /**
-     * Adds a point click listener, which will be notified of clicks on the
-     * points, bars or columns in the chart
+     * Sets the Chart drilldown handler that's responsible for returning the
+     * drilldown series for each drilldown callback when doing async drilldown
+     *
+     * @see DataSeries#addItemWithDrilldown(DataSeriesItem)
+     *      addItemWithDrilldown to find out how to enable async drilldown
      *
      * @param listener
      */
-    public Registration addPointClickListener(
-            ComponentEventListener<PointClickEvent> listener) {
-        return delegate.addListener(PointClickEvent.class, listener);
+    public Registration addDrilldownListener(
+            ComponentEventListener<DrilldownEvent> listener) {
+        return delegate.addListener(DrilldownEvent.class, listener);
     }
 
     /**
@@ -111,7 +146,7 @@ public class EventRegistry {
      */
     public Registration addLegendItemClickListener(
             ComponentEventListener<LegendItemClickEvent> listener) {
-//        setSeriesVisibilityTogglingDisabled(true);
+        //setSeriesVisibilityTogglingDisabled(true);
         return delegate.addListener(LegendItemClickEvent.class, listener);
     }
 
@@ -138,25 +173,29 @@ public class EventRegistry {
     }
 
     /**
-     * Adds a x axes extremes change listener, which will be notified when an x
-     * axis extremes are changed.
+     * Adds a point click listener, which will be notified of clicks on the
+     * points, bars or columns in the chart
      *
      * @param listener
      */
-    public Registration addXAxesExtremesChangeListener(
-            ComponentEventListener<XAxesExtremesChangeEvent> listener) {
-        return delegate.addListener(XAxesExtremesChangeEvent.class, listener);
+    public Registration addPointClickListener(
+            ComponentEventListener<PointClickEvent> listener) {
+        return delegate.addListener(PointClickEvent.class, listener);
     }
 
-    /**
-     * Adds a y axes extremes change listener, which will be notified when an y
-     * axis extremes are changed.
-     *
-     * @param listener
-     */
-    public Registration addYAxesExtremesChangeListener(
-            ComponentEventListener<YAxesExtremesChangeEvent> listener) {
-        return delegate.addListener(YAxesExtremesChangeEvent.class, listener);
+    public Registration addPointMouseOutListener(
+            ComponentEventListener<PointMouseOutEvent> listener) {
+        return delegate.addListener(PointMouseOutEvent.class, listener);
+    }
+
+    public Registration addPointMouseOverListener(
+            ComponentEventListener<PointMouseOverEvent> listener) {
+        return delegate.addListener(PointMouseOverEvent.class, listener);
+    }
+
+    public Registration addPointRemoveListener(
+            ComponentEventListener<PointRemoveEvent> listener) {
+        return delegate.addListener(PointRemoveEvent.class, listener);
     }
 
     /**
@@ -179,5 +218,10 @@ public class EventRegistry {
     public Registration addPointUnselectListener(
             ComponentEventListener<PointUnselectEvent> listener) {
         return delegate.addListener(PointUnselectEvent.class, listener);
+    }
+
+    public Registration addPointUpdateListener(
+            ComponentEventListener<PointUpdateEvent> listener) {
+        return delegate.addListener(PointUpdateEvent.class, listener);
     }
 }

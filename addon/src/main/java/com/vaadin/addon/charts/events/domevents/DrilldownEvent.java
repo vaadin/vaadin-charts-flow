@@ -5,10 +5,9 @@ import com.vaadin.addon.charts.model.DataSeriesItem;
 import com.vaadin.addon.charts.model.Series;
 import com.vaadin.ui.event.ComponentEvent;
 import com.vaadin.ui.event.DomEvent;
+import com.vaadin.ui.event.EventData;
 
-import java.io.Serializable;
-
-/*
+        /*
  * #%L
  * Vaadin Charts
  * %%
@@ -32,9 +31,14 @@ import java.io.Serializable;
 @DomEvent("chart-drilldown")
 public class DrilldownEvent extends ComponentEvent<Chart> {
 
-    private final Series series;
-    private final DataSeriesItem item;
-    private final int itemIndex;
+    private final String drilldown;
+    private final String category;
+    private final double value;
+    private final int pointIndex;
+
+    private Series series;
+    private DataSeriesItem item;
+    private int itemIndex;
 
     /**
      * Construct a ChartDrilldownEvent
@@ -43,13 +47,18 @@ public class DrilldownEvent extends ComponentEvent<Chart> {
      * @param series
      */
     public DrilldownEvent(Chart source, boolean fromClient,
-                          Series series,
-                          DataSeriesItem item,
-                          int itemIndex) {
+                          @EventData("event.detail.originalEvent.point.drilldown") String drilldown,
+                          @EventData("event.detail.originalEvent.point.category") String category,
+                          @EventData("event.detail.originalEvent.point.y") double value,
+                          @EventData("event.detail.originalEvent.point.index") int pointIndex,
+                          @EventData("event.detail.originalEvent.point.series.index") int seriesItemIndex) {
         super(source, fromClient);
-        this.series = series;
-        this.item = item;
-        this.itemIndex = itemIndex;
+
+        this.drilldown = drilldown;
+        this.category = category;
+        this.value = value;
+        this.pointIndex = pointIndex;
+        itemIndex = seriesItemIndex;
     }
 
     /**
@@ -79,4 +88,19 @@ public class DrilldownEvent extends ComponentEvent<Chart> {
         return itemIndex;
     }
 
+    public String getDrilldown() {
+        return drilldown;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public double getValue() {
+        return value;
+    }
+
+    public int getPointIndex() {
+        return pointIndex;
+    }
 }

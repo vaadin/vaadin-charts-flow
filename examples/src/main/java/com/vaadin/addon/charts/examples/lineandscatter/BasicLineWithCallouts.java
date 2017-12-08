@@ -10,7 +10,6 @@ import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.PlotOptionsLine;
 import com.vaadin.addon.charts.model.Shape;
 import com.vaadin.addon.charts.model.YAxis;
-import com.vaadin.addon.charts.model.style.SolidColor;
 
 public class BasicLineWithCallouts extends AbstractChartExample {
 
@@ -37,7 +36,8 @@ public class BasicLineWithCallouts extends AbstractChartExample {
                         "'<b>'+ this.series.name +'</b><br/>'+this.x +': '+ this.y +'°C'");
 
         PlotOptionsLine plotOptions = new PlotOptionsLine();
-        plotOptions.setEnableMouseTracking(false);
+//        plotOptions.setEnableMouseTracking(false);
+        plotOptions.setAllowPointSelect(true);
         configuration.setPlotOptions(plotOptions);
 
         DataSeries ds = new DataSeries();

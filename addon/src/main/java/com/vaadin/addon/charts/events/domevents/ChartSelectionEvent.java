@@ -6,7 +6,6 @@ import com.vaadin.addon.charts.model.Dimension;
 import com.vaadin.ui.event.ComponentEvent;
 import com.vaadin.ui.event.DomEvent;
 import com.vaadin.ui.event.EventData;
-import elemental.json.impl.JreJsonNumber;
 
 /*
  * #%L
@@ -47,15 +46,15 @@ public class ChartSelectionEvent extends ComponentEvent<Chart> {
      * @param valueEnd
      */
     public ChartSelectionEvent(Chart source, boolean fromClient,
-                               @EventData("event.detail.originalEvent.selectionStart") JreJsonNumber selectionStart,
-                               @EventData("event.detail.originalEvent.selectionEnd") JreJsonNumber selectionEnd,
-                               @EventData("event.detail.originalEvent.valueStart") JreJsonNumber valueStart,
-                               @EventData("event.detail.originalEvent.valueEnd") JreJsonNumber valueEnd) {
+                               @EventData("event.detail.originalEvent.xAxis[0].min") Double selectionStart,
+                               @EventData("event.detail.originalEvent.xAxis[0].max") Double selectionEnd,
+                               @EventData("event.detail.originalEvent.yAxis[0].min") Double valueStart,
+                               @EventData("event.detail.originalEvent.yAxis[0].max") Double valueEnd) {
         super(source, fromClient);
-        this.selectionStart = selectionStart.asNumber();
-        this.selectionEnd = selectionEnd.asNumber();
-        this.valueStart = valueStart.asNumber();
-        this.valueEnd = valueEnd.asNumber();
+        this.selectionStart = selectionStart;
+        this.selectionEnd = selectionEnd;
+        this.valueStart = valueStart;
+        this.valueEnd = valueEnd;
     }
 
     /**

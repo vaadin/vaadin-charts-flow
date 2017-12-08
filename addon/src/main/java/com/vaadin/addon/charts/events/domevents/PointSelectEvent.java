@@ -18,9 +18,9 @@ package com.vaadin.addon.charts.events.domevents;
  */
 
 import com.vaadin.addon.charts.Chart;
-import com.vaadin.addon.charts.model.Series;
 import com.vaadin.ui.event.ComponentEvent;
 import com.vaadin.ui.event.DomEvent;
+import com.vaadin.ui.event.EventData;
 
 /**
  * The PointClickEvent class stores data for select events on the points of the
@@ -29,10 +29,36 @@ import com.vaadin.ui.event.DomEvent;
 @DomEvent("point-select")
 public class PointSelectEvent extends ComponentEvent<Chart> {
 
+    private final int seriesItemIndex;
+    private final String category;
+    private final double value;
+    private final int pointIndex;
+
     public PointSelectEvent(Chart source, boolean fromClient,
-                            Series series,
-                            String category,
-                            int pointIndex) {
+                            @EventData("event.detail.originalEvent.target.series.index") int seriesItemIndex,
+                            @EventData("event.detail.originalEvent.target.category") String category,
+                            @EventData("event.detail.originalEvent.target.y") double value,
+                            @EventData("event.detail.originalEvent.target.index") int pointIndex) {
         super(source, fromClient);
+        this.seriesItemIndex = seriesItemIndex;
+        this.category = category;
+        this.value = value;
+        this.pointIndex = pointIndex;
+    }
+
+    public int getSeriesItemIndex() {
+        return seriesItemIndex;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public double getValue() {
+        return value;
+    }
+
+    public int getPointIndex() {
+        return pointIndex;
     }
 }

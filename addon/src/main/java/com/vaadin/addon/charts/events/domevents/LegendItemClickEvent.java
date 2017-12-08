@@ -1,9 +1,9 @@
 package com.vaadin.addon.charts.events.domevents;
 
 import com.vaadin.addon.charts.Chart;
-import com.vaadin.addon.charts.model.Series;
 import com.vaadin.ui.event.ComponentEvent;
 import com.vaadin.ui.event.DomEvent;
+import com.vaadin.ui.event.EventData;
 
 /*
  * #%L
@@ -29,6 +29,8 @@ import com.vaadin.ui.event.DomEvent;
 @DomEvent("series-legend-item-click")
 public class LegendItemClickEvent extends ComponentEvent<Chart> {
 
+    private final int seriesItemIndex;
+
     /**
      * Constructs a LegendItemClickEvent
      * 
@@ -36,8 +38,12 @@ public class LegendItemClickEvent extends ComponentEvent<Chart> {
      * @param fromClient
      */
     public LegendItemClickEvent(Chart source, boolean fromClient,
-                                Series series,
-                                int seriesItemIndex) {
+                                @EventData("event.detail.originalEvent.target.index") int seriesItemIndex) {
         super(source, fromClient);
+        this.seriesItemIndex = seriesItemIndex;
+    }
+
+    public int getSeriesItemIndex() {
+        return seriesItemIndex;
     }
 }

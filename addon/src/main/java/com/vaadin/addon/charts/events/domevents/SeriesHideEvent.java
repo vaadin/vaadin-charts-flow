@@ -18,10 +18,9 @@ package com.vaadin.addon.charts.events.domevents;
  */
 
 import com.vaadin.addon.charts.Chart;
-import com.vaadin.addon.charts.model.Series;
-import com.vaadin.ui.Component;
 import com.vaadin.ui.event.ComponentEvent;
 import com.vaadin.ui.event.DomEvent;
+import com.vaadin.ui.event.EventData;
 
 /**
  * HideSeriesEvent when the series is hidden
@@ -29,9 +28,15 @@ import com.vaadin.ui.event.DomEvent;
 @DomEvent("series-hide")
 public class SeriesHideEvent extends ComponentEvent<Chart> {
 
+    private final int seriesItemIndex;
+
     public SeriesHideEvent(Chart source, boolean fromClient,
-                           Series series,
-                           int seriesItemIndex) {
+                           @EventData("event.detail.originalEvent.target.index") int seriesItemIndex) {
         super(source, fromClient);
+        this.seriesItemIndex = seriesItemIndex;
+    }
+
+    public int getSeriesItemIndex() {
+        return seriesItemIndex;
     }
 }

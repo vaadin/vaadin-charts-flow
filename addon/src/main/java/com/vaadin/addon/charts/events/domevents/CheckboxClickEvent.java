@@ -18,10 +18,9 @@ package com.vaadin.addon.charts.events.domevents;
  */
 
 import com.vaadin.addon.charts.Chart;
-import com.vaadin.addon.charts.model.Series;
-import com.vaadin.ui.Component;
 import com.vaadin.ui.event.ComponentEvent;
 import com.vaadin.ui.event.DomEvent;
+import com.vaadin.ui.event.EventData;
 
 /**
  * CheckboxClickEvent triggered when a checkbox in a legend is clicked
@@ -30,17 +29,21 @@ import com.vaadin.ui.event.DomEvent;
 public class CheckboxClickEvent extends ComponentEvent<Chart> {
 
     private final boolean checked;
+    private final int seriesItemIndex;
 
     public CheckboxClickEvent(Chart source, boolean fromClient,
-                              boolean isChecked,
-                              Series series,
-                              int seriesItemIndex) {
+                              @EventData("event.detail.originalEvent.checked") boolean isChecked,
+                              @EventData("event.detail.originalEvent.item.index") int seriesItemIndex) {
         super(source, fromClient);
         checked = isChecked;
+        this.seriesItemIndex = seriesItemIndex;
     }
 
     public boolean isChecked() {
         return checked;
     }
 
+    public int getSeriesItemIndex() {
+        return seriesItemIndex;
+    }
 }
