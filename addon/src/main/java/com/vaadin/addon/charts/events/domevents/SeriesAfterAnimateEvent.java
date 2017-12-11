@@ -5,6 +5,9 @@ import com.vaadin.ui.event.ComponentEvent;
 import com.vaadin.ui.event.DomEvent;
 import com.vaadin.ui.event.EventData;
 
+/**
+ * Fired after a chart series is animated
+ */
 @DomEvent("series-after-animate")
 public class SeriesAfterAnimateEvent extends ComponentEvent<Chart> implements HasSeries {
 

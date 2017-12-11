@@ -14,13 +14,26 @@ import com.vaadin.ui.event.EventData;
 @DomEvent("chart-click")
 public class ChartClickEvent extends ComponentEvent<Chart> implements ClickEvent {
 
-    private final int x;
-    private final int y;
     private final MouseEventDetails details;
 
+    /**
+     * Constructs a ChartClickEvent
+     *
+     * @param source
+     * @param fromClient
+     * @param chartX
+     * @param chartY
+     * @param pageX
+     * @param pageY
+     * @param altKey
+     * @param ctrlKey
+     * @param metaKey
+     * @param shiftKey
+     * @param button
+     */
     public ChartClickEvent(Chart source, boolean fromClient,
-                           @EventData("event.detail.originalEvent.chartX") int x,
-                           @EventData("event.detail.originalEvent.chartY") int y,
+                           @EventData("event.detail.originalEvent.chartX") int chartX,
+                           @EventData("event.detail.originalEvent.chartY") int chartY,
                            @EventData("event.detail.originalEvent.pageX") int pageX,
                            @EventData("event.detail.originalEvent.pageY") int pageY,
                            @EventData("event.detail.originalEvent.altKey") boolean altKey,
@@ -30,10 +43,9 @@ public class ChartClickEvent extends ComponentEvent<Chart> implements ClickEvent
                            @EventData("event.detail.originalEvent.button") int button) {
         super(source, fromClient);
 
-        this.x = x;
-        this.y = y;
-
         details = new MouseEventDetails();
+        details.setX(chartX);
+        details.setY(chartY);
         details.setAbsoluteX(pageX);
         details.setAbsoluteY(pageY);
         details.setButton(MouseButton.of(button));
@@ -41,14 +53,6 @@ public class ChartClickEvent extends ComponentEvent<Chart> implements ClickEvent
         details.setCtrlKey(ctrlKey);
         details.setMetaKey(metaKey);
         details.setShiftKey(shiftKey);
-    }
-
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
     }
 
     @Override

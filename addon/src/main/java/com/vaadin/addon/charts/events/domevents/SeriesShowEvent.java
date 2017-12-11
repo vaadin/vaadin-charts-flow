@@ -23,7 +23,7 @@ import com.vaadin.ui.event.DomEvent;
 import com.vaadin.ui.event.EventData;
 
 /**
- * ShowSeriesEvent when the series is shown
+ * Fired when a series is shown
  */
 @DomEvent("series-show")
 public class SeriesShowEvent extends ComponentEvent<Chart> implements HasSeries {

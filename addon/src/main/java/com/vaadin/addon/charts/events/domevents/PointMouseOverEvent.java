@@ -5,8 +5,12 @@ import com.vaadin.ui.event.ComponentEvent;
 import com.vaadin.ui.event.DomEvent;
 import com.vaadin.ui.event.EventData;
 
+/**
+ * Fired when the mouse pointer moves within the neighborhood
+ * of a point
+ */
 @DomEvent("point-mouse-over")
-public class PointMouseOverEvent extends ComponentEvent<Chart> implements HasPoint {
+public class PointMouseOverEvent extends ComponentEvent<Chart> implements HasItem {
 
     private final String category;
     private final double value;

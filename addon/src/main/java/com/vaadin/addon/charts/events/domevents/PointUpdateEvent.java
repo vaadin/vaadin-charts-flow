@@ -5,8 +5,12 @@ import com.vaadin.ui.event.ComponentEvent;
 import com.vaadin.ui.event.DomEvent;
 import com.vaadin.ui.event.EventData;
 
+/**
+ * The PointUpdateEvent class stores data for update events on the points of the
+ * chart
+ */
 @DomEvent("point-update")
-public class PointUpdateEvent extends ComponentEvent<Chart> implements HasPoint {
+public class PointUpdateEvent extends ComponentEvent<Chart> implements HasItem {
 
     private final int seriesIndex;
     private final String category;

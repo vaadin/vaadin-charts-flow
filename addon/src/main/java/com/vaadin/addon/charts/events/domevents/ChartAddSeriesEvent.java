@@ -6,12 +6,24 @@ import com.vaadin.ui.event.DomEvent;
 import com.vaadin.ui.event.EventData;
 import elemental.json.JsonArray;
 
+/**
+ * The ChartAddSeriesEvent class stores data about new series added
+ * to an existing chart.
+ */
 @DomEvent("chart-add-series")
 public class ChartAddSeriesEvent extends ComponentEvent<Chart> {
 
     private final String name;
     private final Number[] data;
 
+    /**
+     * Constructs a ChartAddSeriesEvent
+     *
+     * @param source
+     * @param fromClient
+     * @param name
+     * @param data
+     */
     public ChartAddSeriesEvent(Chart source, boolean fromClient,
                                @EventData("event.detail.originalEvent.options.name") String name,
                                @EventData("event.detail.originalEvent.options.data") JsonArray data) {
@@ -23,10 +35,20 @@ public class ChartAddSeriesEvent extends ComponentEvent<Chart> {
         }
     }
 
+    /**
+     * Gets the series name
+     *
+     * @return
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Gets the series data
+     *
+     * @return
+     */
     public Number[] getData() {
         return data;
     }

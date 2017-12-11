@@ -23,11 +23,11 @@ import com.vaadin.ui.event.DomEvent;
 import com.vaadin.ui.event.EventData;
 
 /**
- * The PointClickEvent class stores data for unselect events on the points of the
+ * The PointUnselectEvent class stores data for unselect events on the points of the
  * chart.
  */
 @DomEvent("point-unselect")
-public class PointUnselectEvent extends ComponentEvent<Chart> implements HasPoint {
+public class PointUnselectEvent extends ComponentEvent<Chart> implements HasItem {
 
     private final int seriesIndex;
     private final String category;

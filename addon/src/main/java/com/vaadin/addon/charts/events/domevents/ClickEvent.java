@@ -5,6 +5,11 @@ import com.vaadin.addon.charts.util.Util;
 
 public interface ClickEvent {
 
+    /**
+     * Gets the mouse click details
+     *
+     * @return
+     */
     MouseEventDetails getMouseDetails();
     
     /**

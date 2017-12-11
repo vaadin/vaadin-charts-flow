@@ -5,8 +5,12 @@ import com.vaadin.ui.event.ComponentEvent;
 import com.vaadin.ui.event.DomEvent;
 import com.vaadin.ui.event.EventData;
 
+/**
+ * The PointRemoveEvent class stores data for remove events on the points of the
+ * chart
+ */
 @DomEvent("point-remove")
-public class PointRemoveEvent extends ComponentEvent<Chart> implements HasPoint {
+public class PointRemoveEvent extends ComponentEvent<Chart> implements HasItem {
 
     private final int seriesIndex;
     private final String category;

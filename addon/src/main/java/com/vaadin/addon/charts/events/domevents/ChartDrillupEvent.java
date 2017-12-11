@@ -11,6 +11,12 @@ import com.vaadin.ui.event.DomEvent;
 @DomEvent("chart-drillup")
 public class ChartDrillupEvent extends ComponentEvent<Chart> {
 
+    /**
+     * Constructs a ChartDrillupEvent
+     *
+     * @param source
+     * @param fromClient
+     */
     public ChartDrillupEvent(Chart source, boolean fromClient) {
         super(source, fromClient);
     }

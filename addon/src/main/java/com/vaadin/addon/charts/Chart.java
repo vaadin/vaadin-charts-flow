@@ -25,9 +25,9 @@ import com.vaadin.addon.charts.events.domevents.ChartDrillupEvent;
 import com.vaadin.addon.charts.events.domevents.ChartLoadEvent;
 import com.vaadin.addon.charts.events.domevents.ChartRedrawEvent;
 import com.vaadin.addon.charts.events.domevents.ChartSelectionEvent;
-import com.vaadin.addon.charts.events.domevents.CheckboxClickEvent;
+import com.vaadin.addon.charts.events.domevents.SeriesCheckboxClickEvent;
 import com.vaadin.addon.charts.events.domevents.DrilldownEvent;
-import com.vaadin.addon.charts.events.domevents.LegendItemClickEvent;
+import com.vaadin.addon.charts.events.domevents.SeriesLegendItemClickEvent;
 import com.vaadin.addon.charts.events.domevents.PointClickEvent;
 import com.vaadin.addon.charts.events.domevents.PointMouseOutEvent;
 import com.vaadin.addon.charts.events.domevents.PointMouseOverEvent;
@@ -136,22 +136,51 @@ public class Chart extends Component {
     }
 
     /**
+     * The series visibility is toggled by default if user clicks the series
+     * item in the legend. Calling setSeriesVisibilityTogglingDisabled(
+     * <code>true</code>) will disable this behaviour.
+     *
+     * @param disabled
+     */
+    public void setSeriesVisibilityTogglingDisabled(boolean disabled) {
+        getElement().setProperty("seriesVisibilityTogglingDisabled", disabled);
+    }
+
+    /**
      * @return the chart configuration that is used for this chart
      */
     public Configuration getConfiguration() {
         return configuration;
     }
 
+    /**
+     * Adds a chart add series listener, which will be notified after a
+     * new series is added to the chart
+     *
+     * @param listener
+     */
     public Registration addChartAddSeriesListener(
             ComponentEventListener<ChartAddSeriesEvent> listener) {
         return addListener(ChartAddSeriesEvent.class, listener);
     }
 
+    /**
+     * Adds a chart after print listener, which will be notified after the chart
+     * is printed using the print menu
+     *
+     * @param listener
+     */
     public Registration addChartAfterPrintListener(
             ComponentEventListener<ChartAfterPrintEvent> listener) {
         return addListener(ChartAfterPrintEvent.class, listener);
     }
 
+    /**
+     * Adds a chart before print listener, which will be notified before the chart
+     * is printed using the print menu
+     *
+     * @param listener
+     */
     public Registration addChartBeforePrintListener(
             ComponentEventListener<ChartBeforePrintEvent> listener) {
         return addListener(ChartBeforePrintEvent.class, listener);
@@ -190,11 +219,23 @@ public class Chart extends Component {
         return addListener(ChartDrillupAllEvent.class, listener);
     }
 
+    /**
+     * Adds a chart load listener, which will be notified after a chart
+     * is loaded
+     *
+     * @param listener
+     */
     public Registration addChartLoadListener(
             ComponentEventListener<ChartLoadEvent> listener) {
         return addListener(ChartLoadEvent.class, listener);
     }
 
+    /**
+     * Adds a chart redraw listener, which will be notified after a chart
+     * is redrawn
+     *
+     * @param listener
+     */
     public Registration addChartRedrawListener(
             ComponentEventListener<ChartRedrawEvent> listener) {
         return addListener(ChartRedrawEvent.class, listener);
@@ -207,8 +248,8 @@ public class Chart extends Component {
      * @param listener
      */
     public Registration addCheckBoxClickListener(
-            ComponentEventListener<CheckboxClickEvent> listener) {
-        return addListener(CheckboxClickEvent.class, listener);
+            ComponentEventListener<SeriesCheckboxClickEvent> listener) {
+        return addListener(SeriesCheckboxClickEvent.class, listener);
     }
 
     /**
@@ -253,16 +294,28 @@ public class Chart extends Component {
      * @param listener
      */
     public Registration addLegendItemClickListener(
-            ComponentEventListener<LegendItemClickEvent> listener) {
+            ComponentEventListener<SeriesLegendItemClickEvent> listener) {
         //setSeriesVisibilityTogglingDisabled(true);
-        return addListener(LegendItemClickEvent.class, listener);
+        return addListener(SeriesLegendItemClickEvent.class, listener);
     }
 
+    /**
+     * Adds a series after animate listener, which will be notified after a series
+     * is animated
+     *
+     * @param listener
+     */
     public Registration addSeriesAfterAnimateListener(
             ComponentEventListener<SeriesAfterAnimateEvent> listener) {
         return addListener(SeriesAfterAnimateEvent.class, listener);
     }
 
+    /**
+     * Adds a series click listener, which will be notified of clicks on the
+     * series in the chart
+     *
+     * @param listener
+     */
     public Registration addSeriesClickListener(
             ComponentEventListener<SeriesClickEvent> listener) {
         return addListener(SeriesClickEvent.class, listener);
@@ -279,11 +332,23 @@ public class Chart extends Component {
         return addListener(SeriesHideEvent.class, listener);
     }
 
+    /**
+     * Adds a point mouse out listener, which will be notified when the mouse
+     * exits the neighborhood of a series
+     *
+     * @param listener
+     */
     public Registration addSeriesMouseOutListener(
             ComponentEventListener<SeriesMouseOutEvent> listener) {
         return addListener(SeriesMouseOutEvent.class, listener);
     }
 
+    /**
+     * Adds a point mouse out listener, which will be notified when the mouse
+     * enters the neighborhood of a series
+     *
+     * @param listener
+     */
     public Registration addSeriesMouseOverListener(
             ComponentEventListener<SeriesMouseOverEvent> listener) {
         return addListener(SeriesMouseOverEvent.class, listener);
@@ -311,23 +376,41 @@ public class Chart extends Component {
         return addListener(PointClickEvent.class, listener);
     }
 
+    /**
+     * Adds a point mouse out listener, which will be notified when the mouse
+     * exits the neighborhood of a data point
+     *
+     * @param listener
+     */
     public Registration addPointMouseOutListener(
             ComponentEventListener<PointMouseOutEvent> listener) {
         return addListener(PointMouseOutEvent.class, listener);
     }
 
+    /**
+     * Adds a point mouse over listener, which will be notified when the mouse
+     * enters the neighborhood of a data point
+     *
+     * @param listener
+     */
     public Registration addPointMouseOverListener(
             ComponentEventListener<PointMouseOverEvent> listener) {
         return addListener(PointMouseOverEvent.class, listener);
     }
 
+    /**
+     * Adds a point remove listener, which will be notified when a data point
+     * is removed.
+     *
+     * @param listener
+     */
     public Registration addPointRemoveListener(
             ComponentEventListener<PointRemoveEvent> listener) {
         return addListener(PointRemoveEvent.class, listener);
     }
 
     /**
-     * Adds a point select listener, which will be notified when an data point
+     * Adds a point select listener, which will be notified when a data point
      * is selected.
      *
      * @param listener
@@ -338,7 +421,7 @@ public class Chart extends Component {
     }
 
     /**
-     * Adds a point unselect listener, which will be notified when an data point
+     * Adds a point unselect listener, which will be notified when a data point
      * is unselected.
      *
      * @param listener
@@ -348,6 +431,12 @@ public class Chart extends Component {
         return addListener(PointUnselectEvent.class, listener);
     }
 
+    /**
+     * Adds a point update listener, which will be notified when a data point
+     * is updated.
+     *
+     * @param listener
+     */
     public Registration addPointUpdateListener(
             ComponentEventListener<PointUpdateEvent> listener) {
         return addListener(PointUpdateEvent.class, listener);

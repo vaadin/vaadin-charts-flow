@@ -6,6 +6,10 @@ import com.vaadin.ui.event.ComponentEvent;
 import com.vaadin.ui.event.DomEvent;
 import com.vaadin.ui.event.EventData;
 
+/**
+ * The SeriesClickEvent class stores data for click events on the series of the
+ * chart.
+ */
 @DomEvent("series-click")
 public class SeriesClickEvent extends ComponentEvent<Chart> implements ClickEvent, HasSeries {
 
@@ -13,6 +17,8 @@ public class SeriesClickEvent extends ComponentEvent<Chart> implements ClickEven
     private final MouseEventDetails details;
 
     public SeriesClickEvent(Chart source, boolean fromClient,
+                            @EventData("event.detail.originalEvent.chartX") int chartX,
+                            @EventData("event.detail.originalEvent.chartY") int chartY,
                             @EventData("event.detail.originalEvent.pageX") int pageX,
                             @EventData("event.detail.originalEvent.pageY") int pageY,
                             @EventData("event.detail.originalEvent.altKey") boolean altKey,
@@ -25,6 +31,8 @@ public class SeriesClickEvent extends ComponentEvent<Chart> implements ClickEven
         this.seriesIndex = seriesIndex;
 
         details = new MouseEventDetails();
+        details.setX(chartX);
+        details.setY(chartY);
         details.setAbsoluteX(pageX);
         details.setAbsoluteY(pageY);
         details.setButton(MouseEventDetails.MouseButton.of(button));

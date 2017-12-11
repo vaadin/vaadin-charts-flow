@@ -23,7 +23,7 @@ import com.vaadin.ui.event.DomEvent;
 import com.vaadin.ui.event.EventData;
 
 /**
- * HideSeriesEvent when the series is hidden
+ * Fired when a series is hidden
  */
 @DomEvent("series-hide")
 public class SeriesHideEvent extends ComponentEvent<Chart> implements HasSeries {

@@ -23,11 +23,11 @@ import com.vaadin.ui.event.DomEvent;
 import com.vaadin.ui.event.EventData;
 
 /**
- * The PointClickEvent class stores data for select events on the points of the
+ * The PointSelectEvent class stores data for select events on the points of the
  * chart.
  */
 @DomEvent("point-select")
-public class PointSelectEvent extends ComponentEvent<Chart> implements HasPoint {
+public class PointSelectEvent extends ComponentEvent<Chart> implements HasItem {
 
     private final int seriesIndex;
     private final String category;

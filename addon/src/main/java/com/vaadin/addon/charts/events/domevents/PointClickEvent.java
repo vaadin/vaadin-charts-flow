@@ -28,7 +28,7 @@ import com.vaadin.ui.event.EventData;
  * chart.
  */
 @DomEvent("point-click")
-public class PointClickEvent extends ComponentEvent<Chart> implements ClickEvent, HasPoint {
+public class PointClickEvent extends ComponentEvent<Chart> implements ClickEvent, HasItem {
 
     private final int seriesIndex;
     private final String category;
@@ -37,10 +37,22 @@ public class PointClickEvent extends ComponentEvent<Chart> implements ClickEvent
     private final MouseEventDetails details;
 
     /**
-     * Construct a PointClickEvent
-     * 
+     * Constructs a PointClickEvent
+     *
      * @param source
+     * @param fromClient
+     * @param chartX
+     * @param chartY
+     * @param pageX
+     * @param pageY
+     * @param altKey
+     * @param ctrlKey
+     * @param metaKey
+     * @param shiftKey
+     * @param button
+     * @param seriesIndex
      * @param category
+     * @param value
      * @param pointIndex
      */
     public PointClickEvent(Chart source, boolean fromClient,
@@ -64,6 +76,8 @@ public class PointClickEvent extends ComponentEvent<Chart> implements ClickEvent
         this.pointIndex = pointIndex;
 
         details = new MouseEventDetails();
+        details.setX(chartX);
+        details.setY(chartY);
         details.setAbsoluteX(pageX);
         details.setAbsoluteY(pageY);
         details.setButton(MouseEventDetails.MouseButton.of(button));

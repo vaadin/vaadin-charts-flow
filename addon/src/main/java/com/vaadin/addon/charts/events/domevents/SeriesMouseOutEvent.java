@@ -5,6 +5,9 @@ import com.vaadin.ui.event.ComponentEvent;
 import com.vaadin.ui.event.DomEvent;
 import com.vaadin.ui.event.EventData;
 
+/**
+ * Fired when the mouse exits the neighborhood of a series
+ */
 @DomEvent("series-mouse-out")
 public class SeriesMouseOutEvent extends ComponentEvent<Chart> implements HasSeries {
 

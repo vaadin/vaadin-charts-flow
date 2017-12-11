@@ -24,6 +24,8 @@ import java.io.Serializable;
 public class MouseEventDetails implements Serializable {
 
     private MouseButton button;
+    private int x;
+    private int y;
     private int absoluteX;
     private int absoluteY;
     private boolean altKey;
@@ -38,6 +40,14 @@ public class MouseEventDetails implements Serializable {
 
     public MouseButton getButton() {
         return button;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
     }
 
     public int getAbsoluteX() {
@@ -74,6 +84,14 @@ public class MouseEventDetails implements Serializable {
 
     public void setButton(MouseButton button) {
         this.button = button;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
     }
 
     public void setAbsoluteX(int absoluteX) {

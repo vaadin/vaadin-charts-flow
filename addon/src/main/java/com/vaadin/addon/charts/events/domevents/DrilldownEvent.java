@@ -55,10 +55,20 @@ public class DrilldownEvent extends ComponentEvent<Chart> implements HasItem {
         this.seriesIndex = seriesIndex;
     }
 
+    /**
+     * Gets the name of the drilldown
+     *
+     * @return
+     */
     public String getDrilldown() {
         return drilldown;
     }
 
+    /**
+     * Gets the category of the drilldown
+     *
+     * @return
+     */
     public String getCategory() {
         return category;
     }

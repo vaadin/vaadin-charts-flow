@@ -5,8 +5,11 @@ import com.vaadin.ui.event.ComponentEvent;
 import com.vaadin.ui.event.DomEvent;
 import com.vaadin.ui.event.EventData;
 
+/**
+ * Fired when the mouse exits the neighborhood of a point
+ */
 @DomEvent("point-mouse-out")
-public class PointMouseOutEvent extends ComponentEvent<Chart> implements HasPoint {
+public class PointMouseOutEvent extends ComponentEvent<Chart> implements HasItem {
 
     private final String category;
     private final double value;
