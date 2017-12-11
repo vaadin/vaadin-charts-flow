@@ -31,8 +31,6 @@ public class ColumnChart extends AbstractChartExample {
         y.setTitle("Rainfall (mm)");
         configuration.addyAxis(y);
 
-        configuration.setExporting(true);
-
         add(chart);
     }
 }
