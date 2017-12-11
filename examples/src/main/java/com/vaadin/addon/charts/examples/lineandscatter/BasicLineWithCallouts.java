@@ -36,9 +36,7 @@ public class BasicLineWithCallouts extends AbstractChartExample {
                         "'<b>'+ this.series.name +'</b><br/>'+this.x +': '+ this.y +'°C'");
 
         PlotOptionsLine plotOptions = new PlotOptionsLine();
-//        plotOptions.setEnableMouseTracking(false);
-        plotOptions.setAllowPointSelect(true);
-        plotOptions.setShowCheckbox(true);
+        plotOptions.setEnableMouseTracking(false);
         configuration.setPlotOptions(plotOptions);
 
         DataSeries ds = new DataSeries();
