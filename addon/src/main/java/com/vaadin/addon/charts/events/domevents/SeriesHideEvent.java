@@ -26,17 +26,18 @@ import com.vaadin.ui.event.EventData;
  * HideSeriesEvent when the series is hidden
  */
 @DomEvent("series-hide")
-public class SeriesHideEvent extends ComponentEvent<Chart> {
+public class SeriesHideEvent extends ComponentEvent<Chart> implements HasSeries {
 
-    private final int seriesItemIndex;
+    private final int seriesIndex;
 
     public SeriesHideEvent(Chart source, boolean fromClient,
-                           @EventData("event.detail.originalEvent.target.index") int seriesItemIndex) {
+            @EventData("event.detail.originalEvent.target.index") int seriesIndex) {
         super(source, fromClient);
-        this.seriesItemIndex = seriesItemIndex;
+        this.seriesIndex = seriesIndex;
     }
 
+    @Override
     public int getSeriesItemIndex() {
-        return seriesItemIndex;
+        return seriesIndex;
     }
 }

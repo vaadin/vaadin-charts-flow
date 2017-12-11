@@ -26,17 +26,17 @@ import com.vaadin.ui.event.EventData;
  * ShowSeriesEvent when the series is shown
  */
 @DomEvent("series-show")
-public class SeriesShowEvent extends ComponentEvent<Chart> {
+public class SeriesShowEvent extends ComponentEvent<Chart> implements HasSeries {
 
-    private final int seriesItemIndex;
+    private final int seriesIndex;
 
     public SeriesShowEvent(Chart source, boolean fromClient,
-                           @EventData("event.detail.originalEvent.target.index") int seriesItemIndex) {
+            @EventData("event.detail.originalEvent.target.index") int seriesIndex) {
         super(source, fromClient);
-        this.seriesItemIndex = seriesItemIndex;
+        this.seriesIndex = seriesIndex;
     }
 
     public int getSeriesItemIndex() {
-        return seriesItemIndex;
+        return seriesIndex;
     }
 }

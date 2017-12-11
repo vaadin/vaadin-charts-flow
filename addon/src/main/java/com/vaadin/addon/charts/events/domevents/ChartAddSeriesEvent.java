@@ -6,12 +6,6 @@ import com.vaadin.ui.event.DomEvent;
 import com.vaadin.ui.event.EventData;
 import elemental.json.JsonArray;
 
-import java.io.Serializable;
-import java.util.Arrays;
-import java.util.List;
-
-import static java.util.stream.Collectors.toList;
-
 @DomEvent("chart-add-series")
 public class ChartAddSeriesEvent extends ComponentEvent<Chart> {
 

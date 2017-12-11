@@ -133,5 +133,30 @@ public class MouseEventDetails implements Serializable {
             return name;
         }
 
+        public static MouseButton of(int button) {
+            switch (button) {
+                case 0:
+                    return LEFT;
+                case 1:
+                    return MIDDLE;
+                default:
+                    return RIGHT;
+            }
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "MouseEventDetails{" +
+                "button=" + button +
+                ", absoluteX=" + absoluteX +
+                ", absoluteY=" + absoluteY +
+                ", altKey=" + altKey +
+                ", ctrlKey=" + ctrlKey +
+                ", metaKey=" + metaKey +
+                ", shiftKey=" + shiftKey +
+                ", xValue=" + xValue +
+                ", yValue=" + yValue +
+                '}';
     }
 }

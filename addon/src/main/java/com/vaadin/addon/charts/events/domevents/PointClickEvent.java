@@ -2,13 +2,9 @@ package com.vaadin.addon.charts.events.domevents;
 
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.events.domevents.details.MouseEventDetails;
-import com.vaadin.addon.charts.events.domevents.details.MouseEventDetails.MouseButton;
-import com.vaadin.addon.charts.model.ChartType;
-import com.vaadin.addon.charts.util.Util;
 import com.vaadin.ui.event.ComponentEvent;
 import com.vaadin.ui.event.DomEvent;
 import com.vaadin.ui.event.EventData;
-
 
 /*
  * #%L
@@ -32,139 +28,73 @@ import com.vaadin.ui.event.EventData;
  * chart.
  */
 @DomEvent("point-click")
-public class PointClickEvent extends ComponentEvent<Chart> {
+public class PointClickEvent extends ComponentEvent<Chart> implements ClickEvent, HasPoint {
 
-    private final int seriesItemIndex;
+    private final int seriesIndex;
     private final String category;
     private final double value;
     private final int pointIndex;
-    private MouseEventDetails details;
+    private final MouseEventDetails details;
 
     /**
      * Construct a PointClickEvent
      * 
      * @param source
-     * @param details
-     * @param series
      * @param category
      * @param pointIndex
      */
     public PointClickEvent(Chart source, boolean fromClient,
                            @EventData("event.detail.originalEvent.chartX") int chartX,
                            @EventData("event.detail.originalEvent.chartY") int chartY,
-                           @EventData("event.detail.originalEvent.point.series.index") int seriesItemIndex,
+                           @EventData("event.detail.originalEvent.pageX") int pageX,
+                           @EventData("event.detail.originalEvent.pageY") int pageY,
+                           @EventData("event.detail.originalEvent.altKey") boolean altKey,
+                           @EventData("event.detail.originalEvent.ctrlKey") boolean ctrlKey,
+                           @EventData("event.detail.originalEvent.metaKey") boolean metaKey,
+                           @EventData("event.detail.originalEvent.shiftKey") boolean shiftKey,
+                           @EventData("event.detail.originalEvent.button") int button,
+                           @EventData("event.detail.originalEvent.point.series.index") int seriesIndex,
                            @EventData("event.detail.originalEvent.point.category") String category,
                            @EventData("event.detail.originalEvent.point.y") double value,
                            @EventData("event.detail.originalEvent.point.index") int pointIndex) {
         super(source, fromClient);
-        this.seriesItemIndex = seriesItemIndex;
+        this.seriesIndex = seriesIndex;
         this.category = category;
         this.value = value;
         this.pointIndex = pointIndex;
-        this.details = new MouseEventDetails();
-        this.details.setAbsoluteX(chartX);
-        this.details.setAbsoluteY(chartY);
+
+        details = new MouseEventDetails();
+        details.setAbsoluteX(pageX);
+        details.setAbsoluteY(pageY);
+        details.setButton(MouseEventDetails.MouseButton.of(button));
+        details.setAltKey(altKey);
+        details.setCtrlKey(ctrlKey);
+        details.setMetaKey(metaKey);
+        details.setShiftKey(shiftKey);
     }
 
-    /**
-     * Gets the X coordinate of the point that was clicked.
-     * <p>
-     * Note, that if the axis type is Date, the value is "unix timestamp" which
-     * is shifted to UTF time zone that is used by the client side
-     * implementation. If you have used Date object as value, you most likely
-     * want to pass the value through {@link Util#toServerDate(double)} method
-     * before actually using the value.
-     * <p>
-     * This value might be zero in a chart without axes like
-     * {@link ChartType#PIE} or {@link ChartType#TREEMAP}
-     * 
-     * @return the X coordinate of the point that was clicked.
-     */
-    public double getX() {
-        return details.getxValue();
+    @Override
+    public MouseEventDetails getMouseDetails() {
+        return details;
     }
 
-    /**
-     * Gets the Y coordinate of the point that was clicked.
-     * <p>
-     * This value might be zero in a chart without axes like
-     * {@link ChartType#PIE} or {@link ChartType#TREEMAP}
-     * 
-     * @return the Y coordinate of the point that was clicked.
-     */
-    public double getY() {
-        return details.getyValue();
-    }
-
-    /**
-     * @return the absolute x position of the clicked point in browser client
-     *         area in pixels
-     */
-    public int getAbsoluteX() {
-        return details.getAbsoluteX();
-    }
-
-    /**
-     * @return the absolute y position of the clicked point in browser client
-     *         area in pixels
-     */
-    public int getAbsoluteY() {
-        return details.getAbsoluteY();
-    }
-
-    public MouseButton getButton() {
-        return details.getButton();
-    }
-
-    /**
-     * Checks if the Alt key was down when the mouse event took place.
-     * 
-     * @return true if Alt was down when the event occured, false otherwise
-     */
-    public boolean isAltKey() {
-        return details.isAltKey();
-    }
-
-    /**
-     * Checks if the Ctrl key was down when the mouse event took place.
-     * 
-     * @return true if Ctrl was pressed when the event occured, false otherwise
-     */
-    public boolean isCtrlKey() {
-        return details.isCtrlKey();
-    }
-
-    /**
-     * Checks if the Meta key was down when the mouse event took place.
-     * 
-     * @return true if Meta was pressed when the event occured, false otherwise
-     */
-    public boolean isMetaKey() {
-        return details.isMetaKey();
-    }
-
-    /**
-     * Checks if the Shift key was down when the mouse event took place.
-     * 
-     * @return true if Shift was pressed when the event occured, false otherwise
-     */
-    public boolean isShiftKey() {
-        return details.isShiftKey();
-    }
-
+    @Override
     public int getSeriesItemIndex() {
-        return seriesItemIndex;
+        return seriesIndex;
     }
 
+    @Override
     public String getCategory() {
         return category;
     }
 
+    @Override
     public double getValue() {
         return value;
     }
 
-    public int getPointIndex() {
+    @Override
+    public int getItemIndex() {
         return pointIndex;
     }
 }

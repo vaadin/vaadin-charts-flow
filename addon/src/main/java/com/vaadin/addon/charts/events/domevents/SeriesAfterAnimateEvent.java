@@ -6,17 +6,18 @@ import com.vaadin.ui.event.DomEvent;
 import com.vaadin.ui.event.EventData;
 
 @DomEvent("series-after-animate")
-public class SeriesAfterAnimateEvent extends ComponentEvent<Chart> {
+public class SeriesAfterAnimateEvent extends ComponentEvent<Chart> implements HasSeries {
 
-    private final int seriesItemIndex;
+    private final int seriesIndex;
 
     public SeriesAfterAnimateEvent(Chart source, boolean fromClient,
-                                   @EventData("event.detail.originalEvent.target.index") int seriesItemIndex) {
+                                   @EventData("event.detail.originalEvent.target.index") int seriesIndex) {
         super(source, fromClient);
-        this.seriesItemIndex = seriesItemIndex;
+        this.seriesIndex = seriesIndex;
     }
 
+    @Override
     public int getSeriesItemIndex() {
-        return seriesItemIndex;
+        return seriesIndex;
     }
 }

@@ -1,13 +1,11 @@
 package com.vaadin.addon.charts.events.domevents;
 
 import com.vaadin.addon.charts.Chart;
-import com.vaadin.addon.charts.model.DataSeriesItem;
-import com.vaadin.addon.charts.model.Series;
 import com.vaadin.ui.event.ComponentEvent;
 import com.vaadin.ui.event.DomEvent;
 import com.vaadin.ui.event.EventData;
 
-        /*
+/*
  * #%L
  * Vaadin Charts
  * %%
@@ -29,63 +27,32 @@ import com.vaadin.ui.event.EventData;
  * points
  */
 @DomEvent("chart-drilldown")
-public class DrilldownEvent extends ComponentEvent<Chart> {
+public class DrilldownEvent extends ComponentEvent<Chart> implements HasItem {
 
     private final String drilldown;
     private final String category;
     private final double value;
     private final int pointIndex;
-
-    private Series series;
-    private DataSeriesItem item;
-    private int itemIndex;
+    private int seriesIndex;
 
     /**
      * Construct a ChartDrilldownEvent
-     * 
+     *
      * @param source
-     * @param series
      */
     public DrilldownEvent(Chart source, boolean fromClient,
                           @EventData("event.detail.originalEvent.point.drilldown") String drilldown,
                           @EventData("event.detail.originalEvent.point.category") String category,
                           @EventData("event.detail.originalEvent.point.y") double value,
                           @EventData("event.detail.originalEvent.point.index") int pointIndex,
-                          @EventData("event.detail.originalEvent.point.series.index") int seriesItemIndex) {
+                          @EventData("event.detail.originalEvent.point.series.index") int seriesIndex) {
         super(source, fromClient);
 
         this.drilldown = drilldown;
         this.category = category;
         this.value = value;
         this.pointIndex = pointIndex;
-        itemIndex = seriesItemIndex;
-    }
-
-    /**
-     * Returns the {@link #getItem()} series.
-     * 
-     * @return
-     */
-    public Series getSeries() {
-        return series;
-    }
-
-    /**
-     * Returns the item that was clicked
-     * 
-     * @return
-     */
-    public DataSeriesItem getItem() {
-        return item;
-    }
-
-    /**
-     * Returns the index of {@link #getItem()} in {@link #getSeries()}.
-     * 
-     * @return
-     */
-    public int getItemIndex() {
-        return itemIndex;
+        this.seriesIndex = seriesIndex;
     }
 
     public String getDrilldown() {
@@ -96,11 +63,18 @@ public class DrilldownEvent extends ComponentEvent<Chart> {
         return category;
     }
 
+    @Override
+    public int getSeriesItemIndex() {
+        return seriesIndex;
+    }
+
+    @Override
     public double getValue() {
         return value;
     }
 
-    public int getPointIndex() {
+    @Override
+    public int getItemIndex() {
         return pointIndex;
     }
 }
