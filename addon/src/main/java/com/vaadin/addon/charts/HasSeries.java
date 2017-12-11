@@ -1,6 +1,5 @@
 package com.vaadin.addon.charts;
 
-import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.model.Series;
 
 /**
