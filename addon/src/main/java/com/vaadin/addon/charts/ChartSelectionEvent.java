@@ -45,10 +45,10 @@ public class ChartSelectionEvent extends ComponentEvent<Chart> {
      * @param valueEnd
      */
     public ChartSelectionEvent(Chart source, boolean fromClient,
-                               @EventData("event.detail.originalEvent.xAxis[0].min") Double selectionStart,
-                               @EventData("event.detail.originalEvent.xAxis[0].max") Double selectionEnd,
-                               @EventData("event.detail.originalEvent.yAxis[0].min") Double valueStart,
-                               @EventData("event.detail.originalEvent.yAxis[0].max") Double valueEnd) {
+                               @EventData("event.detail.xAxisMin") Double selectionStart,
+                               @EventData("event.detail.xAxisMax") Double selectionEnd,
+                               @EventData("event.detail.yAxisMin") Double valueStart,
+                               @EventData("event.detail.yAxisMax") Double valueEnd) {
         super(source, fromClient);
         this.selectionStart = selectionStart;
         this.selectionEnd = selectionEnd;
