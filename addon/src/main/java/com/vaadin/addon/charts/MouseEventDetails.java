@@ -14,7 +14,7 @@
  * If not, see <https://vaadin.com/license/cval-3>.
  * #L%
  */
-package com.vaadin.addon.charts.events.domevents.details;
+package com.vaadin.addon.charts;
 
 import java.io.Serializable;
 

@@ -1,6 +1,5 @@
-package com.vaadin.addon.charts.events.domevents;
+package com.vaadin.addon.charts;
 
-import com.vaadin.addon.charts.Chart;
 import com.vaadin.ui.event.ComponentEvent;
 import com.vaadin.ui.event.DomEvent;
 import com.vaadin.ui.event.EventData;

@@ -1,8 +1,6 @@
-package com.vaadin.addon.charts.events.domevents;
+package com.vaadin.addon.charts;
 
-import com.vaadin.addon.charts.Chart;
-import com.vaadin.addon.charts.events.domevents.details.MouseEventDetails;
-import com.vaadin.addon.charts.events.domevents.details.MouseEventDetails.MouseButton;
+import com.vaadin.addon.charts.MouseEventDetails.MouseButton;
 import com.vaadin.ui.event.ComponentEvent;
 import com.vaadin.ui.event.DomEvent;
 import com.vaadin.ui.event.EventData;

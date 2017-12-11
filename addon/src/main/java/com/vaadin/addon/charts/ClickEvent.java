@@ -1,6 +1,5 @@
-package com.vaadin.addon.charts.events.domevents;
+package com.vaadin.addon.charts;
 
-import com.vaadin.addon.charts.events.domevents.details.MouseEventDetails;
 import com.vaadin.addon.charts.util.Util;
 
 public interface ClickEvent {

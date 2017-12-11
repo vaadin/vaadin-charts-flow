@@ -1,6 +1,5 @@
-package com.vaadin.addon.charts.events.domevents;
+package com.vaadin.addon.charts;
 
-import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
 

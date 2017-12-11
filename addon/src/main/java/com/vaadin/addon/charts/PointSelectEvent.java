@@ -1,4 +1,4 @@
-package com.vaadin.addon.charts.events.domevents;
+package com.vaadin.addon.charts;
 
 /*
  * #%L
@@ -17,28 +17,27 @@ package com.vaadin.addon.charts.events.domevents;
  * #L%
  */
 
-import com.vaadin.addon.charts.Chart;
 import com.vaadin.ui.event.ComponentEvent;
 import com.vaadin.ui.event.DomEvent;
 import com.vaadin.ui.event.EventData;
 
 /**
- * The PointUnselectEvent class stores data for unselect events on the points of the
+ * The PointSelectEvent class stores data for select events on the points of the
  * chart.
  */
-@DomEvent("point-unselect")
-public class PointUnselectEvent extends ComponentEvent<Chart> implements HasItem {
+@DomEvent("point-select")
+public class PointSelectEvent extends ComponentEvent<Chart> implements HasItem {
 
     private final int seriesIndex;
     private final String category;
     private final double value;
     private final int pointIndex;
 
-    public PointUnselectEvent(Chart source, boolean fromClient,
-                              @EventData("event.detail.originalEvent.target.series.index") int seriesIndex,
-                              @EventData("event.detail.originalEvent.target.category") String category,
-                              @EventData("event.detail.originalEvent.target.y") double value,
-                              @EventData("event.detail.originalEvent.target.index") int pointIndex) {
+    public PointSelectEvent(Chart source, boolean fromClient,
+                            @EventData("event.detail.originalEvent.target.series.index") int seriesIndex,
+                            @EventData("event.detail.originalEvent.target.category") String category,
+                            @EventData("event.detail.originalEvent.target.y") double value,
+                            @EventData("event.detail.originalEvent.target.index") int pointIndex) {
         super(source, fromClient);
         this.seriesIndex = seriesIndex;
         this.category = category;
