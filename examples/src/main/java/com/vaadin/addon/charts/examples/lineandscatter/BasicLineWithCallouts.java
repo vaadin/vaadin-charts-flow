@@ -13,9 +13,11 @@ import com.vaadin.addon.charts.model.YAxis;
 
 public class BasicLineWithCallouts extends AbstractChartExample {
 
+    protected Chart chart;
+
     @Override
     public void initDemo() {
-        Chart chart = new Chart();
+        chart = new Chart();
 
         Configuration configuration = chart.getConfiguration();
         configuration.getChart().setType(ChartType.LINE);
