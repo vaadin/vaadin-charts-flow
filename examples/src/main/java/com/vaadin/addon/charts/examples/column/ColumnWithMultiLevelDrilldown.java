@@ -271,7 +271,7 @@ public class ColumnWithMultiLevelDrilldown extends AbstractChartExample {
         chart.addDrilldownListener(e -> {
             DataSeries series = (DataSeries) e.getSeries();
             String message = String.format("Drilldown! Category=%s, Drilldown=%s, Value=%.2f, Series=%s, SeriesItem=%s",
-                    e.getCategory(), e.getDrilldown(), e.getValue(),
+                    e.getCategory(), e.getDrilldown(), e.getyValue(),
                     series.getName(), e.getItem().getName());
             toast(message);
         });

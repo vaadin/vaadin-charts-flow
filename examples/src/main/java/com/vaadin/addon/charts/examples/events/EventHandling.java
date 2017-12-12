@@ -22,7 +22,7 @@ public class EventHandling extends BasicLineWithCallouts {
         chart.getConfiguration().setSubTitle("Mouse activity logged in stdout");
 
         chart.getConfiguration().setExporting(true);
-        chart.setSeriesVisibilityTogglingDisabled(true);
+//        chart.setSeriesVisibilityTogglingDisabled(true);
 
         PlotOptionsLine plotOptions = (PlotOptionsLine) 
                 chart.getConfiguration().getPlotOptions().iterator().next();
@@ -35,8 +35,8 @@ public class EventHandling extends BasicLineWithCallouts {
 
         chart.addPointClickListener(e -> {
             String message = String.format("Point clicked! X=%d, Y=%d, Category=%s, Value=%.2f, Series=%s, PointIndex=%d, MouseDetails=%s",
-                    e.getAbsoluteX(), e.getAbsoluteY(), e.getCategory(),
-                    e.getValue(), e.getSeries().getName(), e.getItemIndex(), e.getMouseDetails());
+                    e.getAbsoluteX(), e.getAbsoluteY(), e.getCategory(), e.getItem().getY(),
+                    e.getSeries().getName(), e.getItemIndex(), e.getMouseDetails());
             DataSeries series = (DataSeries) e.getSeries();
             toast(message);
 //            series.remove(series.get(e.getItemIndex()));
@@ -47,38 +47,38 @@ public class EventHandling extends BasicLineWithCallouts {
 
         chart.addPointMouseOutListener(e -> {
             String message = String.format("Point out! Category=%s, Value=%.2f, Series=%s, PointIndex=%d",
-                    e.getCategory(), e.getValue(), e.getSeries().getName(), e.getItemIndex());
+                    e.getCategory(), e.getItem().getY(), e.getSeries().getName(), e.getItemIndex());
             System.out.println(message);
         });
 
         chart.addPointMouseOverListener(e -> {
             String message = String.format("Point over! Category=%s, Value=%.2f, Series=%s, PointIndex=%d",
-                    e.getCategory(), e.getValue(), e.getSeries().getName(), e.getItemIndex());
+                    e.getCategory(), e.getItem().getY(), e.getSeries().getName(), e.getItemIndex());
             System.out.println(message);
         });
 
         chart.addPointRemoveListener(e -> {
             String message = String.format("Point remove! Category=%s, Value=%.2f, Series=%s, PointIndex=%d",
-                    e.getCategory(), e.getValue(), e.getSeries().getName(), e.getItemIndex());
+                    e.getCategory(), e.getyValue(), e.getSeries().getName(), e.getItemIndex());
             toast(message);
         });
 
         chart.addPointUpdateListener(e -> {
-            String message = String.format("Point update! Category=%s, OldValue=%.2f, NewValue=%.2f, Series=%s, PointIndex=%d",
-                    e.getCategory(), e.getOldValue(), e.getValue(),
+            String message = String.format("Point update! Category=%s, OldValue=%s, NewValue=%.2f, Series=%s, PointIndex=%d",
+                    e.getCategory(), e.getOldYValue(), e.getItem().getY(),
                     e.getSeries().getName(), e.getItemIndex());
             toast(message);
         });
 
         chart.addPointSelectListener(e -> {
             String message = String.format("Point selected! Series=%s, Category=%s, Value=%.2f, PointIndex=%d",
-                    e.getSeries().getName(), e.getCategory(), e.getValue(), e.getItemIndex());
+                    e.getSeries().getName(), e.getCategory(), e.getItem().getY(), e.getItemIndex());
             toast(message);
         });
 
         chart.addPointUnselectListener(e -> {
             String message = String.format("Point unselected! Series=%s, Category=%s, Value=%.2f, PointIndex=%d",
-                    e.getSeries().getName(), e.getCategory(), e.getValue(), e.getItemIndex());
+                    e.getSeries().getName(), e.getCategory(), e.getItem().getY(), e.getItemIndex());
             toast(message);
         });
 
@@ -136,9 +136,15 @@ public class EventHandling extends BasicLineWithCallouts {
 
         // CHART EVENTS
 
-        chart.addChartBeforePrintListener(e -> toast("Before print!"));
+        chart.addChartBeforePrintListener(e -> {
+            System.out.println("Before print!");
+            toast("Before print!");
+        });
 
-        chart.addChartAfterPrintListener(e -> toast("After print!"));
+        chart.addChartAfterPrintListener(e -> {
+            System.out.println("After print!");
+            toast("After print!");
+        });
 
         chart.addChartLoadListener(e -> toast("Load!"));
 
@@ -183,7 +189,7 @@ public class EventHandling extends BasicLineWithCallouts {
                 "          notify.verticalAlign = 'middle';\n" +
                 "          notify.appendChild(template);\n" +
                 "          document.body.appendChild(notify);\n" +
-                "          notify.duration = 2000;\n" +
+                "          notify.duration = 4000;\n" +
                 "          notify.open();\n" +
                 "          notify.addEventListener('opened-changed', function() {\n" +
                 "            document.body.removeChild(notify);\n" +
