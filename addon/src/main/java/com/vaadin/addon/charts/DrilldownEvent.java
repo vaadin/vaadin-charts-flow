@@ -30,7 +30,8 @@ public class DrilldownEvent extends ComponentEvent<Chart> implements HasItem {
 
     private final String drilldown;
     private final String category;
-    private final double value;
+    private final Double x;
+    private final Double y;
     private final int pointIndex;
     private int seriesIndex;
 
@@ -42,14 +43,16 @@ public class DrilldownEvent extends ComponentEvent<Chart> implements HasItem {
     public DrilldownEvent(Chart source, boolean fromClient,
                           @EventData("event.detail.originalEvent.point.drilldown") String drilldown,
                           @EventData("event.detail.originalEvent.point.category") String category,
-                          @EventData("event.detail.originalEvent.point.y") double value,
+                          @EventData("event.detail.originalEvent.point.x") Double x,
+                          @EventData("event.detail.originalEvent.point.y") Double y,
                           @EventData("event.detail.originalEvent.point.index") int pointIndex,
                           @EventData("event.detail.originalEvent.point.series.index") int seriesIndex) {
         super(source, fromClient);
 
         this.drilldown = drilldown;
         this.category = category;
-        this.value = value;
+        this.x = x;
+        this.y = y;
         this.pointIndex = pointIndex;
         this.seriesIndex = seriesIndex;
     }
@@ -63,11 +66,15 @@ public class DrilldownEvent extends ComponentEvent<Chart> implements HasItem {
         return drilldown;
     }
 
-    /**
-     * Gets the category of the drilldown
-     *
-     * @return
-     */
+    public Double getxValue() {
+        return x;
+    }
+
+    public Double getyValue() {
+        return y;
+    }
+
+    @Override
     public String getCategory() {
         return category;
     }
@@ -75,11 +82,6 @@ public class DrilldownEvent extends ComponentEvent<Chart> implements HasItem {
     @Override
     public int getSeriesItemIndex() {
         return seriesIndex;
-    }
-
-    @Override
-    public double getValue() {
-        return value;
     }
 
     @Override

@@ -30,7 +30,6 @@ public class PointClickEvent extends ComponentEvent<Chart> implements ClickEvent
 
     private final int seriesIndex;
     private final String category;
-    private final double value;
     private final int pointIndex;
     private final MouseEventDetails details;
 
@@ -39,8 +38,6 @@ public class PointClickEvent extends ComponentEvent<Chart> implements ClickEvent
      *
      * @param source
      * @param fromClient
-     * @param chartX
-     * @param chartY
      * @param pageX
      * @param pageY
      * @param altKey
@@ -50,12 +47,9 @@ public class PointClickEvent extends ComponentEvent<Chart> implements ClickEvent
      * @param button
      * @param seriesIndex
      * @param category
-     * @param value
      * @param pointIndex
      */
     public PointClickEvent(Chart source, boolean fromClient,
-                           @EventData("event.detail.originalEvent.chartX") int chartX,
-                           @EventData("event.detail.originalEvent.chartY") int chartY,
                            @EventData("event.detail.originalEvent.pageX") int pageX,
                            @EventData("event.detail.originalEvent.pageY") int pageY,
                            @EventData("event.detail.originalEvent.altKey") boolean altKey,
@@ -63,19 +57,19 @@ public class PointClickEvent extends ComponentEvent<Chart> implements ClickEvent
                            @EventData("event.detail.originalEvent.metaKey") boolean metaKey,
                            @EventData("event.detail.originalEvent.shiftKey") boolean shiftKey,
                            @EventData("event.detail.originalEvent.button") int button,
+                           @EventData("event.detail.originalEvent.point.x") double x,
+                           @EventData("event.detail.originalEvent.point.y") double y,
                            @EventData("event.detail.originalEvent.point.series.index") int seriesIndex,
                            @EventData("event.detail.originalEvent.point.category") String category,
-                           @EventData("event.detail.originalEvent.point.y") double value,
                            @EventData("event.detail.originalEvent.point.index") int pointIndex) {
         super(source, fromClient);
         this.seriesIndex = seriesIndex;
         this.category = category;
-        this.value = value;
         this.pointIndex = pointIndex;
 
         details = new MouseEventDetails();
-        details.setX(chartX);
-        details.setY(chartY);
+        details.setxValue(x);
+        details.setyValue(y);
         details.setAbsoluteX(pageX);
         details.setAbsoluteY(pageY);
         details.setButton(MouseEventDetails.MouseButton.of(button));
@@ -98,11 +92,6 @@ public class PointClickEvent extends ComponentEvent<Chart> implements ClickEvent
     @Override
     public String getCategory() {
         return category;
-    }
-
-    @Override
-    public double getValue() {
-        return value;
     }
 
     @Override

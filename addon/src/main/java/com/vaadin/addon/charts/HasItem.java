@@ -13,13 +13,6 @@ public interface HasItem extends HasSeries {
     String getCategory();
 
     /**
-     * Returns the value of the item
-     *
-     * @return
-     */
-    double getValue();
-
-    /**
      * Returns the index of {@link #getItem()} in {@link #getSeries()}.
      *
      * @return

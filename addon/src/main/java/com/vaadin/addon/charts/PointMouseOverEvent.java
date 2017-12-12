@@ -12,30 +12,22 @@ import com.vaadin.ui.event.EventData;
 public class PointMouseOverEvent extends ComponentEvent<Chart> implements HasItem {
 
     private final String category;
-    private final double value;
     private final int seriesIndex;
     private final int pointIndex;
 
     public PointMouseOverEvent(Chart source, boolean fromClient,
                                @EventData("event.detail.originalEvent.target.series.index") int seriesIndex,
                                @EventData("event.detail.originalEvent.target.index") int pointIndex,
-                               @EventData("event.detail.originalEvent.target.category") String category,
-                               @EventData("event.detail.originalEvent.target.y") double value) {
+                               @EventData("event.detail.originalEvent.target.category") String category) {
         super(source, fromClient);
         this.seriesIndex = seriesIndex;
         this.pointIndex = pointIndex;
         this.category = category;
-        this.value = value;
     }
 
     @Override
     public String getCategory() {
         return category;
-    }
-
-    @Override
-    public double getValue() {
-        return value;
     }
 
     @Override

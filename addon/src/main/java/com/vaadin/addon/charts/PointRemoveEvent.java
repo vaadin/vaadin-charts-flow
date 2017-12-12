@@ -13,18 +13,21 @@ public class PointRemoveEvent extends ComponentEvent<Chart> implements HasItem {
 
     private final int seriesIndex;
     private final String category;
-    private final double value;
+    private final double x;
+    private final double y;
     private final int pointIndex;
 
     public PointRemoveEvent(Chart source, boolean fromClient,
                             @EventData("event.detail.originalEvent.target.series.index") int seriesIndex,
                             @EventData("event.detail.originalEvent.target.category") String category,
-                            @EventData("event.detail.originalEvent.target.y") double value,
+                            @EventData("event.detail.originalEvent.target.x") double x,
+                            @EventData("event.detail.originalEvent.target.y") double y,
                             @EventData("event.detail.originalEvent.target.index") int pointIndex) {
         super(source, fromClient);
         this.seriesIndex = seriesIndex;
         this.category = category;
-        this.value = value;
+        this.x = x;
+        this.y = y;
         this.pointIndex = pointIndex;
     }
 
@@ -39,12 +42,15 @@ public class PointRemoveEvent extends ComponentEvent<Chart> implements HasItem {
     }
 
     @Override
-    public double getValue() {
-        return value;
-    }
-
-    @Override
     public int getItemIndex() {
         return pointIndex;
+    }
+
+    public double getxValue() {
+        return x;
+    }
+
+    public double getyValue() {
+        return y;
     }
 }

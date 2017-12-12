@@ -30,18 +30,15 @@ public class PointUnselectEvent extends ComponentEvent<Chart> implements HasItem
 
     private final int seriesIndex;
     private final String category;
-    private final double value;
     private final int pointIndex;
 
     public PointUnselectEvent(Chart source, boolean fromClient,
                               @EventData("event.detail.originalEvent.target.series.index") int seriesIndex,
                               @EventData("event.detail.originalEvent.target.category") String category,
-                              @EventData("event.detail.originalEvent.target.y") double value,
                               @EventData("event.detail.originalEvent.target.index") int pointIndex) {
         super(source, fromClient);
         this.seriesIndex = seriesIndex;
         this.category = category;
-        this.value = value;
         this.pointIndex = pointIndex;
     }
 
@@ -53,11 +50,6 @@ public class PointUnselectEvent extends ComponentEvent<Chart> implements HasItem
     @Override
     public String getCategory() {
         return category;
-    }
-
-    @Override
-    public double getValue() {
-        return value;
     }
 
     @Override

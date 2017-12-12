@@ -15,8 +15,6 @@ public class SeriesClickEvent extends ComponentEvent<Chart> implements ClickEven
     private final MouseEventDetails details;
 
     public SeriesClickEvent(Chart source, boolean fromClient,
-                            @EventData("event.detail.originalEvent.chartX") int chartX,
-                            @EventData("event.detail.originalEvent.chartY") int chartY,
                             @EventData("event.detail.originalEvent.pageX") int pageX,
                             @EventData("event.detail.originalEvent.pageY") int pageY,
                             @EventData("event.detail.originalEvent.altKey") boolean altKey,
@@ -24,13 +22,15 @@ public class SeriesClickEvent extends ComponentEvent<Chart> implements ClickEven
                             @EventData("event.detail.originalEvent.metaKey") boolean metaKey,
                             @EventData("event.detail.originalEvent.shiftKey") boolean shiftKey,
                             @EventData("event.detail.originalEvent.button") int button,
+                            @EventData("event.detail.originalEvent.point.x") double x,
+                            @EventData("event.detail.originalEvent.point.y") double y,
                             @EventData("event.detail.originalEvent.point.series.index") int seriesIndex) {
         super(source, fromClient);
         this.seriesIndex = seriesIndex;
 
         details = new MouseEventDetails();
-        details.setX(chartX);
-        details.setY(chartY);
+        details.setxValue(x);
+        details.setyValue(y);
         details.setAbsoluteX(pageX);
         details.setAbsoluteY(pageY);
         details.setButton(MouseEventDetails.MouseButton.of(button));

@@ -42,14 +42,6 @@ public class MouseEventDetails implements Serializable {
         return button;
     }
 
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
     public int getAbsoluteX() {
         return absoluteX;
     }
@@ -84,14 +76,6 @@ public class MouseEventDetails implements Serializable {
 
     public void setButton(MouseButton button) {
         this.button = button;
-    }
-
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public void setY(int y) {
-        this.y = y;
     }
 
     public void setAbsoluteX(int absoluteX) {

@@ -19,8 +19,6 @@ public class ChartClickEvent extends ComponentEvent<Chart> implements ClickEvent
      *
      * @param source
      * @param fromClient
-     * @param chartX
-     * @param chartY
      * @param pageX
      * @param pageY
      * @param altKey
@@ -30,8 +28,8 @@ public class ChartClickEvent extends ComponentEvent<Chart> implements ClickEvent
      * @param button
      */
     public ChartClickEvent(Chart source, boolean fromClient,
-                           @EventData("event.detail.originalEvent.chartX") int chartX,
-                           @EventData("event.detail.originalEvent.chartY") int chartY,
+                           @EventData("event.detail.xValue") Double x,
+                           @EventData("event.detail.yValue") Double y,
                            @EventData("event.detail.originalEvent.pageX") int pageX,
                            @EventData("event.detail.originalEvent.pageY") int pageY,
                            @EventData("event.detail.originalEvent.altKey") boolean altKey,
@@ -42,8 +40,12 @@ public class ChartClickEvent extends ComponentEvent<Chart> implements ClickEvent
         super(source, fromClient);
 
         details = new MouseEventDetails();
-        details.setX(chartX);
-        details.setY(chartY);
+        if (x != null) {
+            details.setxValue(x);
+        }
+        if (y != null) {
+            details.setyValue(y);
+        }
         details.setAbsoluteX(pageX);
         details.setAbsoluteY(pageY);
         details.setButton(MouseButton.of(button));
