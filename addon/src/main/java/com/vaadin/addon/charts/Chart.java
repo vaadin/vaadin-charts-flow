@@ -118,7 +118,7 @@ public class Chart extends Component {
      * @param disabled
      */
     public void setSeriesVisibilityTogglingDisabled(boolean disabled) {
-        getElement().setProperty("seriesVisibilityTogglingDisabled", disabled);
+        getElement().setProperty("_seriesVisibilityTogglingDisabled", disabled);
     }
 
     /**
