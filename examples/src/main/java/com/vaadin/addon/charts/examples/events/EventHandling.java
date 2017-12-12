@@ -128,6 +128,7 @@ public class EventHandling extends BasicLineWithCallouts {
         });
 
         chart.addCheckBoxClickListener(e -> {
+            chart.setSeriesVisibilityTogglingDisabled(e.isChecked());
             String message = String.format("Checkbox! Series=%s, Checked=%b",
                     e.getSeries().getName(), e.isChecked());
             toast(message);
