@@ -22,6 +22,7 @@ public class EventHandling extends BasicLineWithCallouts {
         chart.getConfiguration().setSubTitle("Mouse activity logged in stdout");
 
         chart.getConfiguration().setExporting(true);
+        chart.setSeriesVisibilityTogglingDisabled(true);
 
         PlotOptionsLine plotOptions = (PlotOptionsLine) 
                 chart.getConfiguration().getPlotOptions().iterator().next();
