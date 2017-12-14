@@ -7,6 +7,7 @@ import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.SeriesCheckboxClickEvent;
 import com.vaadin.addon.charts.SeriesLegendItemClickEvent;
 import com.vaadin.testbench.ElementQuery;
+import com.vaadin.testbench.annotations.RunLocally;
 import com.vaadin.testbench.annotations.RunOnHub;
 import com.vaadin.tests.elements.ButtonElement;
 import com.vaadin.tests.elements.CheckboxElement;
@@ -42,14 +43,15 @@ import com.vaadin.testbench.By;
 import com.vaadin.testbench.parallel.Browser;
 
 //@Ignore("Absolute coordinates affected by Theme change")
-@RunOnHub
+//@RunOnHub
+@RunLocally
 public class ServerSideEventsIT extends AbstractTBTest {
 
-    @Before
-    public void setup() throws Exception {
-        super.setup();
-        driver.manage().window().setSize(new Dimension(1600, 1600));
-    }
+//    @Before
+//    public void setup() throws Exception {
+//        super.setup();
+//        driver.manage().window().setSize(new Dimension(1600, 1600));
+//    }
 
     @Override
     protected Class<? extends AbstractChartExample> getTestView() {
