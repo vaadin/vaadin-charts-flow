@@ -8,15 +8,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.vaadin.addon.charts.AbstractChartExample;
 import com.vaadin.addon.charts.Chart;
-import com.vaadin.addon.charts.ChartClickEvent;
-import com.vaadin.addon.charts.PointClickEvent;
-import com.vaadin.addon.charts.PointSelectEvent;
-import com.vaadin.addon.charts.PointUnselectEvent;
-import com.vaadin.addon.charts.SeriesCheckboxClickEvent;
-import com.vaadin.addon.charts.SeriesHideEvent;
-import com.vaadin.addon.charts.SeriesLegendItemClickEvent;
-import com.vaadin.addon.charts.SeriesShowEvent;
-import com.vaadin.addon.charts.SkipFromDemo;
 import com.vaadin.addon.charts.model.AbstractSeries;
 import com.vaadin.addon.charts.model.AxisTitle;
 import com.vaadin.addon.charts.model.ChartType;
@@ -31,9 +22,9 @@ import com.vaadin.addon.charts.model.Tooltip;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.style.SolidColor;
-import com.vaadin.shared.Registration;
 import com.vaadin.ui.checkbox.Checkbox;
 import com.vaadin.ui.common.HasClickListeners;
+import com.vaadin.ui.event.ComponentEvent;
 import com.vaadin.ui.event.ComponentEventListener;
 import com.vaadin.ui.html.Label;
 import com.vaadin.ui.button.Button;
@@ -42,29 +33,34 @@ import com.vaadin.ui.layout.HorizontalLayout;
 import com.vaadin.ui.layout.VerticalLayout;
 import com.vaadin.ui.radiobutton.RadioButtonGroup;
 
-@SkipFromDemo
+//@SkipFromDemo
 public class ServerSideEvents extends AbstractChartExample {
 
     private Chart chart;
-    private Label lastEvent = new Label();
-    private Label eventDetails = new Label();
-    private int id = 0;
-    private VerticalLayout historyLayout = new VerticalLayout();
-    private int eventNumber = 0;
+    private Label lastEvent;
+    private Label eventDetails;
+    private int id;
+    private VerticalLayout historyLayout;
+    private int eventNumber;
     private DataSeriesItem firstDataPoint;
-    private VerticalLayout eventListeners;
     private Checkbox visibilityToggling;
 
     @Override
     public void initDemo() {
+        eventDetails = new Label();
         eventDetails.setId("eventDetails");
+
+        lastEvent = new Label();
         lastEvent.setId("lastEvent");
+
+        historyLayout = new VerticalLayout();
         historyLayout.setId("history");
+
         chart = new Chart();
         chart.setId("chart");
-//        chart.setWidth("500px");
 
         final Configuration configuration = chart.getConfiguration();
+        configuration.getChart().setWidth(500);
         configuration.getChart().setType(ChartType.SCATTER);
         configuration.getTitle().setText("Test server side events.");
         configuration.getSubTitle().setText(
@@ -83,7 +79,7 @@ public class ServerSideEvents extends AbstractChartExample {
         plotline.setValue(0);
         plotline.setWidth(1);
         plotline.setColor(new SolidColor("#808080"));
-        yAxis.setPlotLines(new PlotLine[] { plotline });
+        yAxis.setPlotLines(plotline);
         yAxis.setMinPadding(0.2);
         yAxis.setMaxPadding(0.2);
 
@@ -109,194 +105,34 @@ public class ServerSideEvents extends AbstractChartExample {
         firstDataPoint.setSelected(true);
         configuration.setSeries(series1, series2, series3);
 
-        chart.drawChart();
-
         final FlexLayout toggles = createControls();
-        FlexLayout eventListeners = addEventListeners();
+
+        chart.addChartClickListener(event -> logEvent(event));
+        chart.addPointClickListener(event -> logEvent(event));
+        chart.addCheckBoxClickListener(event -> logEvent(event));
+        chart.addLegendItemClickListener(event -> logEvent(event));
+        chart.addSeriesHideListener(event -> logEvent(event));
+        chart.addSeriesShowListener(event -> logEvent(event));
+        chart.addPointSelectListener(event -> logEvent(event));
+        chart.addPointUnselectListener(event -> logEvent(event));
+        chart.drawChart();
 
         chart.setSeriesVisibilityTogglingDisabled(false);
         visibilityToggling.setValue(false);
 
-//        lastEvent.setCaption("Last event");
-//        eventDetails.setCaption("Details");
-//        historyLayout.setCaption("History");
         VerticalLayout layout = new VerticalLayout();
-//        layout.setSpacing(true);
+        layout.setId("master");
         layout.add(toggles);
-        HorizontalLayout chartAndListeners = new HorizontalLayout(chart,
-                eventListeners);
-        chartAndListeners.setSizeUndefined();
-//        chartAndListeners.setSpacing(true);
-        layout.add(chartAndListeners);
+
         layout.add(lastEvent);
         layout.add(eventDetails);
         layout.add(historyLayout);
-        add(layout);
-    }
-
-    private FlexLayout addEventListeners() {
-        eventListeners = new VerticalLayout();
-//        eventListeners.setCaption("Event listeners:");
-
-        final ComponentEventListener<ChartClickEvent> listener = event -> logEvent(event);
-        addToggleForListener("Chart click", "ChartClick", new ListenerToggle() {
-
-            private Registration registration;
-
-            @Override
-            public void add() {
-                registration = chart.addChartClickListener(listener);
-            }
-
-            @Override
-            public void remove() {
-                registration.remove();
-            }
-        });
-
-        final ComponentEventListener<PointClickEvent> pcListener = event -> logEvent(event);
-        addToggleForListener("Point click", "PointClick", new ListenerToggle() {
-
-            private Registration registration;
-
-            @Override
-            public void add() {
-                registration = chart.addPointClickListener(pcListener);
-            }
-
-            @Override
-            public void remove() {
-                registration.remove();
-            }
-        });
-
-        final ComponentEventListener<SeriesCheckboxClickEvent> cbListener = event -> logEvent(event);
-        addToggleForListener("Checkbox click", "CheckboxClick",
-                new ListenerToggle() {
-
-                    private Registration registration;
-
-                    @Override
-                    public void add() {
-                        registration = chart.addCheckBoxClickListener(cbListener);
-                    }
-
-                    @Override
-                    public void remove() {
-                        registration.remove();
-                    }
-                });
-
-        final ComponentEventListener<SeriesLegendItemClickEvent> legendItemListener = event -> logEvent(event);
-        addToggleForListener("Legend item click", "LegendItemClick",
-                new ListenerToggle() {
-
-                    private Registration registration;
-
-                    @Override
-                    public void add() {
-                        registration = chart.addLegendItemClickListener(legendItemListener);
-                        visibilityToggling.setValue(true);
-                    }
-
-                    @Override
-                    public void remove() {
-                        registration.remove();
-                    }
-                });
-
-        final ComponentEventListener<SeriesHideEvent> hideListener = event -> logEvent(event);
-        addToggleForListener("Series hide", "SeriesHide", new ListenerToggle() {
-
-            private Registration registration;
-
-            @Override
-            public void add() {
-                registration = chart.addSeriesHideListener(hideListener);
-            }
-
-            @Override
-            public void remove() {
-                registration.remove();
-            }
-        });
-
-        final ComponentEventListener<SeriesShowEvent> show = event -> logEvent(event);
-        addToggleForListener("Series show", "SeriesShow", new ListenerToggle() {
-
-            private Registration registration;
-
-            @Override
-            public void add() {
-                registration = chart.addSeriesShowListener(show);
-            }
-
-            @Override
-            public void remove() {
-                registration.remove();
-            }
-        });
-
-        final ComponentEventListener<PointSelectEvent> selectListener = event -> logEvent(event);
-        addToggleForListener("Point select", "PointSelect",
-                new ListenerToggle() {
-
-            private Registration registration;
-
-                    @Override
-                    public void add() {
-                        registration = chart.addPointSelectListener(selectListener);
-                    }
-
-                    @Override
-                    public void remove() {
-                        registration.remove();
-                    }
-                });
-
-        final ComponentEventListener<PointUnselectEvent> unselectListener = event -> logEvent(event);
-        addToggleForListener("Point unselect", "PointUnselect",
-                new ListenerToggle() {
-
-            private Registration registration;
-
-                    @Override
-                    public void add() {
-                        registration = chart.addPointUnselectListener(unselectListener);
-                    }
-
-                    @Override
-                    public void remove() {
-                        registration.remove();
-                    }
-                });
-
-        return eventListeners;
-    }
-
-    private void addToggleForListener(String caption, String id,
-                                      final ListenerToggle listenerToggle) {
-        final Checkbox checkBox = new Checkbox(caption);
-        checkBox.setId(id);
-        checkBox.addValueChangeListener(e -> {
-            if (checkBox.getValue()) {
-                listenerToggle.add();
-            } else {
-                listenerToggle.remove();
-            }
-        });
-        checkBox.setValue(true);
-        eventListeners.add(checkBox);
-    }
-
-    private interface ListenerToggle {
-        void add();
-
-        void remove();
+        add(chart, layout);
     }
 
     private FlexLayout createControls() {
         visibilityToggling = new Checkbox("Disable series visibility toggling");
+        visibilityToggling.setId("visibilityToggler");
         visibilityToggling.addValueChangeListener(e ->
                 chart.setSeriesVisibilityTogglingDisabled(visibilityToggling
                         .getValue()));
@@ -315,22 +151,6 @@ public class ServerSideEvents extends AbstractChartExample {
                 String caption = hideSeries ? "Hide first series"
                         : "Show first series";
 //                firstSeriesVisible.setCaption(caption);
-            }
-        });
-
-        Button setExtremes = new Button("Toggle extremes");
-        setExtremes.setId("setExtremes");
-        setExtremes.addClickListener(new ComponentEventListener<HasClickListeners.ClickEvent<Button>>() {
-            private boolean extremesSet;
-
-            @Override
-            public void onComponentEvent(HasClickListeners.ClickEvent<Button> buttonClickEvent) {
-                if (extremesSet) {
-                    chart.getConfiguration().getxAxis().setExtremes(10, 90);
-                } else {
-                    chart.getConfiguration().getxAxis().setExtremes(20, 80);
-                }
-                extremesSet = !extremesSet;
             }
         });
 
@@ -354,7 +174,6 @@ public class ServerSideEvents extends AbstractChartExample {
 //        controls.setSpacing(true);
         controls.add(visibilityToggling);
         controls.add(firstSeriesVisible);
-        controls.add(setExtremes);
         controls.add(zoomLevels);
         controls.add(resetHistory);
         return controls;
@@ -372,8 +191,9 @@ public class ServerSideEvents extends AbstractChartExample {
         return series;
     }
 
-    private void logEvent(Object event) {
+    private void logEvent(ComponentEvent<Chart> event) {
         String name = event.getClass().getSimpleName();
+        System.out.println("EVENT OCCURED!!! " + name);
         String details = createEventString(event);
         lastEvent.setText(name);
         eventDetails.setText(details);
@@ -383,7 +203,7 @@ public class ServerSideEvents extends AbstractChartExample {
         ++eventNumber;
     }
 
-    private String createEventString(Object event) {
+    private String createEventString(ComponentEvent<Chart> event) {
         ObjectMapper mapper = new ObjectMapper()
                 .setSerializationInclusion(JsonInclude.Include.NON_NULL)
                 .disable(SerializationFeature.FAIL_ON_EMPTY_BEANS)

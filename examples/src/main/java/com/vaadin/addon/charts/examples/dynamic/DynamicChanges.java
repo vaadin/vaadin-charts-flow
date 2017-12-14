@@ -48,6 +48,8 @@ public class DynamicChanges extends AbstractChartExample {
             }
         });
 
+        chart.addPointRemoveListener(e -> System.out.println("POINT REMOVED!"));
+
         Input updatePointButton = new Input();
         updatePointButton.setValue("Update Point");
         updatePointButton.setId("updatePointButton");

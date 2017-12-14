@@ -7,6 +7,9 @@ import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
+import com.vaadin.ui.checkbox.Checkbox;
+import com.vaadin.ui.layout.HorizontalLayout;
+import com.vaadin.ui.layout.VerticalLayout;
 
 public class BarChart extends AbstractChartExample {
 
@@ -31,6 +34,9 @@ public class BarChart extends AbstractChartExample {
         y.setTitle("Rainfall (mm)");
         configuration.addyAxis(y);
 
-        add(chart);
+        Checkbox checkbox = new Checkbox("My Checkbox");
+        checkbox.addValueChangeListener(e -> System.out.printf("%s: fromClient=%b, isChecked=%b\n", e.getSource().getLabel(), e.isFromClient(), e.getValue()));
+        checkbox.setValue(true);
+        add(chart, checkbox);
     }
 }

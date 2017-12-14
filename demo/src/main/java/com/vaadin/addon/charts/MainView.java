@@ -34,6 +34,7 @@ import com.vaadin.ui.polymertemplate.PolymerTemplate;
 @Tag("charts-demo-app")
 @StyleSheet("frontend://style.css")
 @HtmlImport("frontend://src/charts-demo-app.html")
+@HtmlImport("frontend://bower_components/vaadin-grid/vaadin-grid.html")
 public class MainView extends PolymerTemplate<MainView.Model> implements HasUrlParameter<String> {
 
     public interface Model extends TemplateModel {
@@ -96,15 +97,13 @@ public class MainView extends PolymerTemplate<MainView.Model> implements HasUrlP
 
     @Override
     public void onAttach(AttachEvent e) {
+        System.out.println("ATTACHED");
         getElement().getClassList().add("hiddensplitter");
-        // TODO(sayo-vaadin): Workaround for Flow not properly handling reroute for wildcard parameters.
-        if (currentExample == null) {
-            setParameter(null, null);
-        }
     }
 
     @Override
     public void setParameter(BeforeNavigationEvent event, @WildcardParameter String parameter) {
+        System.out.println("SETTING PARAM: " + parameter);
         currentExample = getTargetExample(event, parameter);
 
         try {
