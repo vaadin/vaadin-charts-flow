@@ -18,6 +18,7 @@ package com.vaadin.addon.charts.tests;
 
 import static org.junit.Assert.assertNotEquals;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 
@@ -25,6 +26,7 @@ import com.vaadin.addon.charts.AbstractChartExample;
 import com.vaadin.addon.charts.examples.dynamic.DynamicExtremes;
 import com.vaadin.tests.elements.ChartElement;
 
+@Ignore
 public class DynamicExtremesIT extends AbstractTBTest {
 
     @Override

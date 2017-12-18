@@ -18,6 +18,7 @@ package com.vaadin.addon.charts.tests;
 
 import static org.junit.Assert.assertEquals;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 
@@ -25,6 +26,7 @@ import com.vaadin.addon.charts.AbstractChartExample;
 import com.vaadin.addon.charts.examples.dynamic.DynamicChanges;
 import com.vaadin.tests.elements.ChartElement;
 
+@Ignore
 public class DynamicChangesIT extends AbstractTBTest {
 
     @Override
