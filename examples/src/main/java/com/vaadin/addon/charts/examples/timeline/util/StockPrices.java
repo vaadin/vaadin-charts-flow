@@ -111,7 +111,7 @@ public class StockPrices {
     private static List<PriceData> readValueData(String filename) {
         JsonData jsonData = readJsonDataFrom(filename);
 
-        List<PriceData> data = new ArrayList<PriceData>();
+        List<PriceData> data = new ArrayList<>();
         for(int i = 0; i < jsonData.data.length; ++i) {
             Number[] row = jsonData.data[i];
             data.add(new PriceData(row[0].longValue(), row[1].doubleValue()));
@@ -123,7 +123,7 @@ public class StockPrices {
     private static List<OhlcData> readOhlcData(String filename) {
         JsonData jsonData = readJsonDataFrom(filename);
 
-        List<OhlcData> data = new ArrayList<OhlcData>();
+        List<OhlcData> data = new ArrayList<>();
         for(int i = 0; i < jsonData.data.length; ++i) {
             Number[] row = jsonData.data[i];
             data.add(new OhlcData(row[0].longValue(), row[1].doubleValue(),
