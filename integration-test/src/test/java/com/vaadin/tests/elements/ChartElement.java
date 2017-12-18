@@ -14,12 +14,13 @@ import com.vaadin.testbench.elementsbase.Element;
 public class ChartElement extends TestBenchElement {
 
     public List<WebElement> getPoints() {
-        return getElementsFromShadowRootBySelector(".highcharts-point");
+        return getElementsFromShadowRootBySelector(
+                ".highcharts-markers > .highcharts-point");
     }
 
     public List<WebElement> getVisiblePoints() {
         return getElementsFromShadowRootBySelector(
-                ":not([visibility=hidden]).highcharts-point");
+                ".highcharts-markers > :not([visibility=hidden]).highcharts-point");
     }
 
     private List<WebElement> getElementsFromShadowRootBySelector(

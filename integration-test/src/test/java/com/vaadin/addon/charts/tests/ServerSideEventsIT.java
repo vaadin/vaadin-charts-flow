@@ -1,24 +1,12 @@
 package com.vaadin.addon.charts.tests;
 
-import java.lang.reflect.Type;
+import static org.junit.Assert.assertNotNull;
 
-import com.vaadin.addon.charts.AbstractChartExample;
-import com.vaadin.addon.charts.Chart;
-import com.vaadin.addon.charts.SeriesCheckboxClickEvent;
-import com.vaadin.addon.charts.SeriesLegendItemClickEvent;
-import com.vaadin.testbench.ElementQuery;
-import com.vaadin.testbench.annotations.RunLocally;
-import com.vaadin.testbench.annotations.RunOnHub;
-import com.vaadin.tests.elements.ButtonElement;
-import com.vaadin.tests.elements.CheckboxElement;
-import com.vaadin.tests.elements.HorizontalLayoutElement;
-import com.vaadin.tests.elements.LabelElement;
-import com.vaadin.tests.elements.VerticalLayoutElement;
-import com.vaadin.ui.event.ComponentEvent;
+import java.lang.reflect.Type;
+import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebElement;
@@ -30,25 +18,29 @@ import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
+import com.vaadin.addon.charts.AbstractChartExample;
+import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.ChartClickEvent;
 import com.vaadin.addon.charts.PointClickEvent;
 import com.vaadin.addon.charts.PointSelectEvent;
 import com.vaadin.addon.charts.PointUnselectEvent;
+import com.vaadin.addon.charts.SeriesCheckboxClickEvent;
 import com.vaadin.addon.charts.SeriesHideEvent;
+import com.vaadin.addon.charts.SeriesLegendItemClickEvent;
 import com.vaadin.addon.charts.SeriesShowEvent;
 import com.vaadin.addon.charts.examples.dynamic.ServerSideEvents;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.Series;
 import com.vaadin.testbench.By;
-import com.vaadin.testbench.parallel.Browser;
+import com.vaadin.tests.elements.ButtonElement;
+import com.vaadin.tests.elements.ChartElement;
+import com.vaadin.tests.elements.CheckboxElement;
+import com.vaadin.tests.elements.LabelElement;
+import com.vaadin.ui.event.ComponentEvent;
 
-import static org.junit.Assert.assertNotNull;
-
-//@Ignore("Absolute coordinates affected by Theme change")
-//@RunOnHub
-@RunLocally(Browser.CHROME)
 public class ServerSideEventsIT extends AbstractTBTest {
 
+    @Override
     @Before
     public void setup() throws Exception {
         super.setup();
@@ -116,7 +108,6 @@ public class ServerSideEventsIT extends AbstractTBTest {
         click(secondCheckBox);
 
         SeriesCheckboxClickEvent checkboxClickEvent = readCheckboxEventDetails();
-        Assert.assertEquals("1", checkboxClickEvent.getSeries().getId());
         Assert.assertEquals(1, checkboxClickEvent.getSeriesItemIndex());
     }
 
@@ -179,9 +170,9 @@ public class ServerSideEventsIT extends AbstractTBTest {
 
     @Test
     public void select_occured_eventIsFired() {
-        WebElement lastDataPointOfTheFirstSeries = findLastDataPointOfTheFirstSeries();
-
-        click(lastDataPointOfTheFirstSeries);
+        ChartElement chart = getChartElement();
+        List<WebElement> points = chart.getPoints();
+        points.get(1).click();
 
         assertNthHistoryEventIsType(PointSelectEvent.class, 1);
     }

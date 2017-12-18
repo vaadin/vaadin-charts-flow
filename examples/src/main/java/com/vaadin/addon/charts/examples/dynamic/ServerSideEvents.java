@@ -22,12 +22,12 @@ import com.vaadin.addon.charts.model.Tooltip;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.style.SolidColor;
+import com.vaadin.ui.button.Button;
 import com.vaadin.ui.checkbox.Checkbox;
 import com.vaadin.ui.common.HasClickListeners;
 import com.vaadin.ui.event.ComponentEvent;
 import com.vaadin.ui.event.ComponentEventListener;
 import com.vaadin.ui.html.Label;
-import com.vaadin.ui.button.Button;
 import com.vaadin.ui.layout.FlexLayout;
 import com.vaadin.ui.layout.HorizontalLayout;
 import com.vaadin.ui.layout.VerticalLayout;
@@ -89,6 +89,7 @@ public class ServerSideEvents extends AbstractChartExample {
         configuration.addyAxis(yAxis1);
 
         PlotOptionsSeries opt = new PlotOptionsSeries();
+        opt.getStates().getHover().setEnabled(false);
         opt.setShowCheckbox(true);
         opt.setAllowPointSelect(true);
 
