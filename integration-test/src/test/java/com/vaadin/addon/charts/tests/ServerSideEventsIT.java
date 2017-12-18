@@ -49,11 +49,11 @@ import static org.junit.Assert.assertNotNull;
 @RunLocally(Browser.CHROME)
 public class ServerSideEventsIT extends AbstractTBTest {
 
-//    @Before
-//    public void setup() throws Exception {
-//        super.setup();
-//        driver.manage().window().setSize(new Dimension(1600, 1600));
-//    }
+    @Before
+    public void setup() throws Exception {
+        super.setup();
+        driver.manage().window().setSize(new Dimension(1600, 1600));
+    }
 
     @Override
     protected Class<? extends AbstractChartExample> getTestView() {
@@ -62,9 +62,6 @@ public class ServerSideEventsIT extends AbstractTBTest {
 
     @Test
     public void chartClick_occured_eventIsFired() {
-//        disableAxesEvents();
-
-//        assertNotNull(findHideFirstSeriesButton());
         WebElement chart = getChartElement();
 
         new Actions(driver).moveToElement(chart, 200, 200).click().build()
@@ -73,139 +70,121 @@ public class ServerSideEventsIT extends AbstractTBTest {
         assertLastEventIsType(ChartClickEvent.class);
     }
 
-//    @Test
-//    public void pointClick_occured_eventIsFired() {
-////        skipBrowser(
-////                "Datapoint click through Testbench does not work correctly",
-////                Browser.CHROME, Browser.PHANTOMJS);
-//
-//        WebElement firstMarker = findLastDataPointOfTheFirstSeries();
-//
-//        click(firstMarker);
-//
-//        assertFirstHistoryEventIsType(PointClickEvent.class);
-//    }
-//
-//    @Test
-//    public void legendItemClick_occuredWhileVisibilityTogglingDisabled_eventIsFired() {
-//        WebElement disableVisibilityToggling = findDisableVisibityToggle();
-//        click(disableVisibilityToggling);
-//        WebElement legendItem = findLegendItem();
-//
-//        click(legendItem);
-//
-//        assertLastEventIsType(SeriesLegendItemClickEvent.class);
-//    }
-//
-//    @Test
-//    public void legendItemClick_occuredWhileVisibilityTogglingEnabled_eventAndSeriesHideEventAreFired() {
-//        WebElement legendItem = findLegendItem();
-//
-//        click(legendItem);
-//
-//        assertLastEventIsType(SeriesHideEvent.class);
-//        assertFirstHistoryEventIsType(SeriesLegendItemClickEvent.class);
-//    }
-//
-//    @Test
-//    public void checkBoxClick_occured_eventIsFired() {
-////        disableAxesEvents();
-//        WebElement checkBox = findCheckBox();
-//
-//        click(checkBox);
-//
-//        assertLastEventIsType(SeriesCheckboxClickEvent.class);
-//    }
-//
-//    @Test
-//    public void checkBoxClick_secondCheckboxClicked_secondSeriesIsReturned() {
-////        disableAxesEvents();
-//        WebElement secondCheckBox = findSecondCheckbox();
-//
-//        click(secondCheckBox);
-//
-//        SeriesCheckboxClickEvent checkboxClickEvent = readCheckboxEventDetails();
-//        Assert.assertNotNull(checkboxClickEvent.getSeries());
-//        Assert.assertEquals("1", checkboxClickEvent.getSeries().getId());
-//        Assert.assertEquals(1, checkboxClickEvent.getSeriesItemIndex());
-//    }
-//
-//    @Test
-//    public void checkBoxClick_seriesWasNotSelected_checkBoxIsChecked() {
-////        disableAxesEvents();
-//        WebElement secondCheckBox = findSecondCheckbox();
-//
-//        click(secondCheckBox);
-//
-//        SeriesCheckboxClickEvent checkboxClickEvent = readCheckboxEventDetails();
-//        Assert.assertTrue(checkboxClickEvent.isChecked());
-//    }
-//
-//    @Test
-//    public void hideSeries_occuredFromLegendClick_eventIsFired() {
-//        WebElement legendItem = findLegendItem();
-//
-//        click(legendItem);
-//
-//        assertLastEventIsType(SeriesHideEvent.class);
-//    }
-//
-//    @Test
-//    public void hideSeries_occuredFromServer_eventIsFired() {
-//        WebElement hideSeries = findHideFirstSeriesButton();
-//
-//        click(hideSeries);
-//
-//        assertLastEventIsType(SeriesHideEvent.class);
-//    }
-//
-//    @Test
-//    public void showSeries_occuredFromLegendClick_eventIsFired() {
-//        WebElement legendItem = findLegendItem();
-//        click(legendItem);
-//
-//        click(legendItem);
-//
-//        assertLastEventIsType(SeriesShowEvent.class);
-//    }
-//
-//    @Test
-//    public void showSeries_occuredFromServer_eventIsFired() {
-//        WebElement hideSeriesToggle = findHideFirstSeriesButton();
-//        click(hideSeriesToggle);
-//
-//        click(hideSeriesToggle);
-//
-//        assertLastEventIsType(SeriesShowEvent.class);
-//    }
-//
-//    @Test
-//    public void unselect_occured_eventIsFired() {
-////        skipBrowser(
-////                "Datapoint click through Testbench does not work correctly",
-////                Browser.CHROME, Browser.PHANTOMJS);
-//
-////        disableAxesEvents();
-//        WebElement lastDataPointOfTheFirstSeries = findLastDataPointOfTheFirstSeries();
-//
-//        click(lastDataPointOfTheFirstSeries);
-//
-//        assertLastEventIsType(PointUnselectEvent.class);
-//    }
-//
-//    @Test
-//    public void select_occured_eventIsFired() {
-////        skipBrowser(
-////                "Datapoint click through Testbench does not work correctly",
-////                Browser.CHROME, Browser.PHANTOMJS);
-//
-////        disableAxesEvents();
-//        WebElement lastDataPointOfTheFirstSeries = findLastDataPointOfTheFirstSeries();
-//
-//        click(lastDataPointOfTheFirstSeries);
-//
-//        assertNthHistoryEventIsType(PointSelectEvent.class, 1);
-//    }
+    @Test
+    public void pointClick_occured_eventIsFired() {
+        WebElement firstMarker = findLastDataPointOfTheFirstSeries();
+
+        click(firstMarker);
+
+        assertFirstHistoryEventIsType(PointClickEvent.class);
+    }
+
+    @Test
+    public void legendItemClick_occuredWhileVisibilityTogglingDisabled_eventIsFired() {
+        WebElement disableVisibilityToggling = findDisableVisibityToggle();
+        click(disableVisibilityToggling);
+        WebElement legendItem = findLegendItem();
+
+        click(legendItem);
+
+        assertLastEventIsType(SeriesLegendItemClickEvent.class);
+    }
+
+    @Test
+    public void legendItemClick_occuredWhileVisibilityTogglingEnabled_eventAndSeriesHideEventAreFired() {
+        WebElement legendItem = findLegendItem();
+
+        click(legendItem);
+
+        assertLastEventIsType(SeriesHideEvent.class);
+        assertFirstHistoryEventIsType(SeriesLegendItemClickEvent.class);
+    }
+
+    @Test
+    public void checkBoxClick_occured_eventIsFired() {
+        WebElement checkBox = findCheckBox();
+
+        click(checkBox);
+
+        assertLastEventIsType(SeriesCheckboxClickEvent.class);
+    }
+
+    @Test
+    public void checkBoxClick_secondCheckboxClicked_secondSeriesIsReturned() {
+        WebElement secondCheckBox = findSecondCheckbox();
+
+        click(secondCheckBox);
+
+        SeriesCheckboxClickEvent checkboxClickEvent = readCheckboxEventDetails();
+        Assert.assertEquals("1", checkboxClickEvent.getSeries().getId());
+        Assert.assertEquals(1, checkboxClickEvent.getSeriesItemIndex());
+    }
+
+    @Test
+    public void checkBoxClick_seriesWasNotSelected_checkBoxIsChecked() {
+        WebElement secondCheckBox = findSecondCheckbox();
+
+        click(secondCheckBox);
+
+        SeriesCheckboxClickEvent checkboxClickEvent = readCheckboxEventDetails();
+        Assert.assertTrue(checkboxClickEvent.isChecked());
+    }
+
+    @Test
+    public void hideSeries_occuredFromLegendClick_eventIsFired() {
+        WebElement legendItem = findLegendItem();
+
+        click(legendItem);
+
+        assertLastEventIsType(SeriesHideEvent.class);
+    }
+
+    @Test
+    public void hideSeries_occuredFromServer_eventIsFired() {
+        WebElement hideSeries = findHideFirstSeriesButton();
+
+        click(hideSeries);
+
+        assertLastEventIsType(SeriesHideEvent.class);
+    }
+
+    @Test
+    public void showSeries_occuredFromLegendClick_eventIsFired() {
+        WebElement legendItem = findLegendItem();
+        click(legendItem);
+
+        click(legendItem);
+
+        assertLastEventIsType(SeriesShowEvent.class);
+    }
+
+    @Test
+    public void showSeries_occuredFromServer_eventIsFired() {
+        WebElement hideSeriesToggle = findHideFirstSeriesButton();
+        click(hideSeriesToggle);
+
+        click(hideSeriesToggle);
+
+        assertLastEventIsType(SeriesShowEvent.class);
+    }
+
+    @Test
+    public void unselect_occured_eventIsFired() {
+        WebElement lastDataPointOfTheFirstSeries = findLastDataPointOfTheFirstSeries();
+
+        click(lastDataPointOfTheFirstSeries);
+
+        assertLastEventIsType(PointUnselectEvent.class);
+    }
+
+    @Test
+    public void select_occured_eventIsFired() {
+        WebElement lastDataPointOfTheFirstSeries = findLastDataPointOfTheFirstSeries();
+
+        click(lastDataPointOfTheFirstSeries);
+
+        assertNthHistoryEventIsType(PointSelectEvent.class, 1);
+    }
 
     private void assertLastEventIsType(
             Class<? extends ComponentEvent<Chart>> expectedEvent) {
@@ -242,9 +221,18 @@ public class ServerSideEventsIT extends AbstractTBTest {
         return gson.fromJson(detailsJson, SeriesCheckboxClickEvent.class);
     }
 
-    private void click(WebElement secondCheckBox) {
-        new Actions(driver).click(secondCheckBox).build().perform();
-        getCommandExecutor().waitForVaadin();
+    private void click(WebElement element) {
+//        new Actions(driver).click(element).build().perform();
+//        getCommandExecutor().waitForVaadin();
+        element.click();
+//        try {
+//            long timestamp = System.currentTimeMillis();
+//            Thread.sleep(20000);
+//            System.out.printf("Slept for %d seconds\n", (System.currentTimeMillis() - timestamp) / 1000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//        System.out.println("Moving on...");
     }
 
     private WebElement findHideFirstSeriesButton() {
@@ -252,20 +240,25 @@ public class ServerSideEventsIT extends AbstractTBTest {
     }
 
     private WebElement findLastDataPointOfTheFirstSeries() {
+//        return driver.findElement(By.cssSelector(".highcharts-markers > path"));
         return getElementFromShadowRoot(getChartElement(), By.cssSelector(".highcharts-markers > path"));
     }
 
     private WebElement findLegendItem() {
+//        return driver.findElement(By.className("highcharts-legend-item"));
         return getElementFromShadowRoot(getChartElement(), By.className("highcharts-legend-item"));
     }
 
-    private WebElement findSecondCheckbox() {
-        $(CheckboxElement.class).waitForFirst();
-        return $(CheckboxElement.class).all().get(1);
+    private WebElement findCheckBox() {
+        return findCheckBox(0);
     }
 
-    private WebElement findCheckBox() {
-        return $(CheckboxElement.class).waitForFirst();
+    private WebElement findSecondCheckbox() {
+        return findCheckBox(1);
+    }
+
+    private WebElement findCheckBox(int index) {
+        return getElementFromShadowRoot(getChartElement(), By.cssSelector("input[type=\"checkbox\"]"), index);
     }
 
     private WebElement findDisableVisibityToggle() {

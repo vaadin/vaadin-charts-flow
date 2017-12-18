@@ -199,7 +199,7 @@ public class ServerSideEvents extends AbstractChartExample {
         eventDetails.setText(details);
         Label history = new Label(name + ": " + details + "\n");
         history.setId("event" + eventNumber);
-        historyLayout.add(history);
+        historyLayout.getElement().insertChild(0, history.getElement());
         ++eventNumber;
     }
 
