@@ -32,7 +32,8 @@
     "polymer": "~2.0.2",
     "vaadin-charts": "#master",
     "vaadin-icons": "4.0.0",
-    "vaadin-grid": "^3.0.0",
+    "vaadin-grid": "4.1.0-beta1",
+    "vaadin-notification": "#master",
     "vaadin-split-layout": "1.1.0",
     "webcomponentsjs": "webcomponents/webcomponentsjs#^1.0.17"
   },

@@ -13,6 +13,9 @@ import com.vaadin.addon.charts.model.PlotOptionsColumn;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
 
+import static com.vaadin.addon.charts.examples.events.EventHandling.createToastFunction;
+import static com.vaadin.addon.charts.examples.events.EventHandling.toast;
+
 public class ColumnWithMultiLevelDrilldown extends AbstractChartExample {
 
     @Override
@@ -259,6 +262,18 @@ public class ColumnWithMultiLevelDrilldown extends AbstractChartExample {
         regionsSeries.addItemWithDrilldown(regionItem, countriesSeries);
 
         conf.addSeries(regionsSeries);
+
+        createToastFunction();
+
+        chart.addChartDrillupListener(e -> toast("Chart drilled up!"));
+        chart.addChartDrillupAllListener(e -> toast("Chart drilled up ALL!"));
+        chart.addDrilldownListener(e -> {
+            DataSeries series = (DataSeries) e.getSeries();
+            String message = String.format("Drilldown! Category=%s, Drilldown=%s, Value=%.2f, Series=%s, SeriesItem=%s",
+                    e.getCategory(), e.getDrilldown(), e.getyValue(),
+                    series.getName(), e.getItem().getName());
+            toast(message);
+        });
 
         add(chart);
     }

@@ -14,7 +14,8 @@ import com.vaadin.testbench.elementsbase.Element;
 public class ChartElement extends TestBenchElement {
 
     public List<WebElement> getPoints() {
-        return getElementsFromShadowRootBySelector(".highcharts-point");
+        return getElementsFromShadowRootBySelector(
+                ".highcharts-point");
     }
 
     public List<WebElement> getVisiblePoints() {
