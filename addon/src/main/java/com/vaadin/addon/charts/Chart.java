@@ -261,16 +261,16 @@ public class Chart extends Component {
      * Adds a legend item click listener, which will be notified of clicks on
      * the legend's items
      * <p>
-     * Note that adding a legend item click listener also disabled the default
-     * behaviour to toggle series visibility. If that is not desired, you can
-     * enable it again by calling setSeriesVisibilityTogglingDisabled(
-     * <code>true</code>)
+     * Note that by default, clicking on a legend item toggles the visibility
+     * of its associated series. To disable this behavior call
+     * setSeriesVisibilityTogglingDisabled(<code>true</code>)
      *
      * @param listener
+     *
+     * @see #setSeriesVisibilityTogglingDisabled(boolean)
      */
     public Registration addLegendItemClickListener(
             ComponentEventListener<SeriesLegendItemClickEvent> listener) {
-        //setSeriesVisibilityTogglingDisabled(true);
         return addListener(SeriesLegendItemClickEvent.class, listener);
     }
 
