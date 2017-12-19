@@ -10,7 +10,7 @@ public interface ClickEvent {
      * @return
      */
     MouseEventDetails getMouseDetails();
-    
+
     /**
      * Gets the x axis value of the clicked point.
      * <p>
