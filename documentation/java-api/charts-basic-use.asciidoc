@@ -208,7 +208,7 @@ image::img/charts-twodimensional.png[]
 
 You can enable mixed charts by setting the chart type in the
 [classname]#PlotOptions# object for a data series, which overrides the default
-chart type set in the [classname]#Chart# object. You can also make color and
+chart type set in the [classname]#Chart# object. You can also control the animation and
 other settings for the series in the plot options.
 
 For example, to get a line chart, you need to use [classname]#PlotOptionsLine#.
@@ -218,7 +218,6 @@ For example, to get a line chart, you need to use [classname]#PlotOptionsLine#.
 // A data series as column graph
 DataSeries series1 = new DataSeries();
 PlotOptionsColumn options1 = new PlotOptionsColumn();
-options1.setColor(SolidColor.BLUE);
 series1.setPlotOptions(options1);
 series1.setData(4900,  12100,  12800,
     6800,  143000, 125000, 51100, 49500);
@@ -227,7 +226,6 @@ conf.addSeries(series1);
 // A data series as line graph
 ListSeries series2 = new ListSeries("Diameter");
 PlotOptionsLine options2 = new PlotOptionsLine();
-options2.setColor(SolidColor.RED);
 series2.setPlotOptions(options2);
 series2.setData(4900,  12100,  12800,
     6800,  143000, 125000, 51100, 49500);
@@ -421,6 +419,6 @@ effect, the result is shown in <<figure.charts.basic-use.3d.fade>>.
 
 [[figure.charts.basic-use.3d.fade]]
 .3D Distance Fade
-image::img/charts-3d-fade.png[]
+image::img/charts-3d-distance.png[]
 
 endif::web[]
