@@ -16,6 +16,7 @@ rebel.xml
 **/build-tools/yarn.lock
 integration-test/**/frontend/node_modules
 integration-test/**/frontend/node
+integration-test/error-screenshots/
 demo/src/main/webapp/frontend/bower_components/
 demo/src/main/webapp/frontend/build/
 demo/src/main/webapp/frontend-es5/
