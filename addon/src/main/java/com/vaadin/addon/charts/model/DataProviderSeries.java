@@ -18,7 +18,6 @@ package com.vaadin.addon.charts.model;
  */
 
 import static java.util.stream.Collectors.toList;
-import static java.util.stream.Collectors.toMap;
 
 import java.util.HashMap;
 import java.util.List;
@@ -29,10 +28,11 @@ import java.util.Set;
 import java.util.function.Function;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.vaadin.data.provider.DataProvider;
-import com.vaadin.data.provider.DataProviderListener;
-import com.vaadin.data.provider.Query;
-import com.vaadin.shared.Registration;
+import com.vaadin.flow.data.provider.DataProvider;
+import com.vaadin.flow.data.provider.DataProviderListener;
+import com.vaadin.flow.data.provider.Query;
+import com.vaadin.flow.shared.Registration;
+import static java.util.stream.Collectors.*;
 
 /**
  * A series which is based on data from a DataProvider.
