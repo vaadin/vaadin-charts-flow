@@ -16,9 +16,9 @@
     <modules>
         <module>addon</module>
         <module>model</module>
-        <module>integration-test</module>
-        <module>demo</module>
         <module>examples</module>
+        <module>demo</module>
+        <module>integration-test</module>
     </modules>
 
     <organization>

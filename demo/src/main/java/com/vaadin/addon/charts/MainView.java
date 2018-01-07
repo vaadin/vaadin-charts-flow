@@ -5,6 +5,7 @@ import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toMap;
 
+import java.nio.charset.Charset;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -114,7 +115,7 @@ public class MainView extends PolymerTemplate<MainView.Model> implements HasUrlP
             demoArea.setContent(exampleClass.newInstance());
             snippet.setSource(IOUtils.toString(getClass().getResourceAsStream(
                     "/examples/" + category
-                            + "/" + exampleClass.getSimpleName() + ".java")));
+                            + "/" + exampleClass.getSimpleName() + ".java"), Charset.defaultCharset()));
         } catch (Exception e) {
             e.printStackTrace();
         }

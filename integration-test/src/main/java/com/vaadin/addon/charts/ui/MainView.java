@@ -20,13 +20,13 @@ import java.util.Optional;
 
 import com.vaadin.addon.charts.AbstractChartExample;
 import com.vaadin.addon.charts.examples.area.AreaChart;
-import com.vaadin.router.HasUrlParameter;
-import com.vaadin.router.Route;
-import com.vaadin.router.WildcardParameter;
-import com.vaadin.router.event.BeforeNavigationEvent;
-import com.vaadin.ui.Component;
-import com.vaadin.ui.common.StyleSheet;
-import com.vaadin.ui.html.Div;
+import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.dependency.StyleSheet;
+import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.router.BeforeNavigationEvent;
+import com.vaadin.flow.router.HasUrlParameter;
+import com.vaadin.flow.router.Route;
+import com.vaadin.flow.router.WildcardParameter;
 
 @StyleSheet("context://styles.css")
 @Route("")
