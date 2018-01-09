@@ -36,30 +36,12 @@
             <url>http://repository-saucelabs.forge.cloudbees.com/release</url>
         </repository>
     </repositories>
+
     <dependencies>
-        <dependency>
-            <groupId>com.vaadin</groupId>
-            <artifactId>vaadin-charts-flow</artifactId>
-            <version>${project.version}</version>
-        </dependency>
         <dependency>
             <groupId>com.vaadin</groupId>
             <artifactId>vaadin-charts-flow-examples</artifactId>
             <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.vaadin</groupId>
-            <artifactId>flow-server</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.vaadin</groupId>
-                    <artifactId>vaadin-charts-flow</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>com.vaadin</groupId>
-            <artifactId>flow-html-components</artifactId>
         </dependency>
         <dependency>
             <groupId>com.vaadin</groupId>
