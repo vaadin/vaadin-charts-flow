@@ -1,0 +1,97 @@
+---
+title: CSS Styling
+order: 6
+layout: page
+---
+
+[[css.styling]]
+= CSS Styling
+
+Chart appearance is primarily controlled by CSS style rules.
+A comprehensive list of the supported style classes can be found https://www.highcharts.com/docs/chart-design-and-style/style-by-css[here].
+
+[[css.styling.steps]]
+== Steps for styling a chart
+
+1. Create a theme file. The theme's `dom-module` must declare `theme-for=vaadin-chart`.
+2. If the theme is meant to customize the chart's default appearance (as is the case in most situations), the module's style element must also declare `include="vaadin-chart-default-theme"`.
+3. Declare CSS styles within the context of `:host` selector for the chart.
+4. If multiple charts are present, each one can be specifically targeted by the host selector e.g `:host(.first-chart-class)`.
+5. Import the theme file.
+
+[[complete.example]]
+== Complete Example: Chart with White Point Markers and Red Labels
+
+
+chart-style.html
+
+[source, css]
+----
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/vaadin-charts/vaadin-chart-default-theme.html">
+
+<dom-module id="chart-style" theme-for="vaadin-chart">
+  <template>
+    <style include="vaadin-chart-default-theme">
+      :host(.first-chart) g.highcharts-markers > .highcharts-point {
+        fill: white;
+      }
+
+      :host(.first-chart) .highcharts-data-label text {
+        fill: blue;
+      }
+    </style>
+  </template>
+</dom-module>
+----
+
+
+CssStyleExample.java
+
+[source, java]
+----
+@Route("")
+@Tag("css-style-example")
+@HtmlImport("frontend://src/chart-style.html")
+public class CssStyleExample extends PolymerTemplate<TemplateModel> {
+
+    public CssStyleExample() {
+        Chart chart = new Chart();
+        Configuration configuration = chart.getConfiguration();
+        // Configure the configuration object.
+
+        chart.getElement().getClassList().add("first-chart");
+        add(chart);
+    }
+}
+----
+
+
+[[charts.data.dataseries]]
+== Another Example: HeatMap with Hover Highlight and Jiggle Effect
+
+[source, css]
+----
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/vaadin-charts/vaadin-chart-default-theme.html">
+
+<dom-module id="chart-style" theme-for="vaadin-chart">
+  <template>
+    <style include="vaadin-chart-default-theme">
+      :host(.heatmap) .highcharts-point-hover {
+        fill: #3090f0 !important;
+        animation-name: jiggle;
+        animation-duration:0.1s;
+      }
+
+      @keyframes jiggle {
+        0% { transform: none; }
+        25% { transform: translateY(5px); }
+        50% { transform: none; }
+        75% { transform: translateY(-5px); }
+        100% { transform: none; }
+      }
+    </style>
+  </template>
+</dom-module>
+----
