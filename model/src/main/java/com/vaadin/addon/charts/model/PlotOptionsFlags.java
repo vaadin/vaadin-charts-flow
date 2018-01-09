@@ -2,6 +2,8 @@ package com.vaadin.addon.charts.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import com.vaadin.addon.charts.model.style.Color;
 import com.vaadin.addon.charts.model.style.Style;
 /**
  * 

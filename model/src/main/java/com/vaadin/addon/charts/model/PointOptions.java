@@ -17,8 +17,6 @@ package com.vaadin.addon.charts.model;
  * #L%
  */
 
-import com.vaadin.addon.charts.model.style.Color;
-
 import java.util.Date;
 
 public abstract class PointOptions extends AbstractPlotOptions {
@@ -79,32 +77,6 @@ public abstract class PointOptions extends AbstractPlotOptions {
      * clicked.
      */
     public abstract void setCursor(Cursor cursor);
-
-    /**
-     * @see #setDashStyle(DashStyle)
-     */
-    public abstract DashStyle getDashStyle();
-
-    /**
-     * A name for the dash style to use for the graph. Applies only to series
-     * type having a graph, like <code>line</code>, <code>spline</code>,
-     * <code>area</code> and <code>scatter</code> in case it has a
-     * <code>lineWidth</code>. The value for the <code>dashStyle</code> include:
-     * <ul>
-     * <li>Solid</li>
-     * <li>ShortDash</li>
-     * <li>ShortDot</li>
-     * <li>ShortDashDot</li>
-     * <li>ShortDashDotDot</li>
-     * <li>Dot</li>
-     * <li>Dash</li>
-     * <li>LongDash</li>
-     * <li>DashDot</li>
-     * <li>LongDashDot</li>
-     * <li>LongDashDotDot</li>
-     * </ul>
-     */
-    public abstract void setDashStyle(DashStyle dashStyle);
 
     /**
      * @see #setDataLabels(DataLabels)
@@ -173,16 +145,6 @@ public abstract class PointOptions extends AbstractPlotOptions {
     public abstract void removeKey(String key);
 
     /**
-     * @see #setLineWidth(Number)
-     */
-    public abstract Number getLineWidth();
-
-    /**
-     * The width of the line connecting the data points.
-     */
-    public abstract void setLineWidth(Number lineWidth);
-
-    /**
      * @see #setLinkedTo(String)
      */
     public abstract String getLinkedTo();
@@ -201,17 +163,6 @@ public abstract class PointOptions extends AbstractPlotOptions {
     public abstract Marker getMarker();
 
     public abstract void setMarker(Marker marker);
-
-    /**
-     * @see #setNegativeColor(Color)
-     */
-    public abstract Color getNegativeColor();
-
-    /**
-     * The color for the parts of the graph or points that are below the
-     * threshold.
-     */
-    public abstract void setNegativeColor(Color negativeColor);
 
     /**
      * @see #setPointInterval(Number)

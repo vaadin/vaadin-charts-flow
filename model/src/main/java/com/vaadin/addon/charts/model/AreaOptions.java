@@ -94,32 +94,6 @@ public abstract class AreaOptions extends AbstractPlotOptions {
     public abstract void setCursor(Cursor cursor);
 
     /**
-     * @see #setDashStyle(DashStyle)
-     */
-    public abstract DashStyle getDashStyle();
-
-    /**
-     * A name for the dash style to use for the graph. Applies only to series
-     * type having a graph, like <code>line</code>, <code>spline</code>,
-     * <code>area</code> and <code>scatter</code> in case it has a
-     * <code>lineWidth</code>. The value for the <code>dashStyle</code> include:
-     * <ul>
-     * <li>Solid</li>
-     * <li>ShortDash</li>
-     * <li>ShortDot</li>
-     * <li>ShortDashDot</li>
-     * <li>ShortDashDotDot</li>
-     * <li>Dot</li>
-     * <li>Dash</li>
-     * <li>LongDash</li>
-     * <li>DashDot</li>
-     * <li>LongDashDot</li>
-     * <li>LongDashDotDot</li>
-     * </ul>
-     */
-    public abstract void setDashStyle(DashStyle dashStyle);
-
-    /**
      * @see #setEnableMouseTracking(Boolean)
      */
     public abstract Boolean getEnableMouseTracking();
@@ -198,29 +172,6 @@ public abstract class AreaOptions extends AbstractPlotOptions {
     public abstract void removeKey(String key);
 
     /**
-     * @see #setLineColor(Color)
-     */
-    public abstract Color getLineColor();
-
-    /**
-     * A separate color for the graph line. By default the line takes the
-     * <code>color</code> of the series, but the lineColor setting allows
-     * setting a separate color for the line without altering the
-     * <code>fillColor</code>.
-     */
-    public abstract void setLineColor(Color lineColor);
-
-    /**
-     * @see #setLineWidth(Number)
-     */
-    public abstract Number getLineWidth();
-
-    /**
-     * Pixel with of the graph line.
-     */
-    public abstract void setLineWidth(Number lineWidth);
-
-    /**
      * @see #setLinecap(String)
      */
     public abstract String getLinecap();
@@ -242,17 +193,6 @@ public abstract class AreaOptions extends AbstractPlotOptions {
      * also toggles the linked series.
      */
     public abstract void setLinkedTo(String linkedTo);
-
-    /**
-     * @see #setNegativeColor(Color)
-     */
-    public abstract Color getNegativeColor();
-
-    /**
-     * The color for the parts of the graph or points that are below the
-     * threshold.
-     */
-    public abstract void setNegativeColor(Color negativeColor);
 
     /**
      * @see #setNegativeFillColor(Color)

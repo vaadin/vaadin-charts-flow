@@ -654,16 +654,6 @@ public abstract class Axis extends AbstractConfigurationObject {
     public abstract void setTickAmount(Number tickAmount);
 
     /**
-     * @see #setTickColor(Color)
-     */
-    public abstract Color getTickColor();
-
-    /**
-     * Color for the main tick marks.
-     */
-    public abstract void setTickColor(Color tickColor);
-
-    /**
      * @see #setTickInterval(Number)
      */
     public abstract Number getTickInterval();
