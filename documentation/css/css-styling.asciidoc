@@ -13,52 +13,60 @@ A comprehensive list of the supported style classes can be found https://www.hig
 [[css.styling.steps]]
 == Steps for styling a chart
 
-1. Create a theme file. The theme's `dom-module` must declare `theme-for=vaadin-chart`.
-2. If the theme is meant to customize the chart's default appearance (as is the case in most situations), the module's style element must also declare `include="vaadin-chart-default-theme"`.
-3. Declare CSS styles within the context of `:host` selector for the chart.
+1. Create a theme file (by convention this file should be in the `webapp/frontend/src/styles directory`). The theme's dom-module must declare `theme-for=vaadin-chart`.
+2. Declare `include="vaadin-chart-default-theme"` on the theme module's style element to customize Chart's default theme.
+3. Prefix the desired chart elements' selectors with the `:host` selector.
 4. If multiple charts are present, each one can be specifically targeted by the host selector e.g `:host(.first-chart-class)`.
 5. Import the theme file.
 
-[[complete.example]]
-== Complete Example: Chart with White Point Markers and Red Labels
+[[css.styling.example1]]
+== Example 1: Chart with Yellow Point Markers and Red Labels
 
-
-chart-style.html
+css-style-example.html
 
 [source, css]
 ----
-<link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../bower_components/vaadin-charts/vaadin-chart-default-theme.html">
 
-<dom-module id="chart-style" theme-for="vaadin-chart">
+<dom-module id="css-style-example" theme-for="vaadin-chart">
   <template>
     <style include="vaadin-chart-default-theme">
       :host(.first-chart) g.highcharts-markers > .highcharts-point {
-        fill: white;
+        fill: yellow;
       }
 
       :host(.first-chart) .highcharts-data-label text {
-        fill: blue;
+        fill: red;
       }
     </style>
   </template>
 </dom-module>
 ----
 
-
 CssStyleExample.java
 
 [source, java]
 ----
-@Route("")
-@Tag("css-style-example")
-@HtmlImport("frontend://src/chart-style.html")
-public class CssStyleExample extends PolymerTemplate<TemplateModel> {
+@HtmlImport("frontend://src/styles/css-style-example.html")
+public class CssStyleExample extends Div {
 
     public CssStyleExample() {
         Chart chart = new Chart();
         Configuration configuration = chart.getConfiguration();
-        // Configure the configuration object.
+
+        configuration.getChart().setType(ChartType.LINE);
+
+        configuration.getxAxis().setCategories("Jan", "Feb", "Mar", "Apr");
+
+        DataSeries ds = new DataSeries();
+        ds.setData(7.0, 6.9, 9.5, 14.5);
+
+        DataLabels callout = new DataLabels(true);
+        callout.setShape(Shape.CALLOUT);
+        callout.setY(-12);
+        ds.get(1).setDataLabels(callout);
+        ds.get(2).setDataLabels(callout);
+        configuration.addSeries(ds);
 
         chart.getElement().getClassList().add("first-chart");
         add(chart);
@@ -66,32 +74,59 @@ public class CssStyleExample extends PolymerTemplate<TemplateModel> {
 }
 ----
 
+{nbsp} +
+[[figure.css.styling.example1]]
+.Chart with Yellow Point Markers and Red Labels
+image::img/css-styling1.png[]
 
-[[charts.data.dataseries]]
-== Another Example: HeatMap with Hover Highlight and Jiggle Effect
+
+[[css.styling.example2]]
+== Example 2: Exposing a Chart element in Java for CSS Styling
+
+css-style-example.html
 
 [source, css]
 ----
-<link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../bower_components/vaadin-charts/vaadin-chart-default-theme.html">
 
-<dom-module id="chart-style" theme-for="vaadin-chart">
+<dom-module id="css-style-example" theme-for="vaadin-chart">
   <template>
     <style include="vaadin-chart-default-theme">
-      :host(.heatmap) .highcharts-point-hover {
-        fill: #3090f0 !important;
-        animation-name: jiggle;
-        animation-duration:0.1s;
-      }
-
-      @keyframes jiggle {
-        0% { transform: none; }
-        25% { transform: translateY(5px); }
-        50% { transform: none; }
-        75% { transform: translateY(-5px); }
-        100% { transform: none; }
+      :host .huge-axis {
+        fill: red;
+        font-size: xx-large;
       }
     </style>
   </template>
 </dom-module>
 ----
+
+CssStyleExample.java
+
+[source, java]
+----
+@HtmlImport("frontend://src/styles/css-style-example.html")
+public class CssStyleExample extends Div {
+
+    public CssStyleExample() {
+        Chart chart = new Chart();
+        Configuration configuration = chart.getConfiguration();
+
+        DataSeries ds = new DataSeries();
+        ds.setData(7.0, 6.9, 9.5, 14.5);
+        configuration.addSeries(ds);
+
+        configuration.getxAxis().setCategories("Jan", "Feb", "Mar", "Apr");
+
+        // Expose the X-Axis for CSS targeting.
+        configuration.getxAxis().setClassName("huge-axis");
+
+        add(chart);
+    }
+}
+----
+
+{nbsp} +
+[[figure.css.styling.example2]]
+.Chart with a Huge X-Axis
+image::img/css-styling2.png[]
