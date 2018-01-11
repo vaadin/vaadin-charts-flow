@@ -23,7 +23,7 @@ import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.dependency.StyleSheet;
 import com.vaadin.flow.component.polymertemplate.Id;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
-import com.vaadin.flow.router.BeforeNavigationEvent;
+import com.vaadin.flow.router.BeforeEvent;
 import com.vaadin.flow.router.HasUrlParameter;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
@@ -101,7 +101,7 @@ public class MainView extends PolymerTemplate<MainView.Model> implements HasUrlP
     }
 
     @Override
-    public void setParameter(BeforeNavigationEvent event, @WildcardParameter String parameter) {
+    public void setParameter(BeforeEvent event, @WildcardParameter String parameter) {
         currentExample = getTargetExample(event, parameter);
 
         try {
@@ -115,13 +115,13 @@ public class MainView extends PolymerTemplate<MainView.Model> implements HasUrlP
             demoArea.setContent(exampleClass.newInstance());
             snippet.setSource(IOUtils.toString(getClass().getResourceAsStream(
                     "/examples/" + category
-                            + "/" + exampleClass.getSimpleName() + ".java"), Charset.defaultCharset()));
+                            + "/" + exampleClass.getSimpleName() + ".java"), "UTF-8"));
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private Pair<String, String> getTargetExample(BeforeNavigationEvent event,
+    private Pair<String, String> getTargetExample(BeforeEvent event,
             String route) {
         Pair<String, String> categoryPagePair = new ImmutablePair<>(null, route);
         if (StringUtils.isEmpty(route) || !NAME_INDEXED_SUBTYPES
@@ -137,4 +137,5 @@ public class MainView extends PolymerTemplate<MainView.Model> implements HasUrlP
         String name = clazz.getPackage().getName();
         return name.substring(name.lastIndexOf('.') + 1);
     }
+
 }

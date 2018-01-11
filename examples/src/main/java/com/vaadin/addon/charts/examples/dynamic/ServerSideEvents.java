@@ -23,6 +23,7 @@ import com.vaadin.addon.charts.model.Tooltip;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.addon.charts.model.style.SolidColor;
+import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.ComponentEvent;
 import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.HasClickListeners;
@@ -128,7 +129,7 @@ public class ServerSideEvents extends AbstractChartExample {
         add(chart, layout);
     }
 
-    private FlexLayout createControls() {
+    private Component createControls() {
         visibilityToggling = new Checkbox("Disable series visibility toggling");
         visibilityToggling.setId("visibilityToggler");
         visibilityToggling.addValueChangeListener(e ->
