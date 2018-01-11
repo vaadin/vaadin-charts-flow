@@ -1,5 +1,4 @@
 package com.vaadin.addon.charts.examples.other;
-package com.vaadin.addon.charts.examples.other;
 
 import java.util.Random;
 
@@ -14,15 +13,15 @@ import com.vaadin.addon.charts.model.PlotOptionsGauge;
 import com.vaadin.addon.charts.model.SeriesTooltip;
 import com.vaadin.addon.charts.model.TickPosition;
 import com.vaadin.addon.charts.model.YAxis;
-import com.vaadin.addon.charts.model.style.GradientColor;
 import com.vaadin.addon.charts.model.style.SolidColor;
 
 public class GaugeWithDualAxes extends AbstractChartExample {
 
     @Override
     public void initDemo() {
+        final Random random = new Random(0);
         final Chart chart = new Chart();
-        chart.setWidth("500px");
+        chart.getElement().getStyle().set("width", "500px");
 
         final Configuration configuration = chart.getConfiguration();
         configuration.getChart().setType(ChartType.GAUGE);
@@ -37,6 +36,7 @@ public class GaugeWithDualAxes extends AbstractChartExample {
         configuration.getPane().setEndAngle(150);
 
         YAxis yAxis = new YAxis();
+        yAxis.setClassName("kmh");
         yAxis.setMin(0);
         yAxis.setMax(200);
         yAxis.setLineColor(new SolidColor("#339"));
@@ -47,7 +47,6 @@ public class GaugeWithDualAxes extends AbstractChartExample {
         Labels labels = new Labels();
         labels.setDistance(-20);
         labels.setRotationPerpendicular();
-        labels.setRotation("auto");
         yAxis.setLabels(labels);
 
         yAxis.setTickLength(5);
@@ -55,6 +54,7 @@ public class GaugeWithDualAxes extends AbstractChartExample {
         yAxis.setEndOnTick(false);
 
         YAxis yAxis2 = new YAxis();
+        yAxis2.setClassName("mph");
         yAxis2.setMin(0);
         yAxis2.setMax(124);
 
@@ -84,29 +84,19 @@ public class GaugeWithDualAxes extends AbstractChartExample {
                 .getDataLabels()
                 .setFormatter(
                         "function() {return '<span style=\"color:#339\">'+ this.y + ' km/h</span><br/>' + '<span style=\"color:#933\">' + Math.round(this.y * 0.621) + ' mph</span>';}");
-        GradientColor gradient = GradientColor.createLinear(0, 0, 0, 1);
-        gradient.addColorStop(0, new SolidColor("#DDD"));
-        gradient.addColorStop(1, new SolidColor("#FFF"));
-        plotOptionsGauge.getDataLabels().setBackgroundColor(gradient);
         plotOptionsGauge.setTooltip(new SeriesTooltip());
         plotOptionsGauge.getTooltip().setValueSuffix(" km/h");
         series.setPlotOptions(plotOptionsGauge);
 
         configuration.setSeries(series);
 
-        runWhileAttached(chart, new Runnable() {
-
-            Random r = new Random(0);
-
-            @Override
-            public void run() {
-                Integer oldValue = series.getData()[0].intValue();
-                Integer newValue = (int) (oldValue + (r.nextDouble() - 0.5) * 20.0);
-                series.updatePoint(0, newValue);
-            }
+        runWhileAttached(chart, () -> {
+            Integer oldValue = series.getData()[0].intValue();
+            Integer newValue = (int) (oldValue + (random.nextDouble() - 0.5) * 20.0);
+            series.updatePoint(0, newValue);
         }, 5000, 12000);
 
-        chart.drawChart(configuration);
+        chart.drawChart();
 
         add(chart);
     }
