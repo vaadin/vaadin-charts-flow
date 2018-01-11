@@ -203,7 +203,7 @@ public class Labels extends AbstractConfigurationObject {
 	 * To show only every <em>n</em>'th label on the axis, set the step to
 	 * <em>n</em>. Setting the step to 2 shows every other label.
 	 * </p>
-	 *
+	 * 
 	 * <p>
 	 * By default, the step is calculated automatically to avoid overlap. To
 	 * prevent this, set it to 1. This usually only happens on a category axis,
