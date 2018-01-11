@@ -23,19 +23,18 @@ import com.vaadin.addon.charts.examples.area.AreaChart;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.dependency.StyleSheet;
 import com.vaadin.flow.component.html.Div;
-import com.vaadin.flow.router.BeforeNavigationEvent;
+import com.vaadin.flow.router.BeforeEvent;
 import com.vaadin.flow.router.HasUrlParameter;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.WildcardParameter;
 
-@StyleSheet("context://styles.css")
 @Route("")
+@StyleSheet("context://styles.css")
 public class MainView extends Div implements HasUrlParameter<String> {
     public static String EXAMPLE_BASE_PACKAGE = "com.vaadin.addon.charts.examples.";
 
     @Override
-    public void setParameter(BeforeNavigationEvent event,
-            @WildcardParameter String parameter) {
+    public void setParameter(BeforeEvent event, @WildcardParameter String parameter) {
         removeAll();
         Optional<Component> content = getContentFromParameter(parameter);
         if (content.isPresent()) {
@@ -47,14 +46,14 @@ public class MainView extends Div implements HasUrlParameter<String> {
 
     /**
      * Parses route parameter to obtain the actual example to show
-     * 
+     *
      * @param route
      *            path that can be either
      *            <ul>
      *            <li>category&#47demo</li>
      *            <li>fully qualified name</li>
      *            </ul>
-     * 
+     *
      * @return Component for route or {@link Optional#empty()}
      */
     private Optional<Component> getContentFromParameter(String route) {
