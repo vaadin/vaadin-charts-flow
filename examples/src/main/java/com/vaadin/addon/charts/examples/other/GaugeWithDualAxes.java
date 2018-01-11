@@ -26,10 +26,6 @@ public class GaugeWithDualAxes extends AbstractChartExample {
         final Configuration configuration = chart.getConfiguration();
         configuration.getChart().setType(ChartType.GAUGE);
         configuration.getChart().setAlignTicks(false);
-        configuration.getChart().setPlotBackgroundColor(null);
-        configuration.getChart().setPlotBackgroundImage(null);
-        configuration.getChart().setPlotBorderWidth(0);
-        configuration.getChart().setPlotShadow(false);
         configuration.setTitle("Speedometer with dual axes");
 
         configuration.getPane().setStartAngle(-150);
@@ -39,16 +35,12 @@ public class GaugeWithDualAxes extends AbstractChartExample {
         yAxis.setClassName("kmh");
         yAxis.setMin(0);
         yAxis.setMax(200);
-        yAxis.setLineColor(new SolidColor("#339"));
-        yAxis.setTickColor(new SolidColor("#339"));
-        yAxis.setMinorTickColor(new SolidColor("#339"));
         yAxis.setOffset(-25);
         yAxis.setLineWidth(2);
         Labels labels = new Labels();
         labels.setDistance(-20);
         labels.setRotationPerpendicular();
         yAxis.setLabels(labels);
-
         yAxis.setTickLength(5);
         yAxis.setMinorTickLength(5);
         yAxis.setEndOnTick(false);
@@ -57,10 +49,6 @@ public class GaugeWithDualAxes extends AbstractChartExample {
         yAxis2.setClassName("mph");
         yAxis2.setMin(0);
         yAxis2.setMax(124);
-
-        yAxis2.setLineColor(new SolidColor("#933"));
-        yAxis2.setTickColor(new SolidColor("#933"));
-        yAxis2.setMinorTickColor(new SolidColor("#933"));
         yAxis2.setOffset(-20);
         yAxis2.setLineWidth(2);
         labels = new Labels();
