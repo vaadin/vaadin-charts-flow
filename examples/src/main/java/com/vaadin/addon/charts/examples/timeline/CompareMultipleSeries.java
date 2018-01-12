@@ -34,7 +34,6 @@ public class CompareMultipleSeries extends AbstractChartExample {
         PlotLine plotLine = new PlotLine();
         plotLine.setValue(2);
         plotLine.setWidth(2);
-        plotLine.setColor(SolidColor.SILVER);
         yAxis.setPlotLines(plotLine);
         configuration.addyAxis(yAxis);
 
