@@ -13,7 +13,7 @@ A comprehensive list of the supported style classes can be found https://www.hig
 [[css.styling.steps]]
 == Steps for styling a chart
 
-1. Create a theme file (by convention this file should be in the `webapp/frontend/src/styles directory`). The theme's dom-module must declare `theme-for=vaadin-chart`.
+1. Create a theme file (by convention this should be `webapp/frontend/styles/shared-styles.html`). The theme's dom-module must declare `theme-for=vaadin-chart`.
 2. Declare `include="vaadin-chart-default-theme"` on the theme module's style element to customize Chart's default theme.
 3. Prefix the desired chart elements' selectors with the `:host` selector.
 4. If multiple charts are present, each one can be specifically targeted by the host selector e.g `:host(.first-chart-class)`.
@@ -22,13 +22,13 @@ A comprehensive list of the supported style classes can be found https://www.hig
 [[css.styling.example1]]
 == Example 1: Chart with Yellow Point Markers and Red Labels
 
-css-style-example.html
+shared-styles.html
 
 [source, css]
 ----
 <link rel="import" href="../bower_components/vaadin-charts/vaadin-chart-default-theme.html">
 
-<dom-module id="css-style-example" theme-for="vaadin-chart">
+<dom-module id="shared-styles" theme-for="vaadin-chart">
   <template>
     <style include="vaadin-chart-default-theme">
       :host(.first-chart) g.highcharts-markers > .highcharts-point {
@@ -47,7 +47,7 @@ CssStyleExample.java
 
 [source, java]
 ----
-@HtmlImport("frontend://src/styles/css-style-example.html")
+@HtmlImport("frontend://styles/shared-styles.html")
 public class CssStyleExample extends Div {
 
     public CssStyleExample() {
@@ -83,13 +83,13 @@ image::img/css-styling1.png[]
 [[css.styling.example2]]
 == Example 2: Exposing a Chart element in Java for CSS Styling
 
-css-style-example.html
+shared-styles.html
 
 [source, css]
 ----
 <link rel="import" href="../bower_components/vaadin-charts/vaadin-chart-default-theme.html">
 
-<dom-module id="css-style-example" theme-for="vaadin-chart">
+<dom-module id="shared-styles" theme-for="vaadin-chart">
   <template>
     <style include="vaadin-chart-default-theme">
       :host .huge-axis {
@@ -105,7 +105,7 @@ CssStyleExample.java
 
 [source, java]
 ----
-@HtmlImport("frontend://src/styles/css-style-example.html")
+@HtmlImport("frontend://styles/shared-styles.html")
 public class CssStyleExample extends Div {
 
     public CssStyleExample() {
