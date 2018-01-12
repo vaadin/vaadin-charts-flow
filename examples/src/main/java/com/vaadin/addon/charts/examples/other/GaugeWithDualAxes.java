@@ -21,12 +21,12 @@ public class GaugeWithDualAxes extends AbstractChartExample {
     public void initDemo() {
         final Random random = new Random(0);
         final Chart chart = new Chart();
-        chart.getElement().getStyle().set("width", "500px");
 
         final Configuration configuration = chart.getConfiguration();
         configuration.getChart().setType(ChartType.GAUGE);
         configuration.getChart().setAlignTicks(false);
         configuration.setTitle("Speedometer with dual axes");
+        configuration.getChart().setWidth(500);
 
         configuration.getPane().setStartAngle(-150);
         configuration.getPane().setEndAngle(150);
@@ -71,7 +71,7 @@ public class GaugeWithDualAxes extends AbstractChartExample {
         plotOptionsGauge
                 .getDataLabels()
                 .setFormatter(
-                        "function() {return '<span style=\"color:#339\">'+ this.y + ' km/h</span><br/>' + '<span style=\"color:#933\">' + Math.round(this.y * 0.621) + ' mph</span>';}");
+                        "function() {return '<span class=\"kmh\">'+ this.y + ' km/h</span><br/>' + '<span class=\"mph\">' + Math.round(this.y * 0.621) + ' mph</span>';}");
         plotOptionsGauge.setTooltip(new SeriesTooltip());
         plotOptionsGauge.getTooltip().setValueSuffix(" km/h");
         series.setPlotOptions(plotOptionsGauge);
