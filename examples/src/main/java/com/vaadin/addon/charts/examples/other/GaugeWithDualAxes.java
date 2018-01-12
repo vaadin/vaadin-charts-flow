@@ -36,7 +36,6 @@ public class GaugeWithDualAxes extends AbstractChartExample {
         yAxis.setMin(0);
         yAxis.setMax(200);
         yAxis.setOffset(-25);
-        yAxis.setLineWidth(2);
         Labels labels = new Labels();
         labels.setDistance(-20);
         labels.setRotationPerpendicular();
@@ -50,7 +49,6 @@ public class GaugeWithDualAxes extends AbstractChartExample {
         yAxis2.setMin(0);
         yAxis2.setMax(124);
         yAxis2.setOffset(-20);
-        yAxis2.setLineWidth(2);
         labels = new Labels();
         labels.setDistance(12);
         labels.setRotationPerpendicular();
