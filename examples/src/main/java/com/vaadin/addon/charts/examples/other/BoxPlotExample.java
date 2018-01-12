@@ -1,9 +1,8 @@
 package com.vaadin.addon.charts.examples.other;
 
+import com.vaadin.addon.charts.AbstractChartExample;
 import com.vaadin.addon.charts.Chart;
-import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.BoxPlotItem;
-import com.vaadin.addon.charts.model.DashStyle;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.HorizontalAlign;
 import com.vaadin.addon.charts.model.Label;
@@ -12,26 +11,13 @@ import com.vaadin.addon.charts.model.PlotLine;
 import com.vaadin.addon.charts.model.PlotOptionsBoxplot;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
-import com.vaadin.addon.charts.model.style.SolidColor;
-import com.vaadin.addon.charts.model.style.Style;
-import com.vaadin.ui.CheckBox;
-import com.vaadin.ui.Component;
+import com.vaadin.flow.component.checkbox.Checkbox;
 
-@SuppressWarnings("serial")
-public class BoxPlotExample extends AbstractVaadinChartExample {
-
-    private CheckBox useCustomStyles;
-    private Chart chart;
-    private DataSeries observations;
+public class BoxPlotExample extends AbstractChartExample {
 
     @Override
-    public String getDescription() {
-        return "Simple Box Plot chart";
-    }
-
-    @Override
-    protected Component getChart() {
-        chart = new Chart();
+    public void initDemo() {
+        final Chart chart = new Chart();
 
         chart.getConfiguration().setTitle("Box Plot Example");
 
@@ -47,33 +33,22 @@ public class BoxPlotExample extends AbstractVaadinChartExample {
 
         yAxis.setTitle("Observations");
         PlotLine plotLine = new PlotLine();
-        plotLine.setColor(new SolidColor("red"));
         plotLine.setValue(932);
-        plotLine.setWidth(1);
         plotLine.setZIndex(0);
-        plotLine.setDashStyle(DashStyle.DASHDOT);
         Label label = new Label("Theoretical mean: 932");
         label.setAlign(HorizontalAlign.CENTER);
-        Style style = new Style();
-        style.setColor(new SolidColor("gray"));
-        label.setStyle(style);
         plotLine.setLabel(label);
+
         PlotLine plotLine2 = new PlotLine();
-        plotLine2.setColor(new SolidColor("blue"));
         plotLine2.setValue(800);
-        plotLine2.setWidth(1);
         plotLine2.setZIndex(500);
-        plotLine2.setDashStyle(DashStyle.SHORTDASHDOTDOT);
         Label label2 = new Label("Second plotline: 800");
         label2.setAlign(HorizontalAlign.CENTER);
-        Style style2 = new Style();
-        style2.setColor(new SolidColor("gray"));
-        label2.setStyle(style2);
         plotLine2.setLabel(label2);
 
         yAxis.setPlotLines(plotLine, plotLine2);
 
-        observations = new DataSeries();
+        final DataSeries observations = new DataSeries();
         observations.setName("Observations");
 
         // Add PlotBoxItems contain all fields relevant for plot box chart
@@ -91,42 +66,22 @@ public class BoxPlotExample extends AbstractVaadinChartExample {
         observations.add(new BoxPlotItem(714, 762, 817, 870, 918));
         observations.add(new BoxPlotItem(724, 802, 806, 871, 950));
         observations.add(new BoxPlotItem(834, 836, 864, 882, 910));
-        observations.setPlotOptions(getPlotBoxOptions());
+        observations.setPlotOptions(new PlotOptionsBoxplot());
         chart.getConfiguration().addSeries(observations);
 
-        return chart;
-    }
+        Checkbox useCustomStyles = new Checkbox("Use custom styling");
+        useCustomStyles.addValueChangeListener(e -> {
 
-    @Override
-    protected void setup() {
-        useCustomStyles = new CheckBox("Use custom styling");
-        useCustomStyles.setDebugId("styles");
-        super.setup();
-        addComponentAsFirst(useCustomStyles);
-        useCustomStyles.addValueChangeListener(e->{
-            observations.setPlotOptions(getPlotBoxOptions());
-            chart.drawChart();
+            PlotOptionsBoxplot options = new PlotOptionsBoxplot();
+            if (e.getValue()) {
+                options.setClassName("custom-style");
+                options.setWhiskerLength("70");
+            }
+            observations.setPlotOptions(options);
+
+            chart.drawChart(true);
         });
+
+        add(chart, useCustomStyles);
     }
-
-    private PlotOptionsBoxplot getPlotBoxOptions() {
-        PlotOptionsBoxplot options = new PlotOptionsBoxplot();
-
-        if (useCustomStyles.getValue()) {
-            // optional styling
-            options.setMedianColor(new SolidColor("cyan"));
-            options.setMedianWidth(1);
-
-            options.setStemColor(new SolidColor("green"));
-            options.setStemDashStyle(DashStyle.SHORTDOT);
-            options.setStemWidth(4);
-
-            options.setWhiskerColor(new SolidColor("magenta"));
-            options.setWhiskerLength("70");
-            options.setWhiskerWidth(5);
-        }
-
-        return options;
-    }
-
 }
