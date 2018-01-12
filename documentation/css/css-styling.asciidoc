@@ -28,7 +28,7 @@ shared-styles.html
 ----
 <link rel="import" href="../bower_components/vaadin-charts/vaadin-chart-default-theme.html">
 
-<dom-module id="shared-styles" theme-for="vaadin-chart">
+<dom-module id="css-style-example" theme-for="vaadin-chart">
   <template>
     <style include="vaadin-chart-default-theme">
       :host(.first-chart) g.highcharts-markers > .highcharts-point {
@@ -89,7 +89,7 @@ shared-styles.html
 ----
 <link rel="import" href="../bower_components/vaadin-charts/vaadin-chart-default-theme.html">
 
-<dom-module id="shared-styles" theme-for="vaadin-chart">
+<dom-module id="css-style-example" theme-for="vaadin-chart">
   <template>
     <style include="vaadin-chart-default-theme">
       :host .huge-axis {
