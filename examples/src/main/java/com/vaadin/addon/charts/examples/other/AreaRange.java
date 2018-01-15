@@ -1,29 +1,23 @@
 package com.vaadin.addon.charts.examples.other;
 
+import com.vaadin.addon.charts.AbstractChartExample;
 import com.vaadin.addon.charts.Chart;
-import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.Crosshair;
 import com.vaadin.addon.charts.model.RangeSeries;
 import com.vaadin.addon.charts.model.Tooltip;
-import com.vaadin.addon.charts.model.YAxis;
-import com.vaadin.ui.Component;
 
 import static com.vaadin.addon.charts.model.AxisType.DATETIME;
 
 @SuppressWarnings("serial")
-public class AreaRange extends AbstractVaadinChartExample {
+public class AreaRange extends AbstractChartExample {
+
+    protected Chart chart;
 
     @Override
-    public String getDescription() {
-        return "Area Range";
-    }
-
-    @Override
-    protected Component getChart() {
-
-        Chart chart = new Chart(ChartType.AREARANGE);
+    public void initDemo() {
+        chart = new Chart(ChartType.AREARANGE);
 
         Configuration conf = chart.getConfiguration();
 
@@ -31,7 +25,6 @@ public class AreaRange extends AbstractVaadinChartExample {
 
         conf.getxAxis().setType(DATETIME);
         conf.getxAxis().setCrosshair(new Crosshair());
-        conf.addyAxis(new YAxis());
 
         Tooltip tooltip = new Tooltip();
         tooltip.setShared(true);
@@ -42,10 +35,9 @@ public class AreaRange extends AbstractVaadinChartExample {
 
         conf.setSeries(data);
 
-        chart.drawChart(conf);
+        chart.drawChart();
 
-        return chart;
-
+        add(chart);
     }
 
     private Number[][] getRawData() {

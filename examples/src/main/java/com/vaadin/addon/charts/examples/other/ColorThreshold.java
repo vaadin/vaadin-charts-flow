@@ -1,20 +1,19 @@
 package com.vaadin.addon.charts.examples.other;
 
-import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.model.PlotOptionsArearange;
-import com.vaadin.ui.Component;
+import com.vaadin.addon.charts.model.style.SolidColor;
 
 public class ColorThreshold extends AreaRange {
 
     @Override
-    protected Component getChart() {
-        Chart chart = (Chart) super.getChart();
+    public void initDemo() {
+        super.initDemo();
         PlotOptionsArearange plotOptions = new PlotOptionsArearange();
-        // make "value" under -5 blue. Default threshold value is 0
-        plotOptions.setNegativeColor(getThemeColors()[1]);
+        // make "value" below -5 displayed with another color. Default threshold value is 0
         plotOptions.setThreshold(-5);
+        // setNegativeFillColor doesn't set color, but sets highcharts-negative css rule for corresponding area
+        plotOptions.setNegativeFillColor(SolidColor.RED);
         chart.getConfiguration().setPlotOptions(plotOptions);
-        return chart;
     }
 
 }
