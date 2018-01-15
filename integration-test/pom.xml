@@ -30,20 +30,17 @@
         <sauce.options>--tunnel-identifier ${maven.build.timestamp}</sauce.options>
     </properties>
 
-    <pluginRepositories>
-        <pluginRepository>
-            <id>central</id>
-            <name>Maven Plugin Repository</name>
-            <url>http://repo1.maven.org/maven2</url>
-            <layout>default</layout>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-        </pluginRepository>
-    </pluginRepositories>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <artifactId>com.saucelabs</artifactId>
+                <groupId>sauce-connect</groupId>
+                <version>3.1.32</version>
+                <scope>system</scope>
+                <systemPath>${basedir}/lib/sauce-connect-3.1.32.jar</systemPath>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
         <dependency>
