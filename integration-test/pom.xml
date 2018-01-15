@@ -30,6 +30,21 @@
         <sauce.options>--tunnel-identifier ${maven.build.timestamp}</sauce.options>
     </properties>
 
+    <pluginRepositories>
+        <pluginRepository>
+            <id>central</id>
+            <name>Maven Plugin Repository</name>
+            <url>http://repo1.maven.org/maven2</url>
+            <layout>default</layout>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </pluginRepository>
+    </pluginRepositories>
+
     <dependencies>
         <dependency>
             <groupId>com.vaadin</groupId>
@@ -51,7 +66,7 @@
         <dependency>
             <groupId>com.saucelabs</groupId>
             <artifactId>ci-sauce</artifactId>
-            <version>1.132</version>
+            <version>1.129</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
