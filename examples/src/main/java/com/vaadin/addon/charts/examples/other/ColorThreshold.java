@@ -9,7 +9,7 @@ public class ColorThreshold extends AreaRange {
     public void initDemo() {
         super.initDemo();
         PlotOptionsArearange plotOptions = new PlotOptionsArearange();
-        // make "value" below -5 displayed with another color. Default threshold value is 0
+        // Make "value" below -5 displayed with another color. Default threshold value is 0
         plotOptions.setThreshold(-5);
         plotOptions.setNegativeFillColor(SolidColor.RED);
         chart.getConfiguration().setPlotOptions(plotOptions);
