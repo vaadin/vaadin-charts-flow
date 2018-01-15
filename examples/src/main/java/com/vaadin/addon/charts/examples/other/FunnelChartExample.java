@@ -1,24 +1,17 @@
 package com.vaadin.addon.charts.examples.other;
 
+import com.vaadin.addon.charts.AbstractChartExample;
 import com.vaadin.addon.charts.Chart;
-import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.DataLabelsFunnel;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
 import com.vaadin.addon.charts.model.PlotOptionsFunnel;
-import com.vaadin.ui.Component;
 
-@SuppressWarnings("serial")
-public class FunnelChartExample extends AbstractVaadinChartExample {
+public class FunnelChartExample extends AbstractChartExample {
 
     @Override
-    public String getDescription() {
-        return "Funnel chart example";
-    }
-
-    @Override
-    protected Component getChart() {
+    public void initDemo() {
         DataSeries dataSeries = new DataSeries("Unique users");
         dataSeries.add(new DataSeriesItem("Website visits", 15654));
         dataSeries.add(new DataSeriesItem("Downloads", 4064));
@@ -47,7 +40,7 @@ public class FunnelChartExample extends AbstractVaadinChartExample {
         dataSeries.setPlotOptions(options);
         conf.addSeries(dataSeries);
 
-        return chart;
+        add(chart);
     }
 
 }
