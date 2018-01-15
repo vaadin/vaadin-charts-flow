@@ -70,7 +70,8 @@
                             <goal>exec</goal>
                         </goals>
                         <configuration>
-                            <executable>${basedir}/lib/sauce-connect-installer.sh</executable>
+                            <executable>bash</executable>
+                            <commandlineArgs>${basedir}/lib/sauce-connect-installer.sh</commandlineArgs>
                         </configuration>
                     </execution>
                 </executions>
