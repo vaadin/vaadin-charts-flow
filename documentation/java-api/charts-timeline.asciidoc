@@ -44,19 +44,6 @@ navigator.setEnabled(true);
 navigator.setMargin(75);
 ----
 
-You can style the range selector buttons with the `highcharts-range-selector-buttons` class in CSS.
-
-[source, css]
-----
-:host .highcharts-range-selector-buttons > .highcharts-button-pressed {
-  fill: #7cb5ec;
-}
-
-:host .highcharts-range-selector-buttons > .highcharts-button-pressed > text {
-  fill: white;
-}
-----
-
 You can specify the index of the button to appear pre-selected with the [methodname]#setSelected(index)# method.
 
 [source, java]
