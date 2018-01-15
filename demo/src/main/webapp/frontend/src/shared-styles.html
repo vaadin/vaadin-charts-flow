@@ -15,10 +15,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <dom-module id="shared-styles" theme-for="vaadin-chart">
   <template>
     <style include="vaadin-chart-default-theme">
-      :host(.ColumnlineAndPie) g.highcharts-markers > .highcharts-point {
-        fill: white;
-      }
-
       :host(.BasicLineWithCallouts) .highcharts-data-label-box {
         fill: blanchedalmond;
       }
@@ -32,19 +28,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         stroke: #ec6464;
       }
 
-      :host(.MultipleAxes) .highcharts-color-0, .y2 {
-        fill: #3090f0;
-        stroke: #3090f0;
-      }
-
-      :host(.MultipleAxes) .highcharts-color-1, .y3 {
-        fill: #98df58;
-        stroke: #98df58;
-      }
-
-      :host(.MultipleAxes) .highcharts-color-2, .y1 {
-        fill: #ec6464;
-        stroke: #ec6464;
+      :host(.ColumnlineAndPie) g.highcharts-markers > .highcharts-point {
+        fill: white;
       }
 
       :host(.CompareMultipleSeries) .highcharts-color-0 {
@@ -61,6 +46,58 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       :host(.CompareMultipleSeries) .highcharts-plot-lines-0 .highcharts-plot-line {
         stroke: #c0c0c0;
+      }
+
+      :host(.GaugeWithDualAxes) .kmh .highcharts-minor-tick {
+        stroke: #339;
+        stroke-width: 1;
+      }
+
+      :host(.GaugeWithDualAxes) .kmh .highcharts-tick, :host(.GaugeWithDualAxes) .kmh .highcharts-axis-line  {
+        stroke: #339;
+        stroke-width: 2;
+      }
+
+      :host(.GaugeWithDualAxes) .highcharts-label .kmh {
+        fill: #339;
+      }
+
+      :host(.GaugeWithDualAxes) .mph .highcharts-minor-tick {
+        stroke: #933;
+        stroke-width: 1;
+      }
+
+      :host(.GaugeWithDualAxes) .mph .highcharts-tick, :host(.GaugeWithDualAxes) .mph .highcharts-axis-line {
+        stroke: #933;
+        stroke-width: 2;
+      }
+
+      :host(.GaugeWithDualAxes) .highcharts-label .mph {
+        fill: #933;
+      }
+
+      :host(.GaugeWithDualAxes) .highcharts-grid-line, :host(.GaugeWithDualAxes) .highcharts-minor-grid-line {
+        stroke: none;
+      }
+
+      :host(.GaugeWithDualAxes) .highcharts-color-0 .highcharts-pivot {
+        fill: #000;
+        stroke: #000;
+      }
+
+      :host(.MultipleAxes) .highcharts-color-0, .y2 {
+        fill: #3090f0;
+        stroke: #3090f0;
+      }
+
+      :host(.MultipleAxes) .highcharts-color-1, .y3 {
+        fill: #98df58;
+        stroke: #98df58;
+      }
+
+      :host(.MultipleAxes) .highcharts-color-2, .y1 {
+        fill: #ec6464;
+        stroke: #ec6464;
       }
     </style>
   </template>
