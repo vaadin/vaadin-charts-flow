@@ -30,18 +30,6 @@
         <sauce.options>--tunnel-identifier ${maven.build.timestamp}</sauce.options>
     </properties>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <artifactId>com.saucelabs</artifactId>
-                <groupId>sauce-connect</groupId>
-                <version>3.1.32</version>
-                <scope>system</scope>
-                <systemPath>${basedir}/lib/sauce-connect-3.1.32.jar</systemPath>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
     <dependencies>
         <dependency>
             <groupId>com.vaadin</groupId>
@@ -157,6 +145,13 @@
                         <artifactId>sauce-connect-plugin</artifactId>
                         <version>2.1.23</version>
                         <dependencies>
+                            <dependency>
+                                <artifactId>com.saucelabs</artifactId>
+                                <groupId>sauce-connect</groupId>
+                                <version>3.1.32</version>
+                                <scope>system</scope>
+                                <systemPath>${basedir}/lib/sauce-connect-3.1.32.jar</systemPath>
+                            </dependency>
                             <dependency>
                                 <groupId>com.saucelabs</groupId>
                                 <artifactId>ci-sauce</artifactId>
