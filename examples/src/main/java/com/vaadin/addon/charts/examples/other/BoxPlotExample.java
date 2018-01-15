@@ -30,8 +30,8 @@ public class BoxPlotExample extends AbstractChartExample {
         xaxis.setCategories("1", "2", "3", "4", "5");
 
         YAxis yAxis = chart.getConfiguration().getyAxis();
-
         yAxis.setTitle("Observations");
+
         PlotLine plotLine = new PlotLine();
         plotLine.setValue(932);
         plotLine.setZIndex(0);
