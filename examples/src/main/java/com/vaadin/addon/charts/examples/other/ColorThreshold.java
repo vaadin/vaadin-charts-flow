@@ -11,7 +11,6 @@ public class ColorThreshold extends AreaRange {
         PlotOptionsArearange plotOptions = new PlotOptionsArearange();
         // make "value" below -5 displayed with another color. Default threshold value is 0
         plotOptions.setThreshold(-5);
-        // setNegativeFillColor doesn't set color, but sets highcharts-negative css rule for corresponding area
         plotOptions.setNegativeFillColor(SolidColor.RED);
         chart.getConfiguration().setPlotOptions(plotOptions);
     }
