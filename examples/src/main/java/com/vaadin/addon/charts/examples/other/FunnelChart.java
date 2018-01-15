@@ -8,7 +8,7 @@ import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
 import com.vaadin.addon.charts.model.PlotOptionsFunnel;
 
-public class FunnelChartExample extends AbstractChartExample {
+public class FunnelChart extends AbstractChartExample {
 
     @Override
     public void initDemo() {
