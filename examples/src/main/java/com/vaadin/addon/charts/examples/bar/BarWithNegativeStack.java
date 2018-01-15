@@ -12,7 +12,6 @@ import com.vaadin.addon.charts.model.Tooltip;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
 
-@SuppressWarnings("serial")
 public class BarWithNegativeStack extends AbstractChartExample {
 
     @Override
