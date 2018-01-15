@@ -13,7 +13,7 @@ import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
 import com.vaadin.flow.component.checkbox.Checkbox;
 
-public class BoxPlotExample extends AbstractChartExample {
+public class BoxPlot extends AbstractChartExample {
 
     @Override
     public void initDemo() {
