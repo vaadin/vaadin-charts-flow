@@ -1,25 +1,18 @@
 package com.vaadin.addon.charts.examples.other;
 
+import com.vaadin.addon.charts.AbstractChartExample;
 import com.vaadin.addon.charts.Chart;
-import com.vaadin.addon.charts.examples.AbstractVaadinChartExample;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
 import com.vaadin.addon.charts.model.DataSeriesItem3d;
 import com.vaadin.addon.charts.model.PlotOptionsBubble;
-import com.vaadin.ui.Component;
 
-@SuppressWarnings("serial")
-public class BubbleChartExample extends AbstractVaadinChartExample {
+public class BubbleChartExample extends AbstractChartExample {
 
     @Override
-    public String getDescription() {
-        return "Bubble Chart";
-    }
-
-    @Override
-    protected Component getChart() {
+    public void initDemo() {
 
         Chart chart = new Chart(ChartType.BUBBLE);
 
@@ -43,7 +36,6 @@ public class BubbleChartExample extends AbstractVaadinChartExample {
         dataSeries.add(item(44, 83, -28));
 
         PlotOptionsBubble opts = new PlotOptionsBubble();
-        opts.setNegativeColor(getThemeColors()[3]);
         opts.setMaxSize("120");
         opts.setMinSize("3");
 
@@ -60,7 +52,7 @@ public class BubbleChartExample extends AbstractVaadinChartExample {
         dataSeries2.setPlotOptions(opts);
         conf.addSeries(dataSeries2);
 
-        return chart;
+        add(chart);
 
     }
 
