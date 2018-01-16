@@ -34,7 +34,6 @@ The supported chart types are:
 |   <<charts.charttypes.funnel, `pyramid`>>
 |   <<charts.charttypes.scatter, `scatter`>>
 |   <<charts.charttypes.solidgauge, `solidgauge`>>
-|   `sparkline`
 |   <<charts.charttypes.line, `spline`>>
 |   <<charts.charttypes.treemap, `treemap`>>
 |   <<charts.charttypes.waterfall, `waterfall`>>
