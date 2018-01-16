@@ -31,6 +31,9 @@ import com.vaadin.flow.shared.Registration;
 import elemental.json.JsonObject;
 import elemental.json.impl.JreJsonFactory;
 
+import java.util.Arrays;
+import java.util.List;
+
 @Tag("vaadin-chart")
 @HtmlImport("frontend://bower_components/vaadin-charts/vaadin-chart.html")
 public class Chart extends Component {
@@ -39,6 +42,10 @@ public class Chart extends Component {
     private final JreJsonFactory jsonFactory = new JreJsonFactory();
     private final ConfigurationChangeListener changeListener = new ProxyChangeForwarder(
             this, jsonFactory);
+
+    private final static List<ChartType> TIMELINE_NOT_SUPPORTED = Arrays.asList(
+            ChartType.PIE, ChartType.GAUGE, ChartType.SOLIDGAUGE, ChartType.PYRAMID,
+            ChartType.FUNNEL);
 
     /**
      * Creates a new chart with default configuration
@@ -93,6 +100,8 @@ public class Chart extends Component {
      *            defines whether the chart should be redrawn or not
      */
     public void drawChart(boolean resetConfiguration) {
+        validateTimelineAndConfiguration();
+
         final JsonObject configurationNode = jsonFactory
                 .parse(ChartSerialization.toJSON(configuration));
 
@@ -108,6 +117,16 @@ public class Chart extends Component {
      */
     public void setTimeline(Boolean timeline) {
         getElement().setProperty("timeline", timeline);
+    }
+
+    private void validateTimelineAndConfiguration() {
+        if (getElement().getProperty("timeline", false)) {
+            final ChartType type = getConfiguration().getChart().getType();
+            if (TIMELINE_NOT_SUPPORTED.contains(type)) {
+                throw new RuntimeException(
+                        "Timeline is not supported for chart type '" + type + "'");
+            }
+        }
     }
 
     /**
