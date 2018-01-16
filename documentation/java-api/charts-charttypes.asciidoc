@@ -1674,10 +1674,8 @@ series.add(point);
 [[charts.charttypes.markers.markerproperties]]
 === Marker Shape Properties
 
-A marker has a [parameter]#lineColor# and a [parameter]#fillColor#, which are
-set using a [classname]#Color# object. Both solid colors and gradients are
-supported. You can use a [classname]#SolidColor# to specify a solid fill color
-by RGB values or choose from a selection of predefined colors in the class.
+A marker has a [parameter]#stroke# and a [parameter]#fill# colors, which are
+set using a CSS selector [classname]#.highcharts-markers .highcharts-point#.
 
 [source, java]
 ----
