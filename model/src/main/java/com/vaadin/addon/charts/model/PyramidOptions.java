@@ -8,10 +8,10 @@ package com.vaadin.addon.charts.model;
  * %%
  * This program is available under Commercial Vaadin Add-On License 3.0
  * (CVALv3).
- * 
+ *
  * See the file licensing.txt distributed with this software for more
  * information about licensing.
- * 
+ *
  * You should have received a copy of the CVALv3 along with this program.
  * If not, see <https://vaadin.com/license/cval-3>.
  * #L%
@@ -21,6 +21,9 @@ import com.vaadin.addon.charts.model.style.Color;
 
 public abstract class PyramidOptions extends AbstractPlotOptions {
 
+    @Override
+    public abstract ChartType getChartType();
+
     /**
      * @see #setAllowPointSelect(Boolean)
      */
@@ -29,8 +32,24 @@ public abstract class PyramidOptions extends AbstractPlotOptions {
     /**
      * Allow this series' points to be selected by clicking on the markers, bars
      * or pie slices.
+     * <p>
+     * Defaults to: false
      */
     public abstract void setAllowPointSelect(Boolean allowPointSelect);
+
+    /**
+     * @see #setAnimationLimit(Number)
+     */
+    public abstract Number getAnimationLimit();
+
+    /**
+     * For some series, there is a limit that shuts down initial animation by
+     * default when the total number of points in the chart is too high. For
+     * example, for a column chart and its derivatives, animation doesn't run if
+     * there is more than 250 points totally. To disable this cap, set
+     * <code>animationLimit</code> to <code>Infinity</code>.
+     */
+    public abstract void setAnimationLimit(Number animationLimit);
 
     /**
      * @see #setBorderColor(Color)
@@ -38,10 +57,21 @@ public abstract class PyramidOptions extends AbstractPlotOptions {
     public abstract Color getBorderColor();
 
     /**
+     * <p>
      * The color of the border surrounding each slice. When <code>null</code>,
      * the border takes the same color as the slice fill. This can be used
      * together with a <code>borderWidth</code> to fill drawing gaps created by
      * antialiazing artefacts in borderless pies.
+     * </p>
+     *
+     * <p>
+     * In <a href=
+     * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+     * >styled mode</a>, the border stroke is given in the
+     * <code>.highcharts-point</code> class.
+     * </p>
+     * <p>
+     * Defaults to: #ffffff
      */
     public abstract void setBorderColor(Color borderColor);
 
@@ -54,21 +84,56 @@ public abstract class PyramidOptions extends AbstractPlotOptions {
      * <p>
      * The width of the border surrounding each slice.
      * </p>
-     * 
+     *
      * <p>
      * When setting the border width to 0, there may be small gaps between the
      * slices due to SVG antialiasing artefacts. To work around this, keep the
      * border width at 0.5 or 1, but set the <code>borderColor</code> to
      * <code>null</code> instead.
      * </p>
+     *
+     * <p>
+     * In <a href=
+     * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+     * >styled mode</a>, the border stroke width is given in the
+     * <code>.highcharts-point</code> class.
+     * </p>
+     * <p>
+     * Defaults to: 1
      */
     public abstract void setBorderWidth(Number borderWidth);
 
     /**
      * The center of the series. By default, it is centered in the middle of the
      * plot area, so it fills the plot area height.
+     * <p>
+     * Defaults to: ["50%", "50%"]
      */
     public abstract void setCenter(String[] center);
+
+    /**
+     * @see #setClassName(String)
+     */
+    public abstract String getClassName();
+
+    /**
+     * A class name to apply to the series' graphical elements.
+     */
+    public abstract void setClassName(String className);
+
+    /**
+     * @see #setColorIndex(Number)
+     */
+    public abstract Number getColorIndex();
+
+    /**
+     * <a href=
+     * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+     * >Styled mode</a> only. A specific color index to use for the series, so
+     * its graphic representations are given the class name
+     * <code>highcharts-color-{n}</code>.
+     */
+    public abstract void setColorIndex(Number colorIndex);
 
     /**
      * @see #setColors(Color...)
@@ -77,13 +142,13 @@ public abstract class PyramidOptions extends AbstractPlotOptions {
 
     /**
      * A series specific or series type specific color set to use instead of the
-     * theme colors.
+     * global <a href="#colors">colors</a>.
      */
     public abstract void setColors(Color... colors);
 
     /**
      * Adds color to the colors array
-     * 
+     *
      * @param color
      *            to add
      * @see #setColors(Color...)
@@ -92,7 +157,7 @@ public abstract class PyramidOptions extends AbstractPlotOptions {
 
     /**
      * Removes first occurrence of color in colors array
-     * 
+     *
      * @param color
      *            to remove
      * @see #setColors(Color...)
@@ -116,11 +181,6 @@ public abstract class PyramidOptions extends AbstractPlotOptions {
      */
     public abstract DataLabelsFunnel getDataLabels();
 
-    /**
-     * Specific data labels configuration for a series type
-     * 
-     * @param dataLabels
-     */
     public abstract void setDataLabels(DataLabelsFunnel dataLabels);
 
     /**
@@ -129,9 +189,29 @@ public abstract class PyramidOptions extends AbstractPlotOptions {
     public abstract Number getDepth();
 
     /**
-     * The thickness of a 3D pie.
+     * The thickness of a 3D pie. Requires <code>highcharts-3d.js</code>
+     * <p>
+     * Defaults to: 0
      */
     public abstract void setDepth(Number depth);
+
+    /**
+     * @see #setDescription(String)
+     */
+    public abstract String getDescription();
+
+    /**
+     * <p>
+     * <i>Requires Accessibility module</i>
+     * </p>
+     * <p>
+     * A description of the series to add to the screen reader information about
+     * the series.
+     * </p>
+     * <p>
+     * Defaults to: undefined
+     */
+    public abstract void setDescription(String description);
 
     /**
      * @see #setEnableMouseTracking(Boolean)
@@ -142,8 +222,51 @@ public abstract class PyramidOptions extends AbstractPlotOptions {
      * Enable or disable the mouse tracking for a specific series. This includes
      * point tooltips and click events on graphs and points. For large datasets
      * it improves performance.
+     * <p>
+     * Defaults to: true
      */
     public abstract void setEnableMouseTracking(Boolean enableMouseTracking);
+
+    /**
+     * @see #setExposeElementToA11y(Boolean)
+     */
+    public abstract Boolean getExposeElementToA11y();
+
+    /**
+     * <p>
+     * By default, series are exposed to screen readers as regions. By enabling
+     * this option, the series element itself will be exposed in the same way as
+     * the data points. This is useful if the series is not used as a grouping
+     * entity in the chart, but you still want to attach a description to the
+     * series.
+     * </p>
+     * <p>
+     * Requires the Accessibility module.
+     * </p>
+     * <p>
+     * Defaults to: undefined
+     */
+    public abstract void setExposeElementToA11y(Boolean exposeElementToA11y);
+
+    /**
+     * @see #setFindNearestPointBy(Dimension)
+     */
+    public abstract Dimension getFindNearestPointBy();
+
+    /**
+     * <p>
+     * Determines whether the series should look for the nearest point in both
+     * dimensions or just the x-dimension when hovering the series. Defaults to
+     * <code>'xy'</code> for scatter series and <code>'x'</code> for most other
+     * series. If the data has duplicate x-values, it is recommended to set this
+     * to <code>'xy'</code> to allow hovering over all points.
+     * </p>
+     * <p>
+     * Applies only to series types using nearest neighbor search (not direct
+     * hover) for tooltip.
+     * </p>
+     */
+    public abstract void setFindNearestPointBy(Dimension findNearestPointBy);
 
     /**
      * @see #setGetExtremesFromAll(Boolean)
@@ -154,6 +277,8 @@ public abstract class PyramidOptions extends AbstractPlotOptions {
      * Whether to use the Y extremes of the total chart width or only the zoomed
      * area when zooming in on parts of the X axis. By default, the Y axis
      * adjusts to the min and max of the visible data. Cartesian series only.
+     * <p>
+     * Defaults to: false
      */
     public abstract void setGetExtremesFromAll(Boolean getExtremesFromAll);
 
@@ -163,13 +288,9 @@ public abstract class PyramidOptions extends AbstractPlotOptions {
     public abstract String getHeight();
 
     /**
-     * Sets the height using String presentation. String presentation is similar
-     * to what is used in Cascading Style Sheets. Size can be pixels or
-     * percentage, otherwise IllegalArgumentException is thrown. The empty
-     * string ("") or null will unset the height and set the units to pixels.
-     * 
-     * @param height
-     *            CSS style string representation
+     * The height of the funnel or pyramid. If it is a number it defines the
+     * pixel height, if it is a percentage string it is the percentage of the
+     * plot area height.
      */
     public abstract void setHeight(String height);
 
@@ -187,7 +308,7 @@ public abstract class PyramidOptions extends AbstractPlotOptions {
 
     /**
      * Adds key to the keys array
-     * 
+     *
      * @param key
      *            to add
      * @see #setKeys(String...)
@@ -196,7 +317,7 @@ public abstract class PyramidOptions extends AbstractPlotOptions {
 
     /**
      * Removes first occurrence of key in keys array
-     * 
+     *
      * @param key
      *            to remove
      * @see #setKeys(String...)
@@ -209,10 +330,10 @@ public abstract class PyramidOptions extends AbstractPlotOptions {
     public abstract String getLinkedTo();
 
     /**
-     * The ID of another series to link to. Additionally, the value can be
-     * ":previous" to link to the previous series. When two series are linked,
-     * only the first one appears in the legend. Toggling the visibility of this
-     * also toggles the linked series.
+     * The <a href="#series.id">id</a> of another series to link to.
+     * Additionally, the value can be ":previous" to link to the previous
+     * series. When two series are linked, only the first one appears in the
+     * legend. Toggling the visibility of this also toggles the linked series.
      */
     public abstract void setLinkedTo(String linkedTo);
 
@@ -225,8 +346,15 @@ public abstract class PyramidOptions extends AbstractPlotOptions {
      * The minimum size for a pie in response to auto margins. The pie will try
      * to shrink to make room for data labels in side the plot area, but only to
      * this size.
+     * <p>
+     * Defaults to: 80
      */
     public abstract void setMinSize(Number minSize);
+
+    public abstract String getPointDescriptionFormatter();
+
+    public abstract void setPointDescriptionFormatter(
+            String _fn_pointDescriptionFormatter);
 
     /**
      * @see #setReversed(Boolean)
@@ -236,6 +364,8 @@ public abstract class PyramidOptions extends AbstractPlotOptions {
     /**
      * The pyramid is reversed by default, as opposed to the funnel, which
      * shares the layout engine, and is not reversed.
+     * <p>
+     * Defaults to: true
      */
     public abstract void setReversed(Boolean reversed);
 
@@ -248,6 +378,8 @@ public abstract class PyramidOptions extends AbstractPlotOptions {
      * Whether to select the series initially. If <code>showCheckbox</code> is
      * true, the checkbox next to the series name will be checked for a selected
      * series.
+     * <p>
+     * Defaults to: false
      */
     public abstract void setSelected(Boolean selected);
 
@@ -257,7 +389,12 @@ public abstract class PyramidOptions extends AbstractPlotOptions {
     public abstract Boolean getShadow();
 
     /**
-     * Whether to apply a drop shadow to the graph line.
+     * Whether to apply a drop shadow to the graph line. Since 2.3 the shadow
+     * can be an object configuration containing <code>color</code>,
+     * <code>offsetX</code>, <code>offsetY</code>, <code>opacity</code> and
+     * <code>width</code>.
+     * <p>
+     * Defaults to: false
      */
     public abstract void setShadow(Boolean shadow);
 
@@ -268,8 +405,22 @@ public abstract class PyramidOptions extends AbstractPlotOptions {
 
     /**
      * Whether to display this particular series or series type in the legend.
+     * Since 2.1, pies are not shown in the legend by default.
+     * <p>
+     * Defaults to: false
      */
     public abstract void setShowInLegend(Boolean showInLegend);
+
+    /**
+     * @see #setSkipKeyboardNavigation(Boolean)
+     */
+    public abstract Boolean getSkipKeyboardNavigation();
+
+    /**
+     * If set to <code>True</code>, the accessibility module will skip past the
+     * points in this series for keyboard navigation.
+     */
+    public abstract void setSkipKeyboardNavigation(Boolean skipKeyboardNavigation);
 
     /**
      * @see #setSlicedOffset(Number)
@@ -279,6 +430,8 @@ public abstract class PyramidOptions extends AbstractPlotOptions {
     /**
      * If a point is sliced, moved out from the center, how many pixels should
      * it be moved?.
+     * <p>
+     * Defaults to: 10
      */
     public abstract void setSlicedOffset(Number slicedOffset);
 
@@ -305,6 +458,8 @@ public abstract class PyramidOptions extends AbstractPlotOptions {
      * series' graph or markers. This also implies the tooltip. When
      * <code>stickyTracking</code> is false and <code>tooltip.shared</code> is
      * false, the tooltip will be hidden when moving the mouse between series.
+     * <p>
+     * Defaults to: false
      */
     public abstract void setStickyTracking(Boolean stickyTracking);
 
@@ -315,6 +470,8 @@ public abstract class PyramidOptions extends AbstractPlotOptions {
 
     /**
      * A configuration object for the tooltip rendering of each single series.
+     * Properties are inherited from <a href="#tooltip">tooltip</a>, but only
+     * the following properties can be defined on a series level.
      */
     public abstract void setTooltip(SeriesTooltip tooltip);
 
@@ -325,6 +482,8 @@ public abstract class PyramidOptions extends AbstractPlotOptions {
 
     /**
      * Set the initial visibility of the series.
+     * <p>
+     * Defaults to: true
      */
     public abstract void setVisible(Boolean visible);
 
@@ -334,13 +493,10 @@ public abstract class PyramidOptions extends AbstractPlotOptions {
     public abstract String getWidth();
 
     /**
-     * Sets the width using String presentation. String presentation is similar
-     * to what is used in Cascading Style Sheets. Size can be pixels or
-     * percentage, otherwise IllegalArgumentException is thrown. The empty
-     * string ("") or null will unset the height and set the units to pixels.
-     * 
-     * @param width
-     *            CSS style string representation
+     * The width of the funnel compared to the width of the plot area, or the
+     * pixel width if it is a number.
+     * <p>
+     * Defaults to: 90%
      */
     public abstract void setWidth(String width);
 
@@ -351,6 +507,8 @@ public abstract class PyramidOptions extends AbstractPlotOptions {
 
     /**
      * Defines the Axis on which the zones are applied.
+     * <p>
+     * Defaults to: y
      */
     public abstract void setZoneAxis(ZoneAxis zoneAxis);
 
@@ -360,15 +518,27 @@ public abstract class PyramidOptions extends AbstractPlotOptions {
     public abstract Zones[] getZones();
 
     /**
+     * <p>
      * An array defining zones within a series. Zones can be applied to the X
      * axis, Y axis or Z axis for bubbles, according to the
      * <code>zoneAxis</code> option.
+     * </p>
+     *
+     * <p>
+     * In <a href=
+     * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+     * >styled mode</a>, the color zones are styled with the
+     * <code>.highcharts-zone-{n}</code> class, or custom classed from the
+     * <code>className</code> option (<a href=
+     * "http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/color-zones/"
+     * >view live demo</a>).
+     * </p>
      */
     public abstract void setZones(Zones... zones);
 
     /**
      * Adds zone to the zones array
-     * 
+     *
      * @param zone
      *            to add
      * @see #setZones(Zones...)
@@ -377,7 +547,7 @@ public abstract class PyramidOptions extends AbstractPlotOptions {
 
     /**
      * Removes first occurrence of zone in zones array
-     * 
+     *
      * @param zone
      *            to remove
      * @see #setZones(Zones...)
