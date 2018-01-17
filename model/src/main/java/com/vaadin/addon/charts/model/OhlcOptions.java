@@ -35,8 +35,6 @@ public abstract class OhlcOptions extends AbstractPlotOptions {
     /**
      * Allow this series' points to be selected by clicking on the markers or
      * bars.
-     * <p>
-     * Defaults to: false
      */
     public abstract void setAllowPointSelect(Boolean allowPointSelect);
 
@@ -50,25 +48,10 @@ public abstract class OhlcOptions extends AbstractPlotOptions {
      * Enable or disable the initial animation when a series is displayed. The
      * animation can also be set as a configuration object. Please note that
      * this option only applies to the initial animation of the series itself.
-     * For other animations, see <a href="#chart.animation">chart.animation</a>
-     * and the animation parameter under the API methods. The following
-     * properties are supported:
-     * </p>
-     * <dl>
-     * <dt>duration</dt>
-     * <dd>The duration of the animation in milliseconds.</dd>
-     * <dt>easing</dt>
-     * <dd>A string reference to an easing function set on the <code>Math</code>
-     * object. See <a href=
-     * "http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-animation-easing/"
-     * >the easing demo</a>.</dd>
-     * </dl>
      * <p>
      * Due to poor performance, animation is disabled in old IE browsers for
      * column charts and polar charts.
      * </p>
-     * <p>
-     * Defaults to: true
      */
     public abstract void setAnimation(Boolean animation);
 
@@ -102,9 +85,7 @@ public abstract class OhlcOptions extends AbstractPlotOptions {
     public abstract Number getColorIndex();
 
     /**
-     * <a href=
-     * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-     * >Styled mode</a> only. A specific color index to use for the series, so
+     * A specific color index to use for the series, so
      * its graphic representations are given the class name
      * <code>highcharts-color-{n}</code>.
      */
@@ -117,8 +98,7 @@ public abstract class OhlcOptions extends AbstractPlotOptions {
 
     /**
      * A series specific or series type specific color set to apply instead of
-     * the global <a href="#colors">colors</a> when <a
-     * href="#plotOptions.column.colorByPoint">colorByPoint</a> is true.
+     * the theme colors.
      */
     public abstract void setColors(Color... colors);
 
@@ -146,11 +126,8 @@ public abstract class OhlcOptions extends AbstractPlotOptions {
     public abstract Number getCompareBase();
 
     /**
-     * When <a href="#plotOptions.series.compare">compare</a> is
-     * <code>percent</code>, this option dictates whether to use 0 or 100 as the
+     * This option dictates whether to use 0 or 100 as the
      * base of comparison.
-     * <p>
-     * Defaults to: 0
      */
     public abstract void setCompareBase(Number compareBase);
 
@@ -168,8 +145,6 @@ public abstract class OhlcOptions extends AbstractPlotOptions {
      * data is cropped to only contain points that fall within the plot area.
      * The advantage of cropping away invisible points is to increase
      * performance on large series. .
-     * <p>
-     * Defaults to: 50
      */
     public abstract void setCropThreshold(Number cropThreshold);
 
@@ -190,6 +165,15 @@ public abstract class OhlcOptions extends AbstractPlotOptions {
      */
     public abstract DataGrouping getDataGrouping();
 
+    /**
+     * Data grouping is the concept of sampling the data values into larger
+     * blocks in order to ease readability and increase performance of the
+     * JavaScript charts. By default data grouping is applied when the points
+     * become closer than a certain pixel value, determined by the
+     * groupPixelWidth option.
+     *
+     * @param dataGrouping
+     */
     public abstract void setDataGrouping(DataGrouping dataGrouping);
 
     /**
@@ -198,15 +182,8 @@ public abstract class OhlcOptions extends AbstractPlotOptions {
     public abstract String getDescription();
 
     /**
-     * <p>
-     * <i>Requires Accessibility module</i>
-     * </p>
-     * <p>
      * A description of the series to add to the screen reader information about
      * the series.
-     * </p>
-     * <p>
-     * Defaults to: undefined
      */
     public abstract void setDescription(String description);
 
@@ -220,8 +197,6 @@ public abstract class OhlcOptions extends AbstractPlotOptions {
      * point tooltips and click events on graphs and points. When using shared
      * tooltips (default in stock charts), mouse tracking is not required. For
      * large datasets it improves performance.
-     * <p>
-     * Defaults to: true
      */
     public abstract void setEnableMouseTracking(Boolean enableMouseTracking);
 
@@ -231,18 +206,11 @@ public abstract class OhlcOptions extends AbstractPlotOptions {
     public abstract Boolean getExposeElementToA11y();
 
     /**
-     * <p>
      * By default, series are exposed to screen readers as regions. By enabling
      * this option, the series element itself will be exposed in the same way as
      * the data points. This is useful if the series is not used as a grouping
      * entity in the chart, but you still want to attach a description to the
      * series.
-     * </p>
-     * <p>
-     * Requires the Accessibility module.
-     * </p>
-     * <p>
-     * Defaults to: undefined
      */
     public abstract void setExposeElementToA11y(Boolean exposeElementToA11y);
 
@@ -274,8 +242,6 @@ public abstract class OhlcOptions extends AbstractPlotOptions {
     /**
      * Together with <code>gapSize</code>, this option defines where to draw
      * gaps in the graph.
-     * <p>
-     * Defaults to: relative
      */
     public abstract void setGapUnit(String gapUnit);
 
@@ -288,8 +254,6 @@ public abstract class OhlcOptions extends AbstractPlotOptions {
      * Whether to use the Y extremes of the total chart width or only the zoomed
      * area when zooming in on parts of the X axis. By default, the Y axis
      * adjusts to the min and max of the visible data. Cartesian series only.
-     * <p>
-     * Defaults to: false
      */
     public abstract void setGetExtremesFromAll(Boolean getExtremesFromAll);
 
@@ -300,8 +264,6 @@ public abstract class OhlcOptions extends AbstractPlotOptions {
 
     /**
      * Padding between each value groups, in x axis units.
-     * <p>
-     * Defaults to: 0.2
      */
     public abstract void setGroupPadding(Number groupPadding);
 
@@ -314,8 +276,6 @@ public abstract class OhlcOptions extends AbstractPlotOptions {
      * Whether to group non-stacked columns or to let them render independent of
      * each other. Non-grouped columns will be laid out individually and overlap
      * each other.
-     * <p>
-     * Defaults to: true
      */
     public abstract void setGrouping(Boolean grouping);
 
@@ -356,8 +316,6 @@ public abstract class OhlcOptions extends AbstractPlotOptions {
 
     /**
      * The sequential index of the series within the legend.
-     * <p>
-     * Defaults to: 0
      */
     public abstract void setLegendIndex(Number legendIndex);
 
@@ -367,10 +325,10 @@ public abstract class OhlcOptions extends AbstractPlotOptions {
     public abstract String getLinkedTo();
 
     /**
-     * The <a href="#series.id">id</a> of another series to link to.
-     * Additionally, the value can be ":previous" to link to the previous
-     * series. When two series are linked, only the first one appears in the
-     * legend. Toggling the visibility of this also toggles the linked series.
+     * The ID of another series to link to. Additionally, the value can be
+     * ":previous" to link to the previous series. When two series are linked,
+     * only the first one appears in the legend. Toggling the visibility of this
+     * also toggles the linked series.
      */
     public abstract void setLinkedTo(String linkedTo);
 
@@ -383,8 +341,6 @@ public abstract class OhlcOptions extends AbstractPlotOptions {
      * The maximum allowed pixel width for a column, translated to the height of
      * a bar in a bar chart. This prevents the columns from becoming too wide
      * when there is a small number of points in the chart.
-     * <p>
-     * Defaults to: null
      */
     public abstract void setMaxPointWidth(Number maxPointWidth);
 
@@ -398,8 +354,6 @@ public abstract class OhlcOptions extends AbstractPlotOptions {
      * are not shown. To visualize a 0 (or close to zero) point, set the minimal
      * point length to a pixel value like 3. In stacked column charts,
      * minPointLength might not be respected for tightly packed values.
-     * <p>
-     * Defaults to: 0
      */
     public abstract void setMinPointLength(Number minPointLength);
 
@@ -409,21 +363,8 @@ public abstract class OhlcOptions extends AbstractPlotOptions {
     public abstract PlotOptionsSeries getNavigatorOptions();
 
     /**
-     * <p>
      * Options for the corresponding navigator series if
      * <code>showInNavigator</code> is <code>true</code> for this series.
-     * Available options are the same as any series, documented at <a
-     * class="internal" href="#plotOptions.series">plotOptions</a> and <a
-     * class="internal" href="#series">series</a>.
-     * </p>
-     *
-     * <p>
-     * These options are merged with options in <a
-     * href="#navigator.series">navigator.series</a>, and will take precedence
-     * if the same option is defined both places.
-     * </p>
-     * <p>
-     * Defaults to: undefined
      */
     public abstract void setNavigatorOptions(PlotOptionsSeries navigatorOptions);
 
@@ -445,11 +386,9 @@ public abstract class OhlcOptions extends AbstractPlotOptions {
      * <code>24 * 3600 * 1000</code>.
      * </p>
      * <p>
-     * Since Highstock 2.1, it can be combined with
-     * <code>pointIntervalUnit</code> to draw irregular intervals.
+     * It can be combined with <code>pointIntervalUnit</code> to draw irregular
+     * intervals.
      * </p>
-     * <p>
-     * Defaults to: 1
      */
     public abstract void setPointInterval(Number pointInterval);
 
@@ -460,7 +399,7 @@ public abstract class OhlcOptions extends AbstractPlotOptions {
 
     /**
      * On datetime series, this allows for setting the <a
-     * href="#plotOptions.series.pointInterval">pointInterval</a> to irregular
+     * href="plotOptions.series.pointInterval">pointInterval</a> to irregular
      * time units, <code>day</code>, <code>month</code> and <code>year</code>. A
      * day is usually the same as 24 hours, but pointIntervalUnit also takes the
      * DST crossover into consideration when dealing with local time. Combine
@@ -476,8 +415,6 @@ public abstract class OhlcOptions extends AbstractPlotOptions {
 
     /**
      * Padding between each column or bar, in x axis units.
-     * <p>
-     * Defaults to: 0.1
      */
     public abstract void setPointPadding(Number pointPadding);
 
@@ -500,21 +437,9 @@ public abstract class OhlcOptions extends AbstractPlotOptions {
      * in time or in a certain sector of a polar chart.
      * </p>
      * <p>
-     * Since Highcharts 3.0.2, the point placement can also be numeric, where 0
-     * is on the axis value, -0.5 is between this value and the previous, and
-     * 0.5 is between this value and the next. Unlike the textual options,
-     * numeric point placement options won't affect axis padding.
+     * Note that pointPlacement needs a pointRange to work. For column series
+     * this is computed, but for line-type series it needs to be set.
      * </p>
-     * <p>
-     * Note that pointPlacement needs a <a
-     * href="#plotOptions.series.pointRange">pointRange</a> to work. For column
-     * series this is computed, but for line-type series it needs to be set.
-     * </p>
-     * <p>
-     * Defaults to <code>null</code> in cartesian charts, <code>"between"</code>
-     * in polar charts.
-     * <p>
-     * Defaults to: null
      */
     public abstract void setPointPlacement(PointPlacement pointPlacement);
 
@@ -529,8 +454,6 @@ public abstract class OhlcOptions extends AbstractPlotOptions {
      * milliseconds). This is normally computed automatically, but this option
      * can be used to override the automatic value. In a series on a categorized
      * axis the pointRange is 1 by default.
-     * <p>
-     * Defaults to: null
      */
     public abstract void setPointRange(Number pointRange);
 
@@ -544,8 +467,6 @@ public abstract class OhlcOptions extends AbstractPlotOptions {
      * on what value to start. On a datetime X axis, the number will be given as
      * milliseconds since 1970-01-01, for example
      * <code>Date.UTC(2011, 0, 1)</code>.
-     * <p>
-     * Defaults to: 0
      */
     public abstract void setPointStart(Number pointStart);
 
@@ -558,8 +479,6 @@ public abstract class OhlcOptions extends AbstractPlotOptions {
      * A pixel value specifying a fixed width for each column or bar. When
      * <code>null</code>, the width is calculated from the
      * <code>pointPadding</code> and <code>groupPadding</code>.
-     * <p>
-     * Defaults to: null
      */
     public abstract void setPointWidth(Number pointWidth);
 
@@ -572,8 +491,6 @@ public abstract class OhlcOptions extends AbstractPlotOptions {
      * Whether to select the series initially. If <code>showCheckbox</code> is
      * true, the checkbox next to the series name in the legend will be checked
      * for a selected series.
-     * <p>
-     * Defaults to: false
      */
     public abstract void setSelected(Boolean selected);
 
@@ -583,12 +500,7 @@ public abstract class OhlcOptions extends AbstractPlotOptions {
     public abstract Boolean getShadow();
 
     /**
-     * Whether to apply a drop shadow to the graph line. Since 1.1.7 the shadow
-     * can be an object configuration containing <code>color</code>,
-     * <code>offsetX</code>, <code>offsetY</code>, <code>opacity</code> and
-     * <code>width</code>.
-     * <p>
-     * Defaults to: false
+     * Whether to apply a drop shadow to the graph line.
      */
     public abstract void setShadow(Boolean shadow);
 
@@ -601,8 +513,6 @@ public abstract class OhlcOptions extends AbstractPlotOptions {
      * If true, a checkbox is displayed next to the legend item to allow
      * selecting the series. The state of the checkbox is determined by the
      * <code>selected</code> option.
-     * <p>
-     * Defaults to: false
      */
     public abstract void setShowCheckbox(Boolean showCheckbox);
 
@@ -615,8 +525,6 @@ public abstract class OhlcOptions extends AbstractPlotOptions {
      * Whether to display this particular series or series type in the legend.
      * The default value is <code>true</code> for standalone series,
      * <code>false</code> for linked series.
-     * <p>
-     * Defaults to: true
      */
     public abstract void setShowInLegend(Boolean showInLegend);
 
@@ -626,10 +534,7 @@ public abstract class OhlcOptions extends AbstractPlotOptions {
     public abstract Boolean getShowInNavigator();
 
     /**
-     * Whether or not to show the series in the navigator. Takes precedence over
-     * <a href="#navigator.baseSeries">navigator.baseSeries</a> if defined.
-     * <p>
-     * Defaults to: undefined
+     * Whether or not to show the series in the navigator.
      */
     public abstract void setShowInNavigator(Boolean showInNavigator);
 
@@ -639,8 +544,7 @@ public abstract class OhlcOptions extends AbstractPlotOptions {
     public abstract Boolean getSkipKeyboardNavigation();
 
     /**
-     * If set to <code>True</code>, the accessibility module will skip past the
-     * points in this series for keyboard navigation.
+     * Whether or not to skip past the points in this series for keyboard navigation.
      */
     public abstract void setSkipKeyboardNavigation(Boolean skipKeyboardNavigation);
 
@@ -652,8 +556,7 @@ public abstract class OhlcOptions extends AbstractPlotOptions {
     /**
      * <p>
      * When this is true, the series will not cause the Y axis to cross the zero
-     * plane (or <a href="#plotOptions.series.threshold">threshold</a> option)
-     * unless the data actually crosses the plane.
+     * plane unless the data actually crosses the plane.
      * </p>
      *
      * <p>
@@ -662,8 +565,6 @@ public abstract class OhlcOptions extends AbstractPlotOptions {
      * to the <code>minPadding</code> option. If <code>softThreshold</code> is
      * <code>true</code>, the Y axis starts at 0.
      * </p>
-     * <p>
-     * Defaults to: false
      */
     public abstract void setSoftThreshold(Boolean softThreshold);
 
@@ -689,10 +590,7 @@ public abstract class OhlcOptions extends AbstractPlotOptions {
      * event on a series is triggered when the mouse leaves the area around the
      * series' graph or markers. This also implies the tooltip when not shared.
      * When <code>stickyTracking</code> is false, the tooltip will be hidden
-     * when moving the mouse between series. Defaults to true for line and area
-     * type series, but to false for columns, candlesticks etc.
-     * <p>
-     * Defaults to: true
+     * when moving the mouse between series.
      */
     public abstract void setStickyTracking(Boolean stickyTracking);
 
@@ -703,10 +601,7 @@ public abstract class OhlcOptions extends AbstractPlotOptions {
 
     /**
      * The threshold, also called zero level or base level. For line type series
-     * this is only used in conjunction with <a
-     * href="#plotOptions.series.negativeColor">negativeColor</a>.
-     * <p>
-     * Defaults to: 0
+     * this is only used in conjunction with negativeColor.
      */
     public abstract void setThreshold(Number threshold);
 
@@ -717,8 +612,6 @@ public abstract class OhlcOptions extends AbstractPlotOptions {
 
     /**
      * A configuration object for the tooltip rendering of each single series.
-     * Properties are inherited from <a href="#tooltip">tooltip</a>, but only
-     * the following properties can be defined on a series level.
      */
     public abstract void setTooltip(SeriesTooltip tooltip);
 
@@ -733,8 +626,6 @@ public abstract class OhlcOptions extends AbstractPlotOptions {
      * values are allowed. Also, only the first point is tested, and the rest
      * are assumed to be the same format. This saves expensive data checking and
      * indexing in long series. Set it to <code>0</code> disable.
-     * <p>
-     * Defaults to: 1000
      */
     public abstract void setTurboThreshold(Number turboThreshold);
 
@@ -755,8 +646,6 @@ public abstract class OhlcOptions extends AbstractPlotOptions {
 
     /**
      * Set the initial visibility of the series.
-     * <p>
-     * Defaults to: true
      */
     public abstract void setVisible(Boolean visible);
 
@@ -767,8 +656,6 @@ public abstract class OhlcOptions extends AbstractPlotOptions {
 
     /**
      * Defines the Axis on which the zones are applied.
-     * <p>
-     * Defaults to: y
      */
     public abstract void setZoneAxis(ZoneAxis zoneAxis);
 
@@ -778,21 +665,9 @@ public abstract class OhlcOptions extends AbstractPlotOptions {
     public abstract Zones[] getZones();
 
     /**
-     * <p>
      * An array defining zones within a series. Zones can be applied to the X
      * axis, Y axis or Z axis for bubbles, according to the
      * <code>zoneAxis</code> option.
-     * </p>
-     *
-     * <p>
-     * In <a href=
-     * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-     * >styled mode</a>, the color zones are styled with the
-     * <code>.highcharts-zone-{n}</code> class, or custom classed from the
-     * <code>className</code> option (<a href=
-     * "http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/color-zones/"
-     * >view live demo</a>).
-     * </p>
      */
     public abstract void setZones(Zones... zones);
 

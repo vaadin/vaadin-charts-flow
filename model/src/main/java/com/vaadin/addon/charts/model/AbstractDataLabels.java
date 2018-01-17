@@ -28,13 +28,7 @@ public abstract class AbstractDataLabels extends AbstractConfigurationObject {
     public abstract String getClassName();
 
     /**
-     * A class name for the data label. Particularly in <a href=
-     * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-     * >styled mode</a>, this can be used to give each series' or point's data
-     * label unique styling. In addition to this option, a default color class
-     * name is added so that we can give the labels a <a href=
-     * "http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/data-label-contrast/"
-     * >contrast text shadow</a>.
+     * A class name for the data label.
      */
     public abstract void setClassName(String className);
 
@@ -45,10 +39,7 @@ public abstract class AbstractDataLabels extends AbstractConfigurationObject {
 
     /**
      * Whether to hide data labels that are outside the plot area. By default,
-     * the data label is moved inside the plot area according to the <a
-     * href="#plotOptions.series.dataLabels.overflow">overflow</a> option.
-     * <p>
-     * Defaults to: true
+     * the data label is moved inside the plot area according to the overflow option.
      */
     public abstract void setCrop(Boolean crop);
 
@@ -60,8 +51,6 @@ public abstract class AbstractDataLabels extends AbstractConfigurationObject {
     /**
      * Whether to defer displaying the data labels until the initial series
      * animation has finished.
-     * <p>
-     * Defaults to: true
      */
     public abstract void setDefer(Boolean defer);
 
@@ -72,8 +61,6 @@ public abstract class AbstractDataLabels extends AbstractConfigurationObject {
 
     /**
      * Enable or disable the data labels.
-     * <p>
-     * Defaults to: false
      */
     public abstract void setEnabled(Boolean enabled);
 
@@ -83,17 +70,21 @@ public abstract class AbstractDataLabels extends AbstractConfigurationObject {
     public abstract String getFormat();
 
     /**
-     * A <a href=
-     * "http://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting"
-     * >format string</a> for the data label. Available variables are the same
+     * A format string for the data label. Available variables are the same
      * as for <code>formatter</code>.
-     * <p>
-     * Defaults to: {y}
      */
     public abstract void setFormat(String format);
 
+    /**
+     * @see #setFormatter(String)
+     */
     public abstract String getFormatter();
 
+    /**
+     * Callback JavaScript function to format the data label.
+     * Note that if a <code>format</code> is defined, the format
+     * takes precedence and the formatter is ignored.
+     */
     public abstract void setFormatter(String _fn_formatter);
 
     /**
@@ -103,8 +94,7 @@ public abstract class AbstractDataLabels extends AbstractConfigurationObject {
 
     /**
      * For points with an extent, like columns, whether to align the data label
-     * inside the box or to the actual value point. Defaults to
-     * <code>false</code> in most cases, <code>true</code> in stacked columns.
+     * inside the box or to the actual value point.
      */
     public abstract void setInside(Boolean inside);
 
@@ -119,8 +109,6 @@ public abstract class AbstractDataLabels extends AbstractConfigurationObject {
      * and bars, this means it will be moved inside the bar. To display data
      * labels outside the plot area, set <code>crop</code> to <code>false</code>
      * and <code>overflow</code> to <code>"none"</code>.
-     * <p>
-     * Defaults to: justify
      */
     public abstract void setOverflow(String overflow);
 
@@ -132,8 +120,6 @@ public abstract class AbstractDataLabels extends AbstractConfigurationObject {
     /**
      * When either the <code>borderWidth</code> or the
      * <code>backgroundColor</code> is set, this is the padding within the box.
-     * <p>
-     * Defaults to: 5
      */
     public abstract void setPadding(Number padding);
 
@@ -145,8 +131,6 @@ public abstract class AbstractDataLabels extends AbstractConfigurationObject {
     /**
      * Text rotation in degrees. Note that due to a more complex structure,
      * backgrounds, borders and padding will be lost on a rotated data label.
-     * <p>
-     * Defaults to: 0
      */
     public abstract void setRotation(Number rotation);
 
@@ -156,12 +140,7 @@ public abstract class AbstractDataLabels extends AbstractConfigurationObject {
     public abstract Boolean getShadow();
 
     /**
-     * The shadow of the box. Works best with <code>borderWidth</code> or
-     * <code>backgroundColor</code>. Since 2.3 the shadow can be an object
-     * configuration containing <code>color</code>, <code>offsetX</code>,
-     * <code>offsetY</code>, <code>opacity</code> and <code>width</code>.
-     * <p>
-     * Defaults to: false
+     * The shadow of the box.
      */
     public abstract void setShadow(Boolean shadow);
 
@@ -173,8 +152,6 @@ public abstract class AbstractDataLabels extends AbstractConfigurationObject {
     /**
      * The name of a symbol to use for the border around the label. Symbols are
      * predefined functions on the Renderer object.
-     * <p>
-     * Defaults to: square
      */
     public abstract void setShape(Shape shape);
 
@@ -184,11 +161,7 @@ public abstract class AbstractDataLabels extends AbstractConfigurationObject {
     public abstract Boolean getUseHTML();
 
     /**
-     * Whether to <a href=
-     * "http://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting#html"
-     * >use HTML</a> to render the labels.
-     * <p>
-     * Defaults to: false
+     * Whether to use HTML to render the labels.
      */
     public abstract void setUseHTML(Boolean useHTML);
 
@@ -198,10 +171,7 @@ public abstract class AbstractDataLabels extends AbstractConfigurationObject {
     public abstract VerticalAlign getVerticalAlign();
 
     /**
-     * The vertical alignment of a data label. Can be one of <code>top</code>,
-     * <code>middle</code> or <code>bottom</code>. The default value depends on
-     * the data, for instance in a column chart, the label is above positive
-     * values and below negative values.
+     * The vertical alignment of a data label.
      */
     public abstract void setVerticalAlign(VerticalAlign verticalAlign);
 
@@ -213,8 +183,6 @@ public abstract class AbstractDataLabels extends AbstractConfigurationObject {
     /**
      * The Z index of the data labels. The default Z index puts it above the
      * series. Use a Z index of 2 to display it behind the series.
-     * <p>
-     * Defaults to: 6
      */
     public abstract void setZIndex(Number zIndex);
 }

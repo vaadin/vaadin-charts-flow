@@ -216,10 +216,8 @@ public abstract class Axis extends AbstractConfigurationObject {
 
     /**
      * Whether to allow decimals in this axis' ticks. When counting integers,
-     * like persons or hits on a web page, decimals should be avoided in the
-     * labels.
-     * <p>
-     * Defaults to: true
+     * like persons or hits on a web page, decimals must be avoided in the axis
+     * tick labels.
      */
     public abstract void setAllowDecimals(Boolean allowDecimals);
 
@@ -241,10 +239,10 @@ public abstract class Axis extends AbstractConfigurationObject {
 
     /**
      * <p>
-     * If categories are present for the xAxis, names are used instead of
+     * If categories are present for the axis, names are used instead of
      * numbers for that axis. Since Highcharts 3.0, categories can also be
-     * extracted by giving each point a <a href="#series.data">name</a> and
-     * setting axis <a href="#xAxis.type">type</a> to <code>category</code>.
+     * extracted by giving each point a <code>name</code> and
+     * setting axis type to <code>category</code>.
      * However, if you have multiple series, best practice remains defining the
      * <code>categories</code> array.
      * </p>
@@ -255,8 +253,6 @@ public abstract class Axis extends AbstractConfigurationObject {
      * <pre>
      * categories: ['Apples', 'Bananas', 'Oranges']
      * </pre>
-     *
-     * Defaults to <code>null</code>
      * </p>
      */
     public abstract void setCategories(String... categories);
@@ -295,11 +291,7 @@ public abstract class Axis extends AbstractConfigurationObject {
     public abstract String getClassName();
 
     /**
-     * A class name that opens for styling the axis by CSS, especially in
-     * Highcharts <a href=
-     * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-     * >styled mode</a>. The class name is applied to group elements for the
-     * grid, axis elements and labels.
+     * A class name that opens for styling the axis by CSS.
      */
     public abstract void setClassName(String className);
 
@@ -309,21 +301,8 @@ public abstract class Axis extends AbstractConfigurationObject {
     public abstract Crosshair getCrosshair();
 
     /**
-     * <p>
      * Configure a crosshair that follows either the mouse pointer or the
      * hovered point.
-     * </p>
-     *
-     * <p>
-     * In <a href=
-     * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-     * >styled mode</a>, the crosshairs are styled in the
-     * <code>.highcharts-crosshair</code>,
-     * <code>.highcharts-crosshair-thin</code> or
-     * <code>.highcharts-xaxis-category</code> classes.
-     * </p>
-     * <p>
-     * Defaults to: false
      */
     public abstract void setCrosshair(Crosshair crosshair);
 
@@ -335,26 +314,8 @@ public abstract class Axis extends AbstractConfigurationObject {
     /**
      * For a datetime axis, the scale will automatically adjust to the
      * appropriate unit. This member gives the default string representations
-     * used for each unit. For intermediate values, different units may be used,
-     * for example the <code>day</code> unit can be used on midnight and
-     * <code>hour</code> unit be used for intermediate values on the same axis.
-     * For an overview of the replacement codes, see <a
-     * href="#Highcharts.dateFormat">dateFormat</a>.
-     *
-     * Defaults to:
-     *
-     * <pre>
-     * {
-     * 		millisecond: '%H:%M:%S.%L',
-     * 		second: '%H:%M:%S',
-     * 		minute: '%H:%M',
-     * 		hour: '%H:%M',
-     * 		day: '%e. %b',
-     * 		week: '%e. %b',
-     * 		month: '%b \'%y',
-     * 		year: '%Y'
-     * 	}
-     * </pre>
+     * used for each unit. For an overview of the replacement codes, see
+     * dateFormat.
      */
     public abstract void setDateTimeLabelFormats(
             DateTimeLabelFormats dateTimeLabelFormats);
@@ -365,15 +326,7 @@ public abstract class Axis extends AbstractConfigurationObject {
     public abstract String getDescription();
 
     /**
-     * <p>
-     * <i>Requires Accessibility module</i>
-     * </p>
-     *
-     * <p>
      * Description of the axis to screen reader users.
-     * </p>
-     * <p>
-     * Defaults to: undefined
      */
     public abstract void setDescription(String description);
 
@@ -385,8 +338,6 @@ public abstract class Axis extends AbstractConfigurationObject {
     /**
      * Whether to force the axis to end on a tick. Use this option with the
      * <code>maxPadding</code> option to control the axis end.
-     * <p>
-     * Defaults to: false
      */
     public abstract void setEndOnTick(Boolean endOnTick);
 
@@ -397,8 +348,6 @@ public abstract class Axis extends AbstractConfigurationObject {
 
     /**
      * The lowest allowed value for automatically computed axis extremes.
-     * <p>
-     * Defaults to: null
      */
     public abstract void setFloor(Number floor);
 
@@ -408,12 +357,7 @@ public abstract class Axis extends AbstractConfigurationObject {
     public abstract DashStyle getGridLineDashStyle();
 
     /**
-     * The dash or dot style of the grid lines. For possible values, see <a
-     * href=
-     * "http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-dashstyle-all/"
-     * >this demonstration</a>.
-     * <p>
-     * Defaults to: Solid
+     * The dash or dot style of the grid lines.
      */
     public abstract void setGridLineDashStyle(DashStyle gridLineDashStyle);
 
@@ -424,8 +368,6 @@ public abstract class Axis extends AbstractConfigurationObject {
 
     /**
      * The Z index of the grid lines.
-     * <p>
-     * Defaults to: 1
      */
     public abstract void setGridZIndex(Number gridZIndex);
 
@@ -456,19 +398,7 @@ public abstract class Axis extends AbstractConfigurationObject {
     public abstract Color getLineColor();
 
     /**
-     * <p>
      * The color of the line marking the axis itself.
-     * </p>
-     *
-     * <p>
-     * In <a href=
-     * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-     * >styled mode</a>, the line stroke is given in the
-     * <code>.highcharts-axis-line</code> or <code>.highcharts-xaxis-line</code>
-     * class.
-     * </p>
-     * <p>
-     * Defaults to: #ccd6eb
      */
     public abstract void setLineColor(Color lineColor);
 
@@ -478,19 +408,7 @@ public abstract class Axis extends AbstractConfigurationObject {
     public abstract Number getLineWidth();
 
     /**
-     * <p>
      * The width of the line marking the axis itself.
-     * </p>
-     *
-     * <p>
-     * In <a href=
-     * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-     * >styled mode</a>, the stroke width is given in the
-     * <code>.highcharts-axis-line</code> or <code>.highcharts-xaxis-line</code>
-     * class.
-     * </p>
-     * <p>
-     * Defaults to: 1
      */
     public abstract void setLineWidth(Number lineWidth);
 
@@ -518,8 +436,6 @@ public abstract class Axis extends AbstractConfigurationObject {
      * want the highest data value to appear on the edge of the plot area. When
      * the axis' <code>max</code> option is set or a max extreme is set using
      * <code>axis.setExtremes()</code>, the maxPadding will be ignored.
-     * <p>
-     * Defaults to: 0.01
      */
     public abstract void setMaxPadding(Number maxPadding);
 
@@ -534,8 +450,6 @@ public abstract class Axis extends AbstractConfigurationObject {
      * want the lowest data value to appear on the edge of the plot area. When
      * the axis' <code>min</code> option is set or a min extreme is set using
      * <code>axis.setExtremes()</code>, the minPadding will be ignored.
-     * <p>
-     * Defaults to: 0.01
      */
     public abstract void setMinPadding(Number minPadding);
 
@@ -579,8 +493,7 @@ public abstract class Axis extends AbstractConfigurationObject {
     /**
      * The minimum tick interval allowed in axis values. For example on zooming
      * in on an axis with daily data, this can be used to prevent the axis from
-     * showing hours. Defaults to the closest distance between two points on the
-     * axis.
+     * showing hours.
      */
     public abstract void setMinTickInterval(Number minTickInterval);
 
@@ -590,12 +503,7 @@ public abstract class Axis extends AbstractConfigurationObject {
     public abstract DashStyle getMinorGridLineDashStyle();
 
     /**
-     * The dash or dot style of the minor grid lines. For possible values, see
-     * <a href=
-     * "http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-dashstyle-all/"
-     * >this demonstration</a>.
-     * <p>
-     * Defaults to: Solid
+     * The dash or dot style of the minor grid lines.
      */
     public abstract void setMinorGridLineDashStyle(DashStyle minorGridLineDashStyle);
 
@@ -606,8 +514,6 @@ public abstract class Axis extends AbstractConfigurationObject {
 
     /**
      * Color for the minor tick marks.
-     * <p>
-     * Defaults to: #999999
      */
     public abstract void setMinorTickColor(Color minorTickColor);
 
@@ -636,7 +542,7 @@ public abstract class Axis extends AbstractConfigurationObject {
      * sense, and will be ignored to prevent performance problems.</a>
      *
      * <p>
-     * On axes using <a href="#xAxis.categories">categories</a>, minor ticks are
+     * On axes using <code>categories</code>, minor ticks are
      * not supported.
      * </p>
      */
@@ -649,8 +555,6 @@ public abstract class Axis extends AbstractConfigurationObject {
 
     /**
      * The pixel length of the minor tick marks.
-     * <p>
-     * Defaults to: 2
      */
     public abstract void setMinorTickLength(Number minorTickLength);
 
@@ -662,8 +566,6 @@ public abstract class Axis extends AbstractConfigurationObject {
     /**
      * The position of the minor tick marks relative to the axis line. Can be
      * one of <code>inside</code> and <code>outside</code>.
-     * <p>
-     * Defaults to: outside
      */
     public abstract void setMinorTickPosition(TickPosition minorTickPosition);
 
@@ -674,8 +576,6 @@ public abstract class Axis extends AbstractConfigurationObject {
 
     /**
      * The pixel width of the minor tick mark.
-     * <p>
-     * Defaults to: 0
      */
     public abstract void setMinorTickWidth(Number minorTickWidth);
 
@@ -688,11 +588,7 @@ public abstract class Axis extends AbstractConfigurationObject {
      * The distance in pixels from the plot area to the axis line. A positive
      * offset moves the axis with it's line, labels and ticks away from the plot
      * area. This is typically used when two or more axes are displayed on the
-     * same side of the plot. With multiple axes the offset is dynamically
-     * adjusted to avoid collision, this can be overridden by setting offset
-     * explicitly.
-     * <p>
-     * Defaults to: 0
+     * same side of the plot.
      */
     public abstract void setOffset(Number offset);
 
@@ -706,8 +602,6 @@ public abstract class Axis extends AbstractConfigurationObject {
      * normal is on the left side for vertical axes and bottom for horizontal,
      * so the opposite sides will be right and top respectively. This is
      * typically used with dual or multiple axes.
-     * <p>
-     * Defaults to: false
      */
     public abstract void setOpposite(Boolean opposite);
 
@@ -720,19 +614,6 @@ public abstract class Axis extends AbstractConfigurationObject {
      * <p>
      * An array of colored bands stretching across the plot area marking an
      * interval on the axis.
-     * </p>
-     *
-     * <p>
-     * In a gauge, a plot band on the Y axis (value axis) will stretch along the
-     * perimeter of the gauge.
-     * </p>
-     *
-     * <p>
-     * In <a href=
-     * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-     * >styled mode</a>, the plot bands are styled by the
-     * <code>.highcharts-plot-band</code> class in addition to the
-     * <code>className</code> option.
      * </p>
      */
     public abstract void setPlotBands(PlotBand... plotBands);
@@ -761,18 +642,8 @@ public abstract class Axis extends AbstractConfigurationObject {
     public abstract PlotLine[] getPlotLines();
 
     /**
-     * <p>
      * An array of lines stretching across the plot area, marking a specific
      * value on one of the axes.
-     * </p>
-     *
-     * <p>
-     * In <a href=
-     * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-     * >styled mode</a>, the plot lines are styled by the
-     * <code>.highcharts-plot-line</code> class in addition to the
-     * <code>className</code> option.
-     * </p>
      */
     public abstract void setPlotLines(PlotLine... plotLines);
 
@@ -801,9 +672,7 @@ public abstract class Axis extends AbstractConfigurationObject {
 
     /**
      * Whether to reverse the axis so that the highest number is closest to the
-     * origin. If the chart is inverted, the x axis is reversed by default.
-     * <p>
-     * Defaults to: false
+     * origin.
      */
     public abstract void setReversed(Boolean reversed);
 
@@ -814,8 +683,6 @@ public abstract class Axis extends AbstractConfigurationObject {
 
     /**
      * Whether to show the axis line and title when the axis has no data.
-     * <p>
-     * Defaults to: true
      */
     public abstract void setShowEmpty(Boolean showEmpty);
 
@@ -826,8 +693,6 @@ public abstract class Axis extends AbstractConfigurationObject {
 
     /**
      * Whether to show the first tick label.
-     * <p>
-     * Defaults to: true
      */
     public abstract void setShowFirstLabel(Boolean showFirstLabel);
 
@@ -838,8 +703,6 @@ public abstract class Axis extends AbstractConfigurationObject {
 
     /**
      * Whether to show the last tick label.
-     * <p>
-     * Defaults to: true
      */
     public abstract void setShowLastLabel(Boolean showLastLabel);
 
@@ -875,8 +738,6 @@ public abstract class Axis extends AbstractConfigurationObject {
     /**
      * For datetime axes, this decides where to put the tick between weeks. 0 =
      * Sunday, 1 = Monday.
-     * <p>
-     * Defaults to: 1
      */
     public abstract void setStartOfWeek(Number startOfWeek);
 
@@ -888,8 +749,6 @@ public abstract class Axis extends AbstractConfigurationObject {
     /**
      * Whether to force the axis to start on a tick. Use this option with the
      * <code>minPadding</code> option to control the axis start.
-     * <p>
-     * Defaults to: false
      */
     public abstract void setStartOnTick(Boolean startOnTick);
 
@@ -919,8 +778,8 @@ public abstract class Axis extends AbstractConfigurationObject {
     /**
      * <p>
      * The interval of the tick marks in axis units. When <code>null</code>, the
-     * tick interval is computed to approximately follow the <a
-     * href="#xAxis.tickPixelInterval">tickPixelInterval</a> on linear and
+     * tick interval is computed to approximately follow the
+     * <code>tickPixelInterval</code> on linear and
      * datetime axes. On categorized axes, a <code>null</code> tickInterval will
      * default to 1, one category. Note that datetime axes are based on
      * milliseconds, so for example an interval of one day is expressed as
@@ -933,16 +792,9 @@ public abstract class Axis extends AbstractConfigurationObject {
      * 0.2 puts a tick on 0.1, 0.2, 0.4, 0.6, 0.8, 1, 2, 4, 6, 8, 10, 20, 40
      * etc.
      * </p>
-     *
      * <p>
      * If the tickInterval is too dense for labels to be drawn, Highcharts may
      * remove ticks.
-     * </p>
-     *
-     * <p>
-     * If the chart has multiple axes, the <a
-     * href="#chart.alignTicks">alignTicks</a> option may interfere with the
-     * <code>tickInterval</code> setting.
      * </p>
      */
     public abstract void setTickInterval(Number tickInterval);
@@ -954,8 +806,6 @@ public abstract class Axis extends AbstractConfigurationObject {
 
     /**
      * The pixel length of the main tick marks.
-     * <p>
-     * Defaults to: 10
      */
     public abstract void setTickLength(Number tickLength);
 
@@ -965,21 +815,8 @@ public abstract class Axis extends AbstractConfigurationObject {
     public abstract Number getTickPixelInterval();
 
     /**
-     * <p>
      * If tickInterval is <code>null</code> this option sets the approximate
      * pixel interval of the tick marks. Not applicable to categorized axis.
-     * </p>
-     *
-     * <p>
-     * The tick interval is also influenced by the <a
-     * href="#xAxis.minTickInterval">minTickInterval</a> option, that, by
-     * default prevents ticks from being denser than the data points.
-     * </p>
-     *
-     * <p>
-     * Defaults to <code>72</code> for the Y axis and <code>100</code> for the X
-     * axis.
-     * </p>
      */
     public abstract void setTickPixelInterval(Number tickPixelInterval);
 
@@ -991,8 +828,6 @@ public abstract class Axis extends AbstractConfigurationObject {
     /**
      * The position of the major tick marks relative to the axis line. Can be
      * one of <code>inside</code> and <code>outside</code>.
-     * <p>
-     * Defaults to: outside
      */
     public abstract void setTickPosition(TickPosition tickPosition);
 
@@ -1003,9 +838,8 @@ public abstract class Axis extends AbstractConfigurationObject {
 
     /**
      * An array defining where the ticks are laid out on the axis. This
-     * overrides the default behaviour of <a
-     * href="#xAxis.tickPixelInterval">tickPixelInterval</a> and <a
-     * href="#xAxis.tickInterval">tickInterval</a>.
+     * overrides the default behaviour of <code>tickPixelInterval</code> and
+     * <code>tickInterval</code>.
      */
     public abstract void setTickPositions(Number[] tickPositions);
 
@@ -1015,18 +849,7 @@ public abstract class Axis extends AbstractConfigurationObject {
     public abstract Number getTickWidth();
 
     /**
-     * <p>
      * The pixel width of the major tick marks.
-     * </p>
-     *
-     * <p>
-     * In <a href=
-     * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-     * >styled mode</a>, the stroke width is given in the
-     * <code>.highcharts-tick</code> class.
-     * </p>
-     * <p>
-     * Defaults to: 1
      */
     public abstract void setTickWidth(Number tickWidth);
 
@@ -1040,8 +863,6 @@ public abstract class Axis extends AbstractConfigurationObject {
      * the center of the category, if <code>between</code> the tick mark is
      * placed between categories. The default is <code>between</code> if the
      * <code>tickInterval</code> is 1, else <code>on</code>.
-     * <p>
-     * Defaults to: null
      */
     public abstract void setTickmarkPlacement(TickmarkPlacement tickmarkPlacement);
 
@@ -1061,15 +882,13 @@ public abstract class Axis extends AbstractConfigurationObject {
     public abstract AxisType getType();
 
     /**
-     * The type of axis. Can be one of <code>linear</code>,
-     * <code>logarithmic</code>, <code>datetime</code> or <code>category</code>.
-     * In a datetime axis, the numbers are given in milliseconds, and tick marks
-     * are placed on appropriate values like full hours or days. In a category
-     * axis, the <a href="#series<line>.data.name">point names</a> of the
-     * chart's series are used for categories, if not a <a
-     * href="#xAxis.categories">categories</a> array is defined.
-     * <p>
-     * Defaults to: linear
+     * The type of axis. Can be one of <code>"linear"</code>,
+     * <code>"logarithmic"</code>, <code>"datetime"</code> or
+     * <code>"category"</code>. In a datetime axis, the numbers are given in
+     * milliseconds, and tick marks are placed on appropriate values like full
+     * hours or days. In a category axis, the point
+     * names of the chart's series are used for categories, if not a
+     * categories array is defined.
      */
     public abstract void setType(AxisType type);
 
@@ -1087,8 +906,6 @@ public abstract class Axis extends AbstractConfigurationObject {
      * points are laid out in increasing X positions regardless of their names,
      * and the X axis category will take the name of the last point in each
      * position.
-     * <p>
-     * Defaults to: true
      */
     public abstract void setUniqueNames(Boolean uniqueNames);
 
@@ -1101,35 +918,6 @@ public abstract class Axis extends AbstractConfigurationObject {
      * Datetime axis only. An array determining what time intervals the ticks
      * are allowed to fall on. Each array item is an array where the first value
      * is the time unit and the second value another array of allowed multiples.
-     * Defaults to:
-     *
-     * <pre>
-     * units: [[
-     * 		'millisecond', // unit name
-     * 		[1, 2, 5, 10, 20, 25, 50, 100, 200, 500] // allowed multiples
-     * 	], [
-     * 		'second',
-     * 		[1, 2, 5, 10, 15, 30]
-     * 	], [
-     * 		'minute',
-     * 		[1, 2, 5, 10, 15, 30]
-     * 	], [
-     * 		'hour',
-     * 		[1, 2, 3, 4, 6, 8, 12]
-     * 	], [
-     * 		'day',
-     * 		[1]
-     * 	], [
-     * 		'week',
-     * 		[1]
-     * 	], [
-     * 		'month',
-     * 		[1, 3, 6]
-     * 	], [
-     * 		'year',
-     * 		null
-     * 	]]
-     * </pre>
      */
     public abstract void setUnits(TimeUnitMultiples... units);
 
@@ -1159,8 +947,6 @@ public abstract class Axis extends AbstractConfigurationObject {
     /**
      * Whether axis, including axis title, line, ticks and labels, should be
      * visible.
-     * <p>
-     * Defaults to: true
      */
     public abstract void setVisible(Boolean visible);
 

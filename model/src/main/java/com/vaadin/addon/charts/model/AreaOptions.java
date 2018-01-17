@@ -38,8 +38,6 @@ public abstract class AreaOptions extends AbstractPlotOptions {
     /**
      * Allow this series' points to be selected by clicking on the markers, bars
      * or pie slices.
-     * <p>
-     * Defaults to: false
      */
     public abstract void setAllowPointSelect(Boolean allowPointSelect);
 
@@ -53,25 +51,10 @@ public abstract class AreaOptions extends AbstractPlotOptions {
      * Enable or disable the initial animation when a series is displayed. The
      * animation can also be set as a configuration object. Please note that
      * this option only applies to the initial animation of the series itself.
-     * For other animations, see <a href="#chart.animation">chart.animation</a>
-     * and the animation parameter under the API methods. The following
-     * properties are supported:
-     * </p>
-     * <dl>
-     * <dt>duration</dt>
-     * <dd>The duration of the animation in milliseconds.</dd>
-     * <dt>easing</dt>
-     * <dd>A string reference to an easing function set on the <code>Math</code>
-     * object. See <a href=
-     * "http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-animation-easing/"
-     * >the easing demo</a>.</dd>
-     * </dl>
      * <p>
      * Due to poor performance, animation is disabled in old IE browsers for
      * column charts and polar charts.
      * </p>
-     * <p>
-     * Defaults to: true
      */
     public abstract void setAnimation(Boolean animation);
 
@@ -84,8 +67,7 @@ public abstract class AreaOptions extends AbstractPlotOptions {
      * For some series, there is a limit that shuts down initial animation by
      * default when the total number of points in the chart is too high. For
      * example, for a column chart and its derivatives, animation doesn't run if
-     * there is more than 250 points totally. To disable this cap, set
-     * <code>animationLimit</code> to <code>Infinity</code>.
+     * there is more than 250 points totally.
      */
     public abstract void setAnimationLimit(Number animationLimit);
 
@@ -105,9 +87,7 @@ public abstract class AreaOptions extends AbstractPlotOptions {
     public abstract Number getColorIndex();
 
     /**
-     * <a href=
-     * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-     * >Styled mode</a> only. A specific color index to use for the series, so
+     * A specific color index to use for the series, so
      * its graphic representations are given the class name
      * <code>highcharts-color-{n}</code>.
      */
@@ -120,8 +100,6 @@ public abstract class AreaOptions extends AbstractPlotOptions {
 
     /**
      * Whether to connect a graph line across null points.
-     * <p>
-     * Defaults to: false
      */
     public abstract void setConnectNulls(Boolean connectNulls);
 
@@ -138,9 +116,7 @@ public abstract class AreaOptions extends AbstractPlotOptions {
      * when the series contains more points than the crop threshold, the series
      * data is cropped to only contain points that fall within the plot area.
      * The advantage of cropping away invisible points is to increase
-     * performance on large series.
-     * <p>
-     * Defaults to: 300
+     * performance on large series. .
      */
     public abstract void setCropThreshold(Number cropThreshold);
 
@@ -162,15 +138,8 @@ public abstract class AreaOptions extends AbstractPlotOptions {
     public abstract String getDescription();
 
     /**
-     * <p>
-     * <i>Requires Accessibility module</i>
-     * </p>
-     * <p>
      * A description of the series to add to the screen reader information about
      * the series.
-     * </p>
-     * <p>
-     * Defaults to: undefined
      */
     public abstract void setDescription(String description);
 
@@ -183,8 +152,6 @@ public abstract class AreaOptions extends AbstractPlotOptions {
      * Enable or disable the mouse tracking for a specific series. This includes
      * point tooltips and click events on graphs and points. For large datasets
      * it improves performance.
-     * <p>
-     * Defaults to: true
      */
     public abstract void setEnableMouseTracking(Boolean enableMouseTracking);
 
@@ -194,18 +161,11 @@ public abstract class AreaOptions extends AbstractPlotOptions {
     public abstract Boolean getExposeElementToA11y();
 
     /**
-     * <p>
      * By default, series are exposed to screen readers as regions. By enabling
      * this option, the series element itself will be exposed in the same way as
      * the data points. This is useful if the series is not used as a grouping
      * entity in the chart, but you still want to attach a description to the
      * series.
-     * </p>
-     * <p>
-     * Requires the Accessibility module.
-     * </p>
-     * <p>
-     * Defaults to: undefined
      */
     public abstract void setExposeElementToA11y(Boolean exposeElementToA11y);
 
@@ -226,14 +186,10 @@ public abstract class AreaOptions extends AbstractPlotOptions {
     public abstract Number getFillOpacity();
 
     /**
-     * Fill opacity for the area. When you set an explicit
+     * Fill opacity for the area. Note that when you set an explicit
      * <code>fillColor</code>, the <code>fillOpacity</code> is not applied.
      * Instead, you should define the opacity in the <code>fillColor</code> with
-     * an rgba color definition. The <code>fillOpacity</code> setting, also the
-     * default setting, overrides the alpha component of the <code>color</code>
-     * setting.
-     * <p>
-     * Defaults to: 0.75
+     * an rgba color definition.
      */
     public abstract void setFillOpacity(Number fillOpacity);
 
@@ -243,7 +199,6 @@ public abstract class AreaOptions extends AbstractPlotOptions {
     public abstract Dimension getFindNearestPointBy();
 
     /**
-     * <p>
      * Determines whether the series should look for the nearest point in both
      * dimensions or just the x-dimension when hovering the series. Defaults to
      * <code>'xy'</code> for scatter series and <code>'x'</code> for most other
@@ -266,8 +221,6 @@ public abstract class AreaOptions extends AbstractPlotOptions {
      * Whether to use the Y extremes of the total chart width or only the zoomed
      * area when zooming in on parts of the X axis. By default, the Y axis
      * adjusts to the min and max of the visible data. Cartesian series only.
-     * <p>
-     * Defaults to: false
      */
     public abstract void setGetExtremesFromAll(Boolean getExtremesFromAll);
 
@@ -308,8 +261,6 @@ public abstract class AreaOptions extends AbstractPlotOptions {
 
     /**
      * The line cap used for line ends and line joins on the graph.
-     * <p>
-     * Defaults to: round
      */
     public abstract void setLinecap(String linecap);
 
@@ -319,10 +270,10 @@ public abstract class AreaOptions extends AbstractPlotOptions {
     public abstract String getLinkedTo();
 
     /**
-     * The <a href="#series.id">id</a> of another series to link to.
-     * Additionally, the value can be ":previous" to link to the previous
-     * series. When two series are linked, only the first one appears in the
-     * legend. Toggling the visibility of this also toggles the linked series.
+     * The ID of another series to link to. Additionally, the value can be
+     * ":previous" to link to the previous series. When two series are linked,
+     * only the first one appears in the legend. Toggling the visibility of this
+     * also toggles the linked series.
      */
     public abstract void setLinkedTo(String linkedTo);
 
@@ -353,11 +304,9 @@ public abstract class AreaOptions extends AbstractPlotOptions {
      * one value every decade starting from year 0, set pointInterval to 10.
      * </p>
      * <p>
-     * Since Highcharts 4.1, it can be combined with
-     * <code>pointIntervalUnit</code> to draw irregular intervals.
+     * It can be combined with <code>pointIntervalUnit</code> to draw irregular
+     * intervals.
      * </p>
-     * <p>
-     * Defaults to: 1
      */
     public abstract void setPointInterval(Number pointInterval);
 
@@ -368,7 +317,7 @@ public abstract class AreaOptions extends AbstractPlotOptions {
 
     /**
      * On datetime series, this allows for setting the <a
-     * href="#plotOptions.series.pointInterval">pointInterval</a> to irregular
+     * href="plotOptions.series.pointInterval">pointInterval</a> to irregular
      * time units, <code>day</code>, <code>month</code> and <code>year</code>. A
      * day is usually the same as 24 hours, but pointIntervalUnit also takes the
      * DST crossover into consideration when dealing with local time. Combine
@@ -396,19 +345,9 @@ public abstract class AreaOptions extends AbstractPlotOptions {
      * in time or in a certain sector of a polar chart.
      * </p>
      * <p>
-     * Since Highcharts 3.0.2, the point placement can also be numeric, where 0
-     * is on the axis value, -0.5 is between this value and the previous, and
-     * 0.5 is between this value and the next. Unlike the textual options,
-     * numeric point placement options won't affect axis padding.
+     * Note that pointPlacement needs a pointRange to work. For column series
+     * this is computed, but for line-type series it needs to be set.
      * </p>
-     * <p>
-     * Note that pointPlacement needs a <a
-     * href="#plotOptions.series.pointRange">pointRange</a> to work. For column
-     * series this is computed, but for line-type series it needs to be set.
-     * </p>
-     * <p>
-     * Defaults to <code>null</code> in cartesian charts, <code>"between"</code>
-     * in polar charts.
      */
     public abstract void setPointPlacement(PointPlacement pointPlacement);
 
@@ -421,8 +360,6 @@ public abstract class AreaOptions extends AbstractPlotOptions {
      * If no x values are given for the points in a series, pointStart defines
      * on what value to start. For example, if a series contains one yearly
      * value starting from 1945, set pointStart to 1945.
-     * <p>
-     * Defaults to: 0
      */
     public abstract void setPointStart(Number pointStart);
 
@@ -435,8 +372,6 @@ public abstract class AreaOptions extends AbstractPlotOptions {
      * Whether to select the series initially. If <code>showCheckbox</code> is
      * true, the checkbox next to the series name will be checked for a selected
      * series.
-     * <p>
-     * Defaults to: false
      */
     public abstract void setSelected(Boolean selected);
 
@@ -446,12 +381,7 @@ public abstract class AreaOptions extends AbstractPlotOptions {
     public abstract Boolean getShadow();
 
     /**
-     * Whether to apply a drop shadow to the graph line. Since 2.3 the shadow
-     * can be an object configuration containing <code>color</code>,
-     * <code>offsetX</code>, <code>offsetY</code>, <code>opacity</code> and
-     * <code>width</code>.
-     * <p>
-     * Defaults to: false
+     * Whether to apply a drop shadow to the graph line.
      */
     public abstract void setShadow(Boolean shadow);
 
@@ -464,8 +394,6 @@ public abstract class AreaOptions extends AbstractPlotOptions {
      * If true, a checkbox is displayed next to the legend item to allow
      * selecting the series. The state of the checkbox is determined by the
      * <code>selected</code> option.
-     * <p>
-     * Defaults to: false
      */
     public abstract void setShowCheckbox(Boolean showCheckbox);
 
@@ -478,8 +406,6 @@ public abstract class AreaOptions extends AbstractPlotOptions {
      * Whether to display this particular series or series type in the legend.
      * The default value is <code>true</code> for standalone series,
      * <code>false</code> for linked series.
-     * <p>
-     * Defaults to: true
      */
     public abstract void setShowInLegend(Boolean showInLegend);
 
@@ -489,10 +415,7 @@ public abstract class AreaOptions extends AbstractPlotOptions {
     public abstract Boolean getShowInNavigator();
 
     /**
-     * Whether or not to show the series in the navigator. Takes precedence over
-     * <a href="#navigator.baseSeries">navigator.baseSeries</a> if defined.
-     * <p>
-     * Defaults to: undefined
+     * Whether or not to show the series in the navigator.
      */
     public abstract void setShowInNavigator(Boolean showInNavigator);
 
@@ -503,10 +426,7 @@ public abstract class AreaOptions extends AbstractPlotOptions {
 
     /**
      * Whether to stack the values of each series on top of each other. Possible
-     * values are null to disable, "normal" to stack by value or "percent". When
-     * stacking is enabled, data must be sorted in ascending X order.
-     * <p>
-     * Defaults to: null
+     * values are null to disable, "normal" to stack by value or "percent".
      */
     public abstract void setStacking(Stacking stacking);
 
@@ -516,8 +436,7 @@ public abstract class AreaOptions extends AbstractPlotOptions {
     public abstract Boolean getSkipKeyboardNavigation();
 
     /**
-     * If set to <code>True</code>, the accessibility module will skip past the
-     * points in this series for keyboard navigation.
+     * Whether or not to skip past the points in this series for keyboard navigation.
      */
     public abstract void setSkipKeyboardNavigation(Boolean skipKeyboardNavigation);
 
@@ -544,10 +463,6 @@ public abstract class AreaOptions extends AbstractPlotOptions {
      * series' graph or markers. This also implies the tooltip. When
      * <code>stickyTracking</code> is false and <code>tooltip.shared</code> is
      * false, the tooltip will be hidden when moving the mouse between series.
-     * Defaults to true for line and area type series, but to false for columns,
-     * pies etc.
-     * <p>
-     * Defaults to: true
      */
     public abstract void setStickyTracking(Boolean stickyTracking);
 
@@ -558,8 +473,6 @@ public abstract class AreaOptions extends AbstractPlotOptions {
 
     /**
      * A configuration object for the tooltip rendering of each single series.
-     * Properties are inherited from <a href="#tooltip">tooltip</a>, but only
-     * the following properties can be defined on a series level.
      */
     public abstract void setTooltip(SeriesTooltip tooltip);
 
@@ -571,8 +484,6 @@ public abstract class AreaOptions extends AbstractPlotOptions {
     /**
      * Whether the whole area or just the line should respond to mouseover
      * tooltips and other mouse or touch events.
-     * <p>
-     * Defaults to: true
      */
     public abstract void setTrackByArea(Boolean trackByArea);
 
@@ -587,8 +498,6 @@ public abstract class AreaOptions extends AbstractPlotOptions {
      * values are allowed. Also, only the first point is tested, and the rest
      * are assumed to be the same format. This saves expensive data checking and
      * indexing in long series. Set it to <code>0</code> disable.
-     * <p>
-     * Defaults to: 1000
      */
     public abstract void setTurboThreshold(Number turboThreshold);
 
@@ -599,8 +508,6 @@ public abstract class AreaOptions extends AbstractPlotOptions {
 
     /**
      * Set the initial visibility of the series.
-     * <p>
-     * Defaults to: true
      */
     public abstract void setVisible(Boolean visible);
 
@@ -611,8 +518,6 @@ public abstract class AreaOptions extends AbstractPlotOptions {
 
     /**
      * Defines the Axis on which the zones are applied.
-     * <p>
-     * Defaults to: y
      */
     public abstract void setZoneAxis(ZoneAxis zoneAxis);
 
@@ -622,21 +527,9 @@ public abstract class AreaOptions extends AbstractPlotOptions {
     public abstract Zones[] getZones();
 
     /**
-     * <p>
      * An array defining zones within a series. Zones can be applied to the X
      * axis, Y axis or Z axis for bubbles, according to the
      * <code>zoneAxis</code> option.
-     * </p>
-     *
-     * <p>
-     * In <a href=
-     * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-     * >styled mode</a>, the color zones are styled with the
-     * <code>.highcharts-zone-{n}</code> class, or custom classed from the
-     * <code>className</code> option (<a href=
-     * "http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/color-zones/"
-     * >view live demo</a>).
-     * </p>
      */
     public abstract void setZones(Zones... zones);
 
@@ -670,8 +563,6 @@ public abstract class AreaOptions extends AbstractPlotOptions {
      * <code>"percent"</code> or <code>"value"</code>. When this is applied to
      * multiple series, it allows comparing the development of the series
      * against each other.
-     * <p>
-     * Defaults to: undefined
      */
     public abstract void setCompare(Compare compare);
 
@@ -681,11 +572,8 @@ public abstract class AreaOptions extends AbstractPlotOptions {
     public abstract Number getCompareBase();
 
     /**
-     * When <a href="#plotOptions.series.compare">compare</a> is
-     * <code>percent</code>, this option dictates whether to use 0 or 100 as the
+     * This option dictates whether to use 0 or 100 as the
      * base of comparison.
-     * <p>
-     * Defaults to: 0
      */
     public abstract void setCompareBase(Number compareBase);
 
@@ -695,18 +583,9 @@ public abstract class AreaOptions extends AbstractPlotOptions {
     public abstract DataGrouping getDataGrouping();
 
     /**
-     * <p>
      * Data grouping is the concept of sampling the data values into larger
      * blocks in order to ease readability and increase performance of the
-     * JavaScript charts. Highstock by default applies data grouping when the
-     * points become closer than a certain pixel value, determined by the
-     * <code>groupPixelWidth</code> option.
-     * </p>
-     *
-     * <p>
-     * If data grouping is applied, the grouping information of grouped points
-     * can be read from the <a href="#Point.dataGroup">Point.dataGroup</a>.
-     * </p>
+     * charts.
      */
     public abstract void setDataGrouping(DataGrouping dataGrouping);
 
@@ -727,8 +606,6 @@ public abstract class AreaOptions extends AbstractPlotOptions {
      * series. In a stock chart, intraday data is available for daytime hours,
      * while gaps will appear in nights and weekends.
      * </p>
-     * <p>
-     * Defaults to: 0
      */
     public abstract void setGapSize(Number gapSize);
 
@@ -740,8 +617,6 @@ public abstract class AreaOptions extends AbstractPlotOptions {
     /**
      * Together with <code>gapSize</code>, this option defines where to draw
      * gaps in the graph.
-     * <p>
-     * Defaults to: relative
      */
     public abstract void setGapUnit(String gapUnit);
 
@@ -752,8 +627,6 @@ public abstract class AreaOptions extends AbstractPlotOptions {
 
     /**
      * The sequential index of the series within the legend.
-     * <p>
-     * Defaults to: 0
      */
     public abstract void setLegendIndex(Number legendIndex);
 
@@ -763,21 +636,8 @@ public abstract class AreaOptions extends AbstractPlotOptions {
     public abstract PlotOptionsSeries getNavigatorOptions();
 
     /**
-     * <p>
      * Options for the corresponding navigator series if
      * <code>showInNavigator</code> is <code>true</code> for this series.
-     * Available options are the same as any series, documented at <a
-     * class="internal" href="#plotOptions.series">plotOptions</a> and <a
-     * class="internal" href="#series">series</a>.
-     * </p>
-     *
-     * <p>
-     * These options are merged with options in <a
-     * href="#navigator.series">navigator.series</a>, and will take precedence
-     * if the same option is defined both places.
-     * </p>
-     * <p>
-     * Defaults to: undefined
      */
     public abstract void setNavigatorOptions(PlotOptionsSeries navigatorOptions);
 
@@ -791,8 +651,6 @@ public abstract class AreaOptions extends AbstractPlotOptions {
      * one value each day, the pointRange would be 1 day (= 24 * 3600 * 1000
      * milliseconds). This is normally computed automatically, but this option
      * can be used to override the automatic value.
-     * <p>
-     * Defaults to: 0
      */
     public abstract void setPointRange(Number pointRange);
 

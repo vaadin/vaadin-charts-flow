@@ -32,8 +32,6 @@ public abstract class PyramidOptions extends AbstractPlotOptions {
     /**
      * Allow this series' points to be selected by clicking on the markers, bars
      * or pie slices.
-     * <p>
-     * Defaults to: false
      */
     public abstract void setAllowPointSelect(Boolean allowPointSelect);
 
@@ -57,21 +55,10 @@ public abstract class PyramidOptions extends AbstractPlotOptions {
     public abstract Color getBorderColor();
 
     /**
-     * <p>
      * The color of the border surrounding each slice. When <code>null</code>,
      * the border takes the same color as the slice fill. This can be used
      * together with a <code>borderWidth</code> to fill drawing gaps created by
      * antialiazing artefacts in borderless pies.
-     * </p>
-     *
-     * <p>
-     * In <a href=
-     * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-     * >styled mode</a>, the border stroke is given in the
-     * <code>.highcharts-point</code> class.
-     * </p>
-     * <p>
-     * Defaults to: #ffffff
      */
     public abstract void setBorderColor(Color borderColor);
 
@@ -91,23 +78,12 @@ public abstract class PyramidOptions extends AbstractPlotOptions {
      * border width at 0.5 or 1, but set the <code>borderColor</code> to
      * <code>null</code> instead.
      * </p>
-     *
-     * <p>
-     * In <a href=
-     * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-     * >styled mode</a>, the border stroke width is given in the
-     * <code>.highcharts-point</code> class.
-     * </p>
-     * <p>
-     * Defaults to: 1
      */
     public abstract void setBorderWidth(Number borderWidth);
 
     /**
      * The center of the series. By default, it is centered in the middle of the
      * plot area, so it fills the plot area height.
-     * <p>
-     * Defaults to: ["50%", "50%"]
      */
     public abstract void setCenter(String[] center);
 
@@ -127,9 +103,7 @@ public abstract class PyramidOptions extends AbstractPlotOptions {
     public abstract Number getColorIndex();
 
     /**
-     * <a href=
-     * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-     * >Styled mode</a> only. A specific color index to use for the series, so
+     * A specific color index to use for the series, so
      * its graphic representations are given the class name
      * <code>highcharts-color-{n}</code>.
      */
@@ -142,7 +116,7 @@ public abstract class PyramidOptions extends AbstractPlotOptions {
 
     /**
      * A series specific or series type specific color set to use instead of the
-     * global <a href="#colors">colors</a>.
+     * theme colors.
      */
     public abstract void setColors(Color... colors);
 
@@ -181,6 +155,11 @@ public abstract class PyramidOptions extends AbstractPlotOptions {
      */
     public abstract DataLabelsFunnel getDataLabels();
 
+    /**
+     * Specific data labels configuration for a series type
+     *
+     * @param dataLabels
+     */
     public abstract void setDataLabels(DataLabelsFunnel dataLabels);
 
     /**
@@ -189,9 +168,7 @@ public abstract class PyramidOptions extends AbstractPlotOptions {
     public abstract Number getDepth();
 
     /**
-     * The thickness of a 3D pie. Requires <code>highcharts-3d.js</code>
-     * <p>
-     * Defaults to: 0
+     * The thickness of a 3D pie.
      */
     public abstract void setDepth(Number depth);
 
@@ -201,15 +178,8 @@ public abstract class PyramidOptions extends AbstractPlotOptions {
     public abstract String getDescription();
 
     /**
-     * <p>
-     * <i>Requires Accessibility module</i>
-     * </p>
-     * <p>
      * A description of the series to add to the screen reader information about
      * the series.
-     * </p>
-     * <p>
-     * Defaults to: undefined
      */
     public abstract void setDescription(String description);
 
@@ -222,8 +192,6 @@ public abstract class PyramidOptions extends AbstractPlotOptions {
      * Enable or disable the mouse tracking for a specific series. This includes
      * point tooltips and click events on graphs and points. For large datasets
      * it improves performance.
-     * <p>
-     * Defaults to: true
      */
     public abstract void setEnableMouseTracking(Boolean enableMouseTracking);
 
@@ -233,18 +201,11 @@ public abstract class PyramidOptions extends AbstractPlotOptions {
     public abstract Boolean getExposeElementToA11y();
 
     /**
-     * <p>
      * By default, series are exposed to screen readers as regions. By enabling
      * this option, the series element itself will be exposed in the same way as
      * the data points. This is useful if the series is not used as a grouping
      * entity in the chart, but you still want to attach a description to the
      * series.
-     * </p>
-     * <p>
-     * Requires the Accessibility module.
-     * </p>
-     * <p>
-     * Defaults to: undefined
      */
     public abstract void setExposeElementToA11y(Boolean exposeElementToA11y);
 
@@ -277,8 +238,6 @@ public abstract class PyramidOptions extends AbstractPlotOptions {
      * Whether to use the Y extremes of the total chart width or only the zoomed
      * area when zooming in on parts of the X axis. By default, the Y axis
      * adjusts to the min and max of the visible data. Cartesian series only.
-     * <p>
-     * Defaults to: false
      */
     public abstract void setGetExtremesFromAll(Boolean getExtremesFromAll);
 
@@ -288,9 +247,13 @@ public abstract class PyramidOptions extends AbstractPlotOptions {
     public abstract String getHeight();
 
     /**
-     * The height of the funnel or pyramid. If it is a number it defines the
-     * pixel height, if it is a percentage string it is the percentage of the
-     * plot area height.
+     * Sets the height using String presentation. String presentation is similar
+     * to what is used in Cascading Style Sheets. Size can be pixels or
+     * percentage, otherwise IllegalArgumentException is thrown. The empty
+     * string ("") or null will unset the height and set the units to pixels.
+     *
+     * @param height
+     *            CSS style string representation
      */
     public abstract void setHeight(String height);
 
@@ -330,10 +293,10 @@ public abstract class PyramidOptions extends AbstractPlotOptions {
     public abstract String getLinkedTo();
 
     /**
-     * The <a href="#series.id">id</a> of another series to link to.
-     * Additionally, the value can be ":previous" to link to the previous
-     * series. When two series are linked, only the first one appears in the
-     * legend. Toggling the visibility of this also toggles the linked series.
+     * The ID of another series to link to. Additionally, the value can be
+     * ":previous" to link to the previous series. When two series are linked,
+     * only the first one appears in the legend. Toggling the visibility of this
+     * also toggles the linked series.
      */
     public abstract void setLinkedTo(String linkedTo);
 
@@ -346,8 +309,6 @@ public abstract class PyramidOptions extends AbstractPlotOptions {
      * The minimum size for a pie in response to auto margins. The pie will try
      * to shrink to make room for data labels in side the plot area, but only to
      * this size.
-     * <p>
-     * Defaults to: 80
      */
     public abstract void setMinSize(Number minSize);
 
@@ -364,8 +325,6 @@ public abstract class PyramidOptions extends AbstractPlotOptions {
     /**
      * The pyramid is reversed by default, as opposed to the funnel, which
      * shares the layout engine, and is not reversed.
-     * <p>
-     * Defaults to: true
      */
     public abstract void setReversed(Boolean reversed);
 
@@ -378,8 +337,6 @@ public abstract class PyramidOptions extends AbstractPlotOptions {
      * Whether to select the series initially. If <code>showCheckbox</code> is
      * true, the checkbox next to the series name will be checked for a selected
      * series.
-     * <p>
-     * Defaults to: false
      */
     public abstract void setSelected(Boolean selected);
 
@@ -389,12 +346,7 @@ public abstract class PyramidOptions extends AbstractPlotOptions {
     public abstract Boolean getShadow();
 
     /**
-     * Whether to apply a drop shadow to the graph line. Since 2.3 the shadow
-     * can be an object configuration containing <code>color</code>,
-     * <code>offsetX</code>, <code>offsetY</code>, <code>opacity</code> and
-     * <code>width</code>.
-     * <p>
-     * Defaults to: false
+     * Whether to apply a drop shadow to the graph line.
      */
     public abstract void setShadow(Boolean shadow);
 
@@ -405,9 +357,6 @@ public abstract class PyramidOptions extends AbstractPlotOptions {
 
     /**
      * Whether to display this particular series or series type in the legend.
-     * Since 2.1, pies are not shown in the legend by default.
-     * <p>
-     * Defaults to: false
      */
     public abstract void setShowInLegend(Boolean showInLegend);
 
@@ -417,7 +366,7 @@ public abstract class PyramidOptions extends AbstractPlotOptions {
     public abstract Boolean getSkipKeyboardNavigation();
 
     /**
-     * If set to <code>True</code>, the accessibility module will skip past the
+     * Whether or not to skip past the
      * points in this series for keyboard navigation.
      */
     public abstract void setSkipKeyboardNavigation(Boolean skipKeyboardNavigation);
@@ -430,8 +379,6 @@ public abstract class PyramidOptions extends AbstractPlotOptions {
     /**
      * If a point is sliced, moved out from the center, how many pixels should
      * it be moved?.
-     * <p>
-     * Defaults to: 10
      */
     public abstract void setSlicedOffset(Number slicedOffset);
 
@@ -458,8 +405,6 @@ public abstract class PyramidOptions extends AbstractPlotOptions {
      * series' graph or markers. This also implies the tooltip. When
      * <code>stickyTracking</code> is false and <code>tooltip.shared</code> is
      * false, the tooltip will be hidden when moving the mouse between series.
-     * <p>
-     * Defaults to: false
      */
     public abstract void setStickyTracking(Boolean stickyTracking);
 
@@ -470,8 +415,6 @@ public abstract class PyramidOptions extends AbstractPlotOptions {
 
     /**
      * A configuration object for the tooltip rendering of each single series.
-     * Properties are inherited from <a href="#tooltip">tooltip</a>, but only
-     * the following properties can be defined on a series level.
      */
     public abstract void setTooltip(SeriesTooltip tooltip);
 
@@ -482,8 +425,6 @@ public abstract class PyramidOptions extends AbstractPlotOptions {
 
     /**
      * Set the initial visibility of the series.
-     * <p>
-     * Defaults to: true
      */
     public abstract void setVisible(Boolean visible);
 
@@ -493,10 +434,13 @@ public abstract class PyramidOptions extends AbstractPlotOptions {
     public abstract String getWidth();
 
     /**
-     * The width of the funnel compared to the width of the plot area, or the
-     * pixel width if it is a number.
-     * <p>
-     * Defaults to: 90%
+     * Sets the width using String presentation. String presentation is similar
+     * to what is used in Cascading Style Sheets. Size can be pixels or
+     * percentage, otherwise IllegalArgumentException is thrown. The empty
+     * string ("") or null will unset the height and set the units to pixels.
+     *
+     * @param width
+     *            CSS style string representation
      */
     public abstract void setWidth(String width);
 
@@ -507,8 +451,6 @@ public abstract class PyramidOptions extends AbstractPlotOptions {
 
     /**
      * Defines the Axis on which the zones are applied.
-     * <p>
-     * Defaults to: y
      */
     public abstract void setZoneAxis(ZoneAxis zoneAxis);
 
@@ -518,21 +460,9 @@ public abstract class PyramidOptions extends AbstractPlotOptions {
     public abstract Zones[] getZones();
 
     /**
-     * <p>
      * An array defining zones within a series. Zones can be applied to the X
      * axis, Y axis or Z axis for bubbles, according to the
      * <code>zoneAxis</code> option.
-     * </p>
-     *
-     * <p>
-     * In <a href=
-     * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-     * >styled mode</a>, the color zones are styled with the
-     * <code>.highcharts-zone-{n}</code> class, or custom classed from the
-     * <code>className</code> option (<a href=
-     * "http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/color-zones/"
-     * >view live demo</a>).
-     * </p>
      */
     public abstract void setZones(Zones... zones);
 
