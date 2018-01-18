@@ -20,7 +20,6 @@ There are few exceptions which are listed here:
 <<charts-charttypes#charts.charttypes.solidgauge, `solidgauge`>>,
 <<charts-charttypes#charts.charttypes.funnel, `pyramid`>>, and
 <<charts-charttypes#charts.charttypes.funnel, `funnel`>>.
-Enabling the timeline in these chart types will raise an `IllegalArgumentException`.
 
 You can change the time range using the navigator at the bottom of the chart.
 To be able to use the navigator, the X values of the corresponding data series should be of the type [classname]#Date#.
