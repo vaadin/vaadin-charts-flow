@@ -111,6 +111,14 @@ public class Chart extends Component {
 
     /**
      * Determines if the chart is a timeline chart or a normal chart.
+     * The following chart types do not support timeline:
+     * <ul>
+     *     <li>ChartType.PIE</li>
+     *     <li>ChartType.GAUGE</li>
+     *     <li>ChartType.SOLIDGAUGE</li>
+     *     <li>ChartType.PYRAMID</li>
+     *     <li>ChartType.FUNNEL</li>
+     * </ul>
      *
      * @param timeline
      *            true for timeline chart
@@ -123,7 +131,7 @@ public class Chart extends Component {
         if (getElement().getProperty("timeline", false)) {
             final ChartType type = getConfiguration().getChart().getType();
             if (TIMELINE_NOT_SUPPORTED.contains(type)) {
-                throw new RuntimeException(
+                throw new IllegalArgumentException(
                         "Timeline is not supported for chart type '" + type + "'");
             }
         }
