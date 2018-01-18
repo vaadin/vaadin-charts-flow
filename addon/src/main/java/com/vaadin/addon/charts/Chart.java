@@ -119,6 +119,8 @@ public class Chart extends Component {
      *     <li>ChartType.PYRAMID</li>
      *     <li>ChartType.FUNNEL</li>
      * </ul>
+     * Enabling timeline in these unsupported chart types
+     * results in an <code>IllegalArgumentException</code>
      *
      * @param timeline
      *            true for timeline chart
