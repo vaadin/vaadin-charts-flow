@@ -362,6 +362,16 @@ public abstract class Axis extends AbstractConfigurationObject {
     public abstract void setGridZIndex(Number gridZIndex);
 
     /**
+     * @see #setGridZIndex(Number)
+     */
+    public abstract Number getGridZIndex();
+
+    /**
+     * The Z index of the grid lines.
+     */
+    public abstract void setGridZIndex(Number gridZIndex);
+
+    /**
      * @see #setId(String)
      */
     public abstract String getId();
