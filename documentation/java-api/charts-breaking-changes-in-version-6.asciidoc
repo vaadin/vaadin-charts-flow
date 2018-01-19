@@ -1,0 +1,95 @@
+---
+title: Charts 6 Breaking Changes
+order: 8
+layout: page
+---
+
+[[charts.charttypes]]
+= Breaking Changes in Version 6
+
+Vaadin Charts 6 comes with some good enhancements, most notably: CSS styling.
+This necessitated removal of many Java style configuration API among other changes.
+
+=== Summary
+
+* Upgraded to HighCharts 5
+* Styling is now primarily done with CSS
+* Dropped "size with units" sizing properties in favor of strings to take full advantage of browser capabilities
+* ZAxis is now a subclass of Axis
+* Getting PlotOptionsSeries no longer automatically creates a new instance
+
+=== Replaced types
+
+|===
+| Old Type | Replaced By
+| PinchType | Dimension
+| ZoomType | Dimension
+|===
+
+=== Dropped types
+
+|===
+| Type | Used In
+| Handles | Navigator.handles
+|===
+
+=== Dropped properties
+
+[cols="2,5"]
+|===
+| Type | Properties
+| AbstractDataLabels | backgroundColor, borderColor, borderRadius, borderWidth, color, reservedSpace, style
+| AreaOptions | color, dashStyle, lineColor, lineWidth, negativeColor
+| Axis | gridLineColor, gridLineWidth, minorGridLineColor, minorGridLineWidth, tickColor
+| AxisTitle | reserveSpace
+| AxisStyle | tickWidth, tickColor, gridLineColor, gridLineWidth
+| Background | backgroundColor, borderColor, borderWidth
+| ChartModel | backgroundColor, borderColor, plotBackgroundColor, plotBackgroundImage, plotBorderColor, selectionMarkerFill
+| ChartStyle | backgroundColor, plotBackgroundColor, plotBorderWidth, plotBorderColor, borderWidth, borderColor
+| ColumnOptions | color
+| ContextButton | symbolFill, symbolSize, symbolStroke, symbolStrokeWidth
+| Credits | style
+| GaugeOptions | zoneAxis, zones
+| Global | canvasToolsURL
+| Hover | lineWidth, lineWidthPlus, fillColor, lineColor
+| Labels | style
+| Legend | backgroundColor, borderColor, borderWidth, itemHiddenStyle, itemHoverStyle, itemStyle
+| LegendNavigation | activeColor, inactiveColor, style
+| LegendTitle | style
+| Loading | labelStyle, style
+| Marker | fillColor, lineColor, lineWidth
+| Navigation | menuItemHoverStyle, menuItemStyle, menuStyle
+| Navigator | handles, maskFill, outlineColor, outlineWidth
+| NoData | style
+| OhlcOptions | color,lineWidth
+| PlotOptionsBoxplot | color, lineWidth, negativeColor
+| PlotOptionsBubble | color, dashStyle, lineWidth, negativeColor
+| PlotOptionsCandlestick | lineColor
+| PlotOptionsFlags | color, lineColor, lineWidth
+| PlotOptionsPolygon | color, dashStyle, lineWidth, negativeColor
+| PlotOptionsSeries | color, dashStyle, lineWidth, negativeColor
+| PlotOptionsTreemap | color
+| PlotOptionsWaterfall | dashStyle, lineColor
+| PointOptions | color, dashStyle, lineWidth, negativeColor
+| PyramidOptions | heightUnit, widthUnit
+| RangeSelector | buttonTheme, inputStyle, labelStyle
+| Select | fillColor, lineColor, lineWidth
+| StackLabels | style
+| Subtitle | style
+| Title | style
+|===
+
+More information about Charts styling can be obtained in the Chapter CSS Styling and https://www.highcharts.com/docs/chart-design-and-style/style-by-css[here].
+
+=== Properties with new types
+
+|===
+| Property | New Type
+| ZAxis.title | AxisTitle
+| ZAxis.type | AxisType
+| ColumnOptions.zoneAxis | ZoneAxis
+| Label.textAlign | TextAlign
+| ChartModel.panKey | PanKey
+| Exporting.type | ExportingFileType
+| Background.shape | BackgroundShape
+|===
