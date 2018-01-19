@@ -81,7 +81,7 @@ This necessitated removal of many Java style configuration API among other chang
 | Title | style
 |===
 
-More information about Charts styling can be obtained in the Chapter CSS Styling and https://www.highcharts.com/docs/chart-design-and-style/style-by-css[here].
+More information about Charts styling can be obtained in the _CSS Styling_ chapter.
 
 === Properties with new types
 
