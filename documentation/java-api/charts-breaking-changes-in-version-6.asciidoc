@@ -20,6 +20,7 @@ This necessitated removal of many Java style configuration API among other chang
 
 === Replaced types
 
+[options="header"]
 |===
 | Old Type | Replaced By
 | PinchType | Dimension
@@ -28,6 +29,7 @@ This necessitated removal of many Java style configuration API among other chang
 
 === Dropped types
 
+[options="header"]
 |===
 | Type | Used In
 | Handles | Navigator.handles
@@ -35,21 +37,21 @@ This necessitated removal of many Java style configuration API among other chang
 
 === Dropped properties
 
-[cols="2,5"]
+[cols="2,5",options="header"]
 |===
 | Type | Properties
-| AbstractDataLabels | backgroundColor, borderColor, borderRadius, borderWidth, color, reservedSpace, style
-| AreaOptions | color, dashStyle, lineColor, lineWidth, negativeColor
-| Axis | gridLineColor, gridLineWidth, minorGridLineColor, minorGridLineWidth, tickColor
+| AbstractDataLabels (and subclasses) | backgroundColor, borderColor, borderRadius, borderWidth, color, reservedSpace, style
+| AreaOptions (and subclasses) | color, dashStyle, lineColor, lineWidth, negativeColor
+| Axis (and subclasses) | gridLineColor, gridLineWidth, minorGridLineColor, minorGridLineWidth, tickColor
 | AxisTitle | reserveSpace
 | AxisStyle | tickWidth, tickColor, gridLineColor, gridLineWidth
 | Background | backgroundColor, borderColor, borderWidth
 | ChartModel | backgroundColor, borderColor, plotBackgroundColor, plotBackgroundImage, plotBorderColor, selectionMarkerFill
 | ChartStyle | backgroundColor, plotBackgroundColor, plotBorderWidth, plotBorderColor, borderWidth, borderColor
-| ColumnOptions | color
+| ColumnOptions (and subclasses) | color
 | ContextButton | symbolFill, symbolSize, symbolStroke, symbolStrokeWidth
 | Credits | style
-| GaugeOptions | zoneAxis, zones
+| GaugeOptions (and subclasses) | zoneAxis, zones
 | Global | canvasToolsURL
 | Hover | lineWidth, lineWidthPlus, fillColor, lineColor
 | Labels | style
@@ -61,7 +63,7 @@ This necessitated removal of many Java style configuration API among other chang
 | Navigation | menuItemHoverStyle, menuItemStyle, menuStyle
 | Navigator | handles, maskFill, outlineColor, outlineWidth
 | NoData | style
-| OhlcOptions | color,lineWidth
+| OhlcOptions (and subclasses) | color,lineWidth
 | PlotOptionsBoxplot | color, lineWidth, negativeColor
 | PlotOptionsBubble | color, dashStyle, lineWidth, negativeColor
 | PlotOptionsCandlestick | lineColor
@@ -70,8 +72,8 @@ This necessitated removal of many Java style configuration API among other chang
 | PlotOptionsSeries | color, dashStyle, lineWidth, negativeColor
 | PlotOptionsTreemap | color
 | PlotOptionsWaterfall | dashStyle, lineColor
-| PointOptions | color, dashStyle, lineWidth, negativeColor
-| PyramidOptions | heightUnit, widthUnit
+| PointOptions (and subclasses) | color, dashStyle, lineWidth, negativeColor
+| PyramidOptions (and subclasses) | heightUnit, widthUnit
 | RangeSelector | buttonTheme, inputStyle, labelStyle
 | Select | fillColor, lineColor, lineWidth
 | StackLabels | style
@@ -83,6 +85,7 @@ More information about Charts styling can be obtained in the Chapter CSS Styling
 
 === Properties with new types
 
+[options="header"]
 |===
 | Property | New Type
 | ZAxis.title | AxisTitle
