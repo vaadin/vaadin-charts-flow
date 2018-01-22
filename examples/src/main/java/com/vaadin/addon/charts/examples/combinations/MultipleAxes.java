@@ -14,8 +14,8 @@ import com.vaadin.addon.charts.model.Tooltip;
 import com.vaadin.addon.charts.model.VerticalAlign;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
-import com.vaadin.addon.charts.model.core.Configuration;
-import com.vaadin.addon.charts.model.core.DataSeries;
+import com.vaadin.addon.charts.model.Configuration;
+import com.vaadin.addon.charts.model.DataSeries;
 
 public class MultipleAxes extends AbstractChartExample {
 

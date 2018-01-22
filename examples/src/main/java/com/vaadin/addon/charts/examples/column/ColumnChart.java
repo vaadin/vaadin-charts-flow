@@ -3,8 +3,8 @@ package com.vaadin.addon.charts.examples.column;
 import com.vaadin.addon.charts.AbstractChartExample;
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.model.ChartType;
-import com.vaadin.addon.charts.model.core.Configuration;
-import com.vaadin.addon.charts.model.core.ListSeries;
+import com.vaadin.addon.charts.model.Configuration;
+import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
 

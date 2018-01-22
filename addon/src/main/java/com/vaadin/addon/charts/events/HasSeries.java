@@ -1,7 +1,7 @@
 package com.vaadin.addon.charts.events;
 
 import com.vaadin.addon.charts.Chart;
-import com.vaadin.addon.charts.model.core.Series;
+import com.vaadin.addon.charts.model.Series;
 
 /**
  * Indicates that an event has an associated series

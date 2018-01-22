@@ -25,7 +25,7 @@ import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.Module;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.module.SimpleModule;
-import com.vaadin.addon.charts.model.core.PaneList;
+import com.vaadin.addon.charts.model.PaneList;
 
 /**
  * Serializer for {@link PaneList}

@@ -3,9 +3,9 @@ package com.vaadin.addon.charts.examples.other;
 import com.vaadin.addon.charts.AbstractChartExample;
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.model.ChartType;
-import com.vaadin.addon.charts.model.core.Configuration;
+import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.Crosshair;
-import com.vaadin.addon.charts.model.core.RangeSeries;
+import com.vaadin.addon.charts.model.RangeSeries;
 import com.vaadin.addon.charts.model.Tooltip;
 
 import static com.vaadin.addon.charts.model.AxisType.DATETIME;

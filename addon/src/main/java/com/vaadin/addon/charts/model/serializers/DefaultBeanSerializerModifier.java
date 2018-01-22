@@ -22,10 +22,10 @@ import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializationConfig;
 import com.fasterxml.jackson.databind.ser.BeanSerializerModifier;
 import com.fasterxml.jackson.databind.ser.std.BeanSerializerBase;
-import com.vaadin.addon.charts.model.core.AbstractSeries;
+import com.vaadin.addon.charts.model.AbstractSeries;
 import com.vaadin.addon.charts.model.AxisTitle;
-import com.vaadin.addon.charts.model.core.DataProviderSeries;
-import com.vaadin.addon.charts.model.core.DataSeriesItem;
+import com.vaadin.addon.charts.model.DataProviderSeries;
+import com.vaadin.addon.charts.model.DataSeriesItem;
 import com.vaadin.addon.charts.model.LegendTitle;
 import com.vaadin.addon.charts.model.Title;
 

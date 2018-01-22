@@ -25,7 +25,7 @@ import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.Module;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.module.SimpleModule;
-import com.vaadin.addon.charts.model.core.AxisList;
+import com.vaadin.addon.charts.model.AxisList;
 
 /**
  * Serializer for {@link AxisList}

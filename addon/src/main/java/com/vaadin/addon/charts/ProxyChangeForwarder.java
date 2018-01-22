@@ -1,21 +1,21 @@
 package com.vaadin.addon.charts;
 
-import com.vaadin.addon.charts.events.core.AbstractSeriesEvent;
-import com.vaadin.addon.charts.events.core.AxisRescaledEvent;
-import com.vaadin.addon.charts.events.core.ConfigurationChangeListener;
-import com.vaadin.addon.charts.events.core.DataAddedEvent;
-import com.vaadin.addon.charts.events.core.DataRemovedEvent;
-import com.vaadin.addon.charts.events.core.DataUpdatedEvent;
-import com.vaadin.addon.charts.events.core.ItemSlicedEvent;
-import com.vaadin.addon.charts.events.core.SeriesAddedEvent;
-import com.vaadin.addon.charts.events.core.SeriesChangedEvent;
-import com.vaadin.addon.charts.events.core.SeriesStateEvent;
+import com.vaadin.addon.charts.events.internal.AbstractSeriesEvent;
+import com.vaadin.addon.charts.events.internal.AxisRescaledEvent;
+import com.vaadin.addon.charts.events.internal.ConfigurationChangeListener;
+import com.vaadin.addon.charts.events.internal.DataAddedEvent;
+import com.vaadin.addon.charts.events.internal.DataRemovedEvent;
+import com.vaadin.addon.charts.events.internal.DataUpdatedEvent;
+import com.vaadin.addon.charts.events.internal.ItemSlicedEvent;
+import com.vaadin.addon.charts.events.internal.SeriesAddedEvent;
+import com.vaadin.addon.charts.events.internal.SeriesChangedEvent;
+import com.vaadin.addon.charts.events.internal.SeriesStateEvent;
 import com.vaadin.addon.charts.model.AbstractConfigurationObject;
 import com.vaadin.addon.charts.util.ChartSerialization;
 import elemental.json.impl.JreJsonFactory;
 
-import static com.vaadin.addon.charts.model.core.AxisDimension.X_AXIS;
-import static com.vaadin.addon.charts.model.core.AxisDimension.Y_AXIS;
+import static com.vaadin.addon.charts.model.AxisDimension.X_AXIS;
+import static com.vaadin.addon.charts.model.AxisDimension.Y_AXIS;
 
 class ProxyChangeForwarder implements ConfigurationChangeListener {
 

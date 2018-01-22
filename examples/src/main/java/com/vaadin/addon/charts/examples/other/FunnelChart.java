@@ -2,10 +2,10 @@ package com.vaadin.addon.charts.examples.other;
 
 import com.vaadin.addon.charts.AbstractChartExample;
 import com.vaadin.addon.charts.Chart;
-import com.vaadin.addon.charts.model.core.Configuration;
+import com.vaadin.addon.charts.model.Configuration;
 import com.vaadin.addon.charts.model.DataLabelsFunnel;
-import com.vaadin.addon.charts.model.core.DataSeries;
-import com.vaadin.addon.charts.model.core.DataSeriesItem;
+import com.vaadin.addon.charts.model.DataSeries;
+import com.vaadin.addon.charts.model.DataSeriesItem;
 import com.vaadin.addon.charts.model.PlotOptionsFunnel;
 
 public class FunnelChart extends AbstractChartExample {
