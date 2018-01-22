@@ -26,7 +26,7 @@ public class Pane extends AbstractConfigurationObject {
 		return paneIndex;
 	}
 
-	public void setPaneIndex(Integer paneIndex) {
+	void setPaneIndex(Integer paneIndex) {
 		this.paneIndex = paneIndex;
 	}
 
