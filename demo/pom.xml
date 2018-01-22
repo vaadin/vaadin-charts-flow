@@ -29,7 +29,7 @@
         <jetty.extra.resource.base>${project.basedir}/${frontend.working.directory}</jetty.extra.resource.base>
         <jetty.jvm.args></jetty.jvm.args>
         <war.source.excludes></war.source.excludes>
-        <war.resource.directory>${frontend.working.directory}/build</war.resource.directory>
+        <war.resource.directory>${frontend.working.directory}</war.resource.directory>
     </properties>
 
     <dependencies>
