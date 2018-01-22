@@ -20,7 +20,7 @@ import java.io.IOException;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.SerializerProvider;
-import com.vaadin.addon.charts.model.AbstractSeries;
+import com.vaadin.addon.charts.model.core.AbstractSeries;
 import com.vaadin.addon.charts.model.PlotOptionsSeries;
 
 /**

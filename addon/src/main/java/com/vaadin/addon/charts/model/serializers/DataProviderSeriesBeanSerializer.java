@@ -1,9 +1,9 @@
 package com.vaadin.addon.charts.model.serializers;
 
-import static com.vaadin.addon.charts.model.DataProviderSeries.CLOSE_PROPERTY;
-import static com.vaadin.addon.charts.model.DataProviderSeries.HIGH_PROPERTY;
-import static com.vaadin.addon.charts.model.DataProviderSeries.LOW_PROPERTY;
-import static com.vaadin.addon.charts.model.DataProviderSeries.OPEN_PROPERTY;
+import static com.vaadin.addon.charts.model.core.DataProviderSeries.CLOSE_PROPERTY;
+import static com.vaadin.addon.charts.model.core.DataProviderSeries.HIGH_PROPERTY;
+import static com.vaadin.addon.charts.model.core.DataProviderSeries.LOW_PROPERTY;
+import static com.vaadin.addon.charts.model.core.DataProviderSeries.OPEN_PROPERTY;
 import java.io.IOException;
 import java.util.Map;
 import java.util.Optional;
@@ -15,7 +15,7 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.databind.node.ValueNode;
-import com.vaadin.addon.charts.model.DataProviderSeries;
+import com.vaadin.addon.charts.model.core.DataProviderSeries;
 import com.vaadin.addon.charts.model.PlotOptionsSeries;
 
 /*

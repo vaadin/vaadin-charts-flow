@@ -7,9 +7,9 @@ import com.vaadin.addon.charts.AbstractChartExample;
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.SkipFromDemo;
 import com.vaadin.addon.charts.model.ChartType;
-import com.vaadin.addon.charts.model.Configuration;
-import com.vaadin.addon.charts.model.DataSeries;
-import com.vaadin.addon.charts.model.DataSeriesItem;
+import com.vaadin.addon.charts.model.core.Configuration;
+import com.vaadin.addon.charts.model.core.DataSeries;
+import com.vaadin.addon.charts.model.core.DataSeriesItem;
 import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.html.Input;
 

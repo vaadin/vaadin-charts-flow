@@ -2,11 +2,11 @@ package com.vaadin.addon.charts.examples.combinations;
 
 import com.vaadin.addon.charts.AbstractChartExample;
 import com.vaadin.addon.charts.Chart;
-import com.vaadin.addon.charts.model.Configuration;
-import com.vaadin.addon.charts.model.DataSeries;
-import com.vaadin.addon.charts.model.DataSeriesItem;
-import com.vaadin.addon.charts.model.HTMLLabelItem;
-import com.vaadin.addon.charts.model.HTMLLabels;
+import com.vaadin.addon.charts.model.core.Configuration;
+import com.vaadin.addon.charts.model.core.DataSeries;
+import com.vaadin.addon.charts.model.core.DataSeriesItem;
+import com.vaadin.addon.charts.model.core.HTMLLabelItem;
+import com.vaadin.addon.charts.model.core.HTMLLabels;
 import com.vaadin.addon.charts.model.PlotOptionsColumn;
 import com.vaadin.addon.charts.model.PlotOptionsPie;
 import com.vaadin.addon.charts.model.PlotOptionsSpline;

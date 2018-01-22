@@ -22,8 +22,8 @@ import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
-import com.vaadin.addon.charts.model.DataSeriesItem;
-import com.vaadin.addon.charts.model.OhlcItem;
+import com.vaadin.addon.charts.model.core.DataSeriesItem;
+import com.vaadin.addon.charts.model.core.OhlcItem;
 
 /**
  * Custom bean serializer for {@link DataSeriesItem}

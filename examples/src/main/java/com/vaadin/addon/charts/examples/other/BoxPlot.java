@@ -2,8 +2,8 @@ package com.vaadin.addon.charts.examples.other;
 
 import com.vaadin.addon.charts.AbstractChartExample;
 import com.vaadin.addon.charts.Chart;
-import com.vaadin.addon.charts.model.BoxPlotItem;
-import com.vaadin.addon.charts.model.DataSeries;
+import com.vaadin.addon.charts.model.core.BoxPlotItem;
+import com.vaadin.addon.charts.model.core.DataSeries;
 import com.vaadin.addon.charts.model.HorizontalAlign;
 import com.vaadin.addon.charts.model.Label;
 import com.vaadin.addon.charts.model.Legend;

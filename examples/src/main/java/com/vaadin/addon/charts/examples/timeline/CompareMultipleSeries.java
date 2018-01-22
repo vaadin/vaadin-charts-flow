@@ -5,16 +5,15 @@ import static com.vaadin.addon.charts.model.Compare.PERCENT;
 import com.vaadin.addon.charts.AbstractChartExample;
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.examples.timeline.util.StockPrices;
-import com.vaadin.addon.charts.model.Configuration;
-import com.vaadin.addon.charts.model.DataSeries;
-import com.vaadin.addon.charts.model.DataSeriesItem;
+import com.vaadin.addon.charts.model.core.Configuration;
+import com.vaadin.addon.charts.model.core.DataSeries;
+import com.vaadin.addon.charts.model.core.DataSeriesItem;
 import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.PlotLine;
 import com.vaadin.addon.charts.model.PlotOptionsSeries;
 import com.vaadin.addon.charts.model.RangeSelector;
 import com.vaadin.addon.charts.model.Tooltip;
 import com.vaadin.addon.charts.model.YAxis;
-import com.vaadin.addon.charts.model.style.SolidColor;
 
 public class CompareMultipleSeries extends AbstractChartExample {
 
