@@ -16,16 +16,13 @@
  */
 package com.vaadin.flow.component.charts.tests;
 
-import static org.junit.Assert.assertEquals;
-
-import com.vaadin.flow.component.charts.AbstractChartExample;
-import com.vaadin.flow.component.charts.examples.dynamic.DynamicChanges;
-import org.junit.Test;
-import org.openqa.selenium.By;
-
 import com.vaadin.flow.component.charts.AbstractChartExample;
 import com.vaadin.flow.component.charts.examples.dynamic.DynamicChanges;
 import com.vaadin.tests.elements.ChartElement;
+import org.junit.Test;
+import org.openqa.selenium.By;
+
+import static org.junit.Assert.assertEquals;
 
 public class DynamicChangesIT extends AbstractTBTest {
 

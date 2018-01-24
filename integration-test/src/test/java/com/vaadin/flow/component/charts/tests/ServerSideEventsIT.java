@@ -1,35 +1,12 @@
 package com.vaadin.flow.component.charts.tests;
 
-import static org.junit.Assert.assertNotNull;
-
-import java.lang.reflect.Type;
-import java.util.List;
-
-import com.vaadin.flow.component.charts.AbstractChartExample;
-import com.vaadin.flow.component.charts.events.ChartClickEvent;
-import com.vaadin.flow.component.charts.events.PointClickEvent;
-import com.vaadin.flow.component.charts.events.PointSelectEvent;
-import com.vaadin.flow.component.charts.events.PointUnselectEvent;
-import com.vaadin.flow.component.charts.events.SeriesCheckboxClickEvent;
-import com.vaadin.flow.component.charts.events.SeriesHideEvent;
-import com.vaadin.flow.component.charts.events.SeriesLegendItemClickEvent;
-import com.vaadin.flow.component.charts.events.SeriesShowEvent;
-import com.vaadin.flow.component.charts.examples.dynamic.ServerSideEvents;
-import com.vaadin.flow.component.charts.model.DataSeries;
-import com.vaadin.flow.component.charts.model.Series;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
+import com.vaadin.flow.component.ComponentEvent;
 import com.vaadin.flow.component.charts.AbstractChartExample;
 import com.vaadin.flow.component.charts.Chart;
 import com.vaadin.flow.component.charts.events.ChartClickEvent;
@@ -48,7 +25,17 @@ import com.vaadin.tests.elements.ButtonElement;
 import com.vaadin.tests.elements.ChartElement;
 import com.vaadin.tests.elements.CheckboxElement;
 import com.vaadin.tests.elements.LabelElement;
-import com.vaadin.flow.component.ComponentEvent;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+
+import java.lang.reflect.Type;
+import java.util.List;
+
+import static org.junit.Assert.assertNotNull;
 
 public class ServerSideEventsIT extends AbstractTBTest {
 

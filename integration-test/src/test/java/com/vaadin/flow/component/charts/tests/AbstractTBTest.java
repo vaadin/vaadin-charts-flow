@@ -16,16 +16,6 @@
  */
 package com.vaadin.flow.component.charts.tests;
 
-import static org.junit.Assert.assertNotNull;
-
-import java.util.Arrays;
-import java.util.List;
-
-import com.vaadin.flow.component.charts.AbstractChartExample;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.remote.DesiredCapabilities;
-
 import com.saucelabs.ci.sauceconnect.AbstractSauceTunnelManager;
 import com.vaadin.flow.component.charts.AbstractChartExample;
 import com.vaadin.testbench.annotations.BrowserConfiguration;
@@ -33,6 +23,14 @@ import com.vaadin.testbench.annotations.RunOnHub;
 import com.vaadin.testbench.parallel.BrowserUtil;
 import com.vaadin.testbench.parallel.ParallelTest;
 import com.vaadin.tests.elements.ChartElement;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.DesiredCapabilities;
+
+import java.util.Arrays;
+import java.util.List;
+
+import static org.junit.Assert.assertNotNull;
 
 @RunOnHub
 public abstract class AbstractTBTest extends ParallelTest {
