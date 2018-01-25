@@ -1,4 +1,4 @@
-package com.vaadin.addon.charts;
+package com.vaadin.flow.component.charts;
 
 import com.vaadin.flow.server.ServiceInitEvent;
 import com.vaadin.flow.server.VaadinServiceInitListener;
