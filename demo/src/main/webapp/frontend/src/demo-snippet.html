@@ -39,7 +39,10 @@
       }
       static get properties() {
         return {
-          source: String
+          source: {
+            value: "No source",
+            type: String
+          }
         }
       }
       ready() {

@@ -13,14 +13,18 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.WildcardParameter;
 import com.vaadin.flow.templatemodel.TemplateModel;
+import io.github.lukehutch.fastclasspathscanner.FastClasspathScanner;
+import io.github.lukehutch.fastclasspathscanner.matchprocessor.FilenameMatchProcessor;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 import org.reflections.Reflections;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.function.Function;
 
 import static java.util.Comparator.comparing;
@@ -51,6 +55,7 @@ public class MainView extends PolymerTemplate<MainView.Model> implements HasUrlP
 
     private static final Map<String, Class<? extends AbstractChartExample>> NAME_INDEXED_SUBTYPES;
     private static final List<Category> CATEGORIES;
+    private static final Set<String> STYLE_FILEPATHS;
 
     @Id("java-snippet")
     private DemoSnippet javaSnippet;
@@ -90,10 +95,20 @@ public class MainView extends PolymerTemplate<MainView.Model> implements HasUrlP
                 })
                 .sorted(comparing(category -> GROUP_ORDER.indexOf(category.getName())))
                 .collect(toList());
+
+        STYLE_FILEPATHS = new HashSet<>();
+        new FastClasspathScanner()
+                .matchFilenamePattern("examples/.*\\.html",
+                        (FilenameMatchProcessor) (classpathElt, relativePath) ->
+                                STYLE_FILEPATHS.add(relativePath))
+                .scan();
     }
 
     public MainView() {
         getModel().setCategories(CATEGORIES);
+        // Load all themes before component attach because
+        // Lumo does not supporting theme reloading.
+        STYLE_FILEPATHS.forEach(style -> UI.getCurrent().getPage().addHtmlImport(style));
     }
 
     @Override
@@ -125,7 +140,6 @@ public class MainView extends PolymerTemplate<MainView.Model> implements HasUrlP
                 final String exampleStyleFile = exampleName + ".html";
                 styleSnippet.setSource(IOUtils.toString(getClass().getResourceAsStream(
                         exampleStyleFile), "UTF-8"));
-                UI.getCurrent().getPage().addHtmlImport(exampleStyleFile);
             } catch (NullPointerException expected) {
                 styleSnippet.setSource(null);
             }

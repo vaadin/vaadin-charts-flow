@@ -24,6 +24,10 @@
         width: 100%;
       }
 
+      .selected-source-tab {
+        font-weight: bold;
+      }
+
       #logoandname {
         display: none;
         margin-bottom: 20px;
@@ -371,12 +375,18 @@
         this.classList.add('hiddensplitter');
         this.$['java-snippet'].classList.add("hidden");
         this.$['style-snippet'].classList.add("hidden");
+
+        this.$['javabutton'].classList.remove("selected-source-tab");
+        this.$['stylebutton'].classList.remove("selected-source-tab");
         this.$.closebutton.style.display = "none";
       }
 
       _showJavaSource() {
         this.classList.remove("hiddensplitter");
         this.$['style-snippet'].classList.add("hidden");
+        this.$['stylebutton'].classList.remove("selected-source-tab");
+
+        this.$['javabutton'].classList.add("selected-source-tab");
         this.$['java-snippet'].classList.remove("hidden");
         this.$.closebutton.style.display = "";
       }
@@ -384,6 +394,9 @@
       _showStyleSource() {
         this.classList.remove("hiddensplitter");
         this.$['java-snippet'].classList.add("hidden");
+        this.$['javabutton'].classList.remove("selected-source-tab");
+
+        this.$['stylebutton'].classList.add("selected-source-tab");
         this.$['style-snippet'].classList.remove("hidden");
         this.$.closebutton.style.display = "";
       }
