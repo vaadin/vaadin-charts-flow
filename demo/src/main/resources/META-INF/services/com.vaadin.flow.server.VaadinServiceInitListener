@@ -1,1 +1,1 @@
-com.vaadin.addon.charts.ApplicationServiceInitListener
+com.vaadin.flow.component.charts.ApplicationServiceInitListener
