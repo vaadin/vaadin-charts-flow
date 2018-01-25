@@ -1,14 +1,5 @@
 package com.vaadin.flow.component.charts;
 
-import static java.util.Comparator.comparing;
-import static java.util.stream.Collectors.groupingBy;
-import static java.util.stream.Collectors.toList;
-import static java.util.stream.Collectors.toMap;
-
-import java.util.List;
-import java.util.Map;
-import java.util.function.Function;
-
 import com.vaadin.flow.component.AttachEvent;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.UI;
@@ -27,6 +18,15 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 import org.reflections.Reflections;
+
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+
+import static java.util.Comparator.comparing;
+import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.toMap;
 
 @Route("")
 @PageTitle("Vaadin Charts for Flow Demo")
@@ -52,8 +52,11 @@ public class MainView extends PolymerTemplate<MainView.Model> implements HasUrlP
     private static final Map<String, Class<? extends AbstractChartExample>> NAME_INDEXED_SUBTYPES;
     private static final List<Category> CATEGORIES;
 
-    @Id("demo-snippet")
-    private DemoSnippet snippet;
+    @Id("java-snippet")
+    private DemoSnippet javaSnippet;
+
+    @Id("style-snippet")
+    private DemoSnippet styleSnippet;
 
     @Id("demo-area")
     private DemoArea demoArea;
@@ -68,7 +71,7 @@ public class MainView extends PolymerTemplate<MainView.Model> implements HasUrlP
                 .getSubTypesOf(AbstractChartExample.class)
                 .stream()
                 .filter(example -> !example.isAnnotationPresent(SkipFromDemo.class))
-                        .collect(toMap(e -> e.getSimpleName(), Function.identity()));
+                        .collect(toMap(Class::getSimpleName, Function.identity()));
 
         CATEGORIES = NAME_INDEXED_SUBTYPES
                 .values()
@@ -111,9 +114,21 @@ public class MainView extends PolymerTemplate<MainView.Model> implements HasUrlP
             getModel().setPage(currentExample.getValue());
 
             demoArea.setContent(exampleClass.newInstance());
-            snippet.setSource(IOUtils.toString(getClass().getResourceAsStream(
-                    "/examples/" + category
-                            + "/" + exampleClass.getSimpleName() + ".java"), "UTF-8"));
+
+            final String exampleName = "/examples/" + category
+                    + "/" + exampleClass.getSimpleName();
+
+            javaSnippet.setSource(IOUtils.toString(getClass().getResourceAsStream(
+                    exampleName + ".java"), "UTF-8"));
+
+            try {
+                final String exampleStyleFile = exampleName + ".html";
+                styleSnippet.setSource(IOUtils.toString(getClass().getResourceAsStream(
+                        exampleStyleFile), "UTF-8"));
+                UI.getCurrent().getPage().addHtmlImport(exampleStyleFile);
+            } catch (NullPointerException expected) {
+                styleSnippet.setSource(null);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
