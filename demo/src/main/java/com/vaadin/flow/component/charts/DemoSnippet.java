@@ -8,9 +8,7 @@ import com.vaadin.flow.component.dependency.HtmlImport;
 @HtmlImport("frontend://src/demo-snippet.html")
 public class DemoSnippet extends Component {
 
-    public static final String MARKDOWN_PROPERTY_NAME = "_markdown";
-
     public void setSource(String source) {
-        getElement().setProperty(MARKDOWN_PROPERTY_NAME, source == null ? "No source" : source);
+        getElement().setProperty("_markdown", source == null ? "No source" : source);
     }
 }
