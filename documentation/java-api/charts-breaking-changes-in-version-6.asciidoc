@@ -17,6 +17,8 @@ This necessitated removal of many Java style configuration API among other chang
 * Dropped "size with units" sizing properties in favor of strings to take full advantage of browser capabilities
 * ZAxis is now a subclass of Axis
 * Getting PlotOptionsSeries no longer automatically creates a new instance
+* Gradient is no longer supported
+* Plot background image is no longer supported
 
 === Replaced types
 
