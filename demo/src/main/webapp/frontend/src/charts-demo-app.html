@@ -321,7 +321,7 @@
       <vaadin-split-layout id="layout" vertical>
         <div>
           <demo-snippet id="java-snippet" class="hidden"></demo-snippet>
-          <demo-snippet id="style-snippet" class="hidden"></demo-snippet>
+          <demo-snippet id="style-snippet" class="hidden" on-snippet-status="_setSnippetButtonDisabled"></demo-snippet>
         </div>
         <demo-area id="demo-area"></demo-area>
       </vaadin-split-layout>
@@ -399,6 +399,16 @@
         this.$['stylebutton'].classList.add("selected-source-tab");
         this.$['style-snippet'].classList.remove("hidden");
         this.$.closebutton.style.display = "";
+      }
+
+      _setSnippetButtonDisabled(e) {
+        const targetElementId = e.target.id === 'java-snippet' ? 'javabutton' : 'stylebutton';
+        if (e.detail.disabled) {
+          this.$[targetElementId].classList.add('hidden');
+          this._closeSource();
+        } else {
+          this.$[targetElementId].classList.remove('hidden');
+        }
       }
     }
 
