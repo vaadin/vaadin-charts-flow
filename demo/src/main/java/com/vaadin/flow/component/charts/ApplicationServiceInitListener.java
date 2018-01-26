@@ -10,6 +10,7 @@ public class ApplicationServiceInitListener
 
     @Override
     public void serviceInit(ServiceInitEvent event) {
+        event.addBootstrapListener(new CustomBootstrapListener());
         event.addDependencyFilter((dependencies, filterContext) -> {
             if (filterContext.getService().getDeploymentConfiguration()
                     .isProductionMode()) {

@@ -6,6 +6,7 @@
 <link rel="import" href="./demo-area.html">
 <link rel="import" href="./demo-menu.html">
 <link rel="import" href="./demo-snippet.html">
+<link rel="import" href="./header-bar.html">
 <link rel="import" href="./my-icons.html">
 
 <dom-module id="charts-demo-app">
@@ -269,6 +270,10 @@
         #logoandname {
           display: block;
         }
+
+        #header {
+            transform: translateY(-100%);
+        }
       }
     </style>
 
@@ -299,6 +304,8 @@
         </div>
       </div>
     </div>
+
+    <header-bar id="header" demo=[[page]] on-open-menu="_openMenu"></header-bar>
 
     <!-- Main content -->
     <div id="content">
@@ -350,6 +357,7 @@
 
       _routePageChanged(category, page) {
         this.$.menu.updateSelection();
+        this._closeMenu();
       }
 
       _openMenu() {
