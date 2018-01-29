@@ -8,8 +8,8 @@ layout: page
 = Overview
 
 Vaadin Charts is a feature-rich interactive charting library for Vaadin.
-It provides different chart types for visualizing one- or two-dimensional tabular data, or scatter data with free X and Y values.
-You can configure all the chart elements with a powerful API as well as the <<dummy/../../charts/java-api/css-styling#css.styling,visual style using CSS>>.
+It provides multiple different chart types for visualizing one- or two-dimensional tabular data, or scatter data with free X and Y values.
+You can configure all the chart elements with a powerful API as well as the visual style using CSS.
 The built-in functionalities allow the user to interact with the chart elements in various ways, and you can define custom interaction with events.
 
 [[figure.charts.overview]]
