@@ -193,7 +193,7 @@ in the chart.
 
 Plot options for error bar charts have type [classname]#PlotOptionsErrorBar#. See the API documentation for details regarding the plot options.
 
-NOTE: Although most visual styles are defined in CSS, some options like [parameter]#whiskerLength# are set through Java API.
+NOTE: Although most <<dummy/../../../charts/java-api/css-styling#css.styling,visual styles are defined in CSS>>, some options like [parameter]#whiskerLength# are set through Java API.
 
 [[charts.charttypes.boxplot]]
 == Box Plot Charts
