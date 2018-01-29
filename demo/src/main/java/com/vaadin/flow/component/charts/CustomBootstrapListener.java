@@ -12,6 +12,7 @@ public class CustomBootstrapListener implements BootstrapListener {
 
 	private void injectInlineCustomStyles(Element head) {
 		head.append(
-				"<meta name=\"viewport\" content=\"width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes\">");
+				"<meta name=\"viewport\" content=\"width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes\">"
+			+   "<meta name=\"theme-color\" content=\"#00B4F0\">");
 	}
 }
