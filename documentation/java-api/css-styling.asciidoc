@@ -13,8 +13,10 @@ A comprehensive list of the supported style classes can be found https://www.hig
 [[css.styling.steps]]
 == Steps for styling a chart
 
-1. Create a theme file (by convention this should be `webapp/frontend/styles/shared-styles.html`). The theme's dom-module must declare `theme-for=vaadin-chart`.
-2. Declare `include="vaadin-chart-default-theme"` on the theme module's style element to customize Chart's default theme. If there are multiple theme modules *only one* of them should declare this `include`.
+1. Create a theme file (by convention this should be `webapp/frontend/styles/shared-styles.html`).
+The theme's dom-module must declare `theme-for=vaadin-chart`.
+2. Declare `include="vaadin-chart-default-theme"` on the theme module's style element to customize Chart's default theme.
+If there are multiple theme modules *only one* of them should declare this `include`.
 3. Prefix the desired chart elements' selectors with the `:host` selector.
 4. If multiple charts are present, each one can be specifically targeted by the host selector e.g `:host(.first-chart-class)`.
 5. Import the theme file.

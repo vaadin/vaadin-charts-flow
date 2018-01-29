@@ -405,7 +405,9 @@
         const targetElementId = e.target.id === 'java-snippet' ? 'javabutton' : 'stylebutton';
         if (e.detail.disabled) {
           this.$[targetElementId].classList.add('hidden');
-          this._closeSource();
+          if (this.$[targetElementId].classList.contains('selected-source-tab')) {
+            this._closeSource();
+          }
         } else {
           this.$[targetElementId].classList.remove('hidden');
         }
