@@ -403,13 +403,14 @@
 
       _setSnippetButtonDisabled(e) {
         const targetElementId = e.target.id === 'java-snippet' ? 'javabutton' : 'stylebutton';
+        const targetElementClassList = this.$[targetElementId].classList;
         if (e.detail.disabled) {
-          this.$[targetElementId].classList.add('hidden');
-          if (this.$[targetElementId].classList.contains('selected-source-tab')) {
+          targetElementClassList.add('hidden');
+          if (targetElementClassList.contains('selected-source-tab')) {
             this._closeSource();
           }
         } else {
-          this.$[targetElementId].classList.remove('hidden');
+          targetElementClassList.remove('hidden');
         }
       }
     }
