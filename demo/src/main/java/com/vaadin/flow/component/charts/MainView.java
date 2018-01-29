@@ -106,8 +106,8 @@ public class MainView extends PolymerTemplate<MainView.Model> implements HasUrlP
 
     public MainView() {
         getModel().setCategories(CATEGORIES);
-        // Load all themes before component attach because
-        // Lumo does not support live theme reloading.
+        // Preload all themes because Valo theme engine
+        // does not support live theme reloading.
         STYLE_FILEPATHS.forEach(style -> UI.getCurrent().getPage().addHtmlImport(style));
     }
 
