@@ -56,6 +56,7 @@ import com.vaadin.flow.component.charts.model.ChartType;
 import com.vaadin.flow.component.charts.model.Configuration;
 import com.vaadin.flow.component.charts.model.DataSeries;
 import com.vaadin.flow.component.charts.model.DataSeriesItem;
+import com.vaadin.flow.component.charts.model.Series;
 import com.vaadin.flow.component.charts.util.ChartSerialization;
 import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.shared.Registration;
@@ -125,7 +126,7 @@ public class Chart extends Component implements HasStyle, HasSize {
      * </p>
      *
      * <p>
-     * Note that if you modify the underlying {@link com.vaadin.flow.component.charts.model.Series}
+     * Note that if you modify the underlying {@link Series}
      * directly, the chart will automatically be updated.
      * </p>
      *
