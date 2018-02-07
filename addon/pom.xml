@@ -22,9 +22,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.vaadin</groupId>
-            <artifactId>vaadin-charts-webjar</artifactId>
-            <version>6.0.0-alpha13</version>
+            <groupId>com.vaadin.webjar</groupId>
+            <artifactId>vaadin-charts</artifactId>
+            <version>6.0.0-alpha14</version>
         </dependency>
         <dependency>
             <groupId>com.vaadin</groupId>

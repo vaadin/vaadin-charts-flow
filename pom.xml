@@ -36,15 +36,13 @@
         <maven.clean.plugin.version>3.0.0</maven.clean.plugin.version>
         <maven.resources.plugin.version>3.0.2</maven.resources.plugin.version>
 
-        <vaadin.version>10.0.0.alpha13</vaadin.version>
-        <flow.version>1.0.0.alpha18</flow.version>
+        <flow.version>1.0.0.alpha19</flow.version>
         <jetty.version>9.3.9.v20160517</jetty.version>
         <!-- Frontend -->
         <!-- Not the newest version because of https://www.polymer-project.org/2.0/docs/tools/node-support -->
         <frontend.maven.plugin.version>1.6</frontend.maven.plugin.version>
-        <node.version>v7.10.1</node.version>
-        <yarn.version>v0.27.5</yarn.version>
-        <npm.version>5.3.0</npm.version>
+        <node.version>v8.9.0</node.version>
+        <yarn.version>v1.3.2</yarn.version>
     </properties>
 
     <url>http://vaadin.com/charts</url>
@@ -78,8 +76,8 @@
         <dependencies>
             <dependency>
                 <groupId>com.vaadin</groupId>
-                <artifactId>vaadin-bom</artifactId>
-                <version>${vaadin.version}</version>
+                <artifactId>vaadin-webjars-bom</artifactId>
+                <version>${flow.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -91,6 +89,16 @@
             <dependency>
                 <groupId>com.vaadin</groupId>
                 <artifactId>flow</artifactId>
+                <version>${flow.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.vaadin</groupId>
+                <artifactId>flow-data</artifactId>
+                <version>${flow.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.vaadin</groupId>
+                <artifactId>flow-server-production-mode</artifactId>
                 <version>${flow.version}</version>
             </dependency>
         </dependencies>
