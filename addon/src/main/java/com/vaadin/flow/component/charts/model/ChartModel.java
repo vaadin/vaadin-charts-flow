@@ -1,7 +1,6 @@
 package com.vaadin.flow.component.charts.model;
 
 import javax.annotation.Generated;
-import com.vaadin.flow.component.charts.model.style.Style;
 /**
  * Options regarding the chart area and plot area as well as general chart
  * options.
@@ -40,7 +39,6 @@ public class ChartModel extends AbstractConfigurationObject {
 	private Number spacingLeft;
 	private Number spacingRight;
 	private Number spacingTop;
-	private Style style;
 	private ChartType type;
 	private String typeDescription;
 	private Number width;
@@ -663,29 +661,6 @@ public class ChartModel extends AbstractConfigurationObject {
 	 */
 	public void setSpacingTop(Number spacingTop) {
 		this.spacingTop = spacingTop;
-	}
-
-	/**
-	 * @see #setStyle(Style)
-	 */
-	public Style getStyle() {
-		if (style == null) {
-			style = new Style();
-		}
-		return style;
-	}
-
-	/**
-	 * Additional CSS styles to apply inline to the container <code>div</code>.
-	 * Note that since the default font styles are applied in the renderer, it
-	 * is ignorant of the individual chart options and must be set globally.
-	 * <p>
-	 * Defaults to: {"fontFamily":
-	 * "\"Lucida Grande\", \"Lucida Sans Unicode\", Verdana, Arial, Helvetica, sans-serif"
-	 * ,"fontSize":"12px"}
-	 */
-	public void setStyle(Style style) {
-		this.style = style;
 	}
 
 	/**
