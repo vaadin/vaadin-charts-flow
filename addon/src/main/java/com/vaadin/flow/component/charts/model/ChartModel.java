@@ -11,7 +11,6 @@ public class ChartModel extends AbstractConfigurationObject {
 	private Boolean alignTicks;
 	private Boolean animation;
 	private Number borderRadius;
-	private Number borderWidth;
 	private String className;
 	private Number colorCount;
 	private String description;
@@ -27,12 +26,9 @@ public class ChartModel extends AbstractConfigurationObject {
 	private PanKey panKey;
 	private Boolean panning;
 	private Dimension pinchType;
-	private Number plotBorderWidth;
-	private Boolean plotShadow;
 	private Boolean polar;
 	private Boolean reflow;
 	private ResetZoomButton resetZoomButton;
-	private Boolean shadow;
 	private Boolean showAxes;
 	private Number[] spacing;
 	private Number spacingBottom;
@@ -127,22 +123,6 @@ public class ChartModel extends AbstractConfigurationObject {
 	 */
 	public void setBorderRadius(Number borderRadius) {
 		this.borderRadius = borderRadius;
-	}
-
-	/**
-	 * @see #setBorderWidth(Number)
-	 */
-	public Number getBorderWidth() {
-		return borderWidth;
-	}
-
-	/**
-	 * The pixel width of the outer chart border.
-	 * <p>
-	 * Defaults to: 0
-	 */
-	public void setBorderWidth(Number borderWidth) {
-		this.borderWidth = borderWidth;
 	}
 
 	/**
@@ -443,41 +423,6 @@ public class ChartModel extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setPlotBorderWidth(Number)
-	 */
-	public Number getPlotBorderWidth() {
-		return plotBorderWidth;
-	}
-
-	/**
-	 * The pixel width of the plot area border.
-	 * <p>
-	 * Defaults to: 0
-	 */
-	public void setPlotBorderWidth(Number plotBorderWidth) {
-		this.plotBorderWidth = plotBorderWidth;
-	}
-
-	/**
-	 * @see #setPlotShadow(Boolean)
-	 */
-	public Boolean getPlotShadow() {
-		return plotShadow;
-	}
-
-	/**
-	 * Whether to apply a drop shadow to the plot area. Requires that
-	 * plotBackgroundColor be set. The shadow can be an object configuration
-	 * containing <code>color</code>, <code>offsetX</code>, <code>offsetY</code>
-	 * , <code>opacity</code> and <code>width</code>.
-	 * <p>
-	 * Defaults to: false
-	 */
-	public void setPlotShadow(Boolean plotShadow) {
-		this.plotShadow = plotShadow;
-	}
-
-	/**
 	 * @see #setPolar(Boolean)
 	 */
 	public Boolean getPolar() {
@@ -528,25 +473,6 @@ public class ChartModel extends AbstractConfigurationObject {
 	 */
 	public void setResetZoomButton(ResetZoomButton resetZoomButton) {
 		this.resetZoomButton = resetZoomButton;
-	}
-
-	/**
-	 * @see #setShadow(Boolean)
-	 */
-	public Boolean getShadow() {
-		return shadow;
-	}
-
-	/**
-	 * Whether to apply a drop shadow to the outer chart area. Requires that
-	 * backgroundColor be set. The shadow can be an object configuration
-	 * containing <code>color</code>, <code>offsetX</code>, <code>offsetY</code>
-	 * , <code>opacity</code> and <code>width</code>.
-	 * <p>
-	 * Defaults to: false
-	 */
-	public void setShadow(Boolean shadow) {
-		this.shadow = shadow;
 	}
 
 	/**
