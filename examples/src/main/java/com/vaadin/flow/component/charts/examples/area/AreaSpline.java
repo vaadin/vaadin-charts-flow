@@ -42,7 +42,6 @@ public class AreaSpline extends AbstractChartExample {
 		XAxis xAxis = new XAxis();
 		xAxis.setCategories(new String[] { "Monday", "Tuesday", "Wednesday",
 				"Thursday", "Friday", "Saturday", "Sunday" });
-		// add blue background for the weekend
         PlotBand plotBand = new PlotBand(4.5, 6.5);
 		plotBand.setZIndex(1);
 		xAxis.setPlotBands(plotBand);
