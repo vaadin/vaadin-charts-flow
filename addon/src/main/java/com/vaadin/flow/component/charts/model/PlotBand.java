@@ -203,4 +203,9 @@ public class PlotBand extends AbstractConfigurationObject {
 	public void setTo(Instant instant) {
 		this.to = Util.toHighchartsTS(instant);
 	}
+
+	public PlotBand(Number from, Number to) {
+		this.from = from;
+		this.to = to;
+	}
 }
