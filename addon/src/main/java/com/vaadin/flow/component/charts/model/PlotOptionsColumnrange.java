@@ -23,6 +23,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.time.Instant;
 import com.vaadin.flow.component.charts.util.Util;
+
 /**
  * The column range is a cartesian series type with higher and lower Y values
  * along an X axis. Requires <code>highcharts-more.js</code>. To display

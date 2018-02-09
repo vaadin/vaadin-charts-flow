@@ -21,6 +21,7 @@ import javax.annotation.Generated;
 import java.util.Date;
 import java.time.Instant;
 import com.vaadin.flow.component.charts.util.Util;
+
 /**
  * An array defining breaks in the axis, the sections defined will be left out
  * and all the points shifted closer to each other.

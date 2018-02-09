@@ -20,6 +20,7 @@ package com.vaadin.flow.component.charts.model;
 import javax.annotation.Generated;
 import java.util.ArrayList;
 import java.util.Arrays;
+
 /**
  * <p>
  * The Z axis or depth axis for 3D plots.

@@ -20,6 +20,7 @@ package com.vaadin.flow.component.charts.model;
 import javax.annotation.Generated;
 import java.util.ArrayList;
 import java.util.Arrays;
+
 /**
  * Applies only to polar charts and angular gauges. This configuration object
  * holds general options for the combined X and Y axes set. Each xAxis or yAxis

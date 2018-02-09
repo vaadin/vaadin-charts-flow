@@ -20,6 +20,7 @@ package com.vaadin.flow.component.charts.model;
 import javax.annotation.Generated;
 import java.util.ArrayList;
 import java.util.Arrays;
+
 /**
  * <p>
  * Data grouping is the concept of sampling the data values into larger blocks

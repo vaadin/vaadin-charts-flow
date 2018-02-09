@@ -18,6 +18,7 @@ package com.vaadin.flow.component.charts.model;
  */
 
 import javax.annotation.Generated;
+
 /**
  * Language object. The language object is global and it can't be set on each
  * chart initiation. Instead, use <code>Highcharts.setOptions</code> to set it

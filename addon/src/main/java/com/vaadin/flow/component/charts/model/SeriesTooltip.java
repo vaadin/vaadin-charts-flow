@@ -18,6 +18,7 @@ package com.vaadin.flow.component.charts.model;
  */
 
 import javax.annotation.Generated;
+
 /**
  * A configuration object for the tooltip rendering of each single series.
  * Properties are inherited from <a href="#tooltip">tooltip</a>, but only the

@@ -18,6 +18,7 @@ package com.vaadin.flow.component.charts.model;
  */
 
 import javax.annotation.Generated;
+
 /**
  * The loading options control the appearance of the loading screen that covers
  * the plot area on chart operations. This screen only appears after an explicit

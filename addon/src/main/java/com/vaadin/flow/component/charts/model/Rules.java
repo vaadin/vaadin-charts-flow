@@ -18,6 +18,7 @@ package com.vaadin.flow.component.charts.model;
  */
 
 import javax.annotation.Generated;
+
 /**
  * A set of rules for responsive settings. The rules are executed from the top
  * down.

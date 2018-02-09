@@ -19,6 +19,7 @@ package com.vaadin.flow.component.charts.model;
 
 import javax.annotation.Generated;
 import com.vaadin.flow.component.charts.model.style.Color;
+
 /**
  * <p>
  * Note: As of v5.0.12, <code>frame.left</code> or <code>frame.right</code>

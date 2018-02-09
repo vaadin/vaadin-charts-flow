@@ -18,6 +18,7 @@ package com.vaadin.flow.component.charts.model;
  */
 
 import javax.annotation.Generated;
+
 /**
  * <p>
  * Options for the halo appearing around the hovered point in line-type series

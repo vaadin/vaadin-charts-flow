@@ -19,6 +19,7 @@ package com.vaadin.flow.component.charts.model;
 
 import javax.annotation.Generated;
 import com.vaadin.flow.component.charts.model.style.Color;
+
 /**
  * Defines the back panel of the frame around 3D charts.
  */

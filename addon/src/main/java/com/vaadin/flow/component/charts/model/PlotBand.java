@@ -21,6 +21,7 @@ import javax.annotation.Generated;
 import java.util.Date;
 import java.time.Instant;
 import com.vaadin.flow.component.charts.util.Util;
+
 /**
  * An array of objects defining plot bands on the Y axis.
  */

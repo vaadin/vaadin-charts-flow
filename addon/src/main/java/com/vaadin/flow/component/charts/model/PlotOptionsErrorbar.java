@@ -24,6 +24,7 @@ import com.vaadin.flow.component.charts.model.style.Color;
 import java.util.Date;
 import java.time.Instant;
 import com.vaadin.flow.component.charts.util.Util;
+
 /**
  * Error bars are a graphical representation of the variability of data and are
  * used on graphs to indicate the error, or uncertainty in a reported

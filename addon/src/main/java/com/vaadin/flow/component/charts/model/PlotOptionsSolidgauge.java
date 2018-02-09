@@ -20,6 +20,7 @@ package com.vaadin.flow.component.charts.model;
 import javax.annotation.Generated;
 import java.util.ArrayList;
 import java.util.Arrays;
+
 /**
  * A gauge showing values using a filled arc with colors indicating the value.
  * The solid gauge plots values against the <code>yAxis</code>, which is

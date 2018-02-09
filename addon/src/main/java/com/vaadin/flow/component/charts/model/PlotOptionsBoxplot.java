@@ -23,6 +23,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.time.Instant;
 import com.vaadin.flow.component.charts.util.Util;
+
 /**
  * A box plot is a convenient way of depicting groups of data through their
  * five-number summaries: the smallest observation (sample minimum), lower

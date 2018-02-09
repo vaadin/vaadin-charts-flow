@@ -18,6 +18,7 @@ package com.vaadin.flow.component.charts.model;
  */
 
 import javax.annotation.Generated;
+
 /**
  * The legend is a box containing a symbol and name for each series item or
  * point item in the chart.

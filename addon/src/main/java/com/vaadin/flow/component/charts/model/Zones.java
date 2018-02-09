@@ -18,6 +18,7 @@ package com.vaadin.flow.component.charts.model;
  */
 
 import javax.annotation.Generated;
+
 /**
  * <p>
  * An array defining zones within a series. Zones can be applied to the X axis,

@@ -18,6 +18,7 @@ package com.vaadin.flow.component.charts.model;
  */
 
 import javax.annotation.Generated;
+
 /**
  * The stack labels show the total value for each bar in a stacked column or bar
  * chart. The label will be placed on top of positive columns and below negative

@@ -20,6 +20,7 @@ package com.vaadin.flow.component.charts.model;
 import javax.annotation.Generated;
 import java.util.ArrayList;
 import java.util.Arrays;
+
 /**
  * General plotting options for the gauge series type. Requires
  * <code>highcharts-more.js</code>

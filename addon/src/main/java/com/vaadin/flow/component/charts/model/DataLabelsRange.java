@@ -18,6 +18,7 @@ package com.vaadin.flow.component.charts.model;
  */
 
 import javax.annotation.Generated;
+
 /**
  * Extended data labels for range series types. Range series data labels have no
  * <code>x</code> and <code>y</code> options. Instead, they have

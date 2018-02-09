@@ -19,6 +19,7 @@ package com.vaadin.flow.component.charts.model;
 
 import javax.annotation.Generated;
 import com.vaadin.flow.component.charts.model.style.Color;
+
 /**
  * The bottom of the frame around a 3D chart.
  */

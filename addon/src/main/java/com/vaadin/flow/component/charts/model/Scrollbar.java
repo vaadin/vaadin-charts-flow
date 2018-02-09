@@ -19,6 +19,7 @@ package com.vaadin.flow.component.charts.model;
 
 import javax.annotation.Generated;
 import com.vaadin.flow.component.charts.model.style.Color;
+
 /**
  * <p>
  * An optional scrollbar to display on the Y axis in response to limiting the

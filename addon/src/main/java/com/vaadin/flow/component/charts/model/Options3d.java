@@ -18,6 +18,7 @@ package com.vaadin.flow.component.charts.model;
  */
 
 import javax.annotation.Generated;
+
 /**
  * Options to render charts in 3 dimensions. This feature requires
  * <code>highcharts-3d.js</code>, found in the download package or online at <a

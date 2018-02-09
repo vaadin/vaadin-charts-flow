@@ -18,6 +18,7 @@ package com.vaadin.flow.component.charts.model;
  */
 
 import javax.annotation.Generated;
+
 /**
  * <p>
  * Configure a crosshair that follows either the mouse pointer or the hovered

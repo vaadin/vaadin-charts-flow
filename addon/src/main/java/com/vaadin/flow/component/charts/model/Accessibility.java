@@ -18,6 +18,7 @@ package com.vaadin.flow.component.charts.model;
  */
 
 import javax.annotation.Generated;
+
 /**
  * <p>
  * Options for configuring accessibility for the chart. Requires the <a

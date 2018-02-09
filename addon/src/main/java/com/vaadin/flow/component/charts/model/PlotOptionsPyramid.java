@@ -20,6 +20,7 @@ package com.vaadin.flow.component.charts.model;
 import javax.annotation.Generated;
 import java.util.ArrayList;
 import java.util.Arrays;
+
 /**
  * A pyramid chart consists of a single pyramid with item heights corresponding
  * to each point value. Technically it is the same as a reversed funnel chart

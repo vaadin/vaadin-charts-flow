@@ -24,6 +24,7 @@ import com.vaadin.flow.component.charts.model.style.Color;
 import java.util.Date;
 import java.time.Instant;
 import com.vaadin.flow.component.charts.util.Util;
+
 /**
  * 
  */

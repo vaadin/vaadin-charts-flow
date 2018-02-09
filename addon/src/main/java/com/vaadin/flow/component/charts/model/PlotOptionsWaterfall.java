@@ -23,6 +23,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.time.Instant;
 import com.vaadin.flow.component.charts.util.Util;
+
 /**
  * Options for the waterfall series type.
  */

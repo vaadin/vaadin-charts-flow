@@ -20,6 +20,7 @@ package com.vaadin.flow.component.charts.model;
 import javax.annotation.Generated;
 import java.util.ArrayList;
 import java.util.Arrays;
+
 /**
  * The size of the point shape is determined by its value relative to its
  * siblings values. Requires the module <code>heatmap.js</code> as well, if

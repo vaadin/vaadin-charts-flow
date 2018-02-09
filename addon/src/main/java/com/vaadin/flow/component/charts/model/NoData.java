@@ -18,6 +18,7 @@ package com.vaadin.flow.component.charts.model;
  */
 
 import javax.annotation.Generated;
+
 /**
  * Options for displaying a message like "No data to display". This feature
  * requires the file <code>no-data-to-display.js</code> to be loaded in the

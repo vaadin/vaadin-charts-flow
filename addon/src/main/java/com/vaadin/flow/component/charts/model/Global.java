@@ -18,6 +18,7 @@ package com.vaadin.flow.component.charts.model;
  */
 
 import javax.annotation.Generated;
+
 /**
  * Global options that don't apply to each chart. These options, like the
  * <code>lang</code> options, must be set using the

@@ -20,6 +20,7 @@ package com.vaadin.flow.component.charts.model;
 import javax.annotation.Generated;
 import java.util.ArrayList;
 import java.util.Arrays;
+
 /**
  * The range selector is a tool for selecting ranges to display within the
  * chart. It provides buttons to select preconfigured ranges in the chart, like

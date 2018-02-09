@@ -18,6 +18,7 @@ package com.vaadin.flow.component.charts.model;
  */
 
 import javax.annotation.Generated;
+
 /**
  * Options for the paging or navigation appearing when the legend is overflown.
  * Navigation works well on screen, but not in static exported images. One way
