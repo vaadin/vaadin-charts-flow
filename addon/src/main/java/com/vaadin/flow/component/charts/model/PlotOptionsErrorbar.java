@@ -45,8 +45,6 @@ public class PlotOptionsErrorbar extends AbstractPlotOptions {
 	private Boolean skipKeyboardNavigation;
 	private States states;
 	private Color stemColor;
-	private DashStyle stemDashStyle;
-	private Number stemWidth;
 	private Boolean stickyTracking;
 	private SeriesTooltip tooltip;
 	private Number turboThreshold;
@@ -649,41 +647,6 @@ public class PlotOptionsErrorbar extends AbstractPlotOptions {
 	 */
 	public void setStemColor(Color stemColor) {
 		this.stemColor = stemColor;
-	}
-
-	/**
-	 * @see #setStemDashStyle(DashStyle)
-	 */
-	public DashStyle getStemDashStyle() {
-		return stemDashStyle;
-	}
-
-	/**
-	 * The dash style of the stem, the vertical line extending from the box to
-	 * the whiskers.
-	 * <p>
-	 * Defaults to: Solid
-	 */
-	public void setStemDashStyle(DashStyle stemDashStyle) {
-		this.stemDashStyle = stemDashStyle;
-	}
-
-	/**
-	 * @see #setStemWidth(Number)
-	 */
-	public Number getStemWidth() {
-		return stemWidth;
-	}
-
-	/**
-	 * The width of the stem, the vertical line extending from the box to the
-	 * whiskers. If <code>null</code>, the width is inherited from the <a
-	 * href="#plotOptions.boxplot.lineWidth">lineWidth</a> option.
-	 * <p>
-	 * Defaults to: null
-	 */
-	public void setStemWidth(Number stemWidth) {
-		this.stemWidth = stemWidth;
 	}
 
 	/**

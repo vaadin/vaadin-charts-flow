@@ -49,14 +49,11 @@ public class PlotOptionsBoxplot extends AbstractPlotOptions {
 	private Boolean showInLegend;
 	private Boolean skipKeyboardNavigation;
 	private States states;
-	private DashStyle stemDashStyle;
-	private Number stemWidth;
 	private Boolean stickyTracking;
 	private SeriesTooltip tooltip;
 	private Number turboThreshold;
 	private Boolean visible;
 	private String whiskerLength;
-	private Number whiskerWidth;
 	private ZoneAxis zoneAxis;
 	private ArrayList<Zones> zones;
 
@@ -725,41 +722,6 @@ public class PlotOptionsBoxplot extends AbstractPlotOptions {
 	}
 
 	/**
-	 * @see #setStemDashStyle(DashStyle)
-	 */
-	public DashStyle getStemDashStyle() {
-		return stemDashStyle;
-	}
-
-	/**
-	 * The dash style of the stem, the vertical line extending from the box to
-	 * the whiskers.
-	 * <p>
-	 * Defaults to: Solid
-	 */
-	public void setStemDashStyle(DashStyle stemDashStyle) {
-		this.stemDashStyle = stemDashStyle;
-	}
-
-	/**
-	 * @see #setStemWidth(Number)
-	 */
-	public Number getStemWidth() {
-		return stemWidth;
-	}
-
-	/**
-	 * The width of the stem, the vertical line extending from the box to the
-	 * whiskers. If <code>null</code>, the width is inherited from the <a
-	 * href="#plotOptions.boxplot.lineWidth">lineWidth</a> option.
-	 * <p>
-	 * Defaults to: null
-	 */
-	public void setStemWidth(Number stemWidth) {
-		this.stemWidth = stemWidth;
-	}
-
-	/**
 	 * @see #setStickyTracking(Boolean)
 	 */
 	public Boolean getStickyTracking() {
@@ -854,24 +816,6 @@ public class PlotOptionsBoxplot extends AbstractPlotOptions {
 	 */
 	public void setWhiskerLength(String whiskerLength) {
 		this.whiskerLength = whiskerLength;
-	}
-
-	/**
-	 * @see #setWhiskerWidth(Number)
-	 */
-	public Number getWhiskerWidth() {
-		return whiskerWidth;
-	}
-
-	/**
-	 * The line width of the whiskers, the horizontal lines marking low and high
-	 * values. When <code>null</code>, the general <a
-	 * href="#plotOptions.boxplot.lineWidth">lineWidth</a> applies.
-	 * <p>
-	 * Defaults to: 2
-	 */
-	public void setWhiskerWidth(Number whiskerWidth) {
-		this.whiskerWidth = whiskerWidth;
 	}
 
 	/**
