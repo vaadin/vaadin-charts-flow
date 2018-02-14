@@ -252,7 +252,6 @@
                     <plugin>
                         <groupId>com.vaadin</groupId>
                         <artifactId>flow-maven-plugin</artifactId>
-                        <version>${flow.version}</version>
                         <configuration>
                             <frontendWorkingDirectory>${frontend.working.directory}/frontend</frontendWorkingDirectory>
                         </configuration>
