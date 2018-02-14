@@ -22,6 +22,8 @@
 
         <frontend.working.directory>${project.basedir}/src/main/webapp</frontend.working.directory>
 
+        <war.source.excludes></war.source.excludes>
+
         <jetty.jvm.args></jetty.jvm.args>
         <jetty.resource.directory>${frontend.working.directory}</jetty.resource.directory>
     </properties>
@@ -199,6 +201,15 @@
             </plugin>
 
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>${maven.war.plugin.version}</version>
+                <configuration>
+                    <warSourceExcludes>${war.source.excludes}</warSourceExcludes>
+                </configuration>
+            </plugin>
+
+            <plugin>
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
                 <configuration>
@@ -226,6 +237,7 @@
             <properties>
                 <jetty.jvm.args>-Dvaadin.productionMode</jetty.jvm.args>
                 <jetty.resource.directory>${project.build.directory}/${project.build.finalName}/</jetty.resource.directory>
+                <war.source.excludes>frontend/**</war.source.excludes>
             </properties>
 
             <dependencies>
