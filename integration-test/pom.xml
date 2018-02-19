@@ -79,6 +79,7 @@
                     </execution>
                 </executions>
                 <configuration>
+                    <trimStackTrace>false</trimStackTrace>
                     <systemPropertyVariables>
                         <webdriver.chrome.driver>${webdriver.chrome.driver}</webdriver.chrome.driver>
                         <sauce.user>${sauce.user}</sauce.user>
@@ -107,6 +108,26 @@
             </activation>
             <build>
                 <plugins>
+                    <plugin>
+                        <groupId>com.lazerycode.selenium</groupId>
+                        <artifactId>driver-binary-downloader-maven-plugin</artifactId>
+                        <version>1.0.12</version>
+                        <configuration>
+                            <!-- root directory that downloaded driver binaries will be stored
+                                in -->
+                            <onlyGetDriversForHostOperatingSystem>true</onlyGetDriversForHostOperatingSystem>
+                            <rootStandaloneServerDirectory>.driver</rootStandaloneServerDirectory>
+                            <customRepositoryMap>webdrivers.xml</customRepositoryMap>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>selenium</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+
                     <plugin>
                         <groupId>org.eclipse.jetty</groupId>
                         <artifactId>jetty-maven-plugin</artifactId>
@@ -169,7 +190,7 @@
                                     <goal>start-sauceconnect</goal>
                                 </goals>
                             </execution>
-                            <!-- Stop the Sauce Connect process after the integration tests have 
+                            <!-- Stop the Sauce Connect process after the integration tests have
                                 finished -->
                             <execution>
                                 <id>stop-sauceconnect</id>
