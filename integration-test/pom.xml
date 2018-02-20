@@ -111,7 +111,7 @@
                     <plugin>
                         <groupId>com.lazerycode.selenium</groupId>
                         <artifactId>driver-binary-downloader-maven-plugin</artifactId>
-                        <version>1.0.12</version>
+                        <version>1.0.17</version>
                         <configuration>
                             <!-- root directory that downloaded driver binaries will be stored
                                 in -->
