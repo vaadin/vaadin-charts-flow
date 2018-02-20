@@ -18,6 +18,7 @@ integration-test/.driver/
 integration-test/**/frontend/node_modules
 integration-test/**/frontend/node
 integration-test/error-screenshots/
+integration-test/src/test/resources/webdriver/
 integration-test/selenium_standalone_zips/
 demo/src/main/webapp/frontend/bower_components/
 demo/src/main/webapp/frontend/build/
