@@ -85,6 +85,18 @@
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>${frontend.working.directory}/frontend/bower_components</directory>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
                 <version>${maven.war.plugin.version}</version>
                 <configuration>
@@ -294,7 +306,7 @@
 
             <properties>
                 <jetty.jvm.args>-Dvaadin.productionMode</jetty.jvm.args>
-                <jetty.resource.directory>${project.build.directory}/${project.build.finalName}/</jetty.resource.directory>
+                <jetty.resource.directory>${project.build.directory}/${project.build.finalName}</jetty.resource.directory>
                 <war.source.excludes>frontend/**</war.source.excludes>
             </properties>
 
