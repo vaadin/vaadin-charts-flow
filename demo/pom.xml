@@ -159,7 +159,6 @@
         <profile>
             <id>webjars</id>
             <activation>
-                <activeByDefault>true</activeByDefault>
                 <property>
                     <name>!useBower</name>
                 </property>
