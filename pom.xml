@@ -38,9 +38,6 @@
 
         <flow.version>1.0.0.alpha21</flow.version>
         <jetty.version>9.3.9.v20160517</jetty.version>
-        <!-- Frontend -->
-        <!-- Not the newest version because of https://www.polymer-project.org/2.0/docs/tools/node-support -->
-        <frontend.maven.plugin.version>1.6</frontend.maven.plugin.version>
     </properties>
 
     <url>http://vaadin.com/charts</url>
