@@ -199,10 +199,18 @@
             </dependencyManagement>
 
             <dependencies>
+                <!-- ADD THESE DEPENDENCIES AS A WORKAROUND FOR  <https://github.com/vaadin/flow/issues/3630> -->
                 <dependency>
                     <groupId>com.vaadin</groupId>
-                    <artifactId>flow</artifactId>
+                    <artifactId>flow-server</artifactId>
+                    <version>1.0.0.alpha23</version>
                 </dependency>
+                <dependency>
+                    <groupId>com.vaadin</groupId>
+                    <artifactId>flow-html-components</artifactId>
+                    <version>1.0.0.alpha23</version>
+                </dependency>
+                <!-- END OF WORKAROUND -->
                 <!--VAADIN ELEMENTS-->
                 <dependency>
                     <groupId>com.vaadin</groupId>
