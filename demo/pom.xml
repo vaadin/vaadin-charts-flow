@@ -203,12 +203,32 @@
                 <dependency>
                     <groupId>com.vaadin</groupId>
                     <artifactId>vaadin-icons-flow</artifactId>
-                    <version>1.0.0.alpha8</version>
+                    <version>1.0.0.alpha9</version>
+                    <exclusions>
+                        <exclusion>
+                            <groupId>com.vaadin</groupId>
+                            <artifactId>flow-html-components</artifactId>
+                        </exclusion>
+                        <exclusion>
+                            <groupId>com.vaadin</groupId>
+                            <artifactId>flow-server</artifactId>
+                        </exclusion>
+                    </exclusions>
                 </dependency>
                 <dependency>
                     <groupId>com.vaadin</groupId>
                     <artifactId>vaadin-split-layout-flow</artifactId>
-                    <version>1.0.0.alpha7</version>
+                    <version>1.0.0.alpha9</version>
+                    <exclusions>
+                        <exclusion>
+                            <groupId>com.vaadin</groupId>
+                            <artifactId>flow-html-components</artifactId>
+                        </exclusion>
+                        <exclusion>
+                            <groupId>com.vaadin</groupId>
+                            <artifactId>flow-server</artifactId>
+                        </exclusion>
+                    </exclusions>
                 </dependency>
 
                 <!--PAPER ELEMENTS-->
