@@ -203,12 +203,12 @@
                 <dependency>
                     <groupId>com.vaadin</groupId>
                     <artifactId>flow-server</artifactId>
-                    <version>1.0.0.alpha23</version>
+                    <version>${flow.version}</version>
                 </dependency>
                 <dependency>
                     <groupId>com.vaadin</groupId>
                     <artifactId>flow-html-components</artifactId>
-                    <version>1.0.0.alpha23</version>
+                    <version>${flow.version}</version>
                 </dependency>
                 <!-- END OF WORKAROUND -->
                 <!--VAADIN ELEMENTS-->
