@@ -18,6 +18,7 @@
         <module>examples</module>
         <module>demo</module>
         <module>integration-test</module>
+        <module>vaadin-charts-testbench</module>
     </modules>
 
     <organization>
