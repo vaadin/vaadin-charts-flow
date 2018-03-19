@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>vaadin-charts-testbench</artifactId>
+    <artifactId>vaadin-charts-flow-testbench</artifactId>
 
     <packaging>jar</packaging>
     <name>Vaadin Charts Testbench API</name>
@@ -18,7 +18,7 @@
         <dependency>
             <groupId>com.vaadin</groupId>
             <artifactId>vaadin-testbench-core</artifactId>
-            <version>6.0.0.beta2</version>
+            <version>${testbench.version}</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
