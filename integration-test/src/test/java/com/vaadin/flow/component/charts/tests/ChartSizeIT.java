@@ -24,7 +24,6 @@ import com.vaadin.flow.component.charts.AbstractChartExample;
 import com.vaadin.flow.component.charts.examples.pie.PieWithSize;
 import com.vaadin.flow.component.charts.testbench.ChartElement;
 
-
 public class ChartSizeIT extends AbstractTBTest {
 
     @Override
