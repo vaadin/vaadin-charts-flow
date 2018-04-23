@@ -1,6 +1,10 @@
 package com.vaadin.flow.component.charts.examples.dynamic;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.vaadin.flow.component.ClickEvent;
+import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.charts.AbstractChartExample;
 import com.vaadin.flow.component.charts.Chart;
 import com.vaadin.flow.component.charts.SkipFromDemo;
@@ -9,9 +13,6 @@ import com.vaadin.flow.component.charts.model.Configuration;
 import com.vaadin.flow.component.charts.model.DataSeries;
 import com.vaadin.flow.component.charts.model.DataSeriesItem;
 import com.vaadin.flow.component.html.Input;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @SkipFromDemo
 public class DynamicChanges extends AbstractChartExample {
@@ -30,7 +31,7 @@ public class DynamicChanges extends AbstractChartExample {
         addPointButton.setValue("Add Point");
         addPointButton.setType("button");
         addPointButton.setId("addPointButton");
-        addPointButton.addListener(ClickEvent.class, e -> {
+        addPointButton.addListener(ClickEvent.class,(ComponentEventListener) e -> {
             series.add(new DataSeriesItem(
                     "Random browser " + Math.floor(Math.random() * 20),
                     Math.random() * 20));
@@ -40,7 +41,8 @@ public class DynamicChanges extends AbstractChartExample {
         removePointButton.setValue("Remove Point");
         removePointButton.setId("removePointButton");
         removePointButton.setType("button");
-        removePointButton.addListener(ClickEvent.class, e -> {
+        removePointButton.addListener(ClickEvent.class,
+                (ComponentEventListener) e -> {
             if (!series.getData().isEmpty()) {
                 series.remove(series.getData().get(0));
             }
@@ -50,7 +52,8 @@ public class DynamicChanges extends AbstractChartExample {
         updatePointButton.setValue("Update Point");
         updatePointButton.setId("updatePointButton");
         updatePointButton.setType("button");
-        updatePointButton.addListener(ClickEvent.class, e -> {
+        updatePointButton.addListener(ClickEvent.class,
+                (ComponentEventListener) e -> {
             if (!series.getData().isEmpty()) {
                 DataSeriesItem item = series.getData().get(0);
                 item.setY(Math.random() * 20);
@@ -62,7 +65,8 @@ public class DynamicChanges extends AbstractChartExample {
         slicePointButton.setValue("Slice Point");
         slicePointButton.setId("slicePointButton");
         slicePointButton.setType("button");
-        slicePointButton.addListener(ClickEvent.class, e -> {
+        slicePointButton.addListener(ClickEvent.class,
+                (ComponentEventListener) e -> {
             if (!series.getData().isEmpty()) {
                 DataSeriesItem item = series.getData().get(0);
                 item.setX(Math.random() * 20);
@@ -74,7 +78,8 @@ public class DynamicChanges extends AbstractChartExample {
         disableSeriesButton.setValue("Toggle Series Visibility");
         disableSeriesButton.setId("disableSeriesButton");
         disableSeriesButton.setType("button");
-        disableSeriesButton.addListener(ClickEvent.class, e -> {
+        disableSeriesButton.addListener(ClickEvent.class,
+                (ComponentEventListener) e -> {
             series.setVisible(!series.isVisible());
         });
 
@@ -82,7 +87,8 @@ public class DynamicChanges extends AbstractChartExample {
         resetSeriesButton.setValue("Reset Series");
         resetSeriesButton.setId("resetSeriesButton");
         resetSeriesButton.setType("button");
-        resetSeriesButton.addListener(ClickEvent.class, e -> {
+        resetSeriesButton.addListener(ClickEvent.class,
+                (ComponentEventListener) e -> {
             series.setData(getInitialData());
             series.updateSeries();
         });

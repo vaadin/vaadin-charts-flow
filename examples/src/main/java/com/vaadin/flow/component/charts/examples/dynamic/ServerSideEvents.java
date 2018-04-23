@@ -6,10 +6,10 @@ import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.ComponentEvent;
 import com.vaadin.flow.component.ComponentEventListener;
-import com.vaadin.flow.component.HasClickListeners;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.charts.AbstractChartExample;
 import com.vaadin.flow.component.charts.Chart;
@@ -137,11 +137,11 @@ public class ServerSideEvents extends AbstractChartExample {
 
         final Button firstSeriesVisible = new Button("Hide first series");
         firstSeriesVisible.setId("hideFirstSeries");
-        firstSeriesVisible.addClickListener(new ComponentEventListener<HasClickListeners.ClickEvent<Button>>() {
+        firstSeriesVisible.addClickListener(new ComponentEventListener<ClickEvent<Button>>() {
             private boolean hideSeries = true;
 
             @Override
-            public void onComponentEvent(HasClickListeners.ClickEvent<Button> buttonClickEvent) {
+                    public void onComponentEvent(ClickEvent<Button> arg0) {
                 Series firstSeries = chart.getConfiguration().getSeries()
                         .get(0);
                 ((AbstractSeries) firstSeries).setVisible(!hideSeries);
