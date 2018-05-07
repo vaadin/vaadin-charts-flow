@@ -179,23 +179,6 @@
                 </property>
             </activation>
 
-            <repositories>
-                <repository>
-                    <id>bintray</id>
-                    <url>https://dl.bintray.com/webjars/maven/</url>
-                </repository>
-            </repositories>
-
-            <dependencyManagement>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.webjars.bowergithub.webcomponents</groupId>
-                        <artifactId>webcomponentsjs</artifactId>
-                        <version>1.2.0</version>
-                    </dependency>
-                </dependencies>
-            </dependencyManagement>
-
             <dependencies>
                 <!-- ADD THESE DEPENDENCIES AS A WORKAROUND FOR  <https://github.com/vaadin/flow/issues/3630> -->
                 <dependency>
@@ -287,6 +270,18 @@
                 <jetty.resource.directory>${project.build.directory}/${project.build.finalName}</jetty.resource.directory>
                 <war.source.excludes>frontend/**</war.source.excludes>
             </properties>
+
+            <!--PIN webcomponentsjs IN PRODUCTION MODE AS A WORKAROND FOR
+             https://protools.atlassian.net/browse/CHARTS-780-->
+            <dependencyManagement>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.webjars.bowergithub.webcomponents</groupId>
+                        <artifactId>webcomponentsjs</artifactId>
+                        <version>[1.0.0,1.999.999)</version>
+                    </dependency>
+                </dependencies>
+            </dependencyManagement>
 
             <dependencies>
                 <dependency>
