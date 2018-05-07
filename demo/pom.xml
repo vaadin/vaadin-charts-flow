@@ -271,18 +271,6 @@
                 <war.source.excludes>frontend/**</war.source.excludes>
             </properties>
 
-            <!--PIN webcomponentsjs IN PRODUCTION MODE AS A WORKAROND FOR
-             https://protools.atlassian.net/browse/CHARTS-780-->
-            <dependencyManagement>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.webjars.bowergithub.webcomponents</groupId>
-                        <artifactId>webcomponentsjs</artifactId>
-                        <version>[1.0.0,1.999.999)</version>
-                    </dependency>
-                </dependencies>
-            </dependencyManagement>
-
             <dependencies>
                 <dependency>
                     <groupId>com.vaadin</groupId>
