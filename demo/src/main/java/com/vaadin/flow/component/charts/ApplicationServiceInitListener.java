@@ -19,20 +19,6 @@ public class ApplicationServiceInitListener
                 +   "<meta name=\"theme-color\" content=\"#00B4F0\">");
         });
 
-        event.addDependencyFilter((dependencies, filterContext) -> {
-            if (filterContext.getService().getDeploymentConfiguration()
-                    .isProductionMode()) {
-
-                dependencies.removeIf(e -> e.getType().equals(Dependency.Type.HTML_IMPORT)
-                        && !e.getUrl().contains("examples"));
-
-                dependencies.add(new Dependency(Dependency.Type.HTML_IMPORT,
-                        "vaadin-flow-bundle.html", LoadMode.EAGER));
-            }
-
-            return dependencies;
-        });
-
         event.addRequestHandler(((session, request, response) -> {
             final String requestPath = request.getPathInfo();
             final String examplesBase = "/examples";
