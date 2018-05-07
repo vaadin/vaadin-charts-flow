@@ -2,8 +2,6 @@ package com.vaadin.flow.component.charts;
 
 import com.vaadin.flow.server.ServiceInitEvent;
 import com.vaadin.flow.server.VaadinServiceInitListener;
-import com.vaadin.flow.shared.ui.Dependency;
-import com.vaadin.flow.shared.ui.LoadMode;
 import org.apache.commons.io.IOUtils;
 import org.jsoup.nodes.Element;
 
