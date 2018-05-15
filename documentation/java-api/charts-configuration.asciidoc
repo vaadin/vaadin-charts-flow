@@ -71,6 +71,10 @@ plotOptions.setStacking(Stacking.NORMAL);
 series.setPlotOptions(plotOptions);
 ----
 
+NOTE: GaugeOptions and PlotOptionsBar should not be combined with other plot options.
+
+NOTE: Gauge, solid gauge and bar series should not be combined with series of other options type.
+
 The plot options are defined in type-specific options classes or in a [classname]#PlotOptionsSeries# class which contains general options for all series types.
 Type specific classes are applied to all the series with the same type in the chart.
 If [classname]#PlotOptionsSeries# is used, it will be applied to all the series in the chart regardless of the type.
