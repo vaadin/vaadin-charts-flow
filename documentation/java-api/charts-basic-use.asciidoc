@@ -236,4 +236,6 @@ conf.addSeries(series2);
 In the above case, where we set the chart type for each series, the overall
 chart type is irrelevant.
 
-NOTE: Gauge, solid gauge and bar charts should not be combined with other chart types.
+NOTE: Gauge and solid gauge series should not be combined with series of other types.
+
+NOTE: A bar series inverts the entire chart, combine with care.
