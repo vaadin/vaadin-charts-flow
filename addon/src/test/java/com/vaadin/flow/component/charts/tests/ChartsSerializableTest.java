@@ -10,6 +10,7 @@ public class ChartsSerializableTest extends ClassesSerializableTest {
         return Stream.concat(
                 super.getExcludedPatterns(),
                 Stream.of(
+                        "^((?!\\.listeners\\.).)*$" /*TODO: Remove when Flow Beta13 is released*/,
                         ".*\\Serializer(Modifier)?$",
                         "com\\.vaadin\\.flow\\.component\\.charts\\.model\\.serializers\\.BeanSerializationDelegate"
                 ));
