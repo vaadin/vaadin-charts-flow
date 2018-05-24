@@ -71,9 +71,9 @@ import elemental.json.impl.JreJsonFactory;
 public class Chart extends Component implements HasStyle, HasSize {
 
     private Configuration configuration;
-    private final JreJsonFactory jsonFactory = new JreJsonFactory();
+    private transient JreJsonFactory jsonFactory;
     private final ConfigurationChangeListener changeListener = new ProxyChangeForwarder(
-            this, jsonFactory);
+            this);
 
     private final static List<ChartType> TIMELINE_NOT_SUPPORTED = Arrays.asList(
             ChartType.PIE, ChartType.GAUGE, ChartType.SOLIDGAUGE, ChartType.PYRAMID,
@@ -142,6 +142,10 @@ public class Chart extends Component implements HasStyle, HasSize {
      */
     public void drawChart(boolean resetConfiguration) {
         validateTimelineAndConfiguration();
+
+        if (jsonFactory == null) {
+            jsonFactory = new JreJsonFactory();
+        }
 
         final JsonObject configurationNode = jsonFactory
                 .parse(ChartSerialization.toJSON(configuration));

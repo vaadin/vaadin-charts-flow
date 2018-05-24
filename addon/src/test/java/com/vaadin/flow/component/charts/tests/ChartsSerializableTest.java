@@ -9,8 +9,7 @@ public class ChartsSerializableTest extends ClassesSerializableTest {
     protected Stream<String> getExcludedPatterns() {
         return Stream.concat(
                 super.getExcludedPatterns(),
-                Stream.of("com\\.vaadin\\.flow\\.component\\.charts\\.Chart"/*todo remove and fix*/,
-                        "^((?!\\.charts\\.).)*$" /*todo remove when upgraded to new flow*/,
+                Stream.of(
                         ".*\\Serializer(Modifier)?$",
                         "com\\.vaadin\\.flow\\.component\\.charts\\.model\\.serializers\\.BeanSerializationDelegate"
                 ));
