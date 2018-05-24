@@ -30,22 +30,13 @@ import com.vaadin.flow.component.charts.events.internal.SeriesStateEvent;
 import com.vaadin.flow.component.charts.model.AbstractConfigurationObject;
 import com.vaadin.flow.component.charts.model.AxisDimension;
 import com.vaadin.flow.component.charts.util.ChartSerialization;
-import elemental.json.impl.JreJsonFactory;
 
 class ProxyChangeForwarder implements ConfigurationChangeListener {
 
     private final Chart chart;
-    private transient JreJsonFactory jsonFactory;
 
     ProxyChangeForwarder(Chart chart) {
         this.chart = chart;
-    }
-
-    private JreJsonFactory getJsonFactory() {
-        if (jsonFactory == null) {
-            this.jsonFactory = new JreJsonFactory();
-        }
-        return jsonFactory;
     }
 
     @Override
@@ -53,7 +44,7 @@ class ProxyChangeForwarder implements ConfigurationChangeListener {
         if (event.getItem() != null) {
             chart.getElement().callFunction("__callSeriesFunction",
                     "addPoint", getSeriesIndex(event),
-                    getJsonFactory().parse(
+                    chart.jsonFactory.parse(
                             ChartSerialization.toJSON(event.getItem())),
                     true, event.isShift());
         }
@@ -74,7 +65,7 @@ class ProxyChangeForwarder implements ConfigurationChangeListener {
         } else {
             chart.getElement().callFunction("__callPointFunction", "update",
                     getSeriesIndex(event), event.getPointIndex(),
-                    getJsonFactory().parse(
+                    chart.jsonFactory.parse(
                             ChartSerialization.toJSON(event.getItem())));
         }
     }
@@ -109,14 +100,14 @@ class ProxyChangeForwarder implements ConfigurationChangeListener {
     @Override
     public void seriesAdded(SeriesAddedEvent event) {
         chart.getElement().callFunction("__callChartFunction", "addSeries",
-                getJsonFactory().parse(ChartSerialization.toJSON((AbstractConfigurationObject) event.getSeries())));
+                chart.jsonFactory.parse(ChartSerialization.toJSON((AbstractConfigurationObject) event.getSeries())));
     }
 
     @Override
     public void seriesChanged(SeriesChangedEvent event) {
         chart.getElement().callFunction("__callSeriesFunction", "update",
                 getSeriesIndex(event),
-                getJsonFactory().parse(ChartSerialization.toJSON(
+                chart.jsonFactory.parse(ChartSerialization.toJSON(
                         (AbstractConfigurationObject) event.getSeries())));
     }
 

@@ -71,7 +71,7 @@ import elemental.json.impl.JreJsonFactory;
 public class Chart extends Component implements HasStyle, HasSize {
 
     private Configuration configuration;
-    private transient JreJsonFactory jsonFactory;
+    transient final JreJsonFactory jsonFactory = new JreJsonFactory();
     private final ConfigurationChangeListener changeListener = new ProxyChangeForwarder(
             this);
 
@@ -142,10 +142,6 @@ public class Chart extends Component implements HasStyle, HasSize {
      */
     public void drawChart(boolean resetConfiguration) {
         validateTimelineAndConfiguration();
-
-        if (jsonFactory == null) {
-            jsonFactory = new JreJsonFactory();
-        }
 
         final JsonObject configurationNode = jsonFactory
                 .parse(ChartSerialization.toJSON(configuration));
