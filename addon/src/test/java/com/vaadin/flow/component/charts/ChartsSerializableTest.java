@@ -11,7 +11,6 @@ import com.vaadin.flow.testutil.ClassesSerializableTest;
 import org.junit.Assert;
 import org.junit.Test;
 
-
 public class ChartsSerializableTest extends ClassesSerializableTest {
     @Override
     protected Stream<String> getExcludedPatterns() {
