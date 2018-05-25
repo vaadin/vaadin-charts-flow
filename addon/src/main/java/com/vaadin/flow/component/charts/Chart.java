@@ -16,6 +16,7 @@
  */
 package com.vaadin.flow.component.charts;
 
+import java.io.ObjectStreamException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -71,7 +72,13 @@ import elemental.json.impl.JreJsonFactory;
 public class Chart extends Component implements HasStyle, HasSize {
 
     private Configuration configuration;
-    transient final JreJsonFactory jsonFactory = new JreJsonFactory();
+
+    transient JreJsonFactory jsonFactory = new JreJsonFactory();
+    private Object readResolve() throws ObjectStreamException {
+        jsonFactory = new JreJsonFactory();
+        return this;
+    }
+
     private final ConfigurationChangeListener changeListener = new ProxyChangeForwarder(
             this);
 
