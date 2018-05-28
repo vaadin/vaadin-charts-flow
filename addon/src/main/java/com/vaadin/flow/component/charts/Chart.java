@@ -16,7 +16,6 @@
  */
 package com.vaadin.flow.component.charts;
 
-import java.io.ObjectStreamException;
 import java.util.Arrays;
 import java.util.List;
 

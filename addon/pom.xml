@@ -35,11 +35,10 @@
             <artifactId>jackson-databind</artifactId>
             <version>${jackson.version}</version>
         </dependency>
-        <!--TODO: Switch to ${flow.version}-->
         <dependency>
             <groupId>com.vaadin</groupId>
             <artifactId>flow-test-generic</artifactId>
-            <version>1.0.0.beta12</version>
+            <version>${flow.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
