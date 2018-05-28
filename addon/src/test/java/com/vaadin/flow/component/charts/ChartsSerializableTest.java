@@ -1,15 +1,11 @@
 package com.vaadin.flow.component.charts;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.util.stream.Stream;
-
 import com.vaadin.flow.testutil.ClassesSerializableTest;
+import elemental.json.impl.JreJsonFactory;
 import org.junit.Assert;
 import org.junit.Test;
+
+import java.util.stream.Stream;
 
 public class ChartsSerializableTest extends ClassesSerializableTest {
     @Override
@@ -24,27 +20,14 @@ public class ChartsSerializableTest extends ClassesSerializableTest {
     }
 
     @Test
-    public void verifyJsonFactoryDeserialization() {
+    public void verifyJsonFactoryDeserialization() throws Throwable {
         final Chart chart = new Chart();
-        final ByteArrayOutputStream objectOutStore = new ByteArrayOutputStream();
-        try (ObjectOutputStream serializer = new ObjectOutputStream(objectOutStore)) {
-            serializer.writeObject(chart);
-            serializer.flush();
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            Assert.fail("Unable to serialize Chart");
-        }
+        final JreJsonFactory jsonFactory = chart.getJsonFactory();
+        final Chart deserializedChart = super.serializeAndDeserialize(chart);
 
-        try(ByteArrayInputStream objectInStore = new ByteArrayInputStream(objectOutStore.toByteArray());
-                ObjectInputStream deserializer = new ObjectInputStream(objectInStore)) {
-            final Chart deserializedChart = (Chart) deserializer.readObject();
-            Assert.assertNotNull(deserializedChart);
-            Assert.assertNotNull(deserializedChart.jsonFactory);
-            Assert.assertNotEquals(chart, deserializedChart);
-            Assert.assertNotEquals(chart.jsonFactory, deserializedChart.jsonFactory);
-        } catch (IOException | ClassNotFoundException ex) {
-            ex.printStackTrace();
-            Assert.fail("Unable to deserialize Chart");
-        }
+        Assert.assertNotNull(deserializedChart);
+        Assert.assertNotNull(deserializedChart.getJsonFactory());
+        Assert.assertNotEquals(chart, deserializedChart);
+        Assert.assertNotEquals(jsonFactory, deserializedChart.getJsonFactory());
     }
 }

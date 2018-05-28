@@ -44,7 +44,7 @@ class ProxyChangeForwarder implements ConfigurationChangeListener {
         if (event.getItem() != null) {
             chart.getElement().callFunction("__callSeriesFunction",
                     "addPoint", getSeriesIndex(event),
-                    chart.jsonFactory.parse(
+                    chart.getJsonFactory().parse(
                             ChartSerialization.toJSON(event.getItem())),
                     true, event.isShift());
         }
@@ -65,7 +65,7 @@ class ProxyChangeForwarder implements ConfigurationChangeListener {
         } else {
             chart.getElement().callFunction("__callPointFunction", "update",
                     getSeriesIndex(event), event.getPointIndex(),
-                    chart.jsonFactory.parse(
+                    chart.getJsonFactory().parse(
                             ChartSerialization.toJSON(event.getItem())));
         }
     }
@@ -100,14 +100,15 @@ class ProxyChangeForwarder implements ConfigurationChangeListener {
     @Override
     public void seriesAdded(SeriesAddedEvent event) {
         chart.getElement().callFunction("__callChartFunction", "addSeries",
-                chart.jsonFactory.parse(ChartSerialization.toJSON((AbstractConfigurationObject) event.getSeries())));
+                chart.getJsonFactory().parse(ChartSerialization.toJSON(
+                        (AbstractConfigurationObject) event.getSeries())));
     }
 
     @Override
     public void seriesChanged(SeriesChangedEvent event) {
         chart.getElement().callFunction("__callSeriesFunction", "update",
                 getSeriesIndex(event),
-                chart.jsonFactory.parse(ChartSerialization.toJSON(
+                chart.getJsonFactory().parse(ChartSerialization.toJSON(
                         (AbstractConfigurationObject) event.getSeries())));
     }
 

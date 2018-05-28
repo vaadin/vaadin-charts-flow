@@ -73,11 +73,7 @@ public class Chart extends Component implements HasStyle, HasSize {
 
     private Configuration configuration;
 
-    transient JreJsonFactory jsonFactory = new JreJsonFactory();
-    private Object readResolve() throws ObjectStreamException {
-        jsonFactory = new JreJsonFactory();
-        return this;
-    }
+    private transient JreJsonFactory jsonFactory = new JreJsonFactory();
 
     private final ConfigurationChangeListener changeListener = new ProxyChangeForwarder(
             this);
@@ -118,6 +114,14 @@ public class Chart extends Component implements HasStyle, HasSize {
         });
     }
 
+    JreJsonFactory getJsonFactory() {
+        if (jsonFactory == null) {
+            jsonFactory = new JreJsonFactory();
+        }
+
+        return jsonFactory;
+    }
+
     /**
      * Draws a chart using the current configuration.
      *
@@ -150,7 +154,7 @@ public class Chart extends Component implements HasStyle, HasSize {
     public void drawChart(boolean resetConfiguration) {
         validateTimelineAndConfiguration();
 
-        final JsonObject configurationNode = jsonFactory
+        final JsonObject configurationNode = getJsonFactory()
                 .parse(ChartSerialization.toJSON(configuration));
 
         getElement().callFunction("update", configurationNode,
