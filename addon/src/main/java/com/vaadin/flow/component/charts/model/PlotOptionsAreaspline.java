@@ -46,6 +46,7 @@ public class PlotOptionsAreaspline extends AreaOptions {
 	private String linecap;
 	private String linkedTo;
 	private Marker marker;
+	private boolean negativeColor;
 	private boolean negativeFillColor;
 	private String _fn_pointDescriptionFormatter;
 	private Number pointInterval;
@@ -489,6 +490,23 @@ public class PlotOptionsAreaspline extends AreaOptions {
 	}
 
 	/**
+	 * @see #setNegativeColor(boolean)
+	 */
+	public boolean isNegativeColor() {
+		return negativeColor;
+	}
+
+	/**
+	 * Enable or disable the color for parts of the graph that are bellow
+	 * {@link #getThreshold()}. A negative color is applied by setting this
+	 * option to <code>true</code> combined with the
+	 * <code>.highcharts-negative</code> class name.
+	 */
+	public void setNegativeColor(boolean negativeColor) {
+		this.negativeColor = negativeColor;
+	}
+
+	/**
 	 * @see #setNegativeFillColor(boolean)
 	 */
 	public boolean isNegativeFillColor() {
@@ -496,7 +514,9 @@ public class PlotOptionsAreaspline extends AreaOptions {
 	}
 
 	/**
-	 * A separate color for the negative part of the area.
+	 * Enable or disable the color for parts of the area.
+	 * 
+	 * @see #setNegativeColor(Boolean)
 	 */
 	public void setNegativeFillColor(boolean negativeFillColor) {
 		this.negativeFillColor = negativeFillColor;
