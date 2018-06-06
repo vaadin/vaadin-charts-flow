@@ -49,7 +49,6 @@ public class PlotOptionsAreasplinerange extends AreaOptions {
 	private String linecap;
 	private String linkedTo;
 	private boolean negativeColor;
-	private boolean negativeFillColor;
 	private String _fn_pointDescriptionFormatter;
 	private Number pointInterval;
 	private IntervalUnit pointIntervalUnit;
@@ -448,22 +447,6 @@ public class PlotOptionsAreasplinerange extends AreaOptions {
 	 */
 	public void setNegativeColor(boolean negativeColor) {
 		this.negativeColor = negativeColor;
-	}
-
-	/**
-	 * @see #setNegativeFillColor(boolean)
-	 */
-	public boolean isNegativeFillColor() {
-		return negativeFillColor;
-	}
-
-	/**
-	 * Enable or disable the color for parts of the area.
-	 * 
-	 * @see #setNegativeColor(Boolean)
-	 */
-	public void setNegativeFillColor(boolean negativeFillColor) {
-		this.negativeFillColor = negativeFillColor;
 	}
 
 	public String getPointDescriptionFormatter() {
