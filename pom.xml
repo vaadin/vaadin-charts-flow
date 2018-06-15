@@ -81,19 +81,16 @@
                 <artifactId>flow</artifactId>
                 <version>${flow.version}</version>
                 <type>pom</type>
-                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>com.vaadin</groupId>
                 <artifactId>flow-data</artifactId>
                 <version>${flow.version}</version>
-                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>com.vaadin</groupId>
                 <artifactId>flow-server-production-mode</artifactId>
                 <version>${flow.version}</version>
-                <scope>provided</scope>                
             </dependency>
 
             <!--PIN webcomponentsjs AS A WORKAROND FOR https://github.com/webjars/webjars/issues/1763-->
