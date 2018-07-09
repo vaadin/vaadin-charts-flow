@@ -1,25 +1,8 @@
 package com.vaadin.flow.component.charts.model;
 
-/*-
- * #%L
- * Vaadin Charts for Flow
- * %%
- * Copyright (C) 2014 - 2018 Vaadin Ltd
- * %%
- * This program is available under Commercial Vaadin Add-On License 3.0
- * (CVALv3).
- * 
- * See the file licensing.txt distributed with this software for more
- * information about licensing.
- * 
- * You should have received a copy of the CVALv3 along with this program.
- * If not, see <https://vaadin.com/license/cval-3>.
- * #L%
- */
-
 import javax.annotation.Generated;
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.ArrayList;
 
 /**
  * The range selector is a tool for selecting ranges to display within the
@@ -35,6 +18,7 @@ public class RangeSelector extends AbstractConfigurationObject {
 	private Number buttonSpacing;
 	private ArrayList<RangeSelectorButton> buttons;
 	private Boolean enabled;
+	private Boolean floating;
 	private Number height;
 	private Number inputBoxHeight;
 	private Number inputBoxWidth;
@@ -42,10 +26,17 @@ public class RangeSelector extends AbstractConfigurationObject {
 	private String _fn_inputDateParser;
 	private String inputEditDateFormat;
 	private Boolean inputEnabled;
-	private ButtonPosition inputPosition;
+	private InputPosition inputPosition;
 	private Number selected;
+	private VerticalAlign verticalAlign;
+	private Number x;
+	private Number y;
 
 	public RangeSelector() {
+	}
+
+	public RangeSelector(Boolean enabled) {
+		this.enabled = enabled;
 	}
 
 	/**
@@ -60,8 +51,6 @@ public class RangeSelector extends AbstractConfigurationObject {
 	 * enabled if the corresponding time range exists on the X axis, but
 	 * enabling all buttons allows for dynamically loading different time
 	 * ranges.
-	 * <p>
-	 * Defaults to: false
 	 */
 	public void setAllButtonsEnabled(Boolean allButtonsEnabled) {
 		this.allButtonsEnabled = allButtonsEnabled;
@@ -78,8 +67,7 @@ public class RangeSelector extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * A fixed pixel position for the buttons. Supports two properties,
-	 * <code>x</code> and <code>y<code>.
+	 * Positioning for the button row.
 	 */
 	public void setButtonPosition(ButtonPosition buttonPosition) {
 		this.buttonPosition = buttonPosition;
@@ -94,90 +82,52 @@ public class RangeSelector extends AbstractConfigurationObject {
 
 	/**
 	 * The space in pixels between the buttons in the range selector.
-	 * <p>
-	 * Defaults to: 0
 	 */
 	public void setButtonSpacing(Number buttonSpacing) {
 		this.buttonSpacing = buttonSpacing;
 	}
 
 	/**
-	 * @see #setButtons(RangeSelectorButton...)
+	 * @see #setButtons(ArrayList)
 	 */
-	public RangeSelectorButton[] getButtons() {
+	public ArrayList<RangeSelectorButton> getButtons() {
 		if (buttons == null) {
-			return new RangeSelectorButton[]{};
+			buttons = new ArrayList<RangeSelectorButton>();
 		}
-		RangeSelectorButton[] arr = new RangeSelectorButton[buttons.size()];
-		buttons.toArray(arr);
-		return arr;
+		return buttons;
 	}
 
 	/**
-	 * <p>
-	 * An array of configuration objects for the buttons.
-	 * </p>
-	 * 
-	 * Defaults to
+	 * An array of configuration objects for the buttons. Defaults to
 	 * 
 	 * <pre>
 	 * buttons: [{
-	 * 		type: 'month',
-	 * 		count: 1,
-	 * 		text: '1m'
+	 * 	    type: 'month',
+	 * 	    count: 1,
+	 * 	    text: '1m'
 	 * 	}, {
-	 * 		type: 'month',
-	 * 		count: 3,
-	 * 		text: '3m'
+	 * 	    type: 'month',
+	 * 	    count: 3,
+	 * 	    text: '3m'
 	 * 	}, {
-	 * 		type: 'month',
-	 * 		count: 6,
-	 * 		text: '6m'
+	 * 	    type: 'month',
+	 * 	    count: 6,
+	 * 	    text: '6m'
 	 * 	}, {
-	 * 		type: 'ytd',
-	 * 		text: 'YTD'
+	 * 	    type: 'ytd',
+	 * 	    text: 'YTD'
 	 * 	}, {
-	 * 		type: 'year',
-	 * 		count: 1,
-	 * 		text: '1y'
+	 * 	    type: 'year',
+	 * 	    count: 1,
+	 * 	    text: '1y'
 	 * 	}, {
-	 * 		type: 'all',
-	 * 		text: 'All'
+	 * 	    type: 'all',
+	 * 	    text: 'All'
 	 * 	}]
 	 * </pre>
 	 */
-	public void setButtons(RangeSelectorButton... buttons) {
-		this.buttons = new ArrayList<RangeSelectorButton>(
-				Arrays.asList(buttons));
-	}
-
-	/**
-	 * Adds button to the buttons array
-	 * 
-	 * @param button
-	 *            to add
-	 * @see #setButtons(RangeSelectorButton...)
-	 */
-	public void addButton(RangeSelectorButton button) {
-		if (this.buttons == null) {
-			this.buttons = new ArrayList<RangeSelectorButton>();
-		}
-		this.buttons.add(button);
-	}
-
-	/**
-	 * Removes first occurrence of button in buttons array
-	 * 
-	 * @param button
-	 *            to remove
-	 * @see #setButtons(RangeSelectorButton...)
-	 */
-	public void removeButton(RangeSelectorButton button) {
-		this.buttons.remove(button);
-	}
-
-	public RangeSelector(Boolean enabled) {
-		this.enabled = enabled;
+	public void setButtons(ArrayList<RangeSelectorButton> buttons) {
+		this.buttons = buttons;
 	}
 
 	/**
@@ -189,11 +139,24 @@ public class RangeSelector extends AbstractConfigurationObject {
 
 	/**
 	 * Enable or disable the range selector.
-	 * <p>
-	 * Defaults to: true
 	 */
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
+	}
+
+	/**
+	 * @see #setFloating(Boolean)
+	 */
+	public Boolean getFloating() {
+		return floating;
+	}
+
+	/**
+	 * When the rangeselector is floating, the plot area does not reserve space
+	 * for it. This opens for positioning anywhere on the chart.
+	 */
+	public void setFloating(Boolean floating) {
+		this.floating = floating;
 	}
 
 	/**
@@ -204,10 +167,8 @@ public class RangeSelector extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * The height of the range selector, used to reserve space for buttons and
-	 * input.
-	 * <p>
-	 * Defaults to: 35
+	 * Deprecated. The height of the range selector. Currently it is calculated
+	 * dynamically.
 	 */
 	public void setHeight(Number height) {
 		this.height = height;
@@ -222,8 +183,6 @@ public class RangeSelector extends AbstractConfigurationObject {
 
 	/**
 	 * The pixel height of the date input boxes.
-	 * <p>
-	 * Defaults to: 17
 	 */
 	public void setInputBoxHeight(Number inputBoxHeight) {
 		this.inputBoxHeight = inputBoxHeight;
@@ -238,8 +197,6 @@ public class RangeSelector extends AbstractConfigurationObject {
 
 	/**
 	 * The pixel width of the date input boxes.
-	 * <p>
-	 * Defaults to: 90
 	 */
 	public void setInputBoxWidth(Number inputBoxWidth) {
 		this.inputBoxWidth = inputBoxWidth;
@@ -254,18 +211,23 @@ public class RangeSelector extends AbstractConfigurationObject {
 
 	/**
 	 * The date format in the input boxes when not selected for editing.
-	 * Defaults to <code>%b %e, %Y</code>.
-	 * <p>
-	 * Defaults to: %b %e %Y,
+	 * Defaults to `%b %e, %Y`.
 	 */
 	public void setInputDateFormat(String inputDateFormat) {
 		this.inputDateFormat = inputDateFormat;
 	}
 
+	/**
+	 * @see #set_fn_inputDateParser(String)
+	 */
 	public String getInputDateParser() {
 		return _fn_inputDateParser;
 	}
 
+	/**
+	 * A custom callback function to parse values entered in the input boxes and
+	 * return a valid JavaScript time as milliseconds since 1970.
+	 */
 	public void setInputDateParser(String _fn_inputDateParser) {
 		this._fn_inputDateParser = _fn_inputDateParser;
 	}
@@ -280,8 +242,6 @@ public class RangeSelector extends AbstractConfigurationObject {
 	/**
 	 * The date format in the input boxes when they are selected for editing.
 	 * This must be a format that is recognized by JavaScript Date.parse.
-	 * <p>
-	 * Defaults to: %Y-%m-%d
 	 */
 	public void setInputEditDateFormat(String inputEditDateFormat) {
 		this.inputEditDateFormat = inputEditDateFormat;
@@ -303,23 +263,20 @@ public class RangeSelector extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setInputPosition(ButtonPosition)
+	 * @see #setInputPosition(InputPosition)
 	 */
-	public ButtonPosition getInputPosition() {
+	public InputPosition getInputPosition() {
 		if (inputPosition == null) {
-			inputPosition = new ButtonPosition();
+			inputPosition = new InputPosition();
 		}
 		return inputPosition;
 	}
 
 	/**
-	 * Positioning for the input boxes. Allowed properties are
-	 * <code>align</code>, <code>verticalAlign</code>, <code>x</code> and
-	 * <code>y</code>.
-	 * <p>
-	 * Defaults to: { align: "right" }
+	 * Positioning for the input boxes. Allowed properties are `align`, `x` and
+	 * `y`.
 	 */
-	public void setInputPosition(ButtonPosition inputPosition) {
+	public void setInputPosition(InputPosition inputPosition) {
 		this.inputPosition = inputPosition;
 	}
 
@@ -332,10 +289,69 @@ public class RangeSelector extends AbstractConfigurationObject {
 
 	/**
 	 * The index of the button to appear pre-selected.
-	 * <p>
-	 * Defaults to: undefined
 	 */
 	public void setSelected(Number selected) {
 		this.selected = selected;
+	}
+
+	/**
+	 * @see #setVerticalAlign(VerticalAlign)
+	 */
+	public VerticalAlign getVerticalAlign() {
+		return verticalAlign;
+	}
+
+	/**
+	 * The vertical alignment of the rangeselector box. Allowed properties are
+	 * `top`, `middle`, `bottom`.
+	 */
+	public void setVerticalAlign(VerticalAlign verticalAlign) {
+		this.verticalAlign = verticalAlign;
+	}
+
+	/**
+	 * @see #setX(Number)
+	 */
+	public Number getX() {
+		return x;
+	}
+
+	/**
+	 * The x offset of the range selector relative to its horizontal alignment
+	 * within `chart.spacingLeft` and `chart.spacingRight`.
+	 */
+	public void setX(Number x) {
+		this.x = x;
+	}
+
+	/**
+	 * @see #setY(Number)
+	 */
+	public Number getY() {
+		return y;
+	}
+
+	/**
+	 * The y offset of the range selector relative to its horizontal alignment
+	 * within `chart.spacingLeft` and `chart.spacingRight`.
+	 */
+	public void setY(Number y) {
+		this.y = y;
+	}
+
+	public void setButtons(RangeSelectorButton... buttons) {
+		this.buttons = new ArrayList<RangeSelectorButton>(
+				Arrays.asList(buttons));
+	}
+
+	public void addButton(RangeSelectorButton button) {
+		if (this.buttons == null) {
+			this.buttons = new ArrayList<RangeSelectorButton>();
+		}
+		this.buttons.add(button);
+	}
+
+	public void removeButton(RangeSelectorButton button) {
+		this.buttons.remove(button);
 	}
 }

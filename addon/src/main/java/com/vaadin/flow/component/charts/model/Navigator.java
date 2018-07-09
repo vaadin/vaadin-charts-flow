@@ -1,22 +1,5 @@
 package com.vaadin.flow.component.charts.model;
 
-/*-
- * #%L
- * Vaadin Charts for Flow
- * %%
- * Copyright (C) 2014 - 2018 Vaadin Ltd
- * %%
- * This program is available under Commercial Vaadin Add-On License 3.0
- * (CVALv3).
- * 
- * See the file licensing.txt distributed with this software for more
- * information about licensing.
- * 
- * You should have received a copy of the CVALv3 along with this program.
- * If not, see <https://vaadin.com/license/cval-3>.
- * #L%
- */
-
 import javax.annotation.Generated;
 
 /**
@@ -28,16 +11,21 @@ import javax.annotation.Generated;
 public class Navigator extends AbstractConfigurationObject {
 
 	private Boolean adaptToUpdatedData;
+	private String baseSeries;
 	private Boolean enabled;
 	private Number height;
 	private Number margin;
 	private Boolean maskInside;
 	private Boolean opposite;
-	private PlotOptionsSeries series;
-	private XAxis xAxis;
-	private YAxis yAxis;
+	private NavigatorOptions series;
+	private NavigatorXAxis xAxis;
+	private NavigatorYAxis yAxis;
 
 	public Navigator() {
+	}
+
+	public Navigator(Boolean enabled) {
+		this.enabled = enabled;
 	}
 
 	/**
@@ -50,19 +38,29 @@ public class Navigator extends AbstractConfigurationObject {
 	/**
 	 * Whether the navigator and scrollbar should adapt to updated data in the
 	 * base X axis. When loading data async, as in the demo below, this should
-	 * be <code>false</code>. Otherwise new data will trigger navigator redraw,
-	 * which will cause unwanted looping. In the demo below, the data in the
-	 * navigator is set only once. On navigating, only the main chart content is
-	 * updated.
-	 * <p>
-	 * Defaults to: true
+	 * be `false`. Otherwise new data will trigger navigator redraw, which will
+	 * cause unwanted looping. In the demo below, the data in the navigator is
+	 * set only once. On navigating, only the main chart content is updated.
 	 */
 	public void setAdaptToUpdatedData(Boolean adaptToUpdatedData) {
 		this.adaptToUpdatedData = adaptToUpdatedData;
 	}
 
-	public Navigator(Boolean enabled) {
-		this.enabled = enabled;
+	/**
+	 * @see #setBaseSeries(String)
+	 */
+	public String getBaseSeries() {
+		return baseSeries;
+	}
+
+	/**
+	 * An integer identifying the index to use for the base series, or a string
+	 * representing the id of the series. Note**: As of Highcharts 5.0, this is
+	 * now a deprecated option. Prefer
+	 * [series.showInNavigator](#plotOptions.series.showInNavigator).
+	 */
+	public void setBaseSeries(String baseSeries) {
+		this.baseSeries = baseSeries;
 	}
 
 	/**
@@ -74,8 +72,6 @@ public class Navigator extends AbstractConfigurationObject {
 
 	/**
 	 * Enable or disable the navigator.
-	 * <p>
-	 * Defaults to: true
 	 */
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
@@ -90,8 +86,6 @@ public class Navigator extends AbstractConfigurationObject {
 
 	/**
 	 * The height of the navigator.
-	 * <p>
-	 * Defaults to: 40
 	 */
 	public void setHeight(Number height) {
 		this.height = height;
@@ -106,8 +100,6 @@ public class Navigator extends AbstractConfigurationObject {
 
 	/**
 	 * The distance from the nearest element, the X axis or X axis labels.
-	 * <p>
-	 * Defaults to: 25
 	 */
 	public void setMargin(Number margin) {
 		this.margin = margin;
@@ -122,9 +114,7 @@ public class Navigator extends AbstractConfigurationObject {
 
 	/**
 	 * Whether the mask should be inside the range marking the zoomed range, or
-	 * outside. In Highstock 1.x it was always <code>false</code>.
-	 * <p>
-	 * Defaults to: true
+	 * outside. In Highstock 1.x it was always `false`.
 	 */
 	public void setMaskInside(Boolean maskInside) {
 		this.maskInside = maskInside;
@@ -140,70 +130,59 @@ public class Navigator extends AbstractConfigurationObject {
 	/**
 	 * When the chart is inverted, whether to draw the navigator on the opposite
 	 * side.
-	 * <p>
-	 * Defaults to: false
 	 */
 	public void setOpposite(Boolean opposite) {
 		this.opposite = opposite;
 	}
 
 	/**
-	 * @see #setSeries(PlotOptionsSeries)
+	 * @see #setSeries(NavigatorOptions)
 	 */
-	public PlotOptionsSeries getSeries() {
+	public NavigatorOptions getSeries() {
+		if (series == null) {
+			series = new NavigatorOptions();
+		}
 		return series;
 	}
 
 	/**
-	 * <p>
 	 * Options for the navigator series. Available options are the same as any
-	 * series, documented at <a class="internal"
-	 * href="#plotOptions.series">plotOptions</a> and <a class="internal"
-	 * href="#series">series</a>.
-	 * </p>
-	 * 
-	 * <p>
-	 * Unless data is explicitly defined on navigator.series, the data is
-	 * borrowed from the first series in the chart.
-	 * </p>
-	 * 
-	 * <p>
-	 * Default series options for the navigator series are:
-	 * </p>
+	 * series, documented at [plotOptions](#plotOptions.series) and
+	 * [series](#series). Unless data is explicitly defined on navigator.series,
+	 * the data is borrowed from the first series in the chart. Default series
+	 * options for the navigator series are:
 	 * 
 	 * <pre>
 	 * series: {
-	 * 		type: 'areaspline',
-	 * 		color: '#4572A7',
-	 * 		fillOpacity: 0.05,
-	 * 		dataGrouping: {
-	 * 			smoothed: true
-	 * 		},
-	 * 		lineWidth: 1,
-	 * 		marker: {
-	 * 			enabled: false
-	 * 		}
+	 * 	    type: 'areaspline',
+	 * 	    fillOpacity: 0.05,
+	 * 	    dataGrouping: {
+	 * 	        smoothed: true
+	 * 	    },
+	 * 	    lineWidth: 1,
+	 * 	    marker: {
+	 * 	        enabled: false
+	 * 	    }
 	 * 	}
 	 * </pre>
 	 */
-	public void setSeries(PlotOptionsSeries series) {
+	public void setSeries(NavigatorOptions series) {
 		this.series = series;
 	}
 
 	/**
-	 * @see #setXAxis(XAxis)
+	 * @see #setXAxis(NavigatorXAxis)
 	 */
-	public XAxis getXAxis() {
+	public NavigatorXAxis getXAxis() {
 		if (xAxis == null) {
-			xAxis = new XAxis();
+			xAxis = new NavigatorXAxis();
 		}
 		return xAxis;
 	}
 
 	/**
-	 * Options for the navigator X axis. Available options are the same as any X
-	 * axis, documented at <a class="internal" href="#xAxis">xAxis</a>. Default
-	 * series options for the navigator xAxis are:
+	 * Options for the navigator X axis. Default series options for the
+	 * navigator xAxis are:
 	 * 
 	 * <pre>
 	 * xAxis: {
@@ -212,7 +191,7 @@ public class Navigator extends AbstractConfigurationObject {
 	 * 	    gridLineWidth: 1,
 	 * 	    tickPixelInterval: 200,
 	 * 	    labels: {
-	 * 	        align: 'left',
+	 * 	           align: 'left',
 	 * 	        style: {
 	 * 	            color: '#888'
 	 * 	        },
@@ -222,43 +201,42 @@ public class Navigator extends AbstractConfigurationObject {
 	 * 	}
 	 * </pre>
 	 */
-	public void setXAxis(XAxis xAxis) {
+	public void setXAxis(NavigatorXAxis xAxis) {
 		this.xAxis = xAxis;
 	}
 
 	/**
-	 * @see #setYAxis(YAxis)
+	 * @see #setYAxis(NavigatorYAxis)
 	 */
-	public YAxis getYAxis() {
+	public NavigatorYAxis getYAxis() {
 		if (yAxis == null) {
-			yAxis = new YAxis();
+			yAxis = new NavigatorYAxis();
 		}
 		return yAxis;
 	}
 
 	/**
-	 * Options for the navigator Y axis. Available options are the same as any y
-	 * axis, documented at <a class="internal" href="#yAxis">yAxis</a>. Default
-	 * series options for the navigator yAxis are:
+	 * Options for the navigator Y axis. Default series options for the
+	 * navigator yAxis are:
 	 * 
 	 * <pre>
 	 * yAxis: {
-	 * 		gridLineWidth: 0,
-	 * 		startOnTick: false,
-	 * 		endOnTick: false,
-	 * 		minPadding: 0.1,
-	 * 		maxPadding: 0.1,
-	 * 		labels: {
-	 * 			enabled: false
-	 * 		},
-	 * 		title: {
-	 * 			text: null
-	 * 		},
-	 * 		tickWidth: 0
+	 * 	    gridLineWidth: 0,
+	 * 	    startOnTick: false,
+	 * 	    endOnTick: false,
+	 * 	    minPadding: 0.1,
+	 * 	    maxPadding: 0.1,
+	 * 	    labels: {
+	 * 	        enabled: false
+	 * 	    },
+	 * 	    title: {
+	 * 	        text: null
+	 * 	    },
+	 * 	    tickWidth: 0
 	 * 	}
 	 * </pre>
 	 */
-	public void setYAxis(YAxis yAxis) {
+	public void setYAxis(NavigatorYAxis yAxis) {
 		this.yAxis = yAxis;
 	}
 }

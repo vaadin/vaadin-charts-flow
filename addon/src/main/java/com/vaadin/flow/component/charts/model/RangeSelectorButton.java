@@ -1,109 +1,153 @@
 package com.vaadin.flow.component.charts.model;
 
-/*
- * #%L
- * Vaadin Charts
- * %%
- * Copyright (C) 2012 - 2016 Vaadin Ltd
- * %%
- * This program is available under Commercial Vaadin Add-On License 3.0
- * (CVALv3).
- * 
- * See the file licensing.txt distributed with this software for more
- * information about licensing.
- * 
- * You should have received a copy of the CVALv3 along with this program.
- * If not, see <https://vaadin.com/license/cval-3>.
- * #L%
- */
+import javax.annotation.Generated;
 
 /**
- * Options for range selector buttons.
+ * An array of configuration objects for the buttons. Defaults to
+ * 
+ * <pre>
+ * buttons: [{
+ *     type: 'month',
+ *     count: 1,
+ *     text: '1m'
+ * }, {
+ *     type: 'month',
+ *     count: 3,
+ *     text: '3m'
+ * }, {
+ *     type: 'month',
+ *     count: 6,
+ *     text: '6m'
+ * }, {
+ *     type: 'ytd',
+ *     text: 'YTD'
+ * }, {
+ *     type: 'year',
+ *     count: 1,
+ *     text: '1y'
+ * }, {
+ *     type: 'all',
+ *     text: 'All'
+ * }]
+ * </pre>
  */
+@Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/vaadin-charts-flow/issues/new")
 public class RangeSelectorButton extends AbstractConfigurationObject {
 
-    private RangeSelectorTimespan type;
-    private Number count;
-    private String text;
-    private DataGrouping dataGrouping;
+	private Number count;
+	private DataGrouping dataGrouping;
+	private Events events;
+	private Number offsetMax;
+	private Number offsetMin;
+	private String text;
+	private RangeSelectorTimespan type;
 
-    public RangeSelectorButton() {
-    }
+	public RangeSelectorButton() {
+	}
 
-    public RangeSelectorButton(RangeSelectorTimespan type, Number count,
-            String text) {
-        this.type = type;
-        this.count = count;
-        this.text = text;
-    }
+	public RangeSelectorButton(String text) {
+		this.text = text;
+	}
 
-    public RangeSelectorButton(RangeSelectorTimespan type, String text) {
-        this.type = type;
-        this.text = text;
-    }
+	/**
+	 * @see #setCount(Number)
+	 */
+	public Number getCount() {
+		return count;
+	}
 
-    /**
-     * @see #setType(RangeSelectorTimespan)
-     */
-    public RangeSelectorTimespan getType() {
-        return type;
-    }
+	/**
+	 * How many units of the defined type the button should span. If `type` is
+	 * "month" and `count` is 3, the button spans three months.
+	 */
+	public void setCount(Number count) {
+		this.count = count;
+	}
 
-    /**
-     * Defines the timespan for the button
-     * 
-     * @param type
-     */
-    public void setType(RangeSelectorTimespan type) {
-        this.type = type;
-    }
+	/**
+	 * @see #setDataGrouping(DataGrouping)
+	 */
+	public DataGrouping getDataGrouping() {
+		if (dataGrouping == null) {
+			dataGrouping = new DataGrouping();
+		}
+		return dataGrouping;
+	}
 
-    /**
-     * @see #setCount(Number)
-     */
-    public Number getCount() {
-        return count;
-    }
+	/**
+	 * A custom data grouping object for each button.
+	 */
+	public void setDataGrouping(DataGrouping dataGrouping) {
+		this.dataGrouping = dataGrouping;
+	}
 
-    /**
-     * Defines how many units of the defined type to use.
-     * 
-     * @param count
-     */
-    public void setCount(Number count) {
-        this.count = count;
-    }
+	public Events getEvents() {
+		if (events == null) {
+			events = new Events();
+		}
+		return events;
+	}
 
-    /**
-     * @see #setText(String)
-     */
-    public String getText() {
-        return text;
-    }
+	public void setEvents(Events events) {
+		this.events = events;
+	}
 
-    /**
-     * Defines the text for the button
-     * 
-     * @param text
-     */
-    public void setText(String text) {
-        this.text = text;
-    }
+	/**
+	 * @see #setOffsetMax(Number)
+	 */
+	public Number getOffsetMax() {
+		return offsetMax;
+	}
 
-    /**
-     * @see #setDataGrouping(DataGrouping)
-     */
-    public DataGrouping getDataGrouping() {
-        return dataGrouping;
-    }
+	/**
+	 * Additional range (in milliseconds) added to the end of the calculated
+	 * time span.
+	 */
+	public void setOffsetMax(Number offsetMax) {
+		this.offsetMax = offsetMax;
+	}
 
-    /**
-     * Defines a custom data grouping definition for the button
-     * 
-     * @param dataGrouping
-     */
-    public void setDataGrouping(DataGrouping dataGrouping) {
-        this.dataGrouping = dataGrouping;
-    }
+	/**
+	 * @see #setOffsetMin(Number)
+	 */
+	public Number getOffsetMin() {
+		return offsetMin;
+	}
 
+	/**
+	 * Additional range (in milliseconds) added to the start of the calculated
+	 * time span.
+	 */
+	public void setOffsetMin(Number offsetMin) {
+		this.offsetMin = offsetMin;
+	}
+
+	/**
+	 * @see #setText(String)
+	 */
+	public String getText() {
+		return text;
+	}
+
+	/**
+	 * The text for the button itself.
+	 */
+	public void setText(String text) {
+		this.text = text;
+	}
+
+	/**
+	 * @see #setType(RangeSelectorTimespan)
+	 */
+	public RangeSelectorTimespan getType() {
+		return type;
+	}
+
+	/**
+	 * Defined the time span for the button. Can be one of `millisecond`,
+	 * `second`, `minute`, `hour`, `day`, `week`, `month`, `ytd`, `all`.
+	 */
+	public void setType(RangeSelectorTimespan type) {
+		this.type = type;
+	}
 }

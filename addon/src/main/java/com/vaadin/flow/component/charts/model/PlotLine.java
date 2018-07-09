@@ -1,37 +1,9 @@
 package com.vaadin.flow.component.charts.model;
 
-/*-
- * #%L
- * Vaadin Charts for Flow
- * %%
- * Copyright (C) 2014 - 2018 Vaadin Ltd
- * %%
- * This program is available under Commercial Vaadin Add-On License 3.0
- * (CVALv3).
- * 
- * See the file licensing.txt distributed with this software for more
- * information about licensing.
- * 
- * You should have received a copy of the CVALv3 along with this program.
- * If not, see <https://vaadin.com/license/cval-3>.
- * #L%
- */
-
 import javax.annotation.Generated;
 
 /**
- * <p>
- * An array of lines stretching across the plot area, marking a specific value
- * on one of the axes.
- * </p>
- * 
- * <p>
- * In <a
- * href="http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
- * >styled mode</a>, the plot lines are styled by the
- * <code>.highcharts-plot-line</code> class in addition to the
- * <code>className</code> option.
- * </p>
+ * An array of objects representing plot lines on the X axis
  */
 @Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/vaadin-charts-flow/issues/new")
 public class PlotLine extends AbstractConfigurationObject {
@@ -45,6 +17,10 @@ public class PlotLine extends AbstractConfigurationObject {
 	public PlotLine() {
 	}
 
+	public PlotLine(Number value) {
+		this.value = value;
+	}
+
 	/**
 	 * @see #setClassName(String)
 	 */
@@ -53,8 +29,8 @@ public class PlotLine extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * A custom class name, in addition to the default
-	 * <code>highcharts-plot-line</code>, to apply to each individual line.
+	 * A custom class name, in addition to the default `highcharts-plot-line`,
+	 * to apply to each individual line.
 	 */
 	public void setClassName(String className) {
 		this.className = className;
@@ -117,9 +93,5 @@ public class PlotLine extends AbstractConfigurationObject {
 	 */
 	public void setZIndex(Number zIndex) {
 		this.zIndex = zIndex;
-	}
-
-	public PlotLine(Number value) {
-		this.value = value;
 	}
 }

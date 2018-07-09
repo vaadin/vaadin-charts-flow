@@ -1,22 +1,5 @@
 package com.vaadin.flow.component.charts.model;
 
-/*-
- * #%L
- * Vaadin Charts for Flow
- * %%
- * Copyright (C) 2014 - 2018 Vaadin Ltd
- * %%
- * This program is available under Commercial Vaadin Add-On License 3.0
- * (CVALv3).
- * 
- * See the file licensing.txt distributed with this software for more
- * information about licensing.
- * 
- * You should have received a copy of the CVALv3 along with this program.
- * If not, see <https://vaadin.com/license/cval-3>.
- * #L%
- */
-
 import javax.annotation.Generated;
 
 /**
@@ -26,37 +9,42 @@ import javax.annotation.Generated;
 @Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/vaadin-charts-flow/issues/new")
 public class Frame extends AbstractConfigurationObject {
 
-	private Back back;
-	private Bottom bottom;
-	private Side side;
-	private Top top;
+	private FrameFace back;
+	private FrameFace bottom;
+	private FrameFace front;
+	private FrameFace left;
+	private FrameFace right;
+	private FrameFace side;
+	private Number size;
+	private FrameFace top;
+	private Boolean visible;
 
 	public Frame() {
 	}
 
 	/**
-	 * @see #setBack(Back)
+	 * @see #setBack(FrameFace)
 	 */
-	public Back getBack() {
+	public FrameFace getBack() {
 		if (back == null) {
-			back = new Back();
+			back = new FrameFace();
 		}
 		return back;
 	}
 
 	/**
-	 * Defines the back panel of the frame around 3D charts.
+	 * The back side of the frame around a 3D chart.
 	 */
-	public void setBack(Back back) {
+	public void setBack(FrameFace back) {
 		this.back = back;
 	}
 
 	/**
-	 * @see #setBottom(Bottom)
+	 * @see #setBottom(FrameFace)
 	 */
-	public Bottom getBottom() {
+	public FrameFace getBottom() {
 		if (bottom == null) {
-			bottom = new Bottom();
+			bottom = new FrameFace();
 		}
 		return bottom;
 	}
@@ -64,40 +52,99 @@ public class Frame extends AbstractConfigurationObject {
 	/**
 	 * The bottom of the frame around a 3D chart.
 	 */
-	public void setBottom(Bottom bottom) {
+	public void setBottom(FrameFace bottom) {
 		this.bottom = bottom;
 	}
 
 	/**
-	 * @see #setSide(Side)
+	 * @see #setFront(FrameFace)
 	 */
-	public Side getSide() {
+	public FrameFace getFront() {
+		if (front == null) {
+			front = new FrameFace();
+		}
+		return front;
+	}
+
+	/**
+	 * The front of the frame around a 3D chart.
+	 */
+	public void setFront(FrameFace front) {
+		this.front = front;
+	}
+
+	/**
+	 * @see #setLeft(FrameFace)
+	 */
+	public FrameFace getLeft() {
+		if (left == null) {
+			left = new FrameFace();
+		}
+		return left;
+	}
+
+	/**
+	 * The left side of the frame around a 3D chart.
+	 */
+	public void setLeft(FrameFace left) {
+		this.left = left;
+	}
+
+	/**
+	 * @see #setRight(FrameFace)
+	 */
+	public FrameFace getRight() {
+		if (right == null) {
+			right = new FrameFace();
+		}
+		return right;
+	}
+
+	/**
+	 * The right of the frame around a 3D chart.
+	 */
+	public void setRight(FrameFace right) {
+		this.right = right;
+	}
+
+	/**
+	 * @see #setSide(FrameFace)
+	 */
+	public FrameFace getSide() {
 		if (side == null) {
-			side = new Side();
+			side = new FrameFace();
 		}
 		return side;
 	}
 
 	/**
-	 * <p>
-	 * Note: As of v5.0.12, <code>frame.left</code> or <code>frame.right</code>
-	 * should be used instead.
-	 * </p>
-	 * 
-	 * <p>
-	 * The side for the frame around a 3D chart.
-	 * </p>
+	 * Note: As of v5.0.12, `frame.left` or `frame.right` should be used
+	 * instead. The side for the frame around a 3D chart.
 	 */
-	public void setSide(Side side) {
+	public void setSide(FrameFace side) {
 		this.side = side;
 	}
 
 	/**
-	 * @see #setTop(Top)
+	 * @see #setSize(Number)
 	 */
-	public Top getTop() {
+	public Number getSize() {
+		return size;
+	}
+
+	/**
+	 * General pixel thickness for the frame faces.
+	 */
+	public void setSize(Number size) {
+		this.size = size;
+	}
+
+	/**
+	 * @see #setTop(FrameFace)
+	 */
+	public FrameFace getTop() {
 		if (top == null) {
-			top = new Top();
+			top = new FrameFace();
 		}
 		return top;
 	}
@@ -105,7 +152,21 @@ public class Frame extends AbstractConfigurationObject {
 	/**
 	 * The top of the frame around a 3D chart.
 	 */
-	public void setTop(Top top) {
+	public void setTop(FrameFace top) {
 		this.top = top;
+	}
+
+	/**
+	 * @see #setVisible(Boolean)
+	 */
+	public Boolean getVisible() {
+		return visible;
+	}
+
+	/**
+	 * Whether the frames are visible.
+	 */
+	public void setVisible(Boolean visible) {
+		this.visible = visible;
 	}
 }

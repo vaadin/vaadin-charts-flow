@@ -1,24 +1,6 @@
 package com.vaadin.flow.component.charts.model;
 
-/*-
- * #%L
- * Vaadin Charts for Flow
- * %%
- * Copyright (C) 2014 - 2018 Vaadin Ltd
- * %%
- * This program is available under Commercial Vaadin Add-On License 3.0
- * (CVALv3).
- * 
- * See the file licensing.txt distributed with this software for more
- * information about licensing.
- * 
- * You should have received a copy of the CVALv3 along with this program.
- * If not, see <https://vaadin.com/license/cval-3>.
- * #L%
- */
-
 import javax.annotation.Generated;
-import java.util.Date;
 import java.time.Instant;
 import com.vaadin.flow.component.charts.util.Util;
 
@@ -32,13 +14,18 @@ public class PlotBand extends AbstractConfigurationObject {
 	private Number from;
 	private String id;
 	private String innerRadius;
-	private Label label;
+	private PlotBandLabel label;
 	private String outerRadius;
 	private String thickness;
 	private Number to;
 	private Number zIndex;
 
 	public PlotBand() {
+	}
+
+	public PlotBand(Number from, Number to) {
+		this.from = from;
+		this.to = to;
 	}
 
 	/**
@@ -49,8 +36,8 @@ public class PlotBand extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * A custom class name, in addition to the default
-	 * <code>highcharts-plot-band</code>, to apply to each individual band.
+	 * A custom class name, in addition to the default `highcharts-plot-band`,
+	 * to apply to each individual band.
 	 */
 	public void setClassName(String className) {
 		this.className = className;
@@ -94,22 +81,20 @@ public class PlotBand extends AbstractConfigurationObject {
 	/**
 	 * In a gauge chart, this option determines the inner radius of the plot
 	 * band that stretches along the perimeter. It can be given as a percentage
-	 * string, like <code>"100%"</code>, or as a pixel number, like
-	 * <code>100</code>. By default, the inner radius is controlled by the <a
-	 * href="#yAxis.plotBands.thickness">thickness</a> option.
-	 * <p>
-	 * Defaults to: null
+	 * string, like `"100%"`, or as a pixel number, like `100`. By default, the
+	 * inner radius is controlled by the [thickness](
+	 * #yAxis.plotBands.thickness) option.
 	 */
 	public void setInnerRadius(String innerRadius) {
 		this.innerRadius = innerRadius;
 	}
 
 	/**
-	 * @see #setLabel(Label)
+	 * @see #setLabel(PlotBandLabel)
 	 */
-	public Label getLabel() {
+	public PlotBandLabel getLabel() {
 		if (label == null) {
-			label = new Label();
+			label = new PlotBandLabel();
 		}
 		return label;
 	}
@@ -117,7 +102,7 @@ public class PlotBand extends AbstractConfigurationObject {
 	/**
 	 * Text labels for the plot bands
 	 */
-	public void setLabel(Label label) {
+	public void setLabel(PlotBandLabel label) {
 		this.label = label;
 	}
 
@@ -131,10 +116,7 @@ public class PlotBand extends AbstractConfigurationObject {
 	/**
 	 * In a gauge chart, this option determines the outer radius of the plot
 	 * band that stretches along the perimeter. It can be given as a percentage
-	 * string, like <code>"100%"</code>, or as a pixel number, like
-	 * <code>100</code>.
-	 * <p>
-	 * Defaults to: 100%
+	 * string, like `"100%"`, or as a pixel number, like `100`.
 	 */
 	public void setOuterRadius(String outerRadius) {
 		this.outerRadius = outerRadius;
@@ -150,12 +132,9 @@ public class PlotBand extends AbstractConfigurationObject {
 	/**
 	 * In a gauge chart, this option sets the width of the plot band stretching
 	 * along the perimeter. It can be given as a percentage string, like
-	 * <code>"10%"</code>, or as a pixel number, like <code>10</code>. The
-	 * default value 10 is the same as the default <a
-	 * href="#yAxis.tickLength">tickLength</a>, thus making the plot band act as
-	 * a background for the tick markers.
-	 * <p>
-	 * Defaults to: 10
+	 * `"10%"`, or as a pixel number, like `10`. The default value 10 is the
+	 * same as the default [tickLength](#yAxis.tickLength), thus making the plot
+	 * band act as a background for the tick markers.
 	 */
 	public void setThickness(String thickness) {
 		this.thickness = thickness;
@@ -193,14 +172,6 @@ public class PlotBand extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @deprecated as of 4.0. Use {@link #setPointStart(Instant)}
-	 */
-	@Deprecated
-	public void setFrom(Date date) {
-		this.from = Util.toHighchartsTS(date);
-	}
-
-	/**
 	 * @see #setFrom(Number)
 	 */
 	public void setFrom(Instant instant) {
@@ -208,22 +179,9 @@ public class PlotBand extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @deprecated as of 4.0. Use {@link #setPointStart(Instant)}
-	 */
-	@Deprecated
-	public void setTo(Date date) {
-		this.to = Util.toHighchartsTS(date);
-	}
-
-	/**
 	 * @see #setTo(Number)
 	 */
 	public void setTo(Instant instant) {
 		this.to = Util.toHighchartsTS(instant);
-	}
-
-	public PlotBand(Number from, Number to) {
-		this.from = from;
-		this.to = to;
 	}
 }

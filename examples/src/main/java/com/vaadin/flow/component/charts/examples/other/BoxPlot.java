@@ -8,7 +8,7 @@ import com.vaadin.flow.component.charts.model.HorizontalAlign;
 import com.vaadin.flow.component.charts.model.Label;
 import com.vaadin.flow.component.charts.model.Legend;
 import com.vaadin.flow.component.charts.model.PlotLine;
-import com.vaadin.flow.component.charts.model.PlotOptionsBoxplot;
+import com.vaadin.flow.component.charts.model.PlotOptionsBoxPlot;
 import com.vaadin.flow.component.charts.model.XAxis;
 import com.vaadin.flow.component.charts.model.YAxis;
 import com.vaadin.flow.component.checkbox.Checkbox;
@@ -66,13 +66,13 @@ public class BoxPlot extends AbstractChartExample {
         observations.add(new BoxPlotItem(714, 762, 817, 870, 918));
         observations.add(new BoxPlotItem(724, 802, 806, 871, 950));
         observations.add(new BoxPlotItem(834, 836, 864, 882, 910));
-        observations.setPlotOptions(new PlotOptionsBoxplot());
+        observations.setPlotOptions(new PlotOptionsBoxPlot());
         chart.getConfiguration().addSeries(observations);
 
         Checkbox useCustomStyles = new Checkbox("Use custom styling");
         useCustomStyles.addValueChangeListener(e -> {
 
-            PlotOptionsBoxplot options = new PlotOptionsBoxplot();
+            PlotOptionsBoxPlot options = new PlotOptionsBoxPlot();
             if (e.getValue()) {
                 options.setClassName("custom-style");
                 options.setWhiskerLength("70");

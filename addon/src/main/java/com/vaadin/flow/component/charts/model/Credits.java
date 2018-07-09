@@ -1,22 +1,5 @@
 package com.vaadin.flow.component.charts.model;
 
-/*-
- * #%L
- * Vaadin Charts for Flow
- * %%
- * Copyright (C) 2014 - 2018 Vaadin Ltd
- * %%
- * This program is available under Commercial Vaadin Add-On License 3.0
- * (CVALv3).
- * 
- * See the file licensing.txt distributed with this software for more
- * information about licensing.
- * 
- * You should have received a copy of the CVALv3 along with this program.
- * If not, see <https://vaadin.com/license/cval-3>.
- * #L%
- */
-
 import javax.annotation.Generated;
 
 /**
@@ -38,6 +21,10 @@ public class Credits extends AbstractConfigurationObject {
 		this.enabled = enabled;
 	}
 
+	public Credits(String text) {
+		this.text = text;
+	}
+
 	/**
 	 * @see #setEnabled(Boolean)
 	 */
@@ -47,8 +34,6 @@ public class Credits extends AbstractConfigurationObject {
 
 	/**
 	 * Whether to show the credits text.
-	 * <p>
-	 * Defaults to: true
 	 */
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
@@ -63,8 +48,6 @@ public class Credits extends AbstractConfigurationObject {
 
 	/**
 	 * The URL for the credits label.
-	 * <p>
-	 * Defaults to: http://www.highcharts.com
 	 */
 	public void setHref(String href) {
 		this.href = href;
@@ -87,10 +70,6 @@ public class Credits extends AbstractConfigurationObject {
 		this.position = position;
 	}
 
-	public Credits(String text) {
-		this.text = text;
-	}
-
 	/**
 	 * @see #setText(String)
 	 */
@@ -100,8 +79,6 @@ public class Credits extends AbstractConfigurationObject {
 
 	/**
 	 * The text for the credits label.
-	 * <p>
-	 * Defaults to: Highcharts.com
 	 */
 	public void setText(String text) {
 		this.text = text;

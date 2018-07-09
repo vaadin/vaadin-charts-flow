@@ -31,7 +31,7 @@ import com.vaadin.flow.component.charts.model.serializers.DateSerializer;
 import com.vaadin.flow.component.charts.model.serializers.DefaultBeanSerializerModifier;
 import com.vaadin.flow.component.charts.model.serializers.InstantSerializer;
 import com.vaadin.flow.component.charts.model.serializers.PaneListSerializer;
-import com.vaadin.flow.component.charts.model.serializers.SolidColorSerializer;
+import com.vaadin.flow.component.charts.model.serializers.ColorSerializer;
 import com.vaadin.flow.component.charts.model.serializers.StopSerializer;
 import com.vaadin.flow.component.charts.model.serializers.TimeUnitMultiplesSerializer;
 
@@ -67,7 +67,7 @@ public class ChartSerialization implements Serializable {
                 .registerModule(ChartEnumSerializer.getModule())
                 .registerModule(StopSerializer.getModule())
                 .registerModule(TimeUnitMultiplesSerializer.getModule())
-                .registerModule(SolidColorSerializer.getModule())
+                .registerModule(ColorSerializer.getModule())
                 .registerModule(AxisListSerializer.getModule())
                 .registerModule(PaneListSerializer.getModule())
                 .registerModule(DateSerializer.getModule())

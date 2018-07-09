@@ -1,76 +1,107 @@
 package com.vaadin.flow.component.charts.model;
 
-/*-
- * #%L
- * Vaadin Charts for Flow
- * %%
- * Copyright (C) 2014 - 2018 Vaadin Ltd
- * %%
- * This program is available under Commercial Vaadin Add-On License 3.0
- * (CVALv3).
- * 
- * See the file licensing.txt distributed with this software for more
- * information about licensing.
- * 
- * You should have received a copy of the CVALv3 along with this program.
- * If not, see <https://vaadin.com/license/cval-3>.
- * #L%
- */
-
 import javax.annotation.Generated;
-import java.util.ArrayList;
 import java.util.Arrays;
-import com.vaadin.flow.component.charts.model.style.Color;
+import java.util.ArrayList;
 
 /**
  * Funnel charts are a type of chart often used to visualize stages in a sales
  * project, where the top are the initial stages with the most clients. It
- * requires that the <code>modules/funnel.js</code> file is loaded.
+ * requires that the modules/funnel.js file is loaded.
+ * 
+ * Configuration options for the series are given in three levels: 1. Options
+ * for all series in a chart are defined in the
+ * [plotOptions.series](plotOptions.series) object. 2. Options for all `funnel`
+ * series are defined in [plotOptions.funnel](plotOptions.funnel). 3. Options
+ * for one single series are given in [the series instance
+ * array](series.funnel).
+ * 
+ * <pre>
+ * Highcharts.chart('container', {
+ *     plotOptions: {
+ *         series: {
+ *             // general options for all series
+ *         },
+ *         funnel: {
+ *             // shared options for all funnel series
+ *         }
+ *     },
+ *     series: [{
+ *         // specific options for this series instance
+ *         type: 'funnel'
+ *     }]
+ * });
+ * </pre>
  */
 @Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/vaadin-charts-flow/issues/new")
-public class PlotOptionsFunnel extends PyramidOptions {
+public class PlotOptionsFunnel extends AbstractPlotOptions {
 
+	private String _fn_pointDescriptionFormatter;
 	private Boolean allowPointSelect;
-	private Number animationLimit;
-	private String[] center;
+	private Boolean animation;
+	private ArrayList<String> center;
 	private String className;
+	private Boolean clip;
 	private Number colorIndex;
-	private ArrayList<Color> colors;
+	private Compare compare;
+	private Number compareBase;
+	private Boolean compareStart;
 	private Cursor cursor;
+	private DataGrouping dataGrouping;
 	private DataLabelsFunnel dataLabels;
 	private Number depth;
 	private String description;
 	private Boolean enableMouseTracking;
+	private Number endAngle;
 	private Boolean exposeElementToA11y;
-	private Dimension findNearestPointBy;
-	private Boolean getExtremesFromAll;
+	private Number gapSize;
+	private String gapUnit;
 	private String height;
+	private Boolean ignoreHiddenPoint;
+	private String innerSize;
 	private ArrayList<String> keys;
-	private String linkedTo;
+	private Label label;
+	private String linecap;
+	private Number linkedTo;
 	private Number minSize;
+	private NavigatorOptions navigatorOptions;
 	private String neckHeight;
 	private String neckWidth;
-	private String _fn_pointDescriptionFormatter;
+	private LabelPoint point;
+	private Number pointRange;
 	private Boolean reversed;
 	private Boolean selected;
 	private Boolean shadow;
+	private Boolean showCheckbox;
 	private Boolean showInLegend;
+	private Boolean showInNavigator;
 	private Boolean skipKeyboardNavigation;
 	private Number slicedOffset;
+	private Number startAngle;
 	private States states;
 	private Boolean stickyTracking;
 	private SeriesTooltip tooltip;
 	private Boolean visible;
 	private String width;
-	private ZoneAxis zoneAxis;
-	private ArrayList<Zones> zones;
 
 	public PlotOptionsFunnel() {
 	}
 
-	@Override
-	public ChartType getChartType() {
-		return ChartType.FUNNEL;
+	/**
+	 * @see #set_fn_pointDescriptionFormatter(String)
+	 */
+	public String getPointDescriptionFormatter() {
+		return _fn_pointDescriptionFormatter;
+	}
+
+	/**
+	 * Same as [accessibility.pointDescriptionFormatter](
+	 * #accessibility.pointDescriptionFormatter), but for an individual series.
+	 * Overrides the chart wide configuration.
+	 */
+	public void setPointDescriptionFormatter(
+			String _fn_pointDescriptionFormatter) {
+		this._fn_pointDescriptionFormatter = _fn_pointDescriptionFormatter;
 	}
 
 	/**
@@ -81,40 +112,45 @@ public class PlotOptionsFunnel extends PyramidOptions {
 	}
 
 	/**
-	 * Allow this series' points to be selected by clicking on the markers, bars
-	 * or pie slices.
-	 * <p>
-	 * Defaults to: false
+	 * Allow this series' points to be selected by clicking on the graphic
+	 * (columns, point markers, pie slices, map areas etc).
 	 */
 	public void setAllowPointSelect(Boolean allowPointSelect) {
 		this.allowPointSelect = allowPointSelect;
 	}
 
 	/**
-	 * @see #setAnimationLimit(Number)
+	 * @see #setAnimation(Boolean)
 	 */
-	public Number getAnimationLimit() {
-		return animationLimit;
+	public Boolean getAnimation() {
+		return animation;
 	}
 
 	/**
-	 * For some series, there is a limit that shuts down initial animation by
-	 * default when the total number of points in the chart is too high. For
-	 * example, for a column chart and its derivatives, animation doesn't run if
-	 * there is more than 250 points totally. To disable this cap, set
-	 * <code>animationLimit</code> to <code>Infinity</code>.
+	 * Enable or disable the initial animation when a series is displayed.
+	 * Please note that this option only applies to the initial animation of the
+	 * series itself. For other animations, see
+	 * {@link ChartModel#setAnimation(Boolean)}
 	 */
-	public void setAnimationLimit(Number animationLimit) {
-		this.animationLimit = animationLimit;
+	public void setAnimation(Boolean animation) {
+		this.animation = animation;
+	}
+
+	/**
+	 * @see #setCenter(ArrayList)
+	 */
+	public ArrayList<String> getCenter() {
+		if (center == null) {
+			center = new ArrayList<String>();
+		}
+		return center;
 	}
 
 	/**
 	 * The center of the series. By default, it is centered in the middle of the
 	 * plot area, so it fills the plot area height.
-	 * <p>
-	 * Defaults to: ["50%", "50%"]
 	 */
-	public void setCenter(String[] center) {
+	public void setCenter(ArrayList<String> center) {
 		this.center = center;
 	}
 
@@ -132,6 +168,14 @@ public class PlotOptionsFunnel extends PyramidOptions {
 		this.className = className;
 	}
 
+	public Boolean getClip() {
+		return clip;
+	}
+
+	public void setClip(Boolean clip) {
+		this.clip = clip;
+	}
+
 	/**
 	 * @see #setColorIndex(Number)
 	 */
@@ -140,59 +184,63 @@ public class PlotOptionsFunnel extends PyramidOptions {
 	}
 
 	/**
-	 * <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >Styled mode</a> only. A specific color index to use for the series, so
-	 * its graphic representations are given the class name
-	 * <code>highcharts-color-{n}</code>.
+	 * Styled mode only. A specific color index to use for the series, so its
+	 * graphic representations are given the class name `highcharts-color-{n}`.
 	 */
 	public void setColorIndex(Number colorIndex) {
 		this.colorIndex = colorIndex;
 	}
 
 	/**
-	 * @see #setColors(Color...)
+	 * @see #setCompare(Compare)
 	 */
-	public Color[] getColors() {
-		if (colors == null) {
-			return new Color[]{};
-		}
-		Color[] arr = new Color[colors.size()];
-		colors.toArray(arr);
-		return arr;
+	public Compare getCompare() {
+		return compare;
 	}
 
 	/**
-	 * A series specific or series type specific color set to use instead of the
-	 * global <a href="#colors">colors</a>.
+	 * Compare the values of the series against the first non-null, non- zero
+	 * value in the visible range. The y axis will show percentage or absolute
+	 * change depending on whether `compare` is set to `"percent"` or `"value"`.
+	 * When this is applied to multiple series, it allows comparing the
+	 * development of the series against each other.
 	 */
-	public void setColors(Color... colors) {
-		this.colors = new ArrayList<Color>(Arrays.asList(colors));
+	public void setCompare(Compare compare) {
+		this.compare = compare;
 	}
 
 	/**
-	 * Adds color to the colors array
-	 * 
-	 * @param color
-	 *            to add
-	 * @see #setColors(Color...)
+	 * @see #setCompareBase(Number)
 	 */
-	public void addColor(Color color) {
-		if (this.colors == null) {
-			this.colors = new ArrayList<Color>();
-		}
-		this.colors.add(color);
+	public Number getCompareBase() {
+		return compareBase;
 	}
 
 	/**
-	 * Removes first occurrence of color in colors array
-	 * 
-	 * @param color
-	 *            to remove
-	 * @see #setColors(Color...)
+	 * When [compare](#plotOptions.series.compare) is `percent`, this option
+	 * dictates whether to use 0 or 100 as the base of comparison.
 	 */
-	public void removeColor(Color color) {
-		this.colors.remove(color);
+	public void setCompareBase(Number compareBase) {
+		this.compareBase = compareBase;
+	}
+
+	/**
+	 * @see #setCompareStart(Boolean)
+	 */
+	public Boolean getCompareStart() {
+		return compareStart;
+	}
+
+	/**
+	 * Defines if comparisson should start from the first point within the
+	 * visible range or should start from the first point <b>before</b> the
+	 * range. In other words, this flag determines if first point within the
+	 * visible range will have 0% (`compareStart=true`) or should have been
+	 * already calculated according to the previous point
+	 * (`compareStart=false`).
+	 */
+	public void setCompareStart(Boolean compareStart) {
+		this.compareStart = compareStart;
 	}
 
 	/**
@@ -212,8 +260,28 @@ public class PlotOptionsFunnel extends PyramidOptions {
 	}
 
 	/**
-	 * @see #setDataLabels(DataLabelsFunnel)
+	 * @see #setDataGrouping(DataGrouping)
 	 */
+	public DataGrouping getDataGrouping() {
+		if (dataGrouping == null) {
+			dataGrouping = new DataGrouping();
+		}
+		return dataGrouping;
+	}
+
+	/**
+	 * Data grouping is the concept of sampling the data values into larger
+	 * blocks in order to ease readability and increase performance of the
+	 * JavaScript charts. Highstock by default applies data grouping when the
+	 * points become closer than a certain pixel value, determined by the
+	 * `groupPixelWidth` option. If data grouping is applied, the grouping
+	 * information of grouped points can be read from the
+	 * [Point.dataGroup](#Point.dataGroup).
+	 */
+	public void setDataGrouping(DataGrouping dataGrouping) {
+		this.dataGrouping = dataGrouping;
+	}
+
 	public DataLabelsFunnel getDataLabels() {
 		if (dataLabels == null) {
 			dataLabels = new DataLabelsFunnel();
@@ -233,9 +301,7 @@ public class PlotOptionsFunnel extends PyramidOptions {
 	}
 
 	/**
-	 * The thickness of a 3D pie. Requires <code>highcharts-3d.js</code>
-	 * <p>
-	 * Defaults to: 0
+	 * The thickness of a 3D pie. Requires `highcharts-3d.js`
 	 */
 	public void setDepth(Number depth) {
 		this.depth = depth;
@@ -249,15 +315,8 @@ public class PlotOptionsFunnel extends PyramidOptions {
 	}
 
 	/**
-	 * <p>
-	 * <i>Requires Accessibility module</i>
-	 * </p>
-	 * <p>
-	 * A description of the series to add to the screen reader information about
-	 * the series.
-	 * </p>
-	 * <p>
-	 * Defaults to: undefined
+	 * Requires the Accessibility module. A description of the series to add to
+	 * the screen reader information about the series.
 	 */
 	public void setDescription(String description) {
 		this.description = description;
@@ -274,11 +333,24 @@ public class PlotOptionsFunnel extends PyramidOptions {
 	 * Enable or disable the mouse tracking for a specific series. This includes
 	 * point tooltips and click events on graphs and points. For large datasets
 	 * it improves performance.
-	 * <p>
-	 * Defaults to: true
 	 */
 	public void setEnableMouseTracking(Boolean enableMouseTracking) {
 		this.enableMouseTracking = enableMouseTracking;
+	}
+
+	/**
+	 * @see #setEndAngle(Number)
+	 */
+	public Number getEndAngle() {
+		return endAngle;
+	}
+
+	/**
+	 * The end angle of the pie in degrees where 0 is top and 90 is right.
+	 * Defaults to `startAngle` plus 360.
+	 */
+	public void setEndAngle(Number endAngle) {
+		this.endAngle = endAngle;
 	}
 
 	/**
@@ -289,63 +361,57 @@ public class PlotOptionsFunnel extends PyramidOptions {
 	}
 
 	/**
-	 * <p>
 	 * By default, series are exposed to screen readers as regions. By enabling
 	 * this option, the series element itself will be exposed in the same way as
 	 * the data points. This is useful if the series is not used as a grouping
 	 * entity in the chart, but you still want to attach a description to the
-	 * series.
-	 * </p>
-	 * <p>
-	 * Requires the Accessibility module.
-	 * </p>
-	 * <p>
-	 * Defaults to: undefined
+	 * series. Requires the Accessibility module.
 	 */
 	public void setExposeElementToA11y(Boolean exposeElementToA11y) {
 		this.exposeElementToA11y = exposeElementToA11y;
 	}
 
 	/**
-	 * @see #setFindNearestPointBy(Dimension)
+	 * @see #setGapSize(Number)
 	 */
-	public Dimension getFindNearestPointBy() {
-		return findNearestPointBy;
+	public Number getGapSize() {
+		return gapSize;
 	}
 
 	/**
-	 * <p>
-	 * Determines whether the series should look for the nearest point in both
-	 * dimensions or just the x-dimension when hovering the series. Defaults to
-	 * <code>'xy'</code> for scatter series and <code>'x'</code> for most other
-	 * series. If the data has duplicate x-values, it is recommended to set this
-	 * to <code>'xy'</code> to allow hovering over all points.
-	 * </p>
-	 * <p>
-	 * Applies only to series types using nearest neighbor search (not direct
-	 * hover) for tooltip.
-	 * </p>
+	 * Defines when to display a gap in the graph, together with the
+	 * [gapUnit](plotOptions.series.gapUnit) option. In case when `dataGrouping`
+	 * is enabled, points can be grouped into a larger time span. This can make
+	 * the grouped points to have a greater distance than the absolute value of
+	 * `gapSize` property, which will result in disappearing graph completely.
+	 * To prevent this situation the mentioned distance between grouped points
+	 * is used instead of previously defined `gapSize`. In practice, this option
+	 * is most often used to visualize gaps in time series. In a stock chart,
+	 * intraday data is available for daytime hours, while gaps will appear in
+	 * nights and weekends.
 	 */
-	public void setFindNearestPointBy(Dimension findNearestPointBy) {
-		this.findNearestPointBy = findNearestPointBy;
+	public void setGapSize(Number gapSize) {
+		this.gapSize = gapSize;
 	}
 
 	/**
-	 * @see #setGetExtremesFromAll(Boolean)
+	 * @see #setGapUnit(String)
 	 */
-	public Boolean getGetExtremesFromAll() {
-		return getExtremesFromAll;
+	public String getGapUnit() {
+		return gapUnit;
 	}
 
 	/**
-	 * Whether to use the Y extremes of the total chart width or only the zoomed
-	 * area when zooming in on parts of the X axis. By default, the Y axis
-	 * adjusts to the min and max of the visible data. Cartesian series only.
-	 * <p>
-	 * Defaults to: false
+	 * Together with [gapSize](plotOptions.series.gapSize), this option defines
+	 * where to draw gaps in the graph. When the `gapUnit` is `relative`
+	 * (default), a gap size of 5 means that if the distance between two points
+	 * is greater than five times that of the two closest points, the graph will
+	 * be broken. When the `gapUnit` is `value`, the gap is based on absolute
+	 * axis values, which on a datetime axis is milliseconds. This also applies
+	 * to the navigator series that inherits gap options from the base series.
 	 */
-	public void setGetExtremesFromAll(Boolean getExtremesFromAll) {
-		this.getExtremesFromAll = getExtremesFromAll;
+	public void setGapUnit(String gapUnit) {
+		this.gapUnit = gapUnit;
 	}
 
 	/**
@@ -365,15 +431,49 @@ public class PlotOptionsFunnel extends PyramidOptions {
 	}
 
 	/**
-	 * @see #setKeys(String...)
+	 * @see #setIgnoreHiddenPoint(Boolean)
 	 */
-	public String[] getKeys() {
+	public Boolean getIgnoreHiddenPoint() {
+		return ignoreHiddenPoint;
+	}
+
+	/**
+	 * Equivalent to [chart.ignoreHiddenSeries](#chart.ignoreHiddenSeries), this
+	 * option tells whether the series shall be redrawn as if the hidden point
+	 * were `null`. The default value changed from `false` to `true` with
+	 * Highcharts 3.0.
+	 */
+	public void setIgnoreHiddenPoint(Boolean ignoreHiddenPoint) {
+		this.ignoreHiddenPoint = ignoreHiddenPoint;
+	}
+
+	/**
+	 * @see #setInnerSize(String)
+	 */
+	public String getInnerSize() {
+		return innerSize;
+	}
+
+	/**
+	 * The size of the inner diameter for the pie. A size greater than 0 renders
+	 * a donut chart. Can be a percentage or pixel value. Percentages are
+	 * relative to the pie size. Pixel values are given as integers.
+	 * 
+	 * Note: in Highcharts < 4.1.2, the percentage was relative to the plot
+	 * area, not the pie size.
+	 */
+	public void setInnerSize(String innerSize) {
+		this.innerSize = innerSize;
+	}
+
+	/**
+	 * @see #setKeys(ArrayList)
+	 */
+	public ArrayList<String> getKeys() {
 		if (keys == null) {
-			return new String[]{};
+			keys = new ArrayList<String>();
 		}
-		String[] arr = new String[keys.size()];
-		keys.toArray(arr);
-		return arr;
+		return keys;
 	}
 
 	/**
@@ -381,49 +481,61 @@ public class PlotOptionsFunnel extends PyramidOptions {
 	 * array. This makes it convenient to work with unstructured data arrays
 	 * from different sources.
 	 */
-	public void setKeys(String... keys) {
-		this.keys = new ArrayList<String>(Arrays.asList(keys));
+	public void setKeys(ArrayList<String> keys) {
+		this.keys = keys;
 	}
 
 	/**
-	 * Adds key to the keys array
-	 * 
-	 * @param key
-	 *            to add
-	 * @see #setKeys(String...)
+	 * @see #setLabel(Label)
 	 */
-	public void addKey(String key) {
-		if (this.keys == null) {
-			this.keys = new ArrayList<String>();
+	public Label getLabel() {
+		if (label == null) {
+			label = new Label();
 		}
-		this.keys.add(key);
+		return label;
 	}
 
 	/**
-	 * Removes first occurrence of key in keys array
-	 * 
-	 * @param key
-	 *            to remove
-	 * @see #setKeys(String...)
+	 * Series labels are placed as close to the series as possible in a natural
+	 * way, seeking to avoid other series. The goal of this feature is to make
+	 * the chart more easily readable, like if a human designer placed the
+	 * labels in the optimal position. The series labels currently work with
+	 * series types having a `graph` or an `area`. Requires the
+	 * `series-label.js` module.
 	 */
-	public void removeKey(String key) {
-		this.keys.remove(key);
+	public void setLabel(Label label) {
+		this.label = label;
 	}
 
 	/**
-	 * @see #setLinkedTo(String)
+	 * @see #setLinecap(String)
 	 */
-	public String getLinkedTo() {
+	public String getLinecap() {
+		return linecap;
+	}
+
+	/**
+	 * The SVG value used for the `stroke-linecap` and `stroke-linejoin` of a
+	 * line graph. Round means that lines are rounded in the ends and bends.
+	 */
+	public void setLinecap(String linecap) {
+		this.linecap = linecap;
+	}
+
+	/**
+	 * @see #setLinkedTo(Number)
+	 */
+	public Number getLinkedTo() {
 		return linkedTo;
 	}
 
 	/**
-	 * The <a href="#series.id">id</a> of another series to link to.
-	 * Additionally, the value can be ":previous" to link to the previous
-	 * series. When two series are linked, only the first one appears in the
-	 * legend. Toggling the visibility of this also toggles the linked series.
+	 * The [id](#series.id) of another series to link to. Additionally, the
+	 * value can be ":previous" to link to the previous series. When two series
+	 * are linked, only the first one appears in the legend. Toggling the
+	 * visibility of this also toggles the linked series.
 	 */
-	public void setLinkedTo(String linkedTo) {
+	public void setLinkedTo(Number linkedTo) {
 		this.linkedTo = linkedTo;
 	}
 
@@ -438,11 +550,32 @@ public class PlotOptionsFunnel extends PyramidOptions {
 	 * The minimum size for a pie in response to auto margins. The pie will try
 	 * to shrink to make room for data labels in side the plot area, but only to
 	 * this size.
-	 * <p>
-	 * Defaults to: 80
 	 */
 	public void setMinSize(Number minSize) {
 		this.minSize = minSize;
+	}
+
+	/**
+	 * @see #setNavigatorOptions(NavigatorOptions)
+	 */
+	public NavigatorOptions getNavigatorOptions() {
+		if (navigatorOptions == null) {
+			navigatorOptions = new NavigatorOptions();
+		}
+		return navigatorOptions;
+	}
+
+	/**
+	 * Options for the corresponding navigator series if `showInNavigator` is
+	 * `true` for this series. Available options are the same as any series,
+	 * documented at [plotOptions](#plotOptions.series) and [series](#series).
+	 * 
+	 * These options are merged with options in [navigator.series](
+	 * #navigator.series), and will take precedence if the same option is
+	 * defined both places.
+	 */
+	public void setNavigatorOptions(NavigatorOptions navigatorOptions) {
+		this.navigatorOptions = navigatorOptions;
 	}
 
 	/**
@@ -456,8 +589,6 @@ public class PlotOptionsFunnel extends PyramidOptions {
 	 * The height of the neck, the lower part of the funnel. A number defines
 	 * pixel width, a percentage string defines a percentage of the plot area
 	 * height.
-	 * <p>
-	 * Defaults to: 25%
 	 */
 	public void setNeckHeight(String neckHeight) {
 		this.neckHeight = neckHeight;
@@ -474,20 +605,37 @@ public class PlotOptionsFunnel extends PyramidOptions {
 	 * The width of the neck, the lower part of the funnel. A number defines
 	 * pixel width, a percentage string defines a percentage of the plot area
 	 * width.
-	 * <p>
-	 * Defaults to: 30%
 	 */
 	public void setNeckWidth(String neckWidth) {
 		this.neckWidth = neckWidth;
 	}
 
-	public String getPointDescriptionFormatter() {
-		return _fn_pointDescriptionFormatter;
+	public LabelPoint getPoint() {
+		if (point == null) {
+			point = new LabelPoint();
+		}
+		return point;
 	}
 
-	public void setPointDescriptionFormatter(
-			String _fn_pointDescriptionFormatter) {
-		this._fn_pointDescriptionFormatter = _fn_pointDescriptionFormatter;
+	public void setPoint(LabelPoint point) {
+		this.point = point;
+	}
+
+	/**
+	 * @see #setPointRange(Number)
+	 */
+	public Number getPointRange() {
+		return pointRange;
+	}
+
+	/**
+	 * The width of each point on the x axis. For example in a column chart with
+	 * one value each day, the pointRange would be 1 day (= 24 * 3600 1000
+	 * milliseconds). This is normally computed automatically, but this option
+	 * can be used to override the automatic value.
+	 */
+	public void setPointRange(Number pointRange) {
+		this.pointRange = pointRange;
 	}
 
 	/**
@@ -500,8 +648,6 @@ public class PlotOptionsFunnel extends PyramidOptions {
 	/**
 	 * A reversed funnel has the widest area down. A reversed funnel with no
 	 * neck width and neck height is a pyramid.
-	 * <p>
-	 * Defaults to: false
 	 */
 	public void setReversed(Boolean reversed) {
 		this.reversed = reversed;
@@ -515,11 +661,9 @@ public class PlotOptionsFunnel extends PyramidOptions {
 	}
 
 	/**
-	 * Whether to select the series initially. If <code>showCheckbox</code> is
-	 * true, the checkbox next to the series name will be checked for a selected
-	 * series.
-	 * <p>
-	 * Defaults to: false
+	 * Whether to select the series initially. If `showCheckbox` is true, the
+	 * checkbox next to the series name in the legend will be checked for a
+	 * selected series.
 	 */
 	public void setSelected(Boolean selected) {
 		this.selected = selected;
@@ -534,14 +678,27 @@ public class PlotOptionsFunnel extends PyramidOptions {
 
 	/**
 	 * Whether to apply a drop shadow to the graph line. Since 2.3 the shadow
-	 * can be an object configuration containing <code>color</code>,
-	 * <code>offsetX</code>, <code>offsetY</code>, <code>opacity</code> and
-	 * <code>width</code>.
-	 * <p>
-	 * Defaults to: false
+	 * can be an object configuration containing `color`, `offsetX`, `offsetY`,
+	 * `opacity` and `width`.
 	 */
 	public void setShadow(Boolean shadow) {
 		this.shadow = shadow;
+	}
+
+	/**
+	 * @see #setShowCheckbox(Boolean)
+	 */
+	public Boolean getShowCheckbox() {
+		return showCheckbox;
+	}
+
+	/**
+	 * If true, a checkbox is displayed next to the legend item to allow
+	 * selecting the series. The state of the checkbox is determined by the
+	 * `selected` option.
+	 */
+	public void setShowCheckbox(Boolean showCheckbox) {
+		this.showCheckbox = showCheckbox;
 	}
 
 	/**
@@ -554,11 +711,24 @@ public class PlotOptionsFunnel extends PyramidOptions {
 	/**
 	 * Whether to display this particular series or series type in the legend.
 	 * Since 2.1, pies are not shown in the legend by default.
-	 * <p>
-	 * Defaults to: false
 	 */
 	public void setShowInLegend(Boolean showInLegend) {
 		this.showInLegend = showInLegend;
+	}
+
+	/**
+	 * @see #setShowInNavigator(Boolean)
+	 */
+	public Boolean getShowInNavigator() {
+		return showInNavigator;
+	}
+
+	/**
+	 * Whether or not to show the series in the navigator. Takes precedence over
+	 * [navigator.baseSeries](#navigator.baseSeries) if defined.
+	 */
+	public void setShowInNavigator(Boolean showInNavigator) {
+		this.showInNavigator = showInNavigator;
 	}
 
 	/**
@@ -569,8 +739,8 @@ public class PlotOptionsFunnel extends PyramidOptions {
 	}
 
 	/**
-	 * If set to <code>True</code>, the accessibility module will skip past the
-	 * points in this series for keyboard navigation.
+	 * If set to `True`, the accessibility module will skip past the points in
+	 * this series for keyboard navigation.
 	 */
 	public void setSkipKeyboardNavigation(Boolean skipKeyboardNavigation) {
 		this.skipKeyboardNavigation = skipKeyboardNavigation;
@@ -586,11 +756,23 @@ public class PlotOptionsFunnel extends PyramidOptions {
 	/**
 	 * If a point is sliced, moved out from the center, how many pixels should
 	 * it be moved?.
-	 * <p>
-	 * Defaults to: 10
 	 */
 	public void setSlicedOffset(Number slicedOffset) {
 		this.slicedOffset = slicedOffset;
+	}
+
+	/**
+	 * @see #setStartAngle(Number)
+	 */
+	public Number getStartAngle() {
+		return startAngle;
+	}
+
+	/**
+	 * The start angle of the pie slices in degrees where 0 is top and 90 right.
+	 */
+	public void setStartAngle(Number startAngle) {
+		this.startAngle = startAngle;
 	}
 
 	/**
@@ -604,7 +786,7 @@ public class PlotOptionsFunnel extends PyramidOptions {
 	}
 
 	/**
-	 * A wrapper object for all the series options in specific states.
+	 * Options for the series states.
 	 */
 	public void setStates(States states) {
 		this.states = states;
@@ -618,23 +800,18 @@ public class PlotOptionsFunnel extends PyramidOptions {
 	}
 
 	/**
-	 * Sticky tracking of mouse events. When true, the <code>mouseOut</code>
-	 * event on a series isn't triggered until the mouse moves over another
-	 * series, or out of the plot area. When false, the <code>mouseOut</code>
-	 * event on a series is triggered when the mouse leaves the area around the
-	 * series' graph or markers. This also implies the tooltip. When
-	 * <code>stickyTracking</code> is false and <code>tooltip.shared</code> is
-	 * false, the tooltip will be hidden when moving the mouse between series.
-	 * <p>
-	 * Defaults to: false
+	 * Sticky tracking of mouse events. When true, the `mouseOut` event on a
+	 * series isn't triggered until the mouse moves over another series, or out
+	 * of the plot area. When false, the `mouseOut` event on a series is
+	 * triggered when the mouse leaves the area around the series' graph or
+	 * markers. This also implies the tooltip. When `stickyTracking` is false
+	 * and `tooltip.shared` is false, the tooltip will be hidden when moving the
+	 * mouse between series.
 	 */
 	public void setStickyTracking(Boolean stickyTracking) {
 		this.stickyTracking = stickyTracking;
 	}
 
-	/**
-	 * @see #setTooltip(SeriesTooltip)
-	 */
 	public SeriesTooltip getTooltip() {
 		if (tooltip == null) {
 			tooltip = new SeriesTooltip();
@@ -642,11 +819,6 @@ public class PlotOptionsFunnel extends PyramidOptions {
 		return tooltip;
 	}
 
-	/**
-	 * A configuration object for the tooltip rendering of each single series.
-	 * Properties are inherited from <a href="#tooltip">tooltip</a>, but only
-	 * the following properties can be defined on a series level.
-	 */
 	public void setTooltip(SeriesTooltip tooltip) {
 		this.tooltip = tooltip;
 	}
@@ -660,8 +832,6 @@ public class PlotOptionsFunnel extends PyramidOptions {
 
 	/**
 	 * Set the initial visibility of the series.
-	 * <p>
-	 * Defaults to: true
 	 */
 	public void setVisible(Boolean visible) {
 		this.visible = visible;
@@ -677,92 +847,27 @@ public class PlotOptionsFunnel extends PyramidOptions {
 	/**
 	 * The width of the funnel compared to the width of the plot area, or the
 	 * pixel width if it is a number.
-	 * <p>
-	 * Defaults to: 90%
 	 */
 	public void setWidth(String width) {
 		this.width = width;
 	}
 
-	/**
-	 * @see #setZoneAxis(ZoneAxis)
-	 */
-	public ZoneAxis getZoneAxis() {
-		return zoneAxis;
+	public void setKeys(String... keys) {
+		this.keys = new ArrayList<String>(Arrays.asList(keys));
 	}
 
-	/**
-	 * Defines the Axis on which the zones are applied.
-	 * <p>
-	 * Defaults to: y
-	 */
-	public void setZoneAxis(ZoneAxis zoneAxis) {
-		this.zoneAxis = zoneAxis;
-	}
-
-	/**
-	 * @see #setZones(Zones...)
-	 */
-	public Zones[] getZones() {
-		if (zones == null) {
-			return new Zones[]{};
+	public void addKey(String key) {
+		if (this.keys == null) {
+			this.keys = new ArrayList<String>();
 		}
-		Zones[] arr = new Zones[zones.size()];
-		zones.toArray(arr);
-		return arr;
+		this.keys.add(key);
 	}
 
-	/**
-	 * <p>
-	 * An array defining zones within a series. Zones can be applied to the X
-	 * axis, Y axis or Z axis for bubbles, according to the
-	 * <code>zoneAxis</code> option.
-	 * </p>
-	 * 
-	 * <p>
-	 * In <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >styled mode</a>, the color zones are styled with the
-	 * <code>.highcharts-zone-{n}</code> class, or custom classed from the
-	 * <code>className</code> option (<a href=
-	 * "http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/color-zones/"
-	 * >view live demo</a>).
-	 * </p>
-	 */
-	public void setZones(Zones... zones) {
-		this.zones = new ArrayList<Zones>(Arrays.asList(zones));
-	}
-
-	/**
-	 * Adds zone to the zones array
-	 * 
-	 * @param zone
-	 *            to add
-	 * @see #setZones(Zones...)
-	 */
-	public void addZone(Zones zone) {
-		if (this.zones == null) {
-			this.zones = new ArrayList<Zones>();
-		}
-		this.zones.add(zone);
-	}
-
-	/**
-	 * Removes first occurrence of zone in zones array
-	 * 
-	 * @param zone
-	 *            to remove
-	 * @see #setZones(Zones...)
-	 */
-	public void removeZone(Zones zone) {
-		this.zones.remove(zone);
+	public void removeKey(String key) {
+		this.keys.remove(key);
 	}
 
 	public void setCenter(String x, String y) {
-		this.center = new String[]{x, y};
-	}
-
-	public String[] getCenter() {
-		return this.center;
+		this.center = new ArrayList<>(Arrays.asList(x, y));
 	}
 }

@@ -1,22 +1,5 @@
 package com.vaadin.flow.component.charts.model;
 
-/*-
- * #%L
- * Vaadin Charts for Flow
- * %%
- * Copyright (C) 2014 - 2018 Vaadin Ltd
- * %%
- * This program is available under Commercial Vaadin Add-On License 3.0
- * (CVALv3).
- * 
- * See the file licensing.txt distributed with this software for more
- * information about licensing.
- * 
- * You should have received a copy of the CVALv3 along with this program.
- * If not, see <https://vaadin.com/license/cval-3>.
- * #L%
- */
-
 import javax.annotation.Generated;
 
 /**
@@ -29,17 +12,22 @@ import javax.annotation.Generated;
 public class StackLabels extends AbstractConfigurationObject {
 
 	private HorizontalAlign align;
+	private Boolean allowOverlap;
 	private Boolean enabled;
 	private String format;
 	private String _fn_formatter;
 	private Number rotation;
-	private String textAlign;
+	private HorizontalAlign textAlign;
 	private Boolean useHTML;
 	private VerticalAlign verticalAlign;
 	private Number x;
 	private Number y;
 
 	public StackLabels() {
+	}
+
+	public StackLabels(Boolean enabled) {
+		this.enabled = enabled;
 	}
 
 	/**
@@ -51,16 +39,26 @@ public class StackLabels extends AbstractConfigurationObject {
 
 	/**
 	 * Defines the horizontal alignment of the stack total label. Can be one of
-	 * <code>"left"</code>, <code>"center"</code> or <code>"right"</code>. The
-	 * default value is calculated at runtime and depends on orientation and
-	 * whether the stack is positive or negative.
+	 * `"left"`, `"center"` or `"right"`. The default value is calculated at
+	 * runtime and depends on orientation and whether the stack is positive or
+	 * negative.
 	 */
 	public void setAlign(HorizontalAlign align) {
 		this.align = align;
 	}
 
-	public StackLabels(Boolean enabled) {
-		this.enabled = enabled;
+	/**
+	 * @see #setAllowOverlap(Boolean)
+	 */
+	public Boolean getAllowOverlap() {
+		return allowOverlap;
+	}
+
+	/**
+	 * Allow the stack labels to overlap.
+	 */
+	public void setAllowOverlap(Boolean allowOverlap) {
+		this.allowOverlap = allowOverlap;
 	}
 
 	/**
@@ -72,8 +70,6 @@ public class StackLabels extends AbstractConfigurationObject {
 
 	/**
 	 * Enable or disable the stack total labels.
-	 * <p>
-	 * Defaults to: false
 	 */
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
@@ -87,20 +83,24 @@ public class StackLabels extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * A <a href="http://docs.highcharts.com/#formatting">format string</a> for
-	 * the data label. Available variables are the same as for
-	 * <code>formatter</code>.
-	 * <p>
-	 * Defaults to: {total}
+	 * A [format string](http://docs.highcharts.com/#formatting) for the data
+	 * label. Available variables are the same as for `formatter`.
 	 */
 	public void setFormat(String format) {
 		this.format = format;
 	}
 
+	/**
+	 * @see #set_fn_formatter(String)
+	 */
 	public String getFormatter() {
 		return _fn_formatter;
 	}
 
+	/**
+	 * Callback JavaScript function to format the label. The value is given by
+	 * `this.total`.
+	 */
 	public void setFormatter(String _fn_formatter) {
 		this._fn_formatter = _fn_formatter;
 	}
@@ -114,30 +114,27 @@ public class StackLabels extends AbstractConfigurationObject {
 
 	/**
 	 * Rotation of the labels in degrees.
-	 * <p>
-	 * Defaults to: 0
 	 */
 	public void setRotation(Number rotation) {
 		this.rotation = rotation;
 	}
 
 	/**
-	 * @see #setTextAlign(String)
+	 * @see #setTextAlign(HorizontalAlign)
 	 */
-	public String getTextAlign() {
+	public HorizontalAlign getTextAlign() {
 		return textAlign;
 	}
 
 	/**
-	 * The text alignment for the label. While <code>align</code> determines
-	 * where the texts anchor point is placed with regards to the stack,
-	 * <code>textAlign</code> determines how the text is aligned against its
-	 * anchor point. Possible values are <code>"left"</code>,
-	 * <code>"center"</code> and <code>"right"</code>. The default value is
+	 * The text alignment for the label. While `align` determines where the
+	 * texts anchor point is placed with regards to the stack, `textAlign`
+	 * determines how the text is aligned against its anchor point. Possible
+	 * values are `"left"`, `"center"` and `"right"`. The default value is
 	 * calculated at runtime and depends on orientation and whether the stack is
 	 * positive or negative.
 	 */
-	public void setTextAlign(String textAlign) {
+	public void setTextAlign(HorizontalAlign textAlign) {
 		this.textAlign = textAlign;
 	}
 
@@ -149,10 +146,9 @@ public class StackLabels extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * Whether to <a href="http://docs.highcharts.com/#formatting$html">use
-	 * HTML</a> to render the labels.
-	 * <p>
-	 * Defaults to: false
+	 * Whether to [use
+	 * HTML](http://www.highcharts.com/docs/chart-concepts/labels
+	 * -and-string-formatting#html) to render the labels.
 	 */
 	public void setUseHTML(Boolean useHTML) {
 		this.useHTML = useHTML;
@@ -167,9 +163,9 @@ public class StackLabels extends AbstractConfigurationObject {
 
 	/**
 	 * Defines the vertical alignment of the stack total label. Can be one of
-	 * <code>"top"</code>, <code>"middle"</code> or <code>"bottom"</code>. The
-	 * default value is calculated at runtime and depends on orientation and
-	 * whether the stack is positive or negative.
+	 * `"top"`, `"middle"` or `"bottom"`. The default value is calculated at
+	 * runtime and depends on orientation and whether the stack is positive or
+	 * negative.
 	 */
 	public void setVerticalAlign(VerticalAlign verticalAlign) {
 		this.verticalAlign = verticalAlign;

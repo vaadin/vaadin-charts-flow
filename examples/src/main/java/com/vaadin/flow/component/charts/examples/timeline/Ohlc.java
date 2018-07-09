@@ -8,7 +8,7 @@ import com.vaadin.flow.component.charts.model.Configuration;
 import com.vaadin.flow.component.charts.model.DataGrouping;
 import com.vaadin.flow.component.charts.model.DataSeries;
 import com.vaadin.flow.component.charts.model.OhlcItem;
-import com.vaadin.flow.component.charts.model.PlotOptionsOhlc;
+import com.vaadin.flow.component.charts.model.PlotOptionsOHLC;
 import com.vaadin.flow.component.charts.model.RangeSelector;
 import com.vaadin.flow.component.charts.model.TimeUnit;
 import com.vaadin.flow.component.charts.model.TimeUnitMultiples;
@@ -23,7 +23,7 @@ public class Ohlc extends AbstractChartExample {
         configuration.getTitle().setText("AAPL Stock Price");
 
         DataSeries dataSeries = new DataSeries();
-        PlotOptionsOhlc plotOptionsOhlc = new PlotOptionsOhlc();
+        PlotOptionsOHLC plotOptionsOhlc = new PlotOptionsOHLC();
         DataGrouping grouping = new DataGrouping();
         grouping.addUnit(new TimeUnitMultiples(TimeUnit.WEEK, 1));
         grouping.addUnit(new TimeUnitMultiples(TimeUnit.MONTH, 1, 2, 3, 4, 6));

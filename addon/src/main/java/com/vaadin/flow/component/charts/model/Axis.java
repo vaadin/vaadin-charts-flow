@@ -1,5 +1,6 @@
 package com.vaadin.flow.component.charts.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 /*
@@ -221,60 +222,6 @@ public abstract class Axis extends AbstractConfigurationObject {
     public abstract void setAllowDecimals(Boolean allowDecimals);
 
     /**
-     * @see #setAlternateGridColor(Color)
-     */
-    public abstract Boolean getAlternateGridColor();
-
-    /**
-     * When using an alternate grid color, a band is painted across the plot
-     * area between every other grid line.
-     */
-    public abstract void setAlternateGridColor(Boolean alternateGridColor);
-
-    /**
-     * @see #setCategories(String...)
-     */
-    public abstract String[] getCategories();
-
-    /**
-     * <p>
-     * If categories are present for the axis, names are used instead of
-     * numbers for that axis. Since Highcharts 3.0, categories can also be
-     * extracted by giving each point a <code>name</code> and
-     * setting axis type to <code>category</code>.
-     * However, if you have multiple series, best practice remains defining the
-     * <code>categories</code> array.
-     * </p>
-     *
-     * <p>
-     * Example:
-     *
-     * <pre>
-     * categories: ['Apples', 'Bananas', 'Oranges']
-     * </pre>
-     * </p>
-     */
-    public abstract void setCategories(String... categories);
-
-    /**
-     * Adds category to the categories array
-     *
-     * @param category
-     *            to add
-     * @see #setCategories(String...)
-     */
-    public abstract void addCategory(String category);
-
-    /**
-     * Removes first occurrence of category in categories array
-     *
-     * @param category
-     *            to remove
-     * @see #setCategories(String...)
-     */
-    public abstract void removeCategory(String category);
-
-    /**
      * @see #setCeiling(Number)
      */
     public abstract Number getCeiling();
@@ -293,31 +240,6 @@ public abstract class Axis extends AbstractConfigurationObject {
      * A class name that opens for styling the axis by CSS.
      */
     public abstract void setClassName(String className);
-
-    /**
-     * @see #setCrosshair(Crosshair)
-     */
-    public abstract Crosshair getCrosshair();
-
-    /**
-     * Configure a crosshair that follows either the mouse pointer or the
-     * hovered point.
-     */
-    public abstract void setCrosshair(Crosshair crosshair);
-
-    /**
-     * @see #setDateTimeLabelFormats(DateTimeLabelFormats)
-     */
-    public abstract DateTimeLabelFormats getDateTimeLabelFormats();
-
-    /**
-     * For a datetime axis, the scale will automatically adjust to the
-     * appropriate unit. This member gives the default string representations
-     * used for each unit. For an overview of the replacement codes, see
-     * dateFormat.
-     */
-    public abstract void setDateTimeLabelFormats(
-            DateTimeLabelFormats dateTimeLabelFormats);
 
     /**
      * @see #setDescription(String)
@@ -382,19 +304,6 @@ public abstract class Axis extends AbstractConfigurationObject {
     public abstract void setLabels(Labels labels);
 
     /**
-     * @see #setLinkedTo(Number)
-     */
-    public abstract Number getLinkedTo();
-
-    /**
-     * Index of another axis that this axis is linked to. When an axis is linked
-     * to a master axis, it will take the same extremes as the master, but as
-     * assigned by min or max or by setExtremes. It can be used to show
-     * additional info, or to ease reading the chart by duplicating the scales.
-     */
-    public abstract void setLinkedTo(Number linkedTo);
-
-    /**
      * @see #setMaxPadding(Number)
      */
     public abstract Number getMaxPadding();
@@ -421,50 +330,6 @@ public abstract class Axis extends AbstractConfigurationObject {
      * <code>axis.setExtremes()</code>, the minPadding will be ignored.
      */
     public abstract void setMinPadding(Number minPadding);
-
-    /**
-     * @see #setMinRange(Number)
-     */
-    public abstract Number getMinRange();
-
-    /**
-     * <p>
-     * The minimum range to display on this axis. The entire axis will not be
-     * allowed to span over a smaller interval than this. For example, for a
-     * datetime axis the main unit is milliseconds. If minRange is set to
-     * 3600000, you can't zoom in more than to one hour.
-     * </p>
-     *
-     * <p>
-     * The default minRange for the x axis is five times the smallest interval
-     * between any of the data points.
-     * </p>
-     *
-     * <p>
-     * On a logarithmic axis, the unit for the minimum range is the power. So a
-     * minRange of 1 means that the axis can be zoomed to 10-100, 100-1000,
-     * 1000-10000 etc.
-     * </p>
-     *
-     * <p>
-     * Note that the <code>minPadding</code>, <code>maxPadding</code>,
-     * <code>startOnTick</code> and <code>endOnTick</code> settings also affect
-     * how the extremes of the axis are computed.
-     * </p>
-     */
-    public abstract void setMinRange(Number minRange);
-
-    /**
-     * @see #setMinTickInterval(Number)
-     */
-    public abstract Number getMinTickInterval();
-
-    /**
-     * The minimum tick interval allowed in axis values. For example on zooming
-     * in on an axis with daily data, this can be used to prevent the axis from
-     * showing hours.
-     */
-    public abstract void setMinTickInterval(Number minTickInterval);
 
     /**
      * @see #setMinorTickInterval(String)
@@ -519,92 +384,6 @@ public abstract class Axis extends AbstractConfigurationObject {
     public abstract void setMinorTickPosition(TickPosition minorTickPosition);
 
     /**
-     * @see #setOffset(Number)
-     */
-    public abstract Number getOffset();
-
-    /**
-     * The distance in pixels from the plot area to the axis line. A positive
-     * offset moves the axis with it's line, labels and ticks away from the plot
-     * area. This is typically used when two or more axes are displayed on the
-     * same side of the plot.
-     */
-    public abstract void setOffset(Number offset);
-
-    /**
-     * @see #setOpposite(Boolean)
-     */
-    public abstract Boolean getOpposite();
-
-    /**
-     * Whether to display the axis on the opposite side of the normal. The
-     * normal is on the left side for vertical axes and bottom for horizontal,
-     * so the opposite sides will be right and top respectively. This is
-     * typically used with dual or multiple axes.
-     */
-    public abstract void setOpposite(Boolean opposite);
-
-    /**
-     * @see #setPlotBands(PlotBand...)
-     */
-    public abstract PlotBand[] getPlotBands();
-
-    /**
-     * <p>
-     * An array of colored bands stretching across the plot area marking an
-     * interval on the axis.
-     * </p>
-     */
-    public abstract void setPlotBands(PlotBand... plotBands);
-
-    /**
-     * Adds plotBand to the plotBands array
-     *
-     * @param plotBand
-     *            to add
-     * @see #setPlotBands(PlotBand...)
-     */
-    public abstract void addPlotBand(PlotBand plotBand);
-
-    /**
-     * Removes first occurrence of plotBand in plotBands array
-     *
-     * @param plotBand
-     *            to remove
-     * @see #setPlotBands(PlotBand...)
-     */
-    public abstract void removePlotBand(PlotBand plotBand);
-
-    /**
-     * @see #setPlotLines(PlotLine...)
-     */
-    public abstract PlotLine[] getPlotLines();
-
-    /**
-     * An array of lines stretching across the plot area, marking a specific
-     * value on one of the axes.
-     */
-    public abstract void setPlotLines(PlotLine... plotLines);
-
-    /**
-     * Adds plotLine to the plotLines array
-     *
-     * @param plotLine
-     *            to add
-     * @see #setPlotLines(PlotLine...)
-     */
-    public abstract void addPlotLine(PlotLine plotLine);
-
-    /**
-     * Removes first occurrence of plotLine in plotLines array
-     *
-     * @param plotLine
-     *            to remove
-     * @see #setPlotLines(PlotLine...)
-     */
-    public abstract void removePlotLine(PlotLine plotLine);
-
-    /**
      * @see #setReversed(Boolean)
      */
     public abstract Boolean getReversed();
@@ -614,16 +393,6 @@ public abstract class Axis extends AbstractConfigurationObject {
      * origin.
      */
     public abstract void setReversed(Boolean reversed);
-
-    /**
-     * @see #setShowEmpty(Boolean)
-     */
-    public abstract Boolean getShowEmpty();
-
-    /**
-     * Whether to show the axis line and title when the axis has no data.
-     */
-    public abstract void setShowEmpty(Boolean showEmpty);
 
     /**
      * @see #setShowFirstLabel(Boolean)
@@ -773,14 +542,14 @@ public abstract class Axis extends AbstractConfigurationObject {
     /**
      * @see #setTickPositions(Number[])
      */
-    public abstract Number[] getTickPositions();
+    public abstract ArrayList<Number> getTickPositions();
 
     /**
      * An array defining where the ticks are laid out on the axis. This
      * overrides the default behaviour of <code>tickPixelInterval</code> and
      * <code>tickInterval</code>.
      */
-    public abstract void setTickPositions(Number[] tickPositions);
+    public abstract void setTickPositions(ArrayList<Number> tickPositions);
 
     /**
      * @see #setTickmarkPlacement(TickmarkPlacement)
@@ -794,32 +563,6 @@ public abstract class Axis extends AbstractConfigurationObject {
      * <code>tickInterval</code> is 1, else <code>on</code>.
      */
     public abstract void setTickmarkPlacement(TickmarkPlacement tickmarkPlacement);
-
-    /**
-     * @see #setTitle(AxisTitle)
-     */
-    public abstract AxisTitle getTitle();
-
-    /**
-     * The axis title, showing next to the axis line.
-     */
-    public abstract void setTitle(AxisTitle title);
-
-    /**
-     * @see #setType(AxisType)
-     */
-    public abstract AxisType getType();
-
-    /**
-     * The type of axis. Can be one of <code>"linear"</code>,
-     * <code>"logarithmic"</code>, <code>"datetime"</code> or
-     * <code>"category"</code>. In a datetime axis, the numbers are given in
-     * milliseconds, and tick marks are placed on appropriate values like full
-     * hours or days. In a category axis, the point
-     * names of the chart's series are used for categories, if not a
-     * categories array is defined.
-     */
-    public abstract void setType(AxisType type);
 
     /**
      * @see #setUniqueNames(Boolean)
@@ -841,7 +584,7 @@ public abstract class Axis extends AbstractConfigurationObject {
     /**
      * @see #setUnits(TimeUnitMultiples...)
      */
-    public abstract TimeUnitMultiples[] getUnits();
+    public abstract ArrayList<TimeUnitMultiples> getUnits();
 
     /**
      * Datetime axis only. An array determining what time intervals the ticks
@@ -878,6 +621,4 @@ public abstract class Axis extends AbstractConfigurationObject {
      * visible.
      */
     public abstract void setVisible(Boolean visible);
-
-    public abstract void setTitle(String title);
 }

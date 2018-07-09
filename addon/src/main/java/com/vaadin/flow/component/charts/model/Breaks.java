@@ -1,24 +1,6 @@
 package com.vaadin.flow.component.charts.model;
 
-/*-
- * #%L
- * Vaadin Charts for Flow
- * %%
- * Copyright (C) 2014 - 2018 Vaadin Ltd
- * %%
- * This program is available under Commercial Vaadin Add-On License 3.0
- * (CVALv3).
- * 
- * See the file licensing.txt distributed with this software for more
- * information about licensing.
- * 
- * You should have received a copy of the CVALv3 along with this program.
- * If not, see <https://vaadin.com/license/cval-3>.
- * #L%
- */
-
 import javax.annotation.Generated;
-import java.util.Date;
 import java.time.Instant;
 import com.vaadin.flow.component.charts.util.Util;
 
@@ -47,10 +29,8 @@ public class Breaks extends AbstractConfigurationObject {
 	/**
 	 * A number indicating how much space should be left between the start and
 	 * the end of the break. The break size is given in axis units, so for
-	 * instance on a <code>datetime</code> axis, a break size of 3600000 would
-	 * indicate the equivalent of an hour.
-	 * <p>
-	 * Defaults to: 0
+	 * instance on a `datetime` axis, a break size of 3600000 would indicate the
+	 * equivalent of an hour.
 	 */
 	public void setBreakSize(Number breakSize) {
 		this.breakSize = breakSize;
@@ -80,8 +60,6 @@ public class Breaks extends AbstractConfigurationObject {
 	/**
 	 * Defines an interval after which the break appears again. By default the
 	 * breaks do not repeat.
-	 * <p>
-	 * Defaults to: 0
 	 */
 	public void setRepeat(Number repeat) {
 		this.repeat = repeat;
@@ -102,26 +80,10 @@ public class Breaks extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @deprecated as of 4.0. Use {@link #setPointStart(Instant)}
-	 */
-	@Deprecated
-	public void setFrom(Date date) {
-		this.from = Util.toHighchartsTS(date);
-	}
-
-	/**
 	 * @see #setFrom(Number)
 	 */
 	public void setFrom(Instant instant) {
 		this.from = Util.toHighchartsTS(instant);
-	}
-
-	/**
-	 * @deprecated as of 4.0. Use {@link #setPointStart(Instant)}
-	 */
-	@Deprecated
-	public void setTo(Date date) {
-		this.to = Util.toHighchartsTS(date);
 	}
 
 	/**

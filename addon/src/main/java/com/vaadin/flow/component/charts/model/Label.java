@@ -1,40 +1,43 @@
 package com.vaadin.flow.component.charts.model;
 
-/*-
- * #%L
- * Vaadin Charts for Flow
- * %%
- * Copyright (C) 2014 - 2018 Vaadin Ltd
- * %%
- * This program is available under Commercial Vaadin Add-On License 3.0
- * (CVALv3).
- * 
- * See the file licensing.txt distributed with this software for more
- * information about licensing.
- * 
- * You should have received a copy of the CVALv3 along with this program.
- * If not, see <https://vaadin.com/license/cval-3>.
- * #L%
- */
-
 import javax.annotation.Generated;
+import java.util.ArrayList;
 
 /**
- * Text labels for the plot bands
+ * Series labels are placed as close to the series as possible in a natural way,
+ * seeking to avoid other series. The goal of this feature is to make the chart
+ * more easily readable, like if a human designer placed the labels in the
+ * optimal position. The series labels currently work with series types having a
+ * `graph` or an `area`. Requires the `series-label.js` module.
  */
 @Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/vaadin-charts-flow/issues/new")
 public class Label extends AbstractConfigurationObject {
 
 	private HorizontalAlign align;
+	private ArrayList<Box> boxesToAvoid;
+	private Boolean connectorAllowed;
+	private Number connectorNeighbourDistance;
+	private Boolean enabled;
+	private Number maxFontSize;
+	private Number minFontSize;
+	private Boolean onArea;
 	private Number rotation;
 	private String text;
-	private TextAlign textAlign;
+	private HorizontalAlign textAlign;
 	private Boolean useHTML;
 	private VerticalAlign verticalAlign;
 	private Number x;
 	private Number y;
 
 	public Label() {
+	}
+
+	public Label(Boolean enabled) {
+		this.enabled = enabled;
+	}
+
+	public Label(String text) {
+		this.text = text;
 	}
 
 	/**
@@ -47,11 +50,120 @@ public class Label extends AbstractConfigurationObject {
 	/**
 	 * Horizontal alignment of the label. Can be one of "left", "center" or
 	 * "right".
-	 * <p>
-	 * Defaults to: left
 	 */
 	public void setAlign(HorizontalAlign align) {
 		this.align = align;
+	}
+
+	/**
+	 * @see #setBoxesToAvoid(ArrayList)
+	 */
+	public ArrayList<Box> getBoxesToAvoid() {
+		if (boxesToAvoid == null) {
+			boxesToAvoid = new ArrayList<Box>();
+		}
+		return boxesToAvoid;
+	}
+
+	/**
+	 * An array of boxes to avoid when laying out the labels. Each item has a
+	 * `left`, `right`, `top` and `bottom` property.
+	 */
+	public void setBoxesToAvoid(ArrayList<Box> boxesToAvoid) {
+		this.boxesToAvoid = boxesToAvoid;
+	}
+
+	/**
+	 * @see #setConnectorAllowed(Boolean)
+	 */
+	public Boolean getConnectorAllowed() {
+		return connectorAllowed;
+	}
+
+	/**
+	 * Allow labels to be placed distant to the graph if necessary, and draw a
+	 * connector line to the graph. Setting this option to true may decrease the
+	 * performance significantly, since the algorithm with systematically search
+	 * for open spaces in the while plot area. Visually, it may also result in a
+	 * more cluttered chart, though more of the series will be labeled.
+	 */
+	public void setConnectorAllowed(Boolean connectorAllowed) {
+		this.connectorAllowed = connectorAllowed;
+	}
+
+	/**
+	 * @see #setConnectorNeighbourDistance(Number)
+	 */
+	public Number getConnectorNeighbourDistance() {
+		return connectorNeighbourDistance;
+	}
+
+	/**
+	 * If the label is closer than this to a neighbour graph, draw a connector.
+	 */
+	public void setConnectorNeighbourDistance(Number connectorNeighbourDistance) {
+		this.connectorNeighbourDistance = connectorNeighbourDistance;
+	}
+
+	/**
+	 * @see #setEnabled(Boolean)
+	 */
+	public Boolean getEnabled() {
+		return enabled;
+	}
+
+	/**
+	 * Enable the series label per series.
+	 */
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
+	}
+
+	/**
+	 * @see #setMaxFontSize(Number)
+	 */
+	public Number getMaxFontSize() {
+		return maxFontSize;
+	}
+
+	/**
+	 * For area-like series, allow the font size to vary so that small areas get
+	 * a smaller font size. The default applies this effect to area-like series
+	 * but not line-like series.
+	 */
+	public void setMaxFontSize(Number maxFontSize) {
+		this.maxFontSize = maxFontSize;
+	}
+
+	/**
+	 * @see #setMinFontSize(Number)
+	 */
+	public Number getMinFontSize() {
+		return minFontSize;
+	}
+
+	/**
+	 * For area-like series, allow the font size to vary so that small areas get
+	 * a smaller font size. The default applies this effect to area-like series
+	 * but not line-like series.
+	 */
+	public void setMinFontSize(Number minFontSize) {
+		this.minFontSize = minFontSize;
+	}
+
+	/**
+	 * @see #setOnArea(Boolean)
+	 */
+	public Boolean getOnArea() {
+		return onArea;
+	}
+
+	/**
+	 * Draw the label on the area of an area series. By default it is drawn on
+	 * the area. Set it to `false` to draw it next to the graph instead.
+	 */
+	public void setOnArea(Boolean onArea) {
+		this.onArea = onArea;
 	}
 
 	/**
@@ -69,10 +181,6 @@ public class Label extends AbstractConfigurationObject {
 		this.rotation = rotation;
 	}
 
-	public Label(String text) {
-		this.text = text;
-	}
-
 	/**
 	 * @see #setText(String)
 	 */
@@ -88,20 +196,19 @@ public class Label extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setTextAlign(TextAlign)
+	 * @see #setTextAlign(HorizontalAlign)
 	 */
-	public TextAlign getTextAlign() {
+	public HorizontalAlign getTextAlign() {
 		return textAlign;
 	}
 
 	/**
-	 * The text alignment for the label. While <code>align</code> determines
-	 * where the texts anchor point is placed within the plot band,
-	 * <code>textAlign</code> determines how the text is aligned against its
-	 * anchor point. Possible values are "left", "center" and "right". Defaults
-	 * to the same as the <code>align</code> option.
+	 * The text alignment for the label. While `align` determines where the
+	 * texts anchor point is placed within the plot band, `textAlign` determines
+	 * how the text is aligned against its anchor point. Possible values are
+	 * "left", "center" and "right". Defaults to the same as the `align` option.
 	 */
-	public void setTextAlign(TextAlign textAlign) {
+	public void setTextAlign(HorizontalAlign textAlign) {
 		this.textAlign = textAlign;
 	}
 
@@ -113,12 +220,9 @@ public class Label extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * <p>
-	 * Whether to <a href=
-	 * "http://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting#html"
-	 * >use HTML</a> to render the labels.
-	 * <p>
-	 * Defaults to: false
+	 * Whether to [use
+	 * HTML](http://www.highcharts.com/docs/chart-concepts/labels-
+	 * and-string-formatting#html) to render the labels.
 	 */
 	public void setUseHTML(Boolean useHTML) {
 		this.useHTML = useHTML;
@@ -132,10 +236,8 @@ public class Label extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * Vertical alignment of the label relative to the plot band. Can be one of
+	 * Vertical alignment of the label relative to the plot line. Can be one of
 	 * "top", "middle" or "bottom".
-	 * <p>
-	 * Defaults to: top
 	 */
 	public void setVerticalAlign(VerticalAlign verticalAlign) {
 		this.verticalAlign = verticalAlign;

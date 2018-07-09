@@ -20,6 +20,6 @@ package com.vaadin.flow.component.charts.model;
 public abstract class AbstractPlotOptions extends AbstractConfigurationObject {
 
     public ChartType getChartType() {
-        return ChartType.LINE;
+        return new ChartType(getClass().getSimpleName().substring("PlotOptions".length()).toLowerCase());
     }
 }

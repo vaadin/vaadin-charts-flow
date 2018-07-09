@@ -1,41 +1,18 @@
 package com.vaadin.flow.component.charts.model;
 
-/*-
- * #%L
- * Vaadin Charts for Flow
- * %%
- * Copyright (C) 2014 - 2018 Vaadin Ltd
- * %%
- * This program is available under Commercial Vaadin Add-On License 3.0
- * (CVALv3).
- * 
- * See the file licensing.txt distributed with this software for more
- * information about licensing.
- * 
- * You should have received a copy of the CVALv3 along with this program.
- * If not, see <https://vaadin.com/license/cval-3>.
- * #L%
- */
-
 import javax.annotation.Generated;
 
 /**
- * <p>
  * A collection of options for buttons appearing in the exporting module.
- * </p>
  * 
- * <p>
- * In <a
- * href="http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
- * >styled mode</a>, the buttons are styled with the
- * <code>.highcharts-contextbutton</code> and
- * <code>.highcharts-button-symbol</code> class.
- * </p>
+ * In styled mode, the buttons are styled with the `.highcharts-contextbutton`
+ * and `.highcharts-button-symbol` classes.
  */
 @Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/vaadin-charts-flow/issues/new")
 public class ButtonOptions extends AbstractConfigurationObject {
 
 	private HorizontalAlign align;
+	private Number buttonSpacing;
 	private Boolean enabled;
 	private Number height;
 	private Number symbolSize;
@@ -50,6 +27,14 @@ public class ButtonOptions extends AbstractConfigurationObject {
 	public ButtonOptions() {
 	}
 
+	public ButtonOptions(Boolean enabled) {
+		this.enabled = enabled;
+	}
+
+	public ButtonOptions(String text) {
+		this.text = text;
+	}
+
 	/**
 	 * @see #setAlign(HorizontalAlign)
 	 */
@@ -59,15 +44,23 @@ public class ButtonOptions extends AbstractConfigurationObject {
 
 	/**
 	 * Alignment for the buttons.
-	 * <p>
-	 * Defaults to: right
 	 */
 	public void setAlign(HorizontalAlign align) {
 		this.align = align;
 	}
 
-	public ButtonOptions(Boolean enabled) {
-		this.enabled = enabled;
+	/**
+	 * @see #setButtonSpacing(Number)
+	 */
+	public Number getButtonSpacing() {
+		return buttonSpacing;
+	}
+
+	/**
+	 * The pixel spacing between buttons.
+	 */
+	public void setButtonSpacing(Number buttonSpacing) {
+		this.buttonSpacing = buttonSpacing;
 	}
 
 	/**
@@ -79,8 +72,6 @@ public class ButtonOptions extends AbstractConfigurationObject {
 
 	/**
 	 * Whether to enable buttons.
-	 * <p>
-	 * Defaults to: true
 	 */
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
@@ -95,8 +86,6 @@ public class ButtonOptions extends AbstractConfigurationObject {
 
 	/**
 	 * Pixel height of the buttons.
-	 * <p>
-	 * Defaults to: 20
 	 */
 	public void setHeight(Number height) {
 		this.height = height;
@@ -111,8 +100,6 @@ public class ButtonOptions extends AbstractConfigurationObject {
 
 	/**
 	 * The pixel size of the symbol on the button.
-	 * <p>
-	 * Defaults to: 14
 	 */
 	public void setSymbolSize(Number symbolSize) {
 		this.symbolSize = symbolSize;
@@ -127,8 +114,6 @@ public class ButtonOptions extends AbstractConfigurationObject {
 
 	/**
 	 * The pixel stroke width of the symbol on the button.
-	 * <p>
-	 * Defaults to: 1
 	 */
 	public void setSymbolStrokeWidth(Number symbolStrokeWidth) {
 		this.symbolStrokeWidth = symbolStrokeWidth;
@@ -143,8 +128,6 @@ public class ButtonOptions extends AbstractConfigurationObject {
 
 	/**
 	 * The x position of the center of the symbol inside the button.
-	 * <p>
-	 * Defaults to: 12.5
 	 */
 	public void setSymbolX(Number symbolX) {
 		this.symbolX = symbolX;
@@ -159,15 +142,9 @@ public class ButtonOptions extends AbstractConfigurationObject {
 
 	/**
 	 * The y position of the center of the symbol inside the button.
-	 * <p>
-	 * Defaults to: 10.5
 	 */
 	public void setSymbolY(Number symbolY) {
 		this.symbolY = symbolY;
-	}
-
-	public ButtonOptions(String text) {
-		this.text = text;
 	}
 
 	/**
@@ -179,8 +156,6 @@ public class ButtonOptions extends AbstractConfigurationObject {
 
 	/**
 	 * A text string to add to the individual button.
-	 * <p>
-	 * Defaults to: null
 	 */
 	public void setText(String text) {
 		this.text = text;
@@ -196,8 +171,6 @@ public class ButtonOptions extends AbstractConfigurationObject {
 	/**
 	 * The vertical alignment of the buttons. Can be one of "top", "middle" or
 	 * "bottom".
-	 * <p>
-	 * Defaults to: top
 	 */
 	public void setVerticalAlign(VerticalAlign verticalAlign) {
 		this.verticalAlign = verticalAlign;
@@ -212,8 +185,6 @@ public class ButtonOptions extends AbstractConfigurationObject {
 
 	/**
 	 * The pixel width of the button.
-	 * <p>
-	 * Defaults to: 24
 	 */
 	public void setWidth(Number width) {
 		this.width = width;
@@ -228,9 +199,7 @@ public class ButtonOptions extends AbstractConfigurationObject {
 
 	/**
 	 * The vertical offset of the button's position relative to its
-	 * <code>verticalAlign</code>. .
-	 * <p>
-	 * Defaults to: 0
+	 * `verticalAlign`.
 	 */
 	public void setY(Number y) {
 		this.y = y;

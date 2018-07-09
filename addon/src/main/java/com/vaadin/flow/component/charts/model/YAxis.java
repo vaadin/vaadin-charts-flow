@@ -1,43 +1,25 @@
 package com.vaadin.flow.component.charts.model;
 
-/*-
- * #%L
- * Vaadin Charts for Flow
- * %%
- * Copyright (C) 2014 - 2018 Vaadin Ltd
- * %%
- * This program is available under Commercial Vaadin Add-On License 3.0
- * (CVALv3).
- * 
- * See the file licensing.txt distributed with this software for more
- * information about licensing.
- * 
- * You should have received a copy of the CVALv3 along with this program.
- * If not, see <https://vaadin.com/license/cval-3>.
- * #L%
- */
-
 import javax.annotation.Generated;
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.ArrayList;
+import com.vaadin.flow.component.charts.model.style.Color;
 
 /**
- * <p>
- * The Y axis or value axis. In case of multiple axes, the yAxis node is an
- * array of configuration objects.
- * </p>
- * <p>
- * See <a class="internal" href="#axis.object">the Axis object</a> for
- * programmatic access to the axis.
- * </p>
+ * The Y axis or value axis. Normally this is the vertical axis, though if the
+ * chart is inverted this is the horizontal axis. In case of multiple axes, the
+ * yAxis node is an array of configuration objects. See [the Axis object](#Axis)
+ * for programmatic access to the axis.
  */
 @Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/vaadin-charts-flow/issues/new")
 public class YAxis extends Axis {
 
+	private String _fn_tickPositioner;
+	private Boolean alignTicks;
 	private Boolean allowDecimals;
 	private Boolean alternateGridColor;
 	private Number angle;
-	private Breaks[] breaks;
+	private ArrayList<Breaks> breaks;
 	private ArrayList<String> categories;
 	private Number ceiling;
 	private String className;
@@ -48,22 +30,32 @@ public class YAxis extends Axis {
 	private Number floor;
 	private String gridLineInterpolation;
 	private Number gridZIndex;
+	private String height;
 	private String id;
 	private Labels labels;
 	private Number linkedTo;
+	private String maxLength;
 	private Number maxPadding;
+	private Number maxRange;
+	private Number maxZoom;
+	private String minLength;
 	private Number minPadding;
 	private Number minRange;
 	private Number minTickInterval;
 	private String minorTickInterval;
 	private Number minorTickLength;
 	private TickPosition minorTickPosition;
+	private Boolean minorTicks;
 	private Number offset;
 	private Boolean opposite;
+	private Number pane;
 	private ArrayList<PlotBand> plotBands;
 	private ArrayList<PlotLine> plotLines;
+	private Number range;
+	private Resize resize;
 	private Boolean reversed;
 	private Boolean reversedStacks;
+	private YAxisScrollbar scrollbar;
 	private Boolean showEmpty;
 	private Boolean showFirstLabel;
 	private Boolean showLastLabel;
@@ -72,27 +64,63 @@ public class YAxis extends Axis {
 	private StackLabels stackLabels;
 	private Number startOfWeek;
 	private Boolean startOnTick;
+	private ArrayList<String[]> stops;
 	private Number tickAmount;
 	private Number tickInterval;
 	private Number tickLength;
 	private Number tickPixelInterval;
 	private TickPosition tickPosition;
-	private Number[] tickPositions;
+	private ArrayList<Number> tickPositions;
 	private TickmarkPlacement tickmarkPlacement;
 	private AxisTitle title;
+	private String tooltipValueFormat;
+	private String top;
 	private AxisType type;
 	private Boolean uniqueNames;
 	private ArrayList<TimeUnitMultiples> units;
 	private Boolean visible;
-	private String height;
-	private Boolean ordinal;
-	private Number range;
-	private Scrollbar scrollbar;
-	private String top;
-	private Number pane;
-	private ArrayList<Stop> stops;
 
 	public YAxis() {
+	}
+
+	/**
+	 * @see #set_fn_tickPositioner(String)
+	 */
+	public String getTickPositioner() {
+		return _fn_tickPositioner;
+	}
+
+	/**
+	 * A callback function returning array defining where the ticks are laid out
+	 * on the axis. This overrides the default behaviour of
+	 * [tickPixelInterval](#xAxis.tickPixelInterval) and
+	 * [tickInterval](#xAxis.tickInterval). The automatic tick positions are
+	 * accessible through `this.tickPositions` and can be modified by the
+	 * callback.
+	 */
+	public void setTickPositioner(String _fn_tickPositioner) {
+		this._fn_tickPositioner = _fn_tickPositioner;
+	}
+
+	/**
+	 * @see #setAlignTicks(Boolean)
+	 */
+	public Boolean getAlignTicks() {
+		return alignTicks;
+	}
+
+	/**
+	 * When using multiple axis, the ticks of two or more opposite axes will
+	 * automatically be aligned by adding ticks to the axis or axes with the
+	 * least ticks, as if `tickAmount` were specified. This can be prevented by
+	 * setting `alignTicks` to false. If the grid lines look messy, it's a good
+	 * idea to hide them for the secondary axis by setting `gridLineWidth` to 0.
+	 * If `startOnTick` or `endOnTick` in an Axis options are set to false, then
+	 * the `alignTicks ` will be disabled for the Axis. Disabled for logarithmic
+	 * axes.
+	 */
+	public void setAlignTicks(Boolean alignTicks) {
+		this.alignTicks = alignTicks;
 	}
 
 	/**
@@ -106,8 +134,6 @@ public class YAxis extends Axis {
 	 * Whether to allow decimals in this axis' ticks. When counting integers,
 	 * like persons or hits on a web page, decimals should be avoided in the
 	 * labels.
-	 * <p>
-	 * Defaults to: true
 	 */
 	public void setAllowDecimals(Boolean allowDecimals) {
 		this.allowDecimals = allowDecimals;
@@ -139,88 +165,52 @@ public class YAxis extends Axis {
 	 * In a polar chart, this is the angle of the Y axis in degrees, where 0 is
 	 * up and 90 is right. The angle determines the position of the axis line
 	 * and the labels, though the coordinate system is unaffected.
-	 * <p>
-	 * Defaults to: 0
 	 */
 	public void setAngle(Number angle) {
 		this.angle = angle;
 	}
 
 	/**
-	 * @see #setBreaks(Breaks[])
+	 * @see #setBreaks(ArrayList)
 	 */
-	public Breaks[] getBreaks() {
+	public ArrayList<Breaks> getBreaks() {
+		if (breaks == null) {
+			breaks = new ArrayList<Breaks>();
+		}
 		return breaks;
 	}
 
 	/**
 	 * An array defining breaks in the axis, the sections defined will be left
-	 * out and all the points shifted closer to each other. Requires that the
-	 * broken-axis.js module is loaded.
+	 * out and all the points shifted closer to each other.
 	 */
-	public void setBreaks(Breaks[] breaks) {
+	public void setBreaks(ArrayList<Breaks> breaks) {
 		this.breaks = breaks;
 	}
 
 	/**
-	 * @see #setCategories(String...)
+	 * @see #setCategories(ArrayList)
 	 */
-	public String[] getCategories() {
+	public ArrayList<String> getCategories() {
 		if (categories == null) {
-			return new String[]{};
+			categories = new ArrayList<String>();
 		}
-		String[] arr = new String[categories.size()];
-		categories.toArray(arr);
-		return arr;
+		return categories;
 	}
 
 	/**
-	 * <p>
 	 * If categories are present for the xAxis, names are used instead of
 	 * numbers for that axis. Since Highcharts 3.0, categories can also be
-	 * extracted by giving each point a <a href="#series.data">name</a> and
-	 * setting axis <a href="#xAxis.type">type</a> to <code>category</code>.
-	 * However, if you have multiple series, best practice remains defining the
-	 * <code>categories</code> array.
-	 * </p>
-	 * 
-	 * <p>
-	 * Example:
+	 * extracted by giving each point a [name](#series.data) and setting axis
+	 * [type](#xAxis.type) to `category`. However, if you have multiple series,
+	 * best practice remains defining the `categories` array. Example:
 	 * 
 	 * <pre>
 	 * categories: ['Apples', 'Bananas', 'Oranges']
 	 * </pre>
-	 * 
-	 * Defaults to <code>null</code>
-	 * </p>
 	 */
-	public void setCategories(String... categories) {
-		this.categories = new ArrayList<String>(Arrays.asList(categories));
-	}
-
-	/**
-	 * Adds category to the categories array
-	 * 
-	 * @param category
-	 *            to add
-	 * @see #setCategories(String...)
-	 */
-	public void addCategory(String category) {
-		if (this.categories == null) {
-			this.categories = new ArrayList<String>();
-		}
-		this.categories.add(category);
-	}
-
-	/**
-	 * Removes first occurrence of category in categories array
-	 * 
-	 * @param category
-	 *            to remove
-	 * @see #setCategories(String...)
-	 */
-	public void removeCategory(String category) {
-		this.categories.remove(category);
+	public void setCategories(ArrayList<String> categories) {
+		this.categories = categories;
 	}
 
 	/**
@@ -246,10 +236,8 @@ public class YAxis extends Axis {
 
 	/**
 	 * A class name that opens for styling the axis by CSS, especially in
-	 * Highcharts <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >styled mode</a>. The class name is applied to group elements for the
-	 * grid, axis elements and labels.
+	 * Highcharts styled mode. The class name is applied to group elements for
+	 * the grid, axis elements and labels.
 	 */
 	public void setClassName(String className) {
 		this.className = className;
@@ -266,21 +254,10 @@ public class YAxis extends Axis {
 	}
 
 	/**
-	 * <p>
 	 * Configure a crosshair that follows either the mouse pointer or the
-	 * hovered point.
-	 * </p>
-	 * 
-	 * <p>
-	 * In <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >styled mode</a>, the crosshairs are styled in the
-	 * <code>.highcharts-crosshair</code>,
-	 * <code>.highcharts-crosshair-thin</code> or
-	 * <code>.highcharts-xaxis-category</code> classes.
-	 * </p>
-	 * <p>
-	 * Defaults to: false
+	 * hovered point. In styled mode, the crosshairs are styled in the
+	 * `.highcharts-crosshair`, `.highcharts-crosshair-thin` or
+	 * `.highcharts-xaxis-category` classes.
 	 */
 	public void setCrosshair(Crosshair crosshair) {
 		this.crosshair = crosshair;
@@ -300,23 +277,20 @@ public class YAxis extends Axis {
 	 * For a datetime axis, the scale will automatically adjust to the
 	 * appropriate unit. This member gives the default string representations
 	 * used for each unit. For intermediate values, different units may be used,
-	 * for example the <code>day</code> unit can be used on midnight and
-	 * <code>hour</code> unit be used for intermediate values on the same axis.
-	 * For an overview of the replacement codes, see <a
-	 * href="#Highcharts.dateFormat">dateFormat</a>.
-	 * 
-	 * Defaults to:
+	 * for example the `day` unit can be used on midnight and `hour` unit be
+	 * used for intermediate values on the same axis. For an overview of the
+	 * replacement codes, see [dateFormat](#Highcharts.dateFormat). Defaults to:
 	 * 
 	 * <pre>
 	 * {
-	 * 		millisecond: '%H:%M:%S.%L',
-	 * 		second: '%H:%M:%S',
-	 * 		minute: '%H:%M',
-	 * 		hour: '%H:%M',
-	 * 		day: '%e. %b',
-	 * 		week: '%e. %b',
-	 * 		month: '%b \'%y',
-	 * 		year: '%Y'
+	 * 	    millisecond: '%H:%M:%S.%L',
+	 * 	    second: '%H:%M:%S',
+	 * 	    minute: '%H:%M',
+	 * 	    hour: '%H:%M',
+	 * 	    day: '%e. %b',
+	 * 	    week: '%e. %b',
+	 * 	    month: '%b \'%y',
+	 * 	    year: '%Y'
 	 * 	}
 	 * </pre>
 	 */
@@ -333,33 +307,17 @@ public class YAxis extends Axis {
 	}
 
 	/**
-	 * <p>
-	 * <i>Requires Accessibility module</i>
-	 * </p>
-	 * 
-	 * <p>
-	 * Description of the axis to screen reader users.
-	 * </p>
-	 * <p>
-	 * Defaults to: undefined
+	 * _Requires Accessibility module_ Description of the axis to screen reader
+	 * users.
 	 */
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
-	/**
-	 * @see #setEndOnTick(Boolean)
-	 */
 	public Boolean getEndOnTick() {
 		return endOnTick;
 	}
 
-	/**
-	 * Whether to force the axis to end on a tick. Use this option with the
-	 * <code>maxPadding</code> option to control the axis end.
-	 * <p>
-	 * Defaults to: true
-	 */
 	public void setEndOnTick(Boolean endOnTick) {
 		this.endOnTick = endOnTick;
 	}
@@ -373,8 +331,6 @@ public class YAxis extends Axis {
 
 	/**
 	 * The lowest allowed value for automatically computed axis extremes.
-	 * <p>
-	 * Defaults to: null
 	 */
 	public void setFloor(Number floor) {
 		this.floor = floor;
@@ -389,10 +345,8 @@ public class YAxis extends Axis {
 
 	/**
 	 * Polar charts only. Whether the grid lines should draw as a polygon with
-	 * straight lines between categories, or as circles. Can be either
-	 * <code>circle</code> or <code>polygon</code>.
-	 * <p>
-	 * Defaults to: null
+	 * straight lines between categories, or as circles. Can be either `circle`
+	 * or `polygon`.
 	 */
 	public void setGridLineInterpolation(String gridLineInterpolation) {
 		this.gridLineInterpolation = gridLineInterpolation;
@@ -407,11 +361,25 @@ public class YAxis extends Axis {
 
 	/**
 	 * The Z index of the grid lines.
-	 * <p>
-	 * Defaults to: 1
 	 */
 	public void setGridZIndex(Number gridZIndex) {
 		this.gridZIndex = gridZIndex;
+	}
+
+	/**
+	 * @see #setHeight(String)
+	 */
+	public String getHeight() {
+		return height;
+	}
+
+	/**
+	 * The height of the Y axis. If it's a number, it is interpreted as pixels.
+	 * Since Highstock 2: If it's a percentage string, it is interpreted as
+	 * percentages of the total plot height.
+	 */
+	public void setHeight(String height) {
+		this.height = height;
 	}
 
 	/**
@@ -423,15 +391,12 @@ public class YAxis extends Axis {
 
 	/**
 	 * An id for the axis. This can be used after render time to get a pointer
-	 * to the axis object through <code>chart.get()</code>.
+	 * to the axis object through `chart.get()`.
 	 */
 	public void setId(String id) {
 		this.id = id;
 	}
 
-	/**
-	 * @see #setLabels(Labels)
-	 */
 	public Labels getLabels() {
 		if (labels == null) {
 			labels = new Labels();
@@ -461,6 +426,21 @@ public class YAxis extends Axis {
 	}
 
 	/**
+	 * @see #setMaxLength(String)
+	 */
+	public String getMaxLength() {
+		return maxLength;
+	}
+
+	/**
+	 * Maximal size of a resizable axis. Could be set as a percent of plot area
+	 * or pixel size. This feature requires the `drag-panes.js` module.
+	 */
+	public void setMaxLength(String maxLength) {
+		this.maxLength = maxLength;
+	}
+
+	/**
 	 * @see #setMaxPadding(Number)
 	 */
 	public Number getMaxPadding() {
@@ -470,12 +450,56 @@ public class YAxis extends Axis {
 	/**
 	 * Padding of the max value relative to the length of the axis. A padding of
 	 * 0.05 will make a 100px axis 5px longer. This is useful when you don't
-	 * want the highest data value to appear on the edge of the plot area.
-	 * <p>
-	 * Defaults to: 0.05
+	 * want the highest data value to appear on the edge of the plot area. When
+	 * the axis' `max` option is set or a max extreme is set using
+	 * `axis.setExtremes()`, the maxPadding will be ignored.
 	 */
 	public void setMaxPadding(Number maxPadding) {
 		this.maxPadding = maxPadding;
+	}
+
+	/**
+	 * @see #setMaxRange(Number)
+	 */
+	public Number getMaxRange() {
+		return maxRange;
+	}
+
+	/**
+	 * Maximum range which can be set using the navigator's handles. Opposite of
+	 * [xAxis.minRange](#xAxis.minRange).
+	 */
+	public void setMaxRange(Number maxRange) {
+		this.maxRange = maxRange;
+	}
+
+	/**
+	 * @see #setMaxZoom(Number)
+	 */
+	public Number getMaxZoom() {
+		return maxZoom;
+	}
+
+	/**
+	 * Deprecated. Use `minRange` instead.
+	 */
+	public void setMaxZoom(Number maxZoom) {
+		this.maxZoom = maxZoom;
+	}
+
+	/**
+	 * @see #setMinLength(String)
+	 */
+	public String getMinLength() {
+		return minLength;
+	}
+
+	/**
+	 * Minimal size of a resizable axis. Could be set as a percent of plot area
+	 * or pixel size. This feature requires the `drag-panes.js` module.
+	 */
+	public void setMinLength(String minLength) {
+		this.minLength = minLength;
 	}
 
 	/**
@@ -488,9 +512,9 @@ public class YAxis extends Axis {
 	/**
 	 * Padding of the min value relative to the length of the axis. A padding of
 	 * 0.05 will make a 100px axis 5px longer. This is useful when you don't
-	 * want the lowest data value to appear on the edge of the plot area.
-	 * <p>
-	 * Defaults to: 0.05
+	 * want the lowest data value to appear on the edge of the plot area. When
+	 * the axis' `min` option is set or a max extreme is set using
+	 * `axis.setExtremes()`, the maxPadding will be ignored.
 	 */
 	public void setMinPadding(Number minPadding) {
 		this.minPadding = minPadding;
@@ -504,29 +528,16 @@ public class YAxis extends Axis {
 	}
 
 	/**
-	 * <p>
 	 * The minimum range to display on this axis. The entire axis will not be
 	 * allowed to span over a smaller interval than this. For example, for a
 	 * datetime axis the main unit is milliseconds. If minRange is set to
-	 * 3600000, you can't zoom in more than to one hour.
-	 * </p>
-	 * 
-	 * <p>
-	 * The default minRange for the x axis is five times the smallest interval
-	 * between any of the data points.
-	 * </p>
-	 * 
-	 * <p>
-	 * On a logarithmic axis, the unit for the minimum range is the power. So a
-	 * minRange of 1 means that the axis can be zoomed to 10-100, 100-1000,
-	 * 1000-10000 etc.
-	 * </p>
-	 * 
-	 * <p>
-	 * Note that the <code>minPadding</code>, <code>maxPadding</code>,
-	 * <code>startOnTick</code> and <code>endOnTick</code> settings also affect
-	 * how the extremes of the axis are computed.
-	 * </p>
+	 * 3600000, you can't zoom in more than to one hour. The default minRange
+	 * for the x axis is five times the smallest interval between any of the
+	 * data points. On a logarithmic axis, the unit for the minimum range is the
+	 * power. So a minRange of 1 means that the axis can be zoomed to 10-100,
+	 * 100-1000, 1000-10000 etc. Note that the `minPadding`, `maxPadding`,
+	 * `startOnTick` and `endOnTick` settings also affect how the extremes of
+	 * the axis are computed.
 	 */
 	public void setMinRange(Number minRange) {
 		this.minRange = minRange;
@@ -557,28 +568,15 @@ public class YAxis extends Axis {
 	}
 
 	/**
-	 * <p>
-	 * Tick interval in scale units for the minor ticks. On a linear axis, if
-	 * <code>"auto"</code>, the minor tick interval is calculated as a fifth of
-	 * the tickInterval. If <code>null</code>, minor ticks are not shown.
-	 * </p>
-	 * <p>
-	 * On logarithmic axes, the unit is the power of the value. For example,
-	 * setting the minorTickInterval to 1 puts one tick on each of 0.1, 1, 10,
-	 * 100 etc. Setting the minorTickInterval to 0.1 produces 9 ticks between 1
-	 * and 10, 10 and 100 etc. A minorTickInterval of "auto" on a log axis
-	 * results in a best guess, attempting to enter approximately 5 minor ticks
-	 * between each major tick.
-	 * </p>
-	 * 
-	 * <p>
-	 * If user settings dictate minor ticks to become too dense, they don't make
-	 * sense, and will be ignored to prevent performance problems.</a>
-	 * 
-	 * <p>
-	 * On axes using <a href="#xAxis.categories">categories</a>, minor ticks are
-	 * not supported.
-	 * </p>
+	 * Specific tick interval in axis units for the minor ticks. On a linear
+	 * axis, if `"auto"`, the minor tick interval is calculated as a fifth of
+	 * the tickInterval. If `null`, minor ticks are not shown. On logarithmic
+	 * axes, the unit is the power of the value. For example, setting the
+	 * minorTickInterval to 1 puts one tick on each of 0.1, 1, 10, 100 etc.
+	 * Setting the minorTickInterval to 0.1 produces 9 ticks between 1 and 10,
+	 * 10 and 100 etc. If user settings dictate minor ticks to become too dense,
+	 * they don't make sense, and will be ignored to prevent performance
+	 * problems.
 	 */
 	public void setMinorTickInterval(String minorTickInterval) {
 		this.minorTickInterval = minorTickInterval;
@@ -593,8 +591,6 @@ public class YAxis extends Axis {
 
 	/**
 	 * The pixel length of the minor tick marks.
-	 * <p>
-	 * Defaults to: 2
 	 */
 	public void setMinorTickLength(Number minorTickLength) {
 		this.minorTickLength = minorTickLength;
@@ -609,12 +605,30 @@ public class YAxis extends Axis {
 
 	/**
 	 * The position of the minor tick marks relative to the axis line. Can be
-	 * one of <code>inside</code> and <code>outside</code>.
-	 * <p>
-	 * Defaults to: outside
+	 * one of `inside` and `outside`.
 	 */
 	public void setMinorTickPosition(TickPosition minorTickPosition) {
 		this.minorTickPosition = minorTickPosition;
+	}
+
+	/**
+	 * @see #setMinorTicks(Boolean)
+	 */
+	public Boolean getMinorTicks() {
+		return minorTicks;
+	}
+
+	/**
+	 * Enable or disable minor ticks. Unless
+	 * [minorTickInterval](#xAxis.minorTickInterval) is set, the tick interval
+	 * is calculated as a fifth of the `tickInterval`. On a logarithmic axis,
+	 * minor ticks are laid out based on a best guess, attempting to enter
+	 * approximately 5 minor ticks between each major tick. Prior to v6.0.0,
+	 * ticks were unabled in auto layout by setting `minorTickInterval` to
+	 * `"auto"`.
+	 */
+	public void setMinorTicks(Boolean minorTicks) {
+		this.minorTicks = minorTicks;
 	}
 
 	/**
@@ -631,118 +645,103 @@ public class YAxis extends Axis {
 	 * same side of the plot. With multiple axes the offset is dynamically
 	 * adjusted to avoid collision, this can be overridden by setting offset
 	 * explicitly.
-	 * <p>
-	 * Defaults to: 0
 	 */
 	public void setOffset(Number offset) {
 		this.offset = offset;
 	}
 
-	/**
-	 * @see #setOpposite(Boolean)
-	 */
 	public Boolean getOpposite() {
 		return opposite;
 	}
 
-	/**
-	 * Whether to display the axis on the opposite side of the normal. The
-	 * normal is on the left side for vertical axes and bottom for horizontal,
-	 * so the opposite sides will be right and top respectively. This is
-	 * typically used with dual or multiple axes.
-	 * <p>
-	 * Defaults to: false
-	 */
 	public void setOpposite(Boolean opposite) {
 		this.opposite = opposite;
 	}
 
 	/**
-	 * @see #setPlotBands(PlotBand...)
+	 * @see #setPane(Number)
 	 */
-	public PlotBand[] getPlotBands() {
+	public Number getPane() {
+		return pane;
+	}
+
+	/**
+	 * Refers to the index in the [panes](#panes) array. Used for circular
+	 * gauges and polar charts. When the option is not set then first pane will
+	 * be used.
+	 */
+	public void setPane(Number pane) {
+		this.pane = pane;
+	}
+
+	/**
+	 * @see #setPlotBands(ArrayList)
+	 */
+	public ArrayList<PlotBand> getPlotBands() {
 		if (plotBands == null) {
-			return new PlotBand[]{};
+			plotBands = new ArrayList<PlotBand>();
 		}
-		PlotBand[] arr = new PlotBand[plotBands.size()];
-		plotBands.toArray(arr);
-		return arr;
+		return plotBands;
 	}
 
 	/**
 	 * An array of objects defining plot bands on the Y axis.
 	 */
-	public void setPlotBands(PlotBand... plotBands) {
-		this.plotBands = new ArrayList<PlotBand>(Arrays.asList(plotBands));
+	public void setPlotBands(ArrayList<PlotBand> plotBands) {
+		this.plotBands = plotBands;
 	}
 
 	/**
-	 * Adds plotBand to the plotBands array
-	 * 
-	 * @param plotBand
-	 *            to add
-	 * @see #setPlotBands(PlotBand...)
+	 * @see #setPlotLines(ArrayList)
 	 */
-	public void addPlotBand(PlotBand plotBand) {
-		if (this.plotBands == null) {
-			this.plotBands = new ArrayList<PlotBand>();
-		}
-		this.plotBands.add(plotBand);
-	}
-
-	/**
-	 * Removes first occurrence of plotBand in plotBands array
-	 * 
-	 * @param plotBand
-	 *            to remove
-	 * @see #setPlotBands(PlotBand...)
-	 */
-	public void removePlotBand(PlotBand plotBand) {
-		this.plotBands.remove(plotBand);
-	}
-
-	/**
-	 * @see #setPlotLines(PlotLine...)
-	 */
-	public PlotLine[] getPlotLines() {
+	public ArrayList<PlotLine> getPlotLines() {
 		if (plotLines == null) {
-			return new PlotLine[]{};
+			plotLines = new ArrayList<PlotLine>();
 		}
-		PlotLine[] arr = new PlotLine[plotLines.size()];
-		plotLines.toArray(arr);
-		return arr;
+		return plotLines;
 	}
 
 	/**
 	 * An array of objects representing plot lines on the X axis
 	 */
-	public void setPlotLines(PlotLine... plotLines) {
-		this.plotLines = new ArrayList<PlotLine>(Arrays.asList(plotLines));
+	public void setPlotLines(ArrayList<PlotLine> plotLines) {
+		this.plotLines = plotLines;
 	}
 
 	/**
-	 * Adds plotLine to the plotLines array
-	 * 
-	 * @param plotLine
-	 *            to add
-	 * @see #setPlotLines(PlotLine...)
+	 * @see #setRange(Number)
 	 */
-	public void addPlotLine(PlotLine plotLine) {
-		if (this.plotLines == null) {
-			this.plotLines = new ArrayList<PlotLine>();
+	public Number getRange() {
+		return range;
+	}
+
+	/**
+	 * The zoomed range to display when only defining one or none of `min` or
+	 * `max`. For example, to show the latest month, a range of one month can be
+	 * set.
+	 */
+	public void setRange(Number range) {
+		this.range = range;
+	}
+
+	/**
+	 * @see #setResize(Resize)
+	 */
+	public Resize getResize() {
+		if (resize == null) {
+			resize = new Resize();
 		}
-		this.plotLines.add(plotLine);
+		return resize;
 	}
 
 	/**
-	 * Removes first occurrence of plotLine in plotLines array
-	 * 
-	 * @param plotLine
-	 *            to remove
-	 * @see #setPlotLines(PlotLine...)
+	 * Options for axis resizing. This feature requires the `drag-panes.js` -
+	 * [classic](http://code.highcharts.com/stock/modules/drag-panes.js) or
+	 * [styled](http://code.highcharts.com/stock/js/modules/drag-panes.js) mode
+	 * - module.
 	 */
-	public void removePlotLine(PlotLine plotLine) {
-		this.plotLines.remove(plotLine);
+	public void setResize(Resize resize) {
+		this.resize = resize;
 	}
 
 	/**
@@ -755,8 +754,6 @@ public class YAxis extends Axis {
 	/**
 	 * Whether to reverse the axis so that the highest number is closest to the
 	 * origin. If the chart is inverted, the x axis is reversed by default.
-	 * <p>
-	 * Defaults to: false
 	 */
 	public void setReversed(Boolean reversed) {
 		this.reversed = reversed;
@@ -770,14 +767,34 @@ public class YAxis extends Axis {
 	}
 
 	/**
-	 * If <code>true</code>, the first series in a stack will be drawn on top in
-	 * a positive, non-reversed Y axis. If <code>false</code>, the first series
-	 * is in the base of the stack.
-	 * <p>
-	 * Defaults to: true
+	 * If `true`, the first series in a stack will be drawn on top in a
+	 * positive, non-reversed Y axis. If `false`, the first series is in the
+	 * base of the stack.
 	 */
 	public void setReversedStacks(Boolean reversedStacks) {
 		this.reversedStacks = reversedStacks;
+	}
+
+	/**
+	 * @see #setScrollbar(YAxisScrollbar)
+	 */
+	public YAxisScrollbar getScrollbar() {
+		if (scrollbar == null) {
+			scrollbar = new YAxisScrollbar();
+		}
+		return scrollbar;
+	}
+
+	/**
+	 * An optional scrollbar to display on the Y axis in response to limiting
+	 * the minimum an maximum of the axis values. In styled mode, all the
+	 * presentational options for the scrollbar are replaced by the classes
+	 * `.highcharts-scrollbar-thumb`, `.highcharts-scrollbar-arrow`,
+	 * `.highcharts-scrollbar-button`, `.highcharts-scrollbar-rifles` and
+	 * `.highcharts-scrollbar-track`.
+	 */
+	public void setScrollbar(YAxisScrollbar scrollbar) {
+		this.scrollbar = scrollbar;
 	}
 
 	/**
@@ -789,8 +806,6 @@ public class YAxis extends Axis {
 
 	/**
 	 * Whether to show the axis line and title when the axis has no data.
-	 * <p>
-	 * Defaults to: true
 	 */
 	public void setShowEmpty(Boolean showEmpty) {
 		this.showEmpty = showEmpty;
@@ -805,24 +820,15 @@ public class YAxis extends Axis {
 
 	/**
 	 * Whether to show the first tick label.
-	 * <p>
-	 * Defaults to: true
 	 */
 	public void setShowFirstLabel(Boolean showFirstLabel) {
 		this.showFirstLabel = showFirstLabel;
 	}
 
-	/**
-	 * @see #setShowLastLabel(Boolean)
-	 */
 	public Boolean getShowLastLabel() {
 		return showLastLabel;
 	}
 
-	/**
-	 * Whether to show the last tick label. Defaults to <code>true</code> on
-	 * cartesian charts, and <code>false</code> on polar charts.
-	 */
 	public void setShowLastLabel(Boolean showLastLabel) {
 		this.showLastLabel = showLastLabel;
 	}
@@ -890,8 +896,6 @@ public class YAxis extends Axis {
 	/**
 	 * For datetime axes, this decides where to put the tick between weeks. 0 =
 	 * Sunday, 1 = Monday.
-	 * <p>
-	 * Defaults to: 1
 	 */
 	public void setStartOfWeek(Number startOfWeek) {
 		this.startOfWeek = startOfWeek;
@@ -906,12 +910,34 @@ public class YAxis extends Axis {
 
 	/**
 	 * Whether to force the axis to start on a tick. Use this option with the
-	 * <code>maxPadding</code> option to control the axis start.
-	 * <p>
-	 * Defaults to: true
+	 * `maxPadding` option to control the axis start.
 	 */
 	public void setStartOnTick(Boolean startOnTick) {
 		this.startOnTick = startOnTick;
+	}
+
+	/**
+	 * @see #setStops(ArrayList)
+	 */
+	public ArrayList<String[]> getStops() {
+		if (stops == null) {
+			stops = new ArrayList<String[]>();
+		}
+		return stops;
+	}
+
+	/**
+	 * Solid gauge series only. Color stops for the solid gauge. Use this in
+	 * cases where a linear gradient between a `minColor` and `maxColor` is not
+	 * sufficient. The stops is an array of tuples, where the first item is a
+	 * float between 0 and 1 assigning the relative position in the gradient,
+	 * and the second item is the color. For solid gauges, the Y axis also
+	 * inherits the concept of [data classes](http://api.
+	 * highcharts.com/highmaps#colorAxis.dataClasses) from the Highmaps color
+	 * axis.
+	 */
+	public void setStops(ArrayList<String[]> stops) {
+		this.stops = stops;
 	}
 
 	/**
@@ -922,15 +948,10 @@ public class YAxis extends Axis {
 	}
 
 	/**
-	 * <p>
 	 * The amount of ticks to draw on the axis. This opens up for aligning the
 	 * ticks of multiple charts or panes within a chart. This option overrides
-	 * the <code>tickPixelInterval</code> option.
-	 * </p>
-	 * <p>
-	 * This option only has an effect on linear axes. Datetime, logarithmic or
-	 * category axes are not affected.
-	 * </p>
+	 * the `tickPixelInterval` option. This option only has an effect on linear
+	 * axes. Datetime, logarithmic or category axes are not affected.
 	 */
 	public void setTickAmount(Number tickAmount) {
 		this.tickAmount = tickAmount;
@@ -944,33 +965,21 @@ public class YAxis extends Axis {
 	}
 
 	/**
-	 * <p>
-	 * The interval of the tick marks in axis units. When <code>null</code>, the
-	 * tick interval is computed to approximately follow the <a
-	 * href="#xAxis.tickPixelInterval">tickPixelInterval</a> on linear and
-	 * datetime axes. On categorized axes, a <code>null</code> tickInterval will
-	 * default to 1, one category. Note that datetime axes are based on
-	 * milliseconds, so for example an interval of one day is expressed as
-	 * <code>24 * 3600 * 1000</code>.
-	 * </p>
-	 * <p>
-	 * On logarithmic axes, the tickInterval is based on powers, so a
-	 * tickInterval of 1 means one tick on each of 0.1, 1, 10, 100 etc. A
-	 * tickInterval of 2 means a tick of 0.1, 10, 1000 etc. A tickInterval of
-	 * 0.2 puts a tick on 0.1, 0.2, 0.4, 0.6, 0.8, 1, 2, 4, 6, 8, 10, 20, 40
-	 * etc.
-	 * </p>
+	 * The interval of the tick marks in axis units. When `null`, the tick
+	 * interval is computed to approximately follow the [tickPixelInterval](
+	 * #xAxis.tickPixelInterval) on linear and datetime axes. On categorized
+	 * axes, a `null` tickInterval will default to 1, one category. Note that
+	 * datetime axes are based on milliseconds, so for example an interval of
+	 * one day is expressed as `24 * 3600 * 1000`. On logarithmic axes, the
+	 * tickInterval is based on powers, so a tickInterval of 1 means one tick on
+	 * each of 0.1, 1, 10, 100 etc. A tickInterval of 2 means a tick of 0.1, 10,
+	 * 1000 etc. A tickInterval of 0.2 puts a tick on 0.1, 0.2, 0.4, 0.6, 0.8,
+	 * 1, 2, 4, 6, 8, 10, 20, 40 etc.
 	 * 
-	 * <p>
 	 * If the tickInterval is too dense for labels to be drawn, Highcharts may
-	 * remove ticks.
-	 * </p>
-	 * 
-	 * <p>
-	 * If the chart has multiple axes, the <a
-	 * href="#chart.alignTicks">alignTicks</a> option may interfere with the
-	 * <code>tickInterval</code> setting.
-	 * </p>
+	 * remove ticks. If the chart has multiple axes, the
+	 * [alignTicks](#chart.alignTicks) option may interfere with the
+	 * `tickInterval` setting.
 	 */
 	public void setTickInterval(Number tickInterval) {
 		this.tickInterval = tickInterval;
@@ -985,37 +994,15 @@ public class YAxis extends Axis {
 
 	/**
 	 * The pixel length of the main tick marks.
-	 * <p>
-	 * Defaults to: 10
 	 */
 	public void setTickLength(Number tickLength) {
 		this.tickLength = tickLength;
 	}
 
-	/**
-	 * @see #setTickPixelInterval(Number)
-	 */
 	public Number getTickPixelInterval() {
 		return tickPixelInterval;
 	}
 
-	/**
-	 * <p>
-	 * If tickInterval is <code>null</code> this option sets the approximate
-	 * pixel interval of the tick marks. Not applicable to categorized axis.
-	 * </p>
-	 * 
-	 * <p>
-	 * The tick interval is also influenced by the <a
-	 * href="#xAxis.minTickInterval">minTickInterval</a> option, that, by
-	 * default prevents ticks from being denser than the data points.
-	 * </p>
-	 * 
-	 * <p>
-	 * Defaults to <code>72</code> for the Y axis and <code>100</code> for the X
-	 * axis.
-	 * </p>
-	 */
 	public void setTickPixelInterval(Number tickPixelInterval) {
 		this.tickPixelInterval = tickPixelInterval;
 	}
@@ -1029,28 +1016,29 @@ public class YAxis extends Axis {
 
 	/**
 	 * The position of the major tick marks relative to the axis line. Can be
-	 * one of <code>inside</code> and <code>outside</code>.
-	 * <p>
-	 * Defaults to: outside
+	 * one of `inside` and `outside`.
 	 */
 	public void setTickPosition(TickPosition tickPosition) {
 		this.tickPosition = tickPosition;
 	}
 
 	/**
-	 * @see #setTickPositions(Number[])
+	 * @see #setTickPositions(ArrayList)
 	 */
-	public Number[] getTickPositions() {
+	public ArrayList<Number> getTickPositions() {
+		if (tickPositions == null) {
+			tickPositions = new ArrayList<Number>();
+		}
 		return tickPositions;
 	}
 
 	/**
 	 * An array defining where the ticks are laid out on the axis. This
-	 * overrides the default behaviour of <a
-	 * href="#xAxis.tickPixelInterval">tickPixelInterval</a> and <a
-	 * href="#xAxis.tickInterval">tickInterval</a>.
+	 * overrides the default behaviour of
+	 * [tickPixelInterval](#xAxis.tickPixelInterval) and
+	 * [tickInterval](#xAxis.tickInterval).
 	 */
-	public void setTickPositions(Number[] tickPositions) {
+	public void setTickPositions(ArrayList<Number> tickPositions) {
 		this.tickPositions = tickPositions;
 	}
 
@@ -1062,20 +1050,14 @@ public class YAxis extends Axis {
 	}
 
 	/**
-	 * For categorized axes only. If <code>on</code> the tick mark is placed in
-	 * the center of the category, if <code>between</code> the tick mark is
-	 * placed between categories. The default is <code>between</code> if the
-	 * <code>tickInterval</code> is 1, else <code>on</code>.
-	 * <p>
-	 * Defaults to: null
+	 * For categorized axes only. If `on` the tick mark is placed in the center
+	 * of the category, if `between` the tick mark is placed between categories.
+	 * The default is `between` if the `tickInterval` is 1, else `on`.
 	 */
 	public void setTickmarkPlacement(TickmarkPlacement tickmarkPlacement) {
 		this.tickmarkPlacement = tickmarkPlacement;
 	}
 
-	/**
-	 * @see #setTitle(AxisTitle)
-	 */
 	public AxisTitle getTitle() {
 		if (title == null) {
 			title = new AxisTitle();
@@ -1088,6 +1070,44 @@ public class YAxis extends Axis {
 	}
 
 	/**
+	 * @see #setTooltipValueFormat(String)
+	 */
+	public String getTooltipValueFormat() {
+		return tooltipValueFormat;
+	}
+
+	/**
+	 * Parallel coordinates only. Format that will be used for point.y and
+	 * available in [tooltip.pointFormat](#tooltip.pointFormat) as
+	 * `{point.formattedValue}`. If not set, `{point.formattedValue}` will use
+	 * other options, in this order: 1.
+	 * [yAxis.labels.format](#yAxis.labels.format) will be used if set 2. if
+	 * yAxis is a category, then category name will be displayed 3. if yAxis is
+	 * a datetime, then value will use the same format as yAxis labels 4. if
+	 * yAxis is linear/logarithmic type, then simple value will be used
+	 */
+	public void setTooltipValueFormat(String tooltipValueFormat) {
+		this.tooltipValueFormat = tooltipValueFormat;
+	}
+
+	/**
+	 * @see #setTop(String)
+	 */
+	public String getTop() {
+		return top;
+	}
+
+	/**
+	 * The top position of the Y axis. If it's a number, it is interpreted as
+	 * pixel position relative to the chart. Since Highstock 2: If it's a
+	 * percentage string, it is interpreted as percentages of the plot height,
+	 * offset from plot area top.
+	 */
+	public void setTop(String top) {
+		this.top = top;
+	}
+
+	/**
 	 * @see #setType(AxisType)
 	 */
 	public AxisType getType() {
@@ -1095,15 +1115,12 @@ public class YAxis extends Axis {
 	}
 
 	/**
-	 * The type of axis. Can be one of <code>linear</code>,
-	 * <code>logarithmic</code>, <code>datetime</code> or <code>category</code>.
-	 * In a datetime axis, the numbers are given in milliseconds, and tick marks
-	 * are placed on appropriate values like full hours or days. In a category
-	 * axis, the <a href="#series<line>.data.name">point names</a> of the
-	 * chart's series are used for categories, if not a <a
-	 * href="#xAxis.categories">categories</a> array is defined.
-	 * <p>
-	 * Defaults to: linear
+	 * The type of axis. Can be one of `linear`, `logarithmic`, `datetime` or
+	 * `category`. In a datetime axis, the numbers are given in milliseconds,
+	 * and tick marks are placed on appropriate values like full hours or days.
+	 * In a category axis, the [point names](#series.line.data.name) of the
+	 * chart's series are used for categories, if not a
+	 * [categories](#xAxis.categories) array is defined.
 	 */
 	public void setType(AxisType type) {
 		this.type = type;
@@ -1117,31 +1134,26 @@ public class YAxis extends Axis {
 	}
 
 	/**
-	 * Applies only when the axis <code>type</code> is <code>category</code>.
-	 * When <code>uniqueNames</code> is true, points are placed on the X axis
-	 * according to their names. If the same point name is repeated in the same
-	 * or another series, the point is placed on the same X position as other
-	 * points of the same name. When <code>uniqueNames</code> is false, the
-	 * points are laid out in increasing X positions regardless of their names,
-	 * and the X axis category will take the name of the last point in each
-	 * position.
-	 * <p>
-	 * Defaults to: true
+	 * Applies only when the axis `type` is `category`. When `uniqueNames` is
+	 * true, points are placed on the X axis according to their names. If the
+	 * same point name is repeated in the same or another series, the point is
+	 * placed on the same X position as other points of the same name. When
+	 * `uniqueNames` is false, the points are laid out in increasing X positions
+	 * regardless of their names, and the X axis category will take the name of
+	 * the last point in each position.
 	 */
 	public void setUniqueNames(Boolean uniqueNames) {
 		this.uniqueNames = uniqueNames;
 	}
 
 	/**
-	 * @see #setUnits(TimeUnitMultiples...)
+	 * @see #setUnits(ArrayList)
 	 */
-	public TimeUnitMultiples[] getUnits() {
+	public ArrayList<TimeUnitMultiples> getUnits() {
 		if (units == null) {
-			return new TimeUnitMultiples[]{};
+			units = new ArrayList<TimeUnitMultiples>();
 		}
-		TimeUnitMultiples[] arr = new TimeUnitMultiples[units.size()];
-		units.toArray(arr);
-		return arr;
+		return units;
 	}
 
 	/**
@@ -1152,59 +1164,34 @@ public class YAxis extends Axis {
 	 * 
 	 * <pre>
 	 * units: [[
-	 * 		'millisecond', // unit name
-	 * 		[1, 2, 5, 10, 20, 25, 50, 100, 200, 500] // allowed multiples
+	 * 	    'millisecond', // unit name
+	 * 	    [1, 2, 5, 10, 20, 25, 50, 100, 200, 500] // allowed multiples
 	 * 	], [
-	 * 		'second',
-	 * 		[1, 2, 5, 10, 15, 30]
+	 * 	    'second',
+	 * 	    [1, 2, 5, 10, 15, 30]
 	 * 	], [
-	 * 		'minute',
-	 * 		[1, 2, 5, 10, 15, 30]
+	 * 	    'minute',
+	 * 	    [1, 2, 5, 10, 15, 30]
 	 * 	], [
-	 * 		'hour',
-	 * 		[1, 2, 3, 4, 6, 8, 12]
+	 * 	    'hour',
+	 * 	    [1, 2, 3, 4, 6, 8, 12]
 	 * 	], [
-	 * 		'day',
-	 * 		[1]
+	 * 	    'day',
+	 * 	    [1]
 	 * 	], [
-	 * 		'week',
-	 * 		[1]
+	 * 	    'week',
+	 * 	    [1]
 	 * 	], [
-	 * 		'month',
-	 * 		[1, 3, 6]
+	 * 	    'month',
+	 * 	    [1, 3, 6]
 	 * 	], [
-	 * 		'year',
-	 * 		null
+	 * 	    'year',
+	 * 	    null
 	 * 	]]
 	 * </pre>
 	 */
-	public void setUnits(TimeUnitMultiples... units) {
-		this.units = new ArrayList<TimeUnitMultiples>(Arrays.asList(units));
-	}
-
-	/**
-	 * Adds unit to the units array
-	 * 
-	 * @param unit
-	 *            to add
-	 * @see #setUnits(TimeUnitMultiples...)
-	 */
-	public void addUnit(TimeUnitMultiples unit) {
-		if (this.units == null) {
-			this.units = new ArrayList<TimeUnitMultiples>();
-		}
-		this.units.add(unit);
-	}
-
-	/**
-	 * Removes first occurrence of unit in units array
-	 * 
-	 * @param unit
-	 *            to remove
-	 * @see #setUnits(TimeUnitMultiples...)
-	 */
-	public void removeUnit(TimeUnitMultiples unit) {
-		this.units.remove(unit);
+	public void setUnits(ArrayList<TimeUnitMultiples> units) {
+		this.units = units;
 	}
 
 	/**
@@ -1217,131 +1204,73 @@ public class YAxis extends Axis {
 	/**
 	 * Whether axis, including axis title, line, ticks and labels, should be
 	 * visible.
-	 * <p>
-	 * Defaults to: true
 	 */
 	public void setVisible(Boolean visible) {
 		this.visible = visible;
 	}
 
-	/**
-	 * @see #setHeight(String)
-	 */
-	public String getHeight() {
-		return height;
+	public void setCategories(String... categories) {
+		this.categories = new ArrayList<String>(Arrays.asList(categories));
 	}
 
-	/**
-	 * <p>
-	 * The height of the Y axis. If it's a number, it is interpreted as pixels.
-	 * </p>
-	 * <p>
-	 * Since Highstock 2: If it's a percentage string, it is interpreted as
-	 * percentages of the total plot height.
-	 * </p>
-	 * <p>
-	 * Defaults to: null
-	 */
-	public void setHeight(String height) {
-		this.height = height;
-	}
-
-	/**
-	 * @see #setOrdinal(Boolean)
-	 */
-	public Boolean getOrdinal() {
-		return ordinal;
-	}
-
-	/**
-	 * In an ordinal axis, the points are equally spaced in the chart regardless
-	 * of the actual time or x distance between them. This means that missing
-	 * data for nights or weekends will not take up space in the chart.
-	 * <p>
-	 * Defaults to: true
-	 */
-	public void setOrdinal(Boolean ordinal) {
-		this.ordinal = ordinal;
-	}
-
-	/**
-	 * @see #setRange(Number)
-	 */
-	public Number getRange() {
-		return range;
-	}
-
-	/**
-	 * The zoomed range to display when only defining one or none of
-	 * <code>min</code> or <code>max</code>. For example, to show the latest
-	 * month, a range of one month can be set.
-	 * <p>
-	 * Defaults to: undefined
-	 */
-	public void setRange(Number range) {
-		this.range = range;
-	}
-
-	/**
-	 * @see #setScrollbar(Scrollbar)
-	 */
-	public Scrollbar getScrollbar() {
-		if (scrollbar == null) {
-			scrollbar = new Scrollbar();
+	public void addCategory(String category) {
+		if (this.categories == null) {
+			this.categories = new ArrayList<String>();
 		}
-		return scrollbar;
+		this.categories.add(category);
 	}
 
-	/**
-	 * <p>
-	 * An optional scrollbar to display on the Y axis in response to limiting
-	 * the minimum an maximum of the axis values.
-	 * </p>
-	 * 
-	 * <p>
-	 * In <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >styled mode</a>, all the presentational options for the scrollbar are
-	 * replaced by the classes <code>.highcharts-scrollbar-thumb</code>,
-	 * <code>.highcharts-scrollbar-arrow</code>,
-	 * <code>.highcharts-scrollbar-button</code>,
-	 * <code>.highcharts-scrollbar-rifles</code> and
-	 * <code>.highcharts-scrollbar-track</code>.
-	 * </p>
-	 */
-	public void setScrollbar(Scrollbar scrollbar) {
-		this.scrollbar = scrollbar;
+	public void removeCategory(String category) {
+		this.categories.remove(category);
 	}
 
-	/**
-	 * @see #setTop(String)
-	 */
-	public String getTop() {
-		return top;
+	public void setPlotBands(PlotBand... plotBands) {
+		this.plotBands = new ArrayList<PlotBand>(Arrays.asList(plotBands));
 	}
 
-	/**
-	 * <p>
-	 * The top position of the Y axis. If it's a number, it is interpreted as
-	 * pixel position relative to the chart.
-	 * </p>
-	 * <p>
-	 * Since Highstock 2: If it's a percentage string, it is interpreted as
-	 * percentages of the plot height, offset from plot area top.
-	 * </p>
-	 * <p>
-	 * Defaults to: null
-	 */
-	public void setTop(String top) {
-		this.top = top;
+	public void addPlotBand(PlotBand plotBand) {
+		if (this.plotBands == null) {
+			this.plotBands = new ArrayList<PlotBand>();
+		}
+		this.plotBands.add(plotBand);
 	}
 
-	public Number getPane() {
-		return pane;
+	public void removePlotBand(PlotBand plotBand) {
+		this.plotBands.remove(plotBand);
 	}
 
-	public void setPane(Number pane) {
-		this.pane = pane;
+	public void setPlotLines(PlotLine... plotLines) {
+		this.plotLines = new ArrayList<PlotLine>(Arrays.asList(plotLines));
+	}
+
+	public void addPlotLine(PlotLine plotLine) {
+		if (this.plotLines == null) {
+			this.plotLines = new ArrayList<PlotLine>();
+		}
+		this.plotLines.add(plotLine);
+	}
+
+	public void removePlotLine(PlotLine plotLine) {
+		this.plotLines.remove(plotLine);
+	}
+
+	public void setUnits(TimeUnitMultiples... units) {
+		this.units = new ArrayList<TimeUnitMultiples>(Arrays.asList(units));
+	}
+
+	public void addUnit(TimeUnitMultiples unit) {
+		if (this.units == null) {
+			this.units = new ArrayList<TimeUnitMultiples>();
+		}
+		this.units.add(unit);
+	}
+
+	public void removeUnit(TimeUnitMultiples unit) {
+		this.units.remove(unit);
+	}
+
+	public void setLinkedTo(Axis axis) {
+		linkedTo = axis.getAxisIndex();
 	}
 
 	public void setPane(Pane pane) {
@@ -1353,53 +1282,8 @@ public class YAxis extends Axis {
 	}
 
 	public void setTitle(String title) {
-		AxisTitle t = new AxisTitle();
+		YAxisTitle t = new YAxisTitle();
 		t.setText(title);
 		this.setTitle(t);
-	}
-
-	public void setLinkedTo(YAxis axis) {
-		linkedTo = axis.getAxisIndex();
-	}
-
-	/**
-	 * @see #setStops(Stop...)
-	 */
-	public Stop[] getStops() {
-		if (stops == null) {
-			return new Stop[]{};
-		}
-		Stop[] arr = new Stop[stops.size()];
-		stops.toArray(arr);
-		return arr;
-	}
-
-	public void setStops(Stop... stops) {
-		this.stops = new ArrayList<Stop>(Arrays.asList(stops));
-	}
-
-	/**
-	 * Adds stop to the stops array
-	 * 
-	 * @param stop
-	 *            to add
-	 * @see #setStops(Stop...)
-	 */
-	public void addStop(Stop stop) {
-		if (this.stops == null) {
-			this.stops = new ArrayList<Stop>();
-		}
-		this.stops.add(stop);
-	}
-
-	/**
-	 * Removes first occurrence of stop in stops array
-	 * 
-	 * @param stop
-	 *            to remove
-	 * @see #setStops(Stop...)
-	 */
-	public void removeStop(Stop stop) {
-		this.stops.remove(stop);
 	}
 }

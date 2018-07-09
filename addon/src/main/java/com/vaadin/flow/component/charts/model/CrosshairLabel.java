@@ -1,35 +1,10 @@
 package com.vaadin.flow.component.charts.model;
 
-/*-
- * #%L
- * Vaadin Charts for Flow
- * %%
- * Copyright (C) 2014 - 2018 Vaadin Ltd
- * %%
- * This program is available under Commercial Vaadin Add-On License 3.0
- * (CVALv3).
- * 
- * See the file licensing.txt distributed with this software for more
- * information about licensing.
- * 
- * You should have received a copy of the CVALv3 along with this program.
- * If not, see <https://vaadin.com/license/cval-3>.
- * #L%
- */
-
 import javax.annotation.Generated;
 
 /**
- * <p>
- * A label on the axis next to the crosshair.
- * </p>
- * 
- * <p>
- * In <a
- * href="http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
- * >styled mode</a>, the label is styled with the
- * <code>.highcharts-crosshair-label</code> class.
- * </p>
+ * A label on the axis next to the crosshair. In styled mode, the label is
+ * styled with the `.highcharts-crosshair-label` class.
  */
 @Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/vaadin-charts-flow/issues/new")
 public class CrosshairLabel extends AbstractConfigurationObject {
@@ -40,7 +15,6 @@ public class CrosshairLabel extends AbstractConfigurationObject {
 	private String _fn_formatter;
 	private Number padding;
 	private Shape shape;
-	private Boolean enabled;
 
 	public CrosshairLabel() {
 	}
@@ -53,9 +27,9 @@ public class CrosshairLabel extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * Alignment of the label compared to the axis. Defaults to
-	 * <code>left</code> for right-side axes, <code>right</code> for left-side
-	 * axes and <code>center</code> for horizontal axes.
+	 * Alignment of the label compared to the axis. Defaults to `left` for
+	 * right-side axes, `right` for left-side axes and `center` for horizontal
+	 * axes.
 	 */
 	public void setAlign(HorizontalAlign align) {
 		this.align = align;
@@ -70,8 +44,6 @@ public class CrosshairLabel extends AbstractConfigurationObject {
 
 	/**
 	 * The border corner radius of the crosshair label.
-	 * <p>
-	 * Defaults to: 3
 	 */
 	public void setBorderRadius(Number borderRadius) {
 		this.borderRadius = borderRadius;
@@ -85,17 +57,23 @@ public class CrosshairLabel extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * A format string for the crosshair label. Defaults to <code>{value}</code>
-	 * for numeric axes and <code>{value:%b %d, %Y}</code> for datetime axes.
+	 * A format string for the crosshair label. Defaults to `{value}` for
+	 * numeric axes and `{value:%b %d, %Y}` for datetime axes.
 	 */
 	public void setFormat(String format) {
 		this.format = format;
 	}
 
+	/**
+	 * @see #set_fn_formatter(String)
+	 */
 	public String getFormatter() {
 		return _fn_formatter;
 	}
 
+	/**
+	 * Formatter function for the label text.
+	 */
 	public void setFormatter(String _fn_formatter) {
 		this._fn_formatter = _fn_formatter;
 	}
@@ -109,8 +87,6 @@ public class CrosshairLabel extends AbstractConfigurationObject {
 
 	/**
 	 * Padding inside the crosshair label.
-	 * <p>
-	 * Defaults to: 8
 	 */
 	public void setPadding(Number padding) {
 		this.padding = padding;
@@ -125,25 +101,8 @@ public class CrosshairLabel extends AbstractConfigurationObject {
 
 	/**
 	 * The shape to use for the label box.
-	 * <p>
-	 * Defaults to: callout
 	 */
 	public void setShape(Shape shape) {
 		this.shape = shape;
-	}
-
-	public CrosshairLabel(Boolean enabled) {
-		this.enabled = enabled;
-	}
-
-	/**
-	 * @see #setEnabled(Boolean)
-	 */
-	public Boolean getEnabled() {
-		return enabled;
-	}
-
-	public void setEnabled(Boolean enabled) {
-		this.enabled = enabled;
 	}
 }

@@ -1,22 +1,5 @@
 package com.vaadin.flow.component.charts.model;
 
-/*-
- * #%L
- * Vaadin Charts for Flow
- * %%
- * Copyright (C) 2014 - 2018 Vaadin Ltd
- * %%
- * This program is available under Commercial Vaadin Add-On License 3.0
- * (CVALv3).
- * 
- * See the file licensing.txt distributed with this software for more
- * information about licensing.
- * 
- * You should have received a copy of the CVALv3 along with this program.
- * If not, see <https://vaadin.com/license/cval-3>.
- * #L%
- */
-
 import javax.annotation.Generated;
 
 /**
@@ -34,10 +17,19 @@ public class Condition extends AbstractConfigurationObject {
 	public Condition() {
 	}
 
+	/**
+	 * @see #set_fn_callback(String)
+	 */
 	public String getCallback() {
 		return _fn_callback;
 	}
 
+	/**
+	 * A callback function to gain complete control on when the responsive rule
+	 * applies. Return `true` if it applies. This opens for checking against
+	 * other metrics than the chart size, or example the document size or other
+	 * elements.
+	 */
 	public void setCallback(String _fn_callback) {
 		this._fn_callback = _fn_callback;
 	}
@@ -79,8 +71,6 @@ public class Condition extends AbstractConfigurationObject {
 
 	/**
 	 * The responsive rule applies if the chart height is greater than this.
-	 * <p>
-	 * Defaults to: 0
 	 */
 	public void setMinHeight(Number minHeight) {
 		this.minHeight = minHeight;
@@ -95,8 +85,6 @@ public class Condition extends AbstractConfigurationObject {
 
 	/**
 	 * The responsive rule applies if the chart width is greater than this.
-	 * <p>
-	 * Defaults to: 0
 	 */
 	public void setMinWidth(Number minWidth) {
 		this.minWidth = minWidth;

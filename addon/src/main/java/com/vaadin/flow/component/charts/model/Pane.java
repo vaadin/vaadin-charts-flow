@@ -1,107 +1,64 @@
 package com.vaadin.flow.component.charts.model;
 
-/*-
- * #%L
- * Vaadin Charts for Flow
- * %%
- * Copyright (C) 2014 - 2018 Vaadin Ltd
- * %%
- * This program is available under Commercial Vaadin Add-On License 3.0
- * (CVALv3).
- * 
- * See the file licensing.txt distributed with this software for more
- * information about licensing.
- * 
- * You should have received a copy of the CVALv3 along with this program.
- * If not, see <https://vaadin.com/license/cval-3>.
- * #L%
- */
-
 import javax.annotation.Generated;
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.ArrayList;
 
 /**
- * Applies only to polar charts and angular gauges. This configuration object
- * holds general options for the combined X and Y axes set. Each xAxis or yAxis
- * can reference the pane by index.
+ * The pane serves as a container for axes and backgrounds for circular gauges
+ * and polar charts.
  */
 @Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/vaadin-charts-flow/issues/new")
 public class Pane extends AbstractConfigurationObject {
 
-	private Integer paneIndex;
 	private ArrayList<Background> background;
-	private String[] center;
+	private ArrayList<String> center;
 	private Number endAngle;
 	private String size;
 	private Number startAngle;
+	private Integer paneIndex;
 
 	public Pane() {
 	}
 
-	/**
-	 * @see #setPaneIndex(Integer)
-	 */
-	Integer getPaneIndex() {
-		return paneIndex;
-	}
-
-	void setPaneIndex(Integer paneIndex) {
-		this.paneIndex = paneIndex;
+	public Pane(Number startAngle, Number endAngle) {
+		this.startAngle = startAngle;
+		this.endAngle = endAngle;
 	}
 
 	/**
-	 * @see #setBackground(Background...)
+	 * @see #setBackground(ArrayList)
 	 */
-	public Background[] getBackground() {
+	public ArrayList<Background> getBackground() {
 		if (background == null) {
-			return new Background[]{};
+			background = new ArrayList<Background>();
 		}
-		Background[] arr = new Background[background.size()];
-		background.toArray(arr);
-		return arr;
+		return background;
 	}
 
 	/**
-	 * An object, or array of objects, for backgrounds.
+	 * An array of background items for the pane.
 	 */
-	public void setBackground(Background... background) {
-		this.background = new ArrayList<Background>(Arrays.asList(background));
+	public void setBackground(ArrayList<Background> background) {
+		this.background = background;
 	}
 
 	/**
-	 * Adds background to the background array
-	 * 
-	 * @param background
-	 *            to add
-	 * @see #setBackground(Background...)
+	 * @see #setCenter(ArrayList)
 	 */
-	public void addBackground(Background background) {
-		if (this.background == null) {
-			this.background = new ArrayList<Background>();
+	public ArrayList<String> getCenter() {
+		if (center == null) {
+			center = new ArrayList<String>();
 		}
-		this.background.add(background);
-	}
-
-	/**
-	 * Removes first occurrence of background in background array
-	 * 
-	 * @param background
-	 *            to remove
-	 * @see #setBackground(Background...)
-	 */
-	public void removeBackground(Background background) {
-		this.background.remove(background);
+		return center;
 	}
 
 	/**
 	 * The center of a polar chart or angular gauge, given as an array of [x, y]
 	 * positions. Positions can be given as integers that transform to pixels,
 	 * or as percentages of the plot area size.
-	 * <p>
-	 * Defaults to: ["50%", "50%"]
 	 */
-	public void setCenter(String[] center) {
+	public void setCenter(ArrayList<String> center) {
 		this.center = center;
 	}
 
@@ -114,8 +71,7 @@ public class Pane extends AbstractConfigurationObject {
 
 	/**
 	 * The end angle of the polar X axis or gauge value axis, given in degrees
-	 * where 0 is north. Defaults to <a href="#pane.startAngle">startAngle</a> +
-	 * 360.
+	 * where 0 is north. Defaults to [startAngle](#pane.startAngle) + 360.
 	 */
 	public void setEndAngle(Number endAngle) {
 		this.endAngle = endAngle;
@@ -131,8 +87,6 @@ public class Pane extends AbstractConfigurationObject {
 	/**
 	 * The size of the pane, either as a number defining pixels, or a percentage
 	 * defining a percentage of the plot are.
-	 * <p>
-	 * Defaults to: 85%
 	 */
 	public void setSize(String size) {
 		this.size = size;
@@ -153,16 +107,15 @@ public class Pane extends AbstractConfigurationObject {
 		this.startAngle = startAngle;
 	}
 
-	public Pane(Number startAngle, Number endAngle) {
-		this.startAngle = startAngle;
-		this.endAngle = endAngle;
+	public Integer getPaneIndex() {
+		return paneIndex;
+	}
+
+	public void setPaneIndex(Integer paneIndex) {
+		this.paneIndex = paneIndex;
 	}
 
 	public void setCenter(String x, String y) {
-		this.center = new String[]{x, y};
-	}
-
-	public String[] getCenter() {
-		return this.center;
+		this.center = new ArrayList<>(Arrays.asList(x, y));
 	}
 }

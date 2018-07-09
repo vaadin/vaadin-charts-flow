@@ -811,9 +811,9 @@ public class Configuration extends AbstractConfigurationObject
         List<Series> newSeries = new ArrayList<>();
         String[] newCategories = new String[series.size()];
 
-        for (int j = 0; j < getxAxis().getCategories().length; j++) {
+        for (int j = 0; j < getxAxis().getCategories().size(); j++) {
 
-            String name = getxAxis().getCategories()[j];
+            String name = getxAxis().getCategories().get(j);
             List<Number> numbers = new ArrayList<>();
             for (int i = 0; i < series.size(); i++) {
                 if (series.get(i) instanceof ListSeries) {

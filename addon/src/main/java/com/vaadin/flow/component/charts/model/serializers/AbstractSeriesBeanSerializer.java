@@ -50,7 +50,7 @@ public class AbstractSeriesBeanSerializer
         serializer.serializeFields(bean, jgen, provider);
 
         if (series.getPlotOptions() != null
-                && !(bean.getPlotOptions() instanceof PlotOptionsSeries)) {
+                && bean.getPlotOptions().getClass() != PlotOptionsSeries.class) {
             jgen.writeObjectField("type",
                     series.getPlotOptions().getChartType());
         }

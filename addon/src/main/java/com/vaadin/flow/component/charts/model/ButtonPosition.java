@@ -1,106 +1,60 @@
 package com.vaadin.flow.component.charts.model;
 
-/*
- * #%L
- * Vaadin Charts
- * %%
- * Copyright (C) 2012 - 2015 Vaadin Ltd
- * %%
- * This program is available under Commercial Vaadin Add-On License 3.0
- * (CVALv3).
- * 
- * See the file licensing.txt distributed with this software for more
- * information about licensing.
- * 
- * You should have received a copy of the CVALv3 along with this program.
- * If not, see <https://vaadin.com/license/cval-3>.
- * #L%
- */
+import javax.annotation.Generated;
 
 /**
- * Positioning options for {@link DrillUpButton}
+ * Positioning for the button row.
  */
+@Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/vaadin-charts-flow/issues/new")
 public class ButtonPosition extends AbstractConfigurationObject {
-    private VerticalAlign verticalAlign;
-    private HorizontalAlign align;
-    private Number x;
-    private Number y;
 
-    /**
-     * @see #setVerticalAlign(VerticalAlign)
-     * @return the verticalAlign
-     */
-    public VerticalAlign getVerticalAlign() {
-        return verticalAlign;
-    }
+	private HorizontalAlign align;
+	private Number x;
+	private Number y;
 
-    /**
-     * Sets the vertical alignment of the button. Can be one of
-     * {@link VerticalAlign#TOP}, {@link VerticalAlign#MIDDLE} and
-     * {@link VerticalAlign#BOTTOM}.
-     * 
-     * @param verticalAlign
-     *            the align to set
-     */
-    public void setVerticalAlign(VerticalAlign verticalAlign) {
-        this.verticalAlign = verticalAlign;
-    }
+	public ButtonPosition() {
+	}
 
-    /**
-     * @see #setHorizontalAlign(HorizontalAlign)
-     * @return the horizontal alignment
-     */
-    public HorizontalAlign getHorizontalAlign() {
-        return align;
-    }
+	/**
+	 * @see #setAlign(HorizontalAlign)
+	 */
+	public HorizontalAlign getAlign() {
+		return align;
+	}
 
-    /**
-     * The horizontal alignment of the button. Can be one of
-     * {@link HorizontalAlign#LEFT}, {@link HorizontalAlign#CENTER} and
-     * {@link HorizontalAlign#RIGHT}. .
-     * 
-     * @param horizontalAlign
-     *            the alignment to set
-     */
-    public void setHorizontalAlign(HorizontalAlign horizontalAlign) {
-        align = horizontalAlign;
-    }
+	/**
+	 * The alignment of the input box. Allowed properties are `left`, `center`,
+	 * `right`.
+	 */
+	public void setAlign(HorizontalAlign align) {
+		this.align = align;
+	}
 
-    /**
-     * @see #setX(Number)
-     * @return the X position of the button
-     */
-    public Number getX() {
-        return x;
-    }
+	/**
+	 * @see #setX(Number)
+	 */
+	public Number getX() {
+		return x;
+	}
 
-    /**
-     * The X position of the button.
-     * 
-     * @param x
-     *            the X position to set
-     */
-    public void setX(Number x) {
-        this.x = x;
-    }
+	/**
+	 * X offset of the button row.
+	 */
+	public void setX(Number x) {
+		this.x = x;
+	}
 
-    /**
-     * 
-     * @see #setY(Number)
-     * @return the Y position of the button
-     */
-    public Number getY() {
-        return y;
-    }
+	/**
+	 * @see #setY(Number)
+	 */
+	public Number getY() {
+		return y;
+	}
 
-    /**
-     * The Y position of the button.
-     * 
-     * @param y
-     *            the Y position to set
-     */
-    public void setY(Number y) {
-        this.y = y;
-    }
-
+	/**
+	 * Y offset of the button row.
+	 */
+	public void setY(Number y) {
+		this.y = y;
+	}
 }

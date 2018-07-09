@@ -1,41 +1,17 @@
 package com.vaadin.flow.component.charts.model;
 
-/*-
- * #%L
- * Vaadin Charts for Flow
- * %%
- * Copyright (C) 2014 - 2018 Vaadin Ltd
- * %%
- * This program is available under Commercial Vaadin Add-On License 3.0
- * (CVALv3).
- * 
- * See the file licensing.txt distributed with this software for more
- * information about licensing.
- * 
- * You should have received a copy of the CVALv3 along with this program.
- * If not, see <https://vaadin.com/license/cval-3>.
- * #L%
- */
-
 import javax.annotation.Generated;
 
 /**
- * <p>
- * Options for the series data labels, appearing next to each data point.
- * </p>
- * 
- * <p>
- * In <a
- * href="http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
- * >styled mode</a>, the data labels can be styled wtih the
- * <code>.highcharts-data-label-box</code> and
- * <code>.highcharts-data-label</code> class names (<a href=
- * "http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/series-datalabels"
- * >see example</a>).
- * </p>
+ * Options for the series data labels, appearing next to each data point. In
+ * styled mode, the data labels can be styled wtih the
+ * `.highcharts-data-label-box` and `.highcharts-data-label` class names ([see
+ * example
+ * ](http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master
+ * /samples/highcharts/css/series-datalabels)).
  */
 @Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/vaadin-charts-flow/issues/new")
-public class DataLabels extends AbstractDataLabels {
+public class DataLabels extends AbstractConfigurationObject {
 
 	private HorizontalAlign align;
 	private Boolean allowOverlap;
@@ -43,6 +19,7 @@ public class DataLabels extends AbstractDataLabels {
 	private Boolean crop;
 	private Boolean defer;
 	private Boolean enabled;
+	private Filter filter;
 	private String format;
 	private String _fn_formatter;
 	private Boolean inside;
@@ -56,11 +33,12 @@ public class DataLabels extends AbstractDataLabels {
 	private Number x;
 	private Number y;
 	private Number zIndex;
-	private Number connectorPadding;
-	private Number distance;
-	private Boolean softConnector;
 
 	public DataLabels() {
+	}
+
+	public DataLabels(Boolean enabled) {
+		this.enabled = enabled;
 	}
 
 	/**
@@ -71,14 +49,12 @@ public class DataLabels extends AbstractDataLabels {
 	}
 
 	/**
-	 * The alignment of the data label compared to the point. If
-	 * <code>right</code>, the right side of the label should be touching the
-	 * point. For points with an extent, like columns, the alignments also
-	 * dictates how to align it inside the box, as given with the <a
-	 * href="#plotOptions.column.dataLabels.inside">inside</a> option. Can be
-	 * one of "left", "center" or "right".
-	 * <p>
-	 * Defaults to: center
+	 * The alignment of the data label compared to the point. If `right`, the
+	 * right side of the label should be touching the point. For points with an
+	 * extent, like columns, the alignments also dictates how to align it inside
+	 * the box, as given with the
+	 * [inside](#plotOptions.column.dataLabels.inside) option. Can be one of
+	 * `left`, `center` or `right`.
 	 */
 	public void setAlign(HorizontalAlign align) {
 		this.align = align;
@@ -93,11 +69,8 @@ public class DataLabels extends AbstractDataLabels {
 
 	/**
 	 * Whether to allow data labels to overlap. To make the labels less
-	 * sensitive for overlapping, the <a
-	 * href="#plotOptions.series.dataLabels.padding">dataLabels.padding</a> can
-	 * be set to 0.
-	 * <p>
-	 * Defaults to: false
+	 * sensitive for overlapping, the [dataLabels.padding](
+	 * #plotOptions.series.dataLabels.padding) can be set to 0.
 	 */
 	public void setAllowOverlap(Boolean allowOverlap) {
 		this.allowOverlap = allowOverlap;
@@ -111,13 +84,13 @@ public class DataLabels extends AbstractDataLabels {
 	}
 
 	/**
-	 * A class name for the data label. Particularly in <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >styled mode</a>, this can be used to give each series' or point's data
-	 * label unique styling. In addition to this option, a default color class
-	 * name is added so that we can give the labels a <a href=
-	 * "http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/data-label-contrast/"
-	 * >contrast text shadow</a>.
+	 * A class name for the data label. Particularly in styled mode, this can be
+	 * used to give each series' or point's data label unique styling. In
+	 * addition to this option, a default color class name is added so that we
+	 * can give the labels a [contrast text
+	 * shadow](http://jsfiddle.net/gh/get/library
+	 * /pure/highcharts/highcharts/tree
+	 * /master/samples/highcharts/css/data-label-contrast/).
 	 */
 	public void setClassName(String className) {
 		this.className = className;
@@ -132,10 +105,8 @@ public class DataLabels extends AbstractDataLabels {
 
 	/**
 	 * Whether to hide data labels that are outside the plot area. By default,
-	 * the data label is moved inside the plot area according to the <a
-	 * href="#plotOptions.series.dataLabels.overflow">overflow</a> option.
-	 * <p>
-	 * Defaults to: true
+	 * the data label is moved inside the plot area according to the
+	 * [overflow](#plotOptions.series.dataLabels.overflow) option.
 	 */
 	public void setCrop(Boolean crop) {
 		this.crop = crop;
@@ -151,15 +122,9 @@ public class DataLabels extends AbstractDataLabels {
 	/**
 	 * Whether to defer displaying the data labels until the initial series
 	 * animation has finished.
-	 * <p>
-	 * Defaults to: true
 	 */
 	public void setDefer(Boolean defer) {
 		this.defer = defer;
-	}
-
-	public DataLabels(Boolean enabled) {
-		this.enabled = enabled;
 	}
 
 	/**
@@ -171,11 +136,30 @@ public class DataLabels extends AbstractDataLabels {
 
 	/**
 	 * Enable or disable the data labels.
-	 * <p>
-	 * Defaults to: false
 	 */
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
+	}
+
+	/**
+	 * @see #setFilter(Filter)
+	 */
+	public Filter getFilter() {
+		if (filter == null) {
+			filter = new Filter();
+		}
+		return filter;
+	}
+
+	/**
+	 * A declarative filter for which data labels to display. The declarative
+	 * filter is designed for use when callback functions are not available,
+	 * like when the chart options require a pure JSON structure or for use with
+	 * graphical editors. For programmatic control, use the `formatter` instead,
+	 * and return `false` to disable a single data label.
+	 */
+	public void setFilter(Filter filter) {
+		this.filter = filter;
 	}
 
 	/**
@@ -186,21 +170,57 @@ public class DataLabels extends AbstractDataLabels {
 	}
 
 	/**
-	 * A <a href=
-	 * "http://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting"
-	 * >format string</a> for the data label. Available variables are the same
-	 * as for <code>formatter</code>.
-	 * <p>
-	 * Defaults to: {y}
+	 * A [format
+	 * string](http://www.highcharts.com/docs/chart-concepts/labels-and
+	 * -string-formatting) for the data label. Available variables are the same
+	 * as for `formatter`.
 	 */
 	public void setFormat(String format) {
 		this.format = format;
 	}
 
+	/**
+	 * @see #set_fn_formatter(String)
+	 */
 	public String getFormatter() {
 		return _fn_formatter;
 	}
 
+	/**
+	 * Callback JavaScript function to format the data label. Note that if a
+	 * `format` is defined, the format takes precedence and the formatter is
+	 * ignored. Available data are:
+	 * <table>
+	 * <tbody>
+	 * <tr>
+	 * <td>`this.percentage`</td>
+	 * <td>Stacked series and pies only. The point's percentage of the total.</td>
+	 * </tr>
+	 * <tr>
+	 * <td>`this.point`</td>
+	 * <td>The point object. The point name, if defined, is available through
+	 * `this.point.name`.</td>
+	 * </tr>
+	 * <tr>
+	 * <td>`this.series`:</td>
+	 * <td>The series object. The series name is available through
+	 * `this.series.name`.</td>
+	 * </tr>
+	 * <tr>
+	 * <td>`this.total`</td>
+	 * <td>Stacked series only. The total value at this point's x value.</td>
+	 * </tr>
+	 * <tr>
+	 * <td>`this.x`:</td>
+	 * <td>The x value.</td>
+	 * </tr>
+	 * <tr>
+	 * <td>`this.y`:</td>
+	 * <td>The y value.</td>
+	 * </tr>
+	 * </tbody>
+	 * </table>
+	 */
 	public void setFormatter(String _fn_formatter) {
 		this._fn_formatter = _fn_formatter;
 	}
@@ -213,9 +233,9 @@ public class DataLabels extends AbstractDataLabels {
 	}
 
 	/**
-	 * For points with an extent, like columns, whether to align the data label
-	 * inside the box or to the actual value point. Defaults to
-	 * <code>false</code> in most cases, <code>true</code> in stacked columns.
+	 * For points with an extent, like columns or map areas, whether to align
+	 * the data label inside the box or to the actual value point. Defaults to
+	 * `false` in most cases, `true` in stacked columns.
 	 */
 	public void setInside(Boolean inside) {
 		this.inside = inside;
@@ -230,12 +250,9 @@ public class DataLabels extends AbstractDataLabels {
 
 	/**
 	 * How to handle data labels that flow outside the plot area. The default is
-	 * <code>justify</code>, which aligns them inside the plot area. For columns
-	 * and bars, this means it will be moved inside the bar. To display data
-	 * labels outside the plot area, set <code>crop</code> to <code>false</code>
-	 * and <code>overflow</code> to <code>"none"</code>.
-	 * <p>
-	 * Defaults to: justify
+	 * `justify`, which aligns them inside the plot area. For columns and bars,
+	 * this means it will be moved inside the bar. To display data labels
+	 * outside the plot area, set `crop` to `false` and `overflow` to `"none"`.
 	 */
 	public void setOverflow(String overflow) {
 		this.overflow = overflow;
@@ -249,10 +266,8 @@ public class DataLabels extends AbstractDataLabels {
 	}
 
 	/**
-	 * When either the <code>borderWidth</code> or the
-	 * <code>backgroundColor</code> is set, this is the padding within the box.
-	 * <p>
-	 * Defaults to: 5
+	 * When either the `borderWidth` or the `backgroundColor` is set, this is
+	 * the padding within the box.
 	 */
 	public void setPadding(Number padding) {
 		this.padding = padding;
@@ -268,8 +283,6 @@ public class DataLabels extends AbstractDataLabels {
 	/**
 	 * Text rotation in degrees. Note that due to a more complex structure,
 	 * backgrounds, borders and padding will be lost on a rotated data label.
-	 * <p>
-	 * Defaults to: 0
 	 */
 	public void setRotation(Number rotation) {
 		this.rotation = rotation;
@@ -283,12 +296,9 @@ public class DataLabels extends AbstractDataLabels {
 	}
 
 	/**
-	 * The shadow of the box. Works best with <code>borderWidth</code> or
-	 * <code>backgroundColor</code>. Since 2.3 the shadow can be an object
-	 * configuration containing <code>color</code>, <code>offsetX</code>,
-	 * <code>offsetY</code>, <code>opacity</code> and <code>width</code>.
-	 * <p>
-	 * Defaults to: false
+	 * The shadow of the box. Works best with `borderWidth` or
+	 * `backgroundColor`. Since 2.3 the shadow can be an object configuration
+	 * containing `color`, `offsetX`, `offsetY`, `opacity` and `width`.
 	 */
 	public void setShadow(Boolean shadow) {
 		this.shadow = shadow;
@@ -304,8 +314,6 @@ public class DataLabels extends AbstractDataLabels {
 	/**
 	 * The name of a symbol to use for the border around the label. Symbols are
 	 * predefined functions on the Renderer object.
-	 * <p>
-	 * Defaults to: square
 	 */
 	public void setShape(Shape shape) {
 		this.shape = shape;
@@ -319,11 +327,9 @@ public class DataLabels extends AbstractDataLabels {
 	}
 
 	/**
-	 * Whether to <a href=
-	 * "http://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting#html"
-	 * >use HTML</a> to render the labels.
-	 * <p>
-	 * Defaults to: false
+	 * Whether to [use
+	 * HTML](http://www.highcharts.com/docs/chart-concepts/labels
+	 * -and-string-formatting#html) to render the labels.
 	 */
 	public void setUseHTML(Boolean useHTML) {
 		this.useHTML = useHTML;
@@ -337,10 +343,9 @@ public class DataLabels extends AbstractDataLabels {
 	}
 
 	/**
-	 * The vertical alignment of a data label. Can be one of <code>top</code>,
-	 * <code>middle</code> or <code>bottom</code>. The default value depends on
-	 * the data, for instance in a column chart, the label is above positive
-	 * values and below negative values.
+	 * The vertical alignment of a data label. Can be one of `top`, `middle` or
+	 * `bottom`. The default value depends on the data, for instance in a column
+	 * chart, the label is above positive values and below negative values.
 	 */
 	public void setVerticalAlign(VerticalAlign verticalAlign) {
 		this.verticalAlign = verticalAlign;
@@ -355,8 +360,6 @@ public class DataLabels extends AbstractDataLabels {
 
 	/**
 	 * The x position offset of the label relative to the point.
-	 * <p>
-	 * Defaults to: 0
 	 */
 	public void setX(Number x) {
 		this.x = x;
@@ -371,8 +374,6 @@ public class DataLabels extends AbstractDataLabels {
 
 	/**
 	 * The y position offset of the label relative to the point.
-	 * <p>
-	 * Defaults to: -6
 	 */
 	public void setY(Number y) {
 		this.y = y;
@@ -388,60 +389,8 @@ public class DataLabels extends AbstractDataLabels {
 	/**
 	 * The Z index of the data labels. The default Z index puts it above the
 	 * series. Use a Z index of 2 to display it behind the series.
-	 * <p>
-	 * Defaults to: 6
 	 */
 	public void setZIndex(Number zIndex) {
 		this.zIndex = zIndex;
-	}
-
-	/**
-	 * @see #setConnectorPadding(Number)
-	 */
-	public Number getConnectorPadding() {
-		return connectorPadding;
-	}
-
-	/**
-	 * The distance from the data label to the connector.
-	 * <p>
-	 * Defaults to: 5
-	 */
-	public void setConnectorPadding(Number connectorPadding) {
-		this.connectorPadding = connectorPadding;
-	}
-
-	/**
-	 * @see #setDistance(Number)
-	 */
-	public Number getDistance() {
-		return distance;
-	}
-
-	/**
-	 * The distance of the data label from the pie's edge. Negative numbers put
-	 * the data label on top of the pie slices. Connectors are only shown for
-	 * data labels outside the pie.
-	 * <p>
-	 * Defaults to: 30
-	 */
-	public void setDistance(Number distance) {
-		this.distance = distance;
-	}
-
-	/**
-	 * @see #setSoftConnector(Boolean)
-	 */
-	public Boolean getSoftConnector() {
-		return softConnector;
-	}
-
-	/**
-	 * Whether to render the connector as a soft arc or a line with sharp break.
-	 * <p>
-	 * Defaults to: true
-	 */
-	public void setSoftConnector(Boolean softConnector) {
-		this.softConnector = softConnector;
 	}
 }

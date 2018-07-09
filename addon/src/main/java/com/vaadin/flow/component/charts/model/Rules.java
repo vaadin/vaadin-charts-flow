@@ -1,22 +1,5 @@
 package com.vaadin.flow.component.charts.model;
 
-/*-
- * #%L
- * Vaadin Charts for Flow
- * %%
- * Copyright (C) 2014 - 2018 Vaadin Ltd
- * %%
- * This program is available under Commercial Vaadin Add-On License 3.0
- * (CVALv3).
- * 
- * See the file licensing.txt distributed with this software for more
- * information about licensing.
- * 
- * You should have received a copy of the CVALv3 along with this program.
- * If not, see <https://vaadin.com/license/cval-3>.
- * #L%
- */
-
 import javax.annotation.Generated;
 
 /**
@@ -26,9 +9,35 @@ import javax.annotation.Generated;
 @Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/vaadin-charts-flow/issues/new")
 public class Rules extends AbstractConfigurationObject {
 
+	private Configuration chartOptions;
 	private Condition condition;
 
 	public Rules() {
+	}
+
+	/**
+	 * @see #setChartOptions(Configuration)
+	 */
+	public Configuration getChartOptions() {
+		if (chartOptions == null) {
+			chartOptions = new Configuration();
+		}
+		return chartOptions;
+	}
+
+	/**
+	 * A full set of chart options to apply as overrides to the general chart
+	 * options. The chart options are applied when the given rule is active. A
+	 * special case is configuration objects that take arrays, for example
+	 * [xAxis](#xAxis), [yAxis](#yAxis) or [series](#series). For these
+	 * collections, an `id` option is used to map the new option set to an
+	 * existing object. If an existing object of the same id is not found, the
+	 * item of the same indexupdated. So for example, setting `chartOptions`
+	 * with two series items without an `id`, will cause the existing chart's
+	 * two series to be updated with respective options.
+	 */
+	public void setChartOptions(Configuration chartOptions) {
+		this.chartOptions = chartOptions;
 	}
 
 	/**

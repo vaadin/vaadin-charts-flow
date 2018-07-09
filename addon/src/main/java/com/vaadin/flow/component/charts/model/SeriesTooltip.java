@@ -1,32 +1,19 @@
 package com.vaadin.flow.component.charts.model;
 
-/*-
- * #%L
- * Vaadin Charts for Flow
- * %%
- * Copyright (C) 2014 - 2018 Vaadin Ltd
- * %%
- * This program is available under Commercial Vaadin Add-On License 3.0
- * (CVALv3).
- * 
- * See the file licensing.txt distributed with this software for more
- * information about licensing.
- * 
- * You should have received a copy of the CVALv3 along with this program.
- * If not, see <https://vaadin.com/license/cval-3>.
- * #L%
- */
-
 import javax.annotation.Generated;
 
 /**
  * A configuration object for the tooltip rendering of each single series.
- * Properties are inherited from <a href="#tooltip">tooltip</a>, but only the
- * following properties can be defined on a series level.
+ * Properties are inherited from [tooltip](#tooltip), but only the following
+ * properties can be defined on a series level.
  */
 @Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/vaadin-charts-flow/issues/new")
 public class SeriesTooltip extends AbstractConfigurationObject {
 
+	private String _fn_formatter;
+	private String _fn_pointFormatter;
+	private String _fn_positioner;
+	private Number changeDecimals;
 	private DateTimeLabelFormats dateTimeLabelFormats;
 	private Boolean followPointer;
 	private Boolean followTouchMove;
@@ -35,16 +22,112 @@ public class SeriesTooltip extends AbstractConfigurationObject {
 	private Number hideDelay;
 	private Number padding;
 	private String pointFormat;
-	private String _fn_pointFormatter;
 	private Boolean split;
 	private Number valueDecimals;
 	private String valuePrefix;
 	private String valueSuffix;
 	private String xDateFormat;
-	private Number changeDecimals;
-	private Shape shape;
 
 	public SeriesTooltip() {
+	}
+
+	/**
+	 * @see #set_fn_formatter(String)
+	 */
+	public String getFormatter() {
+		return _fn_formatter;
+	}
+
+	/**
+	 * Callback function to format the text of the tooltip from scratch. Return
+	 * `false` to disable tooltip for a specific point on series. A subset of
+	 * HTML is supported. Unless `useHTML` is true, the HTML of the tooltip is
+	 * parsed and converted to SVG, therefore this isn't a complete HTML
+	 * renderer. The following tags are supported: `<b>`, `<strong>`, `<i>`, `
+	 * <em>`,
+	`<br/>`, `<span>`. Spans can be styled with a `style` attribute,
+	but only text-related CSS that is shared with SVG is handled.
+	Since version 2.1 the tooltip can be shared between multiple series
+	through the `shared` option. The available data in the formatter
+	differ a bit depending on whether the tooltip is shared or not. In
+	a shared tooltip, all properties except `x`, which is common for
+	all points, are kept in an array, `this.points`.
+	Available data are:
+	<dl>
+	<dt>this.percentage (not shared) / this.points[i].percentage (shared)</dt>
+	<dd>Stacked series and pies only. The point's percentage of the total.
+	</dd>
+	<dt>this.point (not shared) / this.points[i].point (shared)</dt>
+	<dd>The point object. The point name, if defined, is available through
+	`this.point.name`.</dd>
+	<dt>this.points</dt>
+	<dd>In a shared tooltip, this is an array containing all other properties
+	for each point.</dd>
+	<dt>this.series (not shared) / this.points[i].series (shared)</dt>
+	<dd>The series object. The series name is available through
+	`this.series.name`.</dd>
+	<dt>this.total (not shared) / this.points[i].total (shared)</dt>
+	<dd>Stacked series only. The total value at this point's x value.
+	</dd>
+	<dt>this.x</dt>
+	<dd>The x value. This property is the same regardless of the tooltip
+	being shared or not.</dd>
+	<dt>this.y (not shared) / this.points[i].y (shared)</dt>
+	<dd>The y value.</dd>
+	</dl>
+	 */
+	public void setFormatter(String _fn_formatter) {
+		this._fn_formatter = _fn_formatter;
+	}
+
+	/**
+	 * @see #set_fn_pointFormatter(String)
+	 */
+	public String getPointFormatter() {
+		return _fn_pointFormatter;
+	}
+
+	/**
+	 * A callback function for formatting the HTML output for a single point in
+	 * the tooltip. Like the `pointFormat` string, but with more flexibility.
+	 */
+	public void setPointFormatter(String _fn_pointFormatter) {
+		this._fn_pointFormatter = _fn_pointFormatter;
+	}
+
+	/**
+	 * @see #set_fn_positioner(String)
+	 */
+	public String getPositioner() {
+		return _fn_positioner;
+	}
+
+	/**
+	 * A callback function to place the tooltip in a default position. The
+	 * callback receives three parameters: `labelWidth`, `labelHeight` and
+	 * `point`, where point contains values for `plotX` and `plotY` telling
+	 * where the reference point is in the plot area. Add `chart.plotLeft` and
+	 * `chart.plotTop` to get the full coordinates. The return should be an
+	 * object containing x and y values, for example `{ x: 100, y: 100 }`.
+	 */
+	public void setPositioner(String _fn_positioner) {
+		this._fn_positioner = _fn_positioner;
+	}
+
+	/**
+	 * @see #setChangeDecimals(Number)
+	 */
+	public Number getChangeDecimals() {
+		return changeDecimals;
+	}
+
+	/**
+	 * How many decimals to show for the `point.change` value when the
+	 * `series.compare` option is set. This is overridable in each series'
+	 * tooltip options object. The default is to preserve all decimals.
+	 */
+	public void setChangeDecimals(Number changeDecimals) {
+		this.changeDecimals = changeDecimals;
 	}
 
 	/**
@@ -58,16 +141,11 @@ public class SeriesTooltip extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * <p>
 	 * For series on a datetime axes, the date format in the tooltip's header
 	 * will by default be guessed based on the closest data points. This member
 	 * gives the default string representations used for each unit. For an
-	 * overview of the replacement codes, see <a
-	 * href="#Highcharts.dateFormat">dateFormat</a>.
-	 * </p>
-	 * 
-	 * <p>
-	 * Defaults to:
+	 * overview of the replacement codes, see
+	 * [dateFormat](#Highcharts.dateFormat). Defaults to:
 	 * 
 	 * <pre>
 	 * {
@@ -81,8 +159,6 @@ public class SeriesTooltip extends AbstractConfigurationObject {
 	 * 	    year:"%Y"
 	 * 	}
 	 * </pre>
-	 * 
-	 * </p>
 	 */
 	public void setDateTimeLabelFormats(
 			DateTimeLabelFormats dateTimeLabelFormats) {
@@ -97,19 +173,11 @@ public class SeriesTooltip extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * <p>
 	 * Whether the tooltip should follow the mouse as it moves across columns,
 	 * pie slices and other point types with an extent. By default it behaves
 	 * this way for scatter, bubble and pie series by override in the
-	 * <code>plotOptions</code> for those series types.
-	 * </p>
-	 * <p>
-	 * For touch moves to behave the same way, <a
-	 * href="#tooltip.followTouchMove">followTouchMove</a> must be
-	 * <code>true</code> also.
-	 * </p>
-	 * <p>
-	 * Defaults to: false
+	 * `plotOptions` for those series types. For touch moves to behave the same
+	 * way, [followTouchMove]( #tooltip.followTouchMove) must be `true` also.
 	 */
 	public void setFollowPointer(Boolean followPointer) {
 		this.followPointer = followPointer;
@@ -124,12 +192,9 @@ public class SeriesTooltip extends AbstractConfigurationObject {
 
 	/**
 	 * Whether the tooltip should follow the finger as it moves on a touch
-	 * device. If this is <code>true</code> and <a
-	 * href="#chart.panning">chart.panning</a> is set,
-	 * <code>followTouchMove</code> will take over one-finger touches, so the
-	 * user needs to use two fingers for zooming and panning.
-	 * <p>
-	 * Defaults to: true
+	 * device. If this is `true` and [chart.panning](#chart.panning) is
+	 * set,`followTouchMove` will take over one-finger touches, so the user
+	 * needs to use two fingers for zooming and panning.
 	 */
 	public void setFollowTouchMove(Boolean followTouchMove) {
 		this.followTouchMove = followTouchMove;
@@ -144,8 +209,6 @@ public class SeriesTooltip extends AbstractConfigurationObject {
 
 	/**
 	 * A string to append to the tooltip format.
-	 * <p>
-	 * Defaults to: false
 	 */
 	public void setFooterFormat(String footerFormat) {
 		this.footerFormat = footerFormat;
@@ -159,20 +222,12 @@ public class SeriesTooltip extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * <p>
 	 * The HTML of the tooltip header line. Variables are enclosed by curly
-	 * brackets. Available variables are <code>point.key</code>,
-	 * <code>series.name</code>, <code>series.color</code> and other members
-	 * from the <code>point</code> and <code>series</code> objects. The
-	 * <code>point.key</code> variable contains the category name, x value or
-	 * datetime string depending on the type of axis. For datetime axes, the
-	 * <code>point.key</code> date format can be set using tooltip.xDateFormat.
-	 * </p>
-	 * 
-	 * <p>
-	 * Defaults to
-	 * <code>&lt;span style="font-size: 10px"&gt;{point.key}&lt;/span&gt;&lt;br/&gt;</code>
-	 * </p>
+	 * brackets. Available variables are `point.key`, `series.name`,
+	 * `series.color` and other members from the `point` and `series` objects.
+	 * The `point.key` variable contains the category name, x value or datetime
+	 * string depending on the type of axis. For datetime axes, the `point.key`
+	 * date format can be set using tooltip.xDateFormat.
 	 */
 	public void setHeaderFormat(String headerFormat) {
 		this.headerFormat = headerFormat;
@@ -188,8 +243,6 @@ public class SeriesTooltip extends AbstractConfigurationObject {
 	/**
 	 * The number of milliseconds to wait until the tooltip is hidden when mouse
 	 * out from a point or chart.
-	 * <p>
-	 * Defaults to: 500
 	 */
 	public void setHideDelay(Number hideDelay) {
 		this.hideDelay = hideDelay;
@@ -204,8 +257,6 @@ public class SeriesTooltip extends AbstractConfigurationObject {
 
 	/**
 	 * Padding inside the tooltip, in pixels.
-	 * <p>
-	 * Defaults to: 8
 	 */
 	public void setPadding(Number padding) {
 		this.padding = padding;
@@ -219,34 +270,16 @@ public class SeriesTooltip extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * <p>
 	 * The HTML of the point's line in the tooltip. Variables are enclosed by
-	 * curly brackets. Available variables are point.x, point.y, series.name and
-	 * series.color and other properties on the same form. Furthermore, point.y
-	 * can be extended by the <code>tooltip.valuePrefix</code> and
-	 * <code>tooltip.valueSuffix</code> variables. This can also be overridden
-	 * for each series, which makes it a good hook for displaying units.
-	 * </p>
-	 * <p>
-	 * In <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >styled mode</a>, the dot is colored by a class name rather than the
-	 * point color.
-	 * </p>
-	 * <p>
-	 * Defaults to: <span style="color:{point.color}">\u25CF</span>
-	 * {series.name}: <b>{point.y}</b><br/>
+	 * curly brackets. Available variables are point.x, point.y, series. name
+	 * and series.color and other properties on the same form. Furthermore,
+	 * point.y can be extended by the `tooltip.valuePrefix` and
+	 * `tooltip.valueSuffix` variables. This can also be overridden for each
+	 * series, which makes it a good hook for displaying units. In styled mode,
+	 * the dot is colored by a class name rather than the point color.
 	 */
 	public void setPointFormat(String pointFormat) {
 		this.pointFormat = pointFormat;
-	}
-
-	public String getPointFormatter() {
-		return _fn_pointFormatter;
-	}
-
-	public void setPointFormatter(String _fn_pointFormatter) {
-		this._fn_pointFormatter = _fn_pointFormatter;
 	}
 
 	/**
@@ -258,11 +291,9 @@ public class SeriesTooltip extends AbstractConfigurationObject {
 
 	/**
 	 * Split the tooltip into one label per series, with the header close to the
-	 * axis. This is recommended over <a href="#tooltip.shared">shared</a>
-	 * tooltips for charts with multiple line series, generally making them
-	 * easier to read.
-	 * <p>
-	 * Defaults to: false
+	 * axis. This is recommended over [shared](#tooltip.shared) tooltips for
+	 * charts with multiple line series, generally making them easier to read.
+	 * This option takes precedence over `tooltip.shared`.
 	 */
 	public void setSplit(Boolean split) {
 		this.split = split;
@@ -328,39 +359,5 @@ public class SeriesTooltip extends AbstractConfigurationObject {
 	 */
 	public void setXDateFormat(String xDateFormat) {
 		this.xDateFormat = xDateFormat;
-	}
-
-	/**
-	 * @see #setChangeDecimals(Number)
-	 */
-	public Number getChangeDecimals() {
-		return changeDecimals;
-	}
-
-	/**
-	 * How many decimals to show for the <code>point.change</code> value when
-	 * the <code>series.compare</code> option is set. This is overridable in
-	 * each series' tooltip options object. The default is to preserve all
-	 * decimals.
-	 */
-	public void setChangeDecimals(Number changeDecimals) {
-		this.changeDecimals = changeDecimals;
-	}
-
-	/**
-	 * @see #setShape(Shape)
-	 */
-	public Shape getShape() {
-		return shape;
-	}
-
-	/**
-	 * The name of a symbol to use for the border around the tooltip. In
-	 * Highstock 1.x, the shape was <code>square</code>.
-	 * <p>
-	 * Defaults to: callout
-	 */
-	public void setShape(Shape shape) {
-		this.shape = shape;
 	}
 }

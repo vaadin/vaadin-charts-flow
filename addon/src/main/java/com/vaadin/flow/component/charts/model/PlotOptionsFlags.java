@@ -1,81 +1,138 @@
 package com.vaadin.flow.component.charts.model;
 
-/*-
- * #%L
- * Vaadin Charts for Flow
- * %%
- * Copyright (C) 2014 - 2018 Vaadin Ltd
- * %%
- * This program is available under Commercial Vaadin Add-On License 3.0
- * (CVALv3).
- * 
- * See the file licensing.txt distributed with this software for more
- * information about licensing.
- * 
- * You should have received a copy of the CVALv3 along with this program.
- * If not, see <https://vaadin.com/license/cval-3>.
- * #L%
- */
-
 import javax.annotation.Generated;
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.ArrayList;
+import com.vaadin.flow.component.charts.model.style.Color;
+import java.time.Instant;
+import com.vaadin.flow.component.charts.util.Util;
 
 /**
+ * Flags are used to mark events in stock charts. They can be added on the
+ * timeline, or attached to a specific series.
  * 
+ * Configuration options for the series are given in three levels: 1. Options
+ * for all series in a chart are defined in the
+ * [plotOptions.series](plotOptions.series) object. 2. Options for all `flags`
+ * series are defined in [plotOptions.flags](plotOptions.flags). 3. Options for
+ * one single series are given in [the series instance array](series.flags).
+ * 
+ * <pre>
+ * Highcharts.chart('container', {
+ *     plotOptions: {
+ *         series: {
+ *             // general options for all series
+ *         },
+ *         flags: {
+ *             // shared options for all flags series
+ *         }
+ *     },
+ *     series: [{
+ *         // specific options for this series instance
+ *         type: 'flags'
+ *     }]
+ * });
+ * </pre>
  */
 @Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/vaadin-charts-flow/issues/new")
 public class PlotOptionsFlags extends AbstractPlotOptions {
 
+	private String _fn_pointDescriptionFormatter;
+	private Boolean allowOverlapX;
 	private Boolean allowPointSelect;
 	private Number animationLimit;
+	private Number boostThreshold;
 	private String className;
 	private Number colorIndex;
+	private Compare compare;
 	private Number compareBase;
+	private Boolean compareStart;
+	private Boolean crisp;
 	private Number cropThreshold;
 	private Cursor cursor;
+	private DataLabels dataLabels;
+	private Number depth;
 	private String description;
+	private Number edgeWidth;
 	private Boolean enableMouseTracking;
 	private Boolean exposeElementToA11y;
+	private Color fillColor;
 	private Dimension findNearestPointBy;
-	private String gapUnit;
 	private Boolean getExtremesFromAll;
+	private Number groupPadding;
+	private Number groupZPadding;
+	private Boolean grouping;
 	private ArrayList<String> keys;
-	private Number legendIndex;
-	private String linkedTo;
+	private Label label;
+	private Number linkedTo;
 	private Number maxPointWidth;
-	private PlotOptionsSeries navigatorOptions;
+	private Number minPointLength;
+	private NavigatorOptions navigatorOptions;
 	private boolean negativeColor;
 	private String onKey;
 	private String onSeries;
-	private String _fn_pointDescriptionFormatter;
-	private IntervalUnit pointIntervalUnit;
+	private LabelPoint point;
+	private Number pointInterval;
+	private String pointIntervalUnit;
+	private String pointPlacement;
+	private Number pointRange;
+	private Number pointStart;
 	private Boolean selected;
 	private Boolean shadow;
-	private FlagShape shape;
+	private Shape shape;
 	private Boolean showCheckbox;
 	private Boolean showInLegend;
 	private Boolean showInNavigator;
 	private Boolean skipKeyboardNavigation;
 	private Boolean softThreshold;
 	private Number stackDistance;
+	private Stacking stacking;
 	private States states;
 	private Boolean stickyTracking;
-	private String textAlign;
+	private HorizontalAlign textAlign;
 	private Number threshold;
+	private String title;
 	private SeriesTooltip tooltip;
 	private Boolean useHTML;
 	private Boolean visible;
 	private Number y;
 	private ZoneAxis zoneAxis;
-	private ArrayList<Zones> zones;
+	private ArrayList<Zone> zones;
 
 	public PlotOptionsFlags() {
 	}
 
-	@Override
-	public ChartType getChartType() {
-		return ChartType.FLAGS;
+	/**
+	 * @see #set_fn_pointDescriptionFormatter(String)
+	 */
+	public String getPointDescriptionFormatter() {
+		return _fn_pointDescriptionFormatter;
+	}
+
+	/**
+	 * Same as [accessibility.pointDescriptionFormatter](
+	 * #accessibility.pointDescriptionFormatter), but for an individual series.
+	 * Overrides the chart wide configuration.
+	 */
+	public void setPointDescriptionFormatter(
+			String _fn_pointDescriptionFormatter) {
+		this._fn_pointDescriptionFormatter = _fn_pointDescriptionFormatter;
+	}
+
+	/**
+	 * @see #setAllowOverlapX(Boolean)
+	 */
+	public Boolean getAllowOverlapX() {
+		return allowOverlapX;
+	}
+
+	/**
+	 * Whether the flags are allowed to overlap sideways. If `false`, the flags
+	 * are moved sideways using an algorithm that seeks to place every flag as
+	 * close as possible to its original position.
+	 */
+	public void setAllowOverlapX(Boolean allowOverlapX) {
+		this.allowOverlapX = allowOverlapX;
 	}
 
 	/**
@@ -86,10 +143,8 @@ public class PlotOptionsFlags extends AbstractPlotOptions {
 	}
 
 	/**
-	 * Allow this series' points to be selected by clicking on the markers or
-	 * bars.
-	 * <p>
-	 * Defaults to: false
+	 * Allow this series' points to be selected by clicking on the graphic
+	 * (columns, point markers, pie slices, map areas etc).
 	 */
 	public void setAllowPointSelect(Boolean allowPointSelect) {
 		this.allowPointSelect = allowPointSelect;
@@ -107,10 +162,28 @@ public class PlotOptionsFlags extends AbstractPlotOptions {
 	 * default when the total number of points in the chart is too high. For
 	 * example, for a column chart and its derivatives, animation doesn't run if
 	 * there is more than 250 points totally. To disable this cap, set
-	 * <code>animationLimit</code> to <code>Infinity</code>.
+	 * `animationLimit` to `Infinity`.
 	 */
 	public void setAnimationLimit(Number animationLimit) {
 		this.animationLimit = animationLimit;
+	}
+
+	/**
+	 * @see #setBoostThreshold(Number)
+	 */
+	public Number getBoostThreshold() {
+		return boostThreshold;
+	}
+
+	/**
+	 * Set the point threshold for when a series should enter boost mode.
+	 * Setting it to e.g. 2000 will cause the series to enter boost mode when
+	 * there are 2000 or more points in the series. To disable boosting on the
+	 * series, set the `boostThreshold` to 0. Setting it to 1 will force
+	 * boosting. Requires `modules/boost.js`.
+	 */
+	public void setBoostThreshold(Number boostThreshold) {
+		this.boostThreshold = boostThreshold;
 	}
 
 	/**
@@ -135,14 +208,29 @@ public class PlotOptionsFlags extends AbstractPlotOptions {
 	}
 
 	/**
-	 * <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >Styled mode</a> only. A specific color index to use for the series, so
-	 * its graphic representations are given the class name
-	 * <code>highcharts-color-{n}</code>.
+	 * Styled mode only. A specific color index to use for the series, so its
+	 * graphic representations are given the class name `highcharts-color-{n}`.
 	 */
 	public void setColorIndex(Number colorIndex) {
 		this.colorIndex = colorIndex;
+	}
+
+	/**
+	 * @see #setCompare(Compare)
+	 */
+	public Compare getCompare() {
+		return compare;
+	}
+
+	/**
+	 * Compare the values of the series against the first non-null, non- zero
+	 * value in the visible range. The y axis will show percentage or absolute
+	 * change depending on whether `compare` is set to `"percent"` or `"value"`.
+	 * When this is applied to multiple series, it allows comparing the
+	 * development of the series against each other.
+	 */
+	public void setCompare(Compare compare) {
+		this.compare = compare;
 	}
 
 	/**
@@ -153,14 +241,48 @@ public class PlotOptionsFlags extends AbstractPlotOptions {
 	}
 
 	/**
-	 * When <a href="#plotOptions.series.compare">compare</a> is
-	 * <code>percent</code>, this option dictates whether to use 0 or 100 as the
-	 * base of comparison.
-	 * <p>
-	 * Defaults to: 0
+	 * When [compare](#plotOptions.series.compare) is `percent`, this option
+	 * dictates whether to use 0 or 100 as the base of comparison.
 	 */
 	public void setCompareBase(Number compareBase) {
 		this.compareBase = compareBase;
+	}
+
+	/**
+	 * @see #setCompareStart(Boolean)
+	 */
+	public Boolean getCompareStart() {
+		return compareStart;
+	}
+
+	/**
+	 * Defines if comparisson should start from the first point within the
+	 * visible range or should start from the first point <b>before</b> the
+	 * range. In other words, this flag determines if first point within the
+	 * visible range will have 0% (`compareStart=true`) or should have been
+	 * already calculated according to the previous point
+	 * (`compareStart=false`).
+	 */
+	public void setCompareStart(Boolean compareStart) {
+		this.compareStart = compareStart;
+	}
+
+	/**
+	 * @see #setCrisp(Boolean)
+	 */
+	public Boolean getCrisp() {
+		return crisp;
+	}
+
+	/**
+	 * When true, each column edge is rounded to its nearest pixel in order to
+	 * render sharp on screen. In some cases, when there are a lot of densely
+	 * packed columns, this leads to visible difference in column widths or
+	 * distance between columns. In these cases, setting `crisp` to `false` may
+	 * look better, even though each column is rendered blurry.
+	 */
+	public void setCrisp(Boolean crisp) {
+		this.crisp = crisp;
 	}
 
 	/**
@@ -179,8 +301,6 @@ public class PlotOptionsFlags extends AbstractPlotOptions {
 	 * data is cropped to only contain points that fall within the plot area.
 	 * The advantage of cropping away invisible points is to increase
 	 * performance on large series. .
-	 * <p>
-	 * Defaults to: 50
 	 */
 	public void setCropThreshold(Number cropThreshold) {
 		this.cropThreshold = cropThreshold;
@@ -202,6 +322,31 @@ public class PlotOptionsFlags extends AbstractPlotOptions {
 		this.cursor = cursor;
 	}
 
+	public DataLabels getDataLabels() {
+		if (dataLabels == null) {
+			dataLabels = new DataLabels();
+		}
+		return dataLabels;
+	}
+
+	public void setDataLabels(DataLabels dataLabels) {
+		this.dataLabels = dataLabels;
+	}
+
+	/**
+	 * @see #setDepth(Number)
+	 */
+	public Number getDepth() {
+		return depth;
+	}
+
+	/**
+	 * Depth of the columns in a 3D column chart. Requires `highcharts-3d.js`.
+	 */
+	public void setDepth(Number depth) {
+		this.depth = depth;
+	}
+
 	/**
 	 * @see #setDescription(String)
 	 */
@@ -210,18 +355,25 @@ public class PlotOptionsFlags extends AbstractPlotOptions {
 	}
 
 	/**
-	 * <p>
-	 * <i>Requires Accessibility module</i>
-	 * </p>
-	 * <p>
-	 * A description of the series to add to the screen reader information about
-	 * the series.
-	 * </p>
-	 * <p>
-	 * Defaults to: undefined
+	 * Requires the Accessibility module. A description of the series to add to
+	 * the screen reader information about the series.
 	 */
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	/**
+	 * @see #setEdgeWidth(Number)
+	 */
+	public Number getEdgeWidth() {
+		return edgeWidth;
+	}
+
+	/**
+	 * 3D columns only. The width of the colored edges.
+	 */
+	public void setEdgeWidth(Number edgeWidth) {
+		this.edgeWidth = edgeWidth;
 	}
 
 	/**
@@ -233,11 +385,8 @@ public class PlotOptionsFlags extends AbstractPlotOptions {
 
 	/**
 	 * Enable or disable the mouse tracking for a specific series. This includes
-	 * point tooltips and click events on graphs and points. When using shared
-	 * tooltips (default in stock charts), mouse tracking is not required. For
-	 * large datasets it improves performance.
-	 * <p>
-	 * Defaults to: true
+	 * point tooltips and click events on graphs and points. For large datasets
+	 * it improves performance.
 	 */
 	public void setEnableMouseTracking(Boolean enableMouseTracking) {
 		this.enableMouseTracking = enableMouseTracking;
@@ -251,21 +400,28 @@ public class PlotOptionsFlags extends AbstractPlotOptions {
 	}
 
 	/**
-	 * <p>
 	 * By default, series are exposed to screen readers as regions. By enabling
 	 * this option, the series element itself will be exposed in the same way as
 	 * the data points. This is useful if the series is not used as a grouping
 	 * entity in the chart, but you still want to attach a description to the
-	 * series.
-	 * </p>
-	 * <p>
-	 * Requires the Accessibility module.
-	 * </p>
-	 * <p>
-	 * Defaults to: undefined
+	 * series. Requires the Accessibility module.
 	 */
 	public void setExposeElementToA11y(Boolean exposeElementToA11y) {
 		this.exposeElementToA11y = exposeElementToA11y;
+	}
+
+	/**
+	 * @see #setFillColor(Color)
+	 */
+	public Color getFillColor() {
+		return fillColor;
+	}
+
+	/**
+	 * The fill color for the flags.
+	 */
+	public void setFillColor(Color fillColor) {
+		this.fillColor = fillColor;
 	}
 
 	/**
@@ -276,37 +432,15 @@ public class PlotOptionsFlags extends AbstractPlotOptions {
 	}
 
 	/**
-	 * <p>
 	 * Determines whether the series should look for the nearest point in both
 	 * dimensions or just the x-dimension when hovering the series. Defaults to
-	 * <code>'xy'</code> for scatter series and <code>'x'</code> for most other
-	 * series. If the data has duplicate x-values, it is recommended to set this
-	 * to <code>'xy'</code> to allow hovering over all points.
-	 * </p>
-	 * <p>
-	 * Applies only to series types using nearest neighbor search (not direct
-	 * hover) for tooltip.
-	 * </p>
+	 * `'xy'` for scatter series and `'x'` for most other series. If the data
+	 * has duplicate x-values, it is recommended to set this to `'xy'` to allow
+	 * hovering over all points. Applies only to series types using nearest
+	 * neighbor search (not direct hover) for tooltip.
 	 */
 	public void setFindNearestPointBy(Dimension findNearestPointBy) {
 		this.findNearestPointBy = findNearestPointBy;
-	}
-
-	/**
-	 * @see #setGapUnit(String)
-	 */
-	public String getGapUnit() {
-		return gapUnit;
-	}
-
-	/**
-	 * Together with <code>gapSize</code>, this option defines where to draw
-	 * gaps in the graph.
-	 * <p>
-	 * Defaults to: relative
-	 */
-	public void setGapUnit(String gapUnit) {
-		this.gapUnit = gapUnit;
 	}
 
 	/**
@@ -320,23 +454,64 @@ public class PlotOptionsFlags extends AbstractPlotOptions {
 	 * Whether to use the Y extremes of the total chart width or only the zoomed
 	 * area when zooming in on parts of the X axis. By default, the Y axis
 	 * adjusts to the min and max of the visible data. Cartesian series only.
-	 * <p>
-	 * Defaults to: false
 	 */
 	public void setGetExtremesFromAll(Boolean getExtremesFromAll) {
 		this.getExtremesFromAll = getExtremesFromAll;
 	}
 
 	/**
-	 * @see #setKeys(String...)
+	 * @see #setGroupPadding(Number)
 	 */
-	public String[] getKeys() {
+	public Number getGroupPadding() {
+		return groupPadding;
+	}
+
+	/**
+	 * Padding between each value groups, in x axis units.
+	 */
+	public void setGroupPadding(Number groupPadding) {
+		this.groupPadding = groupPadding;
+	}
+
+	/**
+	 * @see #setGroupZPadding(Number)
+	 */
+	public Number getGroupZPadding() {
+		return groupZPadding;
+	}
+
+	/**
+	 * The spacing between columns on the Z Axis in a 3D chart. Requires
+	 * `highcharts-3d.js`.
+	 */
+	public void setGroupZPadding(Number groupZPadding) {
+		this.groupZPadding = groupZPadding;
+	}
+
+	/**
+	 * @see #setGrouping(Boolean)
+	 */
+	public Boolean getGrouping() {
+		return grouping;
+	}
+
+	/**
+	 * Whether to group non-stacked columns or to let them render independent of
+	 * each other. Non-grouped columns will be laid out individually and overlap
+	 * each other.
+	 */
+	public void setGrouping(Boolean grouping) {
+		this.grouping = grouping;
+	}
+
+	/**
+	 * @see #setKeys(ArrayList)
+	 */
+	public ArrayList<String> getKeys() {
 		if (keys == null) {
-			return new String[]{};
+			keys = new ArrayList<String>();
 		}
-		String[] arr = new String[keys.size()];
-		keys.toArray(arr);
-		return arr;
+		return keys;
 	}
 
 	/**
@@ -344,65 +519,46 @@ public class PlotOptionsFlags extends AbstractPlotOptions {
 	 * array. This makes it convenient to work with unstructured data arrays
 	 * from different sources.
 	 */
-	public void setKeys(String... keys) {
-		this.keys = new ArrayList<String>(Arrays.asList(keys));
+	public void setKeys(ArrayList<String> keys) {
+		this.keys = keys;
 	}
 
 	/**
-	 * Adds key to the keys array
-	 * 
-	 * @param key
-	 *            to add
-	 * @see #setKeys(String...)
+	 * @see #setLabel(Label)
 	 */
-	public void addKey(String key) {
-		if (this.keys == null) {
-			this.keys = new ArrayList<String>();
+	public Label getLabel() {
+		if (label == null) {
+			label = new Label();
 		}
-		this.keys.add(key);
+		return label;
 	}
 
 	/**
-	 * Removes first occurrence of key in keys array
-	 * 
-	 * @param key
-	 *            to remove
-	 * @see #setKeys(String...)
+	 * Series labels are placed as close to the series as possible in a natural
+	 * way, seeking to avoid other series. The goal of this feature is to make
+	 * the chart more easily readable, like if a human designer placed the
+	 * labels in the optimal position. The series labels currently work with
+	 * series types having a `graph` or an `area`. Requires the
+	 * `series-label.js` module.
 	 */
-	public void removeKey(String key) {
-		this.keys.remove(key);
+	public void setLabel(Label label) {
+		this.label = label;
 	}
 
 	/**
-	 * @see #setLegendIndex(Number)
+	 * @see #setLinkedTo(Number)
 	 */
-	public Number getLegendIndex() {
-		return legendIndex;
-	}
-
-	/**
-	 * The sequential index of the series within the legend.
-	 * <p>
-	 * Defaults to: 0
-	 */
-	public void setLegendIndex(Number legendIndex) {
-		this.legendIndex = legendIndex;
-	}
-
-	/**
-	 * @see #setLinkedTo(String)
-	 */
-	public String getLinkedTo() {
+	public Number getLinkedTo() {
 		return linkedTo;
 	}
 
 	/**
-	 * The <a href="#series.id">id</a> of another series to link to.
-	 * Additionally, the value can be ":previous" to link to the previous
-	 * series. When two series are linked, only the first one appears in the
-	 * legend. Toggling the visibility of this also toggles the linked series.
+	 * The [id](#series.id) of another series to link to. Additionally, the
+	 * value can be ":previous" to link to the previous series. When two series
+	 * are linked, only the first one appears in the legend. Toggling the
+	 * visibility of this also toggles the linked series.
 	 */
-	public void setLinkedTo(String linkedTo) {
+	public void setLinkedTo(Number linkedTo) {
 		this.linkedTo = linkedTo;
 	}
 
@@ -417,38 +573,48 @@ public class PlotOptionsFlags extends AbstractPlotOptions {
 	 * The maximum allowed pixel width for a column, translated to the height of
 	 * a bar in a bar chart. This prevents the columns from becoming too wide
 	 * when there is a small number of points in the chart.
-	 * <p>
-	 * Defaults to: null
 	 */
 	public void setMaxPointWidth(Number maxPointWidth) {
 		this.maxPointWidth = maxPointWidth;
 	}
 
 	/**
-	 * @see #setNavigatorOptions(PlotOptionsSeries)
+	 * @see #setMinPointLength(Number)
 	 */
-	public PlotOptionsSeries getNavigatorOptions() {
+	public Number getMinPointLength() {
+		return minPointLength;
+	}
+
+	/**
+	 * The minimal height for a column or width for a bar. By default, 0 values
+	 * are not shown. To visualize a 0 (or close to zero) point, set the minimal
+	 * point length to a pixel value like 3\. In stacked column charts,
+	 * minPointLength might not be respected for tightly packed values.
+	 */
+	public void setMinPointLength(Number minPointLength) {
+		this.minPointLength = minPointLength;
+	}
+
+	/**
+	 * @see #setNavigatorOptions(NavigatorOptions)
+	 */
+	public NavigatorOptions getNavigatorOptions() {
+		if (navigatorOptions == null) {
+			navigatorOptions = new NavigatorOptions();
+		}
 		return navigatorOptions;
 	}
 
 	/**
-	 * <p>
-	 * Options for the corresponding navigator series if
-	 * <code>showInNavigator</code> is <code>true</code> for this series.
-	 * Available options are the same as any series, documented at <a
-	 * class="internal" href="#plotOptions.series">plotOptions</a> and <a
-	 * class="internal" href="#series">series</a>.
-	 * </p>
+	 * Options for the corresponding navigator series if `showInNavigator` is
+	 * `true` for this series. Available options are the same as any series,
+	 * documented at [plotOptions](#plotOptions.series) and [series](#series).
 	 * 
-	 * <p>
-	 * These options are merged with options in <a
-	 * href="#navigator.series">navigator.series</a>, and will take precedence
-	 * if the same option is defined both places.
-	 * </p>
-	 * <p>
-	 * Defaults to: undefined
+	 * These options are merged with options in [navigator.series](
+	 * #navigator.series), and will take precedence if the same option is
+	 * defined both places.
 	 */
-	public void setNavigatorOptions(PlotOptionsSeries navigatorOptions) {
+	public void setNavigatorOptions(NavigatorOptions navigatorOptions) {
 		this.navigatorOptions = navigatorOptions;
 	}
 
@@ -478,12 +644,9 @@ public class PlotOptionsFlags extends AbstractPlotOptions {
 
 	/**
 	 * In case the flag is placed on a series, on what point key to place it.
-	 * Line and columns have one key, <code>y</code>. In range or OHLC-type
-	 * series, however, the flag can optionally be placed on the
-	 * <code>open</code>, <code>high</code>, <code>low</code> or
-	 * <code>close</code> key.
-	 * <p>
-	 * Defaults to: y
+	 * Line and columns have one key, `y`. In range or OHLC-type series,
+	 * however, the flag can optionally be placed on the `open`, `high`, `low`
+	 * or `close` key.
 	 */
 	public void setOnKey(String onKey) {
 		this.onKey = onKey;
@@ -499,40 +662,118 @@ public class PlotOptionsFlags extends AbstractPlotOptions {
 	/**
 	 * The id of the series that the flags should be drawn on. If no id is
 	 * given, the flags are drawn on the x axis.
-	 * <p>
-	 * Defaults to: undefined
 	 */
 	public void setOnSeries(String onSeries) {
 		this.onSeries = onSeries;
 	}
 
-	public String getPointDescriptionFormatter() {
-		return _fn_pointDescriptionFormatter;
-	}
-
-	public void setPointDescriptionFormatter(
-			String _fn_pointDescriptionFormatter) {
-		this._fn_pointDescriptionFormatter = _fn_pointDescriptionFormatter;
+	/**
+	 * @see #setPoint(LabelPoint)
+	 */
+	public LabelPoint getPoint() {
+		if (point == null) {
+			point = new LabelPoint();
+		}
+		return point;
 	}
 
 	/**
-	 * @see #setPointIntervalUnit(IntervalUnit)
+	 * Properties for each single point.
 	 */
-	public IntervalUnit getPointIntervalUnit() {
+	public void setPoint(LabelPoint point) {
+		this.point = point;
+	}
+
+	/**
+	 * @see #setPointInterval(Number)
+	 */
+	public Number getPointInterval() {
+		return pointInterval;
+	}
+
+	/**
+	 * If no x values are given for the points in a series, `pointInterval`
+	 * defines the interval of the x values. For example, if a series contains
+	 * one value every decade starting from year 0, set `pointInterval` to `10`.
+	 * In true `datetime` axes, the `pointInterval` is set in milliseconds. It
+	 * can be also be combined with `pointIntervalUnit` to draw irregular time
+	 * intervals. Please note that this options applies to the _series data_,
+	 * not the interval of the axis ticks, which is independent.
+	 */
+	public void setPointInterval(Number pointInterval) {
+		this.pointInterval = pointInterval;
+	}
+
+	/**
+	 * @see #setPointIntervalUnit(String)
+	 */
+	public String getPointIntervalUnit() {
 		return pointIntervalUnit;
 	}
 
 	/**
-	 * On datetime series, this allows for setting the <a
-	 * href="#plotOptions.series.pointInterval">pointInterval</a> to irregular
-	 * time units, <code>day</code>, <code>month</code> and <code>year</code>. A
-	 * day is usually the same as 24 hours, but pointIntervalUnit also takes the
-	 * DST crossover into consideration when dealing with local time. Combine
-	 * this option with <code>pointInterval</code> to draw weeks, quarters, 6
-	 * months, 10 years etc.
+	 * On datetime series, this allows for setting the
+	 * [pointInterval](#plotOptions.series.pointInterval) to irregular time
+	 * units, `day`, `month` and `year`. A day is usually the same as 24 hours,
+	 * but `pointIntervalUnit` also takes the DST crossover into consideration
+	 * when dealing with local time. Combine this option with `pointInterval` to
+	 * draw weeks, quarters, 6 months, 10 years etc. Please note that this
+	 * options applies to the _series data_, not the interval of the axis ticks,
+	 * which is independent.
 	 */
-	public void setPointIntervalUnit(IntervalUnit pointIntervalUnit) {
+	public void setPointIntervalUnit(String pointIntervalUnit) {
 		this.pointIntervalUnit = pointIntervalUnit;
+	}
+
+	/**
+	 * @see #setPointPlacement(String)
+	 */
+	public String getPointPlacement() {
+		return pointPlacement;
+	}
+
+	/**
+	 * Possible values: `null`, `"on"`, `"between"`. In a column chart, when
+	 * pointPlacement is `"on"`, the point will not create any padding of the X
+	 * axis. In a polar column chart this means that the first column points
+	 * directly north. If the pointPlacement is `"between"`, the columns will be
+	 * laid out between ticks. This is useful for example for visualising an
+	 * amount between two points in time or in a certain sector of a polar
+	 * chart. Since Highcharts 3.0.2, the point placement can also be numeric,
+	 * where 0 is on the axis value, -0.5 is between this value and the
+	 * previous, and 0.5 is between this value and the next. Unlike the textual
+	 * options, numeric point placement options won't affect axis padding. Note
+	 * that pointPlacement needs a [pointRange]( #plotOptions.series.pointRange)
+	 * to work. For column series this is computed, but for line-type series it
+	 * needs to be set. Defaults to `null` in cartesian charts, `"between"` in
+	 * polar charts.
+	 */
+	public void setPointPlacement(String pointPlacement) {
+		this.pointPlacement = pointPlacement;
+	}
+
+	public Number getPointRange() {
+		return pointRange;
+	}
+
+	public void setPointRange(Number pointRange) {
+		this.pointRange = pointRange;
+	}
+
+	/**
+	 * @see #setPointStart(Number)
+	 */
+	public Number getPointStart() {
+		return pointStart;
+	}
+
+	/**
+	 * If no x values are given for the points in a series, pointStart defines
+	 * on what value to start. For example, if a series contains one yearly
+	 * value starting from 1945, set pointStart to 1945.
+	 */
+	public void setPointStart(Number pointStart) {
+		this.pointStart = pointStart;
 	}
 
 	/**
@@ -543,11 +784,9 @@ public class PlotOptionsFlags extends AbstractPlotOptions {
 	}
 
 	/**
-	 * Whether to select the series initially. If <code>showCheckbox</code> is
-	 * true, the checkbox next to the series name in the legend will be checked
-	 * for a selected series.
-	 * <p>
-	 * Defaults to: false
+	 * Whether to select the series initially. If `showCheckbox` is true, the
+	 * checkbox next to the series name in the legend will be checked for a
+	 * selected series.
 	 */
 	public void setSelected(Boolean selected) {
 		this.selected = selected;
@@ -561,32 +800,27 @@ public class PlotOptionsFlags extends AbstractPlotOptions {
 	}
 
 	/**
-	 * Whether to apply a drop shadow to the graph line. Since 1.1.7 the shadow
-	 * can be an object configuration containing <code>color</code>,
-	 * <code>offsetX</code>, <code>offsetY</code>, <code>opacity</code> and
-	 * <code>width</code>.
-	 * <p>
-	 * Defaults to: false
+	 * Whether to apply a drop shadow to the graph line. Since 2.3 the shadow
+	 * can be an object configuration containing `color`, `offsetX`, `offsetY`,
+	 * `opacity` and `width`.
 	 */
 	public void setShadow(Boolean shadow) {
 		this.shadow = shadow;
 	}
 
 	/**
-	 * @see #setShape(FlagShape)
+	 * @see #setShape(Shape)
 	 */
-	public FlagShape getShape() {
+	public Shape getShape() {
 		return shape;
 	}
 
 	/**
 	 * The shape of the marker. Can be one of "flag", "circlepin", "squarepin",
-	 * or an image on the format <code>url(/path-to-image.jpg)</code>.
-	 * Individual shapes can also be set for each point.
-	 * <p>
-	 * Defaults to: flag
+	 * or an image on the format `url(/path-to-image.jpg)`. Individual shapes
+	 * can also be set for each point.
 	 */
-	public void setShape(FlagShape shape) {
+	public void setShape(Shape shape) {
 		this.shape = shape;
 	}
 
@@ -600,9 +834,7 @@ public class PlotOptionsFlags extends AbstractPlotOptions {
 	/**
 	 * If true, a checkbox is displayed next to the legend item to allow
 	 * selecting the series. The state of the checkbox is determined by the
-	 * <code>selected</code> option.
-	 * <p>
-	 * Defaults to: false
+	 * `selected` option.
 	 */
 	public void setShowCheckbox(Boolean showCheckbox) {
 		this.showCheckbox = showCheckbox;
@@ -617,10 +849,8 @@ public class PlotOptionsFlags extends AbstractPlotOptions {
 
 	/**
 	 * Whether to display this particular series or series type in the legend.
-	 * The default value is <code>true</code> for standalone series,
-	 * <code>false</code> for linked series.
-	 * <p>
-	 * Defaults to: true
+	 * The default value is `true` for standalone series, `false` for linked
+	 * series.
 	 */
 	public void setShowInLegend(Boolean showInLegend) {
 		this.showInLegend = showInLegend;
@@ -635,9 +865,7 @@ public class PlotOptionsFlags extends AbstractPlotOptions {
 
 	/**
 	 * Whether or not to show the series in the navigator. Takes precedence over
-	 * <a href="#navigator.baseSeries">navigator.baseSeries</a> if defined.
-	 * <p>
-	 * Defaults to: undefined
+	 * [navigator.baseSeries](#navigator.baseSeries) if defined.
 	 */
 	public void setShowInNavigator(Boolean showInNavigator) {
 		this.showInNavigator = showInNavigator;
@@ -651,8 +879,8 @@ public class PlotOptionsFlags extends AbstractPlotOptions {
 	}
 
 	/**
-	 * If set to <code>True</code>, the accessibility module will skip past the
-	 * points in this series for keyboard navigation.
+	 * If set to `True`, the accessibility module will skip past the points in
+	 * this series for keyboard navigation.
 	 */
 	public void setSkipKeyboardNavigation(Boolean skipKeyboardNavigation) {
 		this.skipKeyboardNavigation = skipKeyboardNavigation;
@@ -666,20 +894,12 @@ public class PlotOptionsFlags extends AbstractPlotOptions {
 	}
 
 	/**
-	 * <p>
 	 * When this is true, the series will not cause the Y axis to cross the zero
-	 * plane (or <a href="#plotOptions.series.threshold">threshold</a> option)
-	 * unless the data actually crosses the plane.
-	 * </p>
-	 * 
-	 * <p>
-	 * For example, if <code>softThreshold</code> is <code>false</code>, a
-	 * series of 0, 1, 2, 3 will make the Y axis show negative values according
-	 * to the <code>minPadding</code> option. If <code>softThreshold</code> is
-	 * <code>true</code>, the Y axis starts at 0.
-	 * </p>
-	 * <p>
-	 * Defaults to: false
+	 * plane (or [threshold](#plotOptions.series.threshold) option) unless the
+	 * data actually crosses the plane. For example, if `softThreshold` is
+	 * `false`, a series of 0, 1, 2, 3 will make the Y axis show negative values
+	 * according to the `minPadding` option. If `softThreshold` is `true`, the Y
+	 * axis starts at 0.
 	 */
 	public void setSoftThreshold(Boolean softThreshold) {
 		this.softThreshold = softThreshold;
@@ -695,16 +915,29 @@ public class PlotOptionsFlags extends AbstractPlotOptions {
 	/**
 	 * When multiple flags in the same series fall on the same value, this
 	 * number determines the vertical offset between them.
-	 * <p>
-	 * Defaults to: 12
 	 */
 	public void setStackDistance(Number stackDistance) {
 		this.stackDistance = stackDistance;
 	}
 
 	/**
-	 * @see #setStates(States)
+	 * @see #setStacking(Stacking)
 	 */
+	public Stacking getStacking() {
+		return stacking;
+	}
+
+	/**
+	 * Whether to stack the values of each series on top of each other. Possible
+	 * values are `null` to disable, `"normal"` to stack by value or
+	 * `"percent"`. When stacking is enabled, data must be sorted in ascending X
+	 * order. A special stacking option is with the streamgraph series type,
+	 * where the stacking option is set to `"stream"`.
+	 */
+	public void setStacking(Stacking stacking) {
+		this.stacking = stacking;
+	}
+
 	public States getStates() {
 		if (states == null) {
 			states = new States();
@@ -712,68 +945,53 @@ public class PlotOptionsFlags extends AbstractPlotOptions {
 		return states;
 	}
 
-	/**
-	 * A wrapper object for all the series options in specific states.
-	 */
 	public void setStates(States states) {
 		this.states = states;
 	}
 
-	/**
-	 * @see #setStickyTracking(Boolean)
-	 */
 	public Boolean getStickyTracking() {
 		return stickyTracking;
 	}
 
-	/**
-	 * Sticky tracking of mouse events. When true, the <code>mouseOut</code>
-	 * event on a series isn't triggered until the mouse moves over another
-	 * series, or out of the plot area. When false, the <code>mouseOut</code>
-	 * event on a series is triggered when the mouse leaves the area around the
-	 * series' graph or markers. This also implies the tooltip when not shared.
-	 * When <code>stickyTracking</code> is false, the tooltip will be hidden
-	 * when moving the mouse between series. Defaults to true for line and area
-	 * type series, but to false for columns, candlesticks etc.
-	 * <p>
-	 * Defaults to: true
-	 */
 	public void setStickyTracking(Boolean stickyTracking) {
 		this.stickyTracking = stickyTracking;
 	}
 
 	/**
-	 * @see #setTextAlign(String)
+	 * @see #setTextAlign(HorizontalAlign)
 	 */
-	public String getTextAlign() {
+	public HorizontalAlign getTextAlign() {
 		return textAlign;
 	}
 
 	/**
 	 * Text alignment for the text inside the flag.
-	 * <p>
-	 * Defaults to: center
 	 */
-	public void setTextAlign(String textAlign) {
+	public void setTextAlign(HorizontalAlign textAlign) {
 		this.textAlign = textAlign;
 	}
 
-	/**
-	 * @see #setThreshold(Number)
-	 */
 	public Number getThreshold() {
 		return threshold;
 	}
 
-	/**
-	 * The threshold, also called zero level or base level. For line type series
-	 * this is only used in conjunction with <a
-	 * href="#plotOptions.series.negativeColor">negativeColor</a>.
-	 * <p>
-	 * Defaults to: 0
-	 */
 	public void setThreshold(Number threshold) {
 		this.threshold = threshold;
+	}
+
+	/**
+	 * @see #setTitle(String)
+	 */
+	public String getTitle() {
+		return title;
+	}
+
+	/**
+	 * The text to display on each flag. This can be defined on series level, or
+	 * individually for each point. Defaults to `"A"`.
+	 */
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	/**
@@ -789,8 +1007,7 @@ public class PlotOptionsFlags extends AbstractPlotOptions {
 	/**
 	 * Specific tooltip options for flag series. Flag series tooltips are
 	 * different from most other types in that a flag doesn't have a data value,
-	 * so the tooltip rather displays the <code>text</code> option for each
-	 * point.
+	 * so the tooltip rather displays the `text` option for each point.
 	 */
 	public void setTooltip(SeriesTooltip tooltip) {
 		this.tooltip = tooltip;
@@ -808,8 +1025,6 @@ public class PlotOptionsFlags extends AbstractPlotOptions {
 	 * advanced formatting, images and reliable bi-directional text rendering.
 	 * Note that exported images won't respect the HTML, and that HTML won't
 	 * respect Z-index settings.
-	 * <p>
-	 * Defaults to: false
 	 */
 	public void setUseHTML(Boolean useHTML) {
 		this.useHTML = useHTML;
@@ -824,8 +1039,6 @@ public class PlotOptionsFlags extends AbstractPlotOptions {
 
 	/**
 	 * Set the initial visibility of the series.
-	 * <p>
-	 * Defaults to: true
 	 */
 	public void setVisible(Boolean visible) {
 		this.visible = visible;
@@ -840,10 +1053,7 @@ public class PlotOptionsFlags extends AbstractPlotOptions {
 
 	/**
 	 * The y position of the top left corner of the flag relative to either the
-	 * series (if onSeries is defined), or the x axis. Defaults to
-	 * <code>-30</code>.
-	 * <p>
-	 * Defaults to: -30
+	 * series (if onSeries is defined), or the x axis. Defaults to `-30`.
 	 */
 	public void setY(Number y) {
 		this.y = y;
@@ -858,68 +1068,68 @@ public class PlotOptionsFlags extends AbstractPlotOptions {
 
 	/**
 	 * Defines the Axis on which the zones are applied.
-	 * <p>
-	 * Defaults to: y
 	 */
 	public void setZoneAxis(ZoneAxis zoneAxis) {
 		this.zoneAxis = zoneAxis;
 	}
 
 	/**
-	 * @see #setZones(Zones...)
+	 * @see #setZones(ArrayList)
 	 */
-	public Zones[] getZones() {
+	public ArrayList<Zone> getZones() {
 		if (zones == null) {
-			return new Zones[]{};
+			zones = new ArrayList<Zone>();
 		}
-		Zones[] arr = new Zones[zones.size()];
-		zones.toArray(arr);
-		return arr;
+		return zones;
 	}
 
 	/**
-	 * <p>
 	 * An array defining zones within a series. Zones can be applied to the X
-	 * axis, Y axis or Z axis for bubbles, according to the
-	 * <code>zoneAxis</code> option.
-	 * </p>
-	 * 
-	 * <p>
-	 * In <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >styled mode</a>, the color zones are styled with the
-	 * <code>.highcharts-zone-{n}</code> class, or custom classed from the
-	 * <code>className</code> option (<a href=
-	 * "http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/css/color-zones/"
-	 * >view live demo</a>).
-	 * </p>
+	 * axis, Y axis or Z axis for bubbles, according to the `zoneAxis` option.
+	 * In styled mode, the color zones are styled with the
+	 * `.highcharts-zone-{n}` class, or custom classed from the `className`
+	 * option ([view live
+	 * demo](http://jsfiddle.net/gh/get/library/pure/highcharts
+	 * /highcharts/tree/master/samples/highcharts/css/color-zones/)).
 	 */
-	public void setZones(Zones... zones) {
-		this.zones = new ArrayList<Zones>(Arrays.asList(zones));
+	public void setZones(ArrayList<Zone> zones) {
+		this.zones = zones;
 	}
 
-	/**
-	 * Adds zone to the zones array
-	 * 
-	 * @param zone
-	 *            to add
-	 * @see #setZones(Zones...)
-	 */
-	public void addZone(Zones zone) {
+	public void setKeys(String... keys) {
+		this.keys = new ArrayList<String>(Arrays.asList(keys));
+	}
+
+	public void addKey(String key) {
+		if (this.keys == null) {
+			this.keys = new ArrayList<String>();
+		}
+		this.keys.add(key);
+	}
+
+	public void removeKey(String key) {
+		this.keys.remove(key);
+	}
+
+	public void setZones(Zone... zones) {
+		this.zones = new ArrayList<Zone>(Arrays.asList(zones));
+	}
+
+	public void addZone(Zone zone) {
 		if (this.zones == null) {
-			this.zones = new ArrayList<Zones>();
+			this.zones = new ArrayList<Zone>();
 		}
 		this.zones.add(zone);
 	}
 
-	/**
-	 * Removes first occurrence of zone in zones array
-	 * 
-	 * @param zone
-	 *            to remove
-	 * @see #setZones(Zones...)
-	 */
-	public void removeZone(Zones zone) {
+	public void removeZone(Zone zone) {
 		this.zones.remove(zone);
+	}
+
+	/**
+	 * @see #setPointStart(Number)
+	 */
+	public void setPointStart(Instant instant) {
+		this.pointStart = Util.toHighchartsTS(instant);
 	}
 }
