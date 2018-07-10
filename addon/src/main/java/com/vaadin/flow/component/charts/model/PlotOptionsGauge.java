@@ -18,40 +18,76 @@ package com.vaadin.flow.component.charts.model;
  */
 
 import javax.annotation.Generated;
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.ArrayList;
+import java.time.Instant;
+import com.vaadin.flow.component.charts.util.Util;
 
 /**
- * General plotting options for the gauge series type. Requires
- * <code>highcharts-more.js</code>
+ * Gauges are circular plots displaying one or more values with a dial pointing
+ * to values along the perimeter.
+ * 
+ * Configuration options for the series are given in three levels: 1. Options
+ * for all series in a chart are defined in the
+ * [plotOptions.series](plotOptions.series) object. 2. Options for all `gauge`
+ * series are defined in [plotOptions.gauge](plotOptions.gauge). 3. Options for
+ * one single series are given in [the series instance array](series.gauge).
+ * 
+ * <pre>
+ * Highcharts.chart('container', {
+ *     plotOptions: {
+ *         series: {
+ *             // general options for all series
+ *         },
+ *         gauge: {
+ *             // shared options for all gauge series
+ *         }
+ *     },
+ *     series: [{
+ *         // specific options for this series instance
+ *         type: 'gauge'
+ *     }]
+ * });
+ * </pre>
  */
 @Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/vaadin-charts-flow/issues/new")
-public class PlotOptionsGauge extends GaugeOptions {
+public class PlotOptionsGauge extends AbstractPlotOptions {
 
+	private String _fn_pointDescriptionFormatter;
+	private Boolean allowPointSelect;
 	private Boolean animation;
-	private Number animationLimit;
 	private String className;
 	private Number colorIndex;
+	private Compare compare;
+	private Number compareBase;
+	private Boolean compareStart;
 	private Cursor cursor;
-	private DataLabels dataLabels;
+	private DataGrouping dataGrouping;
+	private DataLabelsGauge dataLabels;
 	private String description;
 	private Dial dial;
 	private Boolean enableMouseTracking;
 	private Boolean exposeElementToA11y;
-	private Dimension findNearestPointBy;
-	private Boolean getExtremesFromAll;
+	private Number gapSize;
+	private String gapUnit;
 	private ArrayList<String> keys;
-	private String linkedTo;
-	private boolean negativeColor;
+	private Label label;
+	private String linecap;
+	private Number linkedTo;
+	private NavigatorOptions navigatorOptions;
 	private Number overshoot;
 	private Pivot pivot;
-	private String _fn_pointDescriptionFormatter;
+	private LabelPoint point;
+	private Number pointInterval;
+	private String pointIntervalUnit;
+	private Number pointRange;
+	private Number pointStart;
 	private Boolean selected;
 	private Boolean showCheckbox;
 	private Boolean showInLegend;
+	private Boolean showInNavigator;
 	private Boolean skipKeyboardNavigation;
 	private Boolean stickyTracking;
-	private Number threshold;
 	private SeriesTooltip tooltip;
 	private Boolean visible;
 	private Boolean wrap;
@@ -59,9 +95,36 @@ public class PlotOptionsGauge extends GaugeOptions {
 	public PlotOptionsGauge() {
 	}
 
-	@Override
-	public ChartType getChartType() {
-		return ChartType.GAUGE;
+	/**
+	 * @see #set_fn_pointDescriptionFormatter(String)
+	 */
+	public String getPointDescriptionFormatter() {
+		return _fn_pointDescriptionFormatter;
+	}
+
+	/**
+	 * Same as [accessibility.pointDescriptionFormatter](
+	 * #accessibility.pointDescriptionFormatter), but for an individual series.
+	 * Overrides the chart wide configuration.
+	 */
+	public void setPointDescriptionFormatter(
+			String _fn_pointDescriptionFormatter) {
+		this._fn_pointDescriptionFormatter = _fn_pointDescriptionFormatter;
+	}
+
+	/**
+	 * @see #setAllowPointSelect(Boolean)
+	 */
+	public Boolean getAllowPointSelect() {
+		return allowPointSelect;
+	}
+
+	/**
+	 * Allow this series' points to be selected by clicking on the graphic
+	 * (columns, point markers, pie slices, map areas etc).
+	 */
+	public void setAllowPointSelect(Boolean allowPointSelect) {
+		this.allowPointSelect = allowPointSelect;
 	}
 
 	/**
@@ -79,24 +142,6 @@ public class PlotOptionsGauge extends GaugeOptions {
 	 */
 	public void setAnimation(Boolean animation) {
 		this.animation = animation;
-	}
-
-	/**
-	 * @see #setAnimationLimit(Number)
-	 */
-	public Number getAnimationLimit() {
-		return animationLimit;
-	}
-
-	/**
-	 * For some series, there is a limit that shuts down initial animation by
-	 * default when the total number of points in the chart is too high. For
-	 * example, for a column chart and its derivatives, animation doesn't run if
-	 * there is more than 250 points totally. To disable this cap, set
-	 * <code>animationLimit</code> to <code>Infinity</code>.
-	 */
-	public void setAnimationLimit(Number animationLimit) {
-		this.animationLimit = animationLimit;
 	}
 
 	/**
@@ -121,14 +166,63 @@ public class PlotOptionsGauge extends GaugeOptions {
 	}
 
 	/**
-	 * <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >Styled mode</a> only. A specific color index to use for the series, so
-	 * its graphic representations are given the class name
-	 * <code>highcharts-color-{n}</code>.
+	 * Styled mode only. A specific color index to use for the series, so its
+	 * graphic representations are given the class name `highcharts-color-{n}`.
 	 */
 	public void setColorIndex(Number colorIndex) {
 		this.colorIndex = colorIndex;
+	}
+
+	/**
+	 * @see #setCompare(Compare)
+	 */
+	public Compare getCompare() {
+		return compare;
+	}
+
+	/**
+	 * Compare the values of the series against the first non-null, non- zero
+	 * value in the visible range. The y axis will show percentage or absolute
+	 * change depending on whether `compare` is set to `"percent"` or `"value"`.
+	 * When this is applied to multiple series, it allows comparing the
+	 * development of the series against each other.
+	 */
+	public void setCompare(Compare compare) {
+		this.compare = compare;
+	}
+
+	/**
+	 * @see #setCompareBase(Number)
+	 */
+	public Number getCompareBase() {
+		return compareBase;
+	}
+
+	/**
+	 * When [compare](#plotOptions.series.compare) is `percent`, this option
+	 * dictates whether to use 0 or 100 as the base of comparison.
+	 */
+	public void setCompareBase(Number compareBase) {
+		this.compareBase = compareBase;
+	}
+
+	/**
+	 * @see #setCompareStart(Boolean)
+	 */
+	public Boolean getCompareStart() {
+		return compareStart;
+	}
+
+	/**
+	 * Defines if comparisson should start from the first point within the
+	 * visible range or should start from the first point <b>before</b> the
+	 * range. In other words, this flag determines if first point within the
+	 * visible range will have 0% (`compareStart=true`) or should have been
+	 * already calculated according to the previous point
+	 * (`compareStart=false`).
+	 */
+	public void setCompareStart(Boolean compareStart) {
+		this.compareStart = compareStart;
 	}
 
 	/**
@@ -148,11 +242,34 @@ public class PlotOptionsGauge extends GaugeOptions {
 	}
 
 	/**
-	 * @see #setDataLabels(DataLabels)
+	 * @see #setDataGrouping(DataGrouping)
 	 */
-	public DataLabels getDataLabels() {
+	public DataGrouping getDataGrouping() {
+		if (dataGrouping == null) {
+			dataGrouping = new DataGrouping();
+		}
+		return dataGrouping;
+	}
+
+	/**
+	 * Data grouping is the concept of sampling the data values into larger
+	 * blocks in order to ease readability and increase performance of the
+	 * JavaScript charts. Highstock by default applies data grouping when the
+	 * points become closer than a certain pixel value, determined by the
+	 * `groupPixelWidth` option. If data grouping is applied, the grouping
+	 * information of grouped points can be read from the
+	 * [Point.dataGroup](#Point.dataGroup).
+	 */
+	public void setDataGrouping(DataGrouping dataGrouping) {
+		this.dataGrouping = dataGrouping;
+	}
+
+	/**
+	 * @see #setDataLabels(DataLabelsGauge)
+	 */
+	public DataLabelsGauge getDataLabels() {
 		if (dataLabels == null) {
-			dataLabels = new DataLabels();
+			dataLabels = new DataLabelsGauge();
 		}
 		return dataLabels;
 	}
@@ -161,7 +278,7 @@ public class PlotOptionsGauge extends GaugeOptions {
 	 * Data labels for the gauge. For gauges, the data labels are enabled by
 	 * default and shown in a bordered box below the point.
 	 */
-	public void setDataLabels(DataLabels dataLabels) {
+	public void setDataLabels(DataLabelsGauge dataLabels) {
 		this.dataLabels = dataLabels;
 	}
 
@@ -173,15 +290,8 @@ public class PlotOptionsGauge extends GaugeOptions {
 	}
 
 	/**
-	 * <p>
-	 * <i>Requires Accessibility module</i>
-	 * </p>
-	 * <p>
-	 * A description of the series to add to the screen reader information about
-	 * the series.
-	 * </p>
-	 * <p>
-	 * Defaults to: undefined
+	 * Requires the Accessibility module. A description of the series to add to
+	 * the screen reader information about the series.
 	 */
 	public void setDescription(String description) {
 		this.description = description;
@@ -198,16 +308,8 @@ public class PlotOptionsGauge extends GaugeOptions {
 	}
 
 	/**
-	 * <p>
-	 * Options for the dial or arrow pointer of the gauge.
-	 * </p>
-	 * 
-	 * <p>
-	 * In <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >styled mode</a>, the dial is styled with the
-	 * <code>.highcharts-gauge-series .highcharts-dial</code> rule.
-	 * </p>
+	 * Options for the dial or arrow pointer of the gauge. In styled mode, the
+	 * dial is styled with the `.highcharts-gauge-series .highcharts-dial` rule.
 	 */
 	public void setDial(Dial dial) {
 		this.dial = dial;
@@ -224,8 +326,6 @@ public class PlotOptionsGauge extends GaugeOptions {
 	 * Enable or disable the mouse tracking for a specific series. This includes
 	 * point tooltips and click events on graphs and points. For large datasets
 	 * it improves performance.
-	 * <p>
-	 * Defaults to: true
 	 */
 	public void setEnableMouseTracking(Boolean enableMouseTracking) {
 		this.enableMouseTracking = enableMouseTracking;
@@ -239,75 +339,67 @@ public class PlotOptionsGauge extends GaugeOptions {
 	}
 
 	/**
-	 * <p>
 	 * By default, series are exposed to screen readers as regions. By enabling
 	 * this option, the series element itself will be exposed in the same way as
 	 * the data points. This is useful if the series is not used as a grouping
 	 * entity in the chart, but you still want to attach a description to the
-	 * series.
-	 * </p>
-	 * <p>
-	 * Requires the Accessibility module.
-	 * </p>
-	 * <p>
-	 * Defaults to: undefined
+	 * series. Requires the Accessibility module.
 	 */
 	public void setExposeElementToA11y(Boolean exposeElementToA11y) {
 		this.exposeElementToA11y = exposeElementToA11y;
 	}
 
 	/**
-	 * @see #setFindNearestPointBy(Dimension)
+	 * @see #setGapSize(Number)
 	 */
-	public Dimension getFindNearestPointBy() {
-		return findNearestPointBy;
+	public Number getGapSize() {
+		return gapSize;
 	}
 
 	/**
-	 * <p>
-	 * Determines whether the series should look for the nearest point in both
-	 * dimensions or just the x-dimension when hovering the series. Defaults to
-	 * <code>'xy'</code> for scatter series and <code>'x'</code> for most other
-	 * series. If the data has duplicate x-values, it is recommended to set this
-	 * to <code>'xy'</code> to allow hovering over all points.
-	 * </p>
-	 * <p>
-	 * Applies only to series types using nearest neighbor search (not direct
-	 * hover) for tooltip.
-	 * </p>
+	 * Defines when to display a gap in the graph, together with the
+	 * [gapUnit](plotOptions.series.gapUnit) option. In case when `dataGrouping`
+	 * is enabled, points can be grouped into a larger time span. This can make
+	 * the grouped points to have a greater distance than the absolute value of
+	 * `gapSize` property, which will result in disappearing graph completely.
+	 * To prevent this situation the mentioned distance between grouped points
+	 * is used instead of previously defined `gapSize`. In practice, this option
+	 * is most often used to visualize gaps in time series. In a stock chart,
+	 * intraday data is available for daytime hours, while gaps will appear in
+	 * nights and weekends.
 	 */
-	public void setFindNearestPointBy(Dimension findNearestPointBy) {
-		this.findNearestPointBy = findNearestPointBy;
+	public void setGapSize(Number gapSize) {
+		this.gapSize = gapSize;
 	}
 
 	/**
-	 * @see #setGetExtremesFromAll(Boolean)
+	 * @see #setGapUnit(String)
 	 */
-	public Boolean getGetExtremesFromAll() {
-		return getExtremesFromAll;
+	public String getGapUnit() {
+		return gapUnit;
 	}
 
 	/**
-	 * Whether to use the Y extremes of the total chart width or only the zoomed
-	 * area when zooming in on parts of the X axis. By default, the Y axis
-	 * adjusts to the min and max of the visible data. Cartesian series only.
-	 * <p>
-	 * Defaults to: false
+	 * Together with [gapSize](plotOptions.series.gapSize), this option defines
+	 * where to draw gaps in the graph. When the `gapUnit` is `relative`
+	 * (default), a gap size of 5 means that if the distance between two points
+	 * is greater than five times that of the two closest points, the graph will
+	 * be broken. When the `gapUnit` is `value`, the gap is based on absolute
+	 * axis values, which on a datetime axis is milliseconds. This also applies
+	 * to the navigator series that inherits gap options from the base series.
 	 */
-	public void setGetExtremesFromAll(Boolean getExtremesFromAll) {
-		this.getExtremesFromAll = getExtremesFromAll;
+	public void setGapUnit(String gapUnit) {
+		this.gapUnit = gapUnit;
 	}
 
 	/**
-	 * @see #setKeys(String...)
+	 * @see #setKeys(ArrayList)
 	 */
-	public String[] getKeys() {
+	public ArrayList<String> getKeys() {
 		if (keys == null) {
-			return new String[]{};
+			keys = new ArrayList<String>();
 		}
-		String[] arr = new String[keys.size()];
-		keys.toArray(arr);
-		return arr;
+		return keys;
 	}
 
 	/**
@@ -315,67 +407,85 @@ public class PlotOptionsGauge extends GaugeOptions {
 	 * array. This makes it convenient to work with unstructured data arrays
 	 * from different sources.
 	 */
-	public void setKeys(String... keys) {
-		this.keys = new ArrayList<String>(Arrays.asList(keys));
+	public void setKeys(ArrayList<String> keys) {
+		this.keys = keys;
 	}
 
 	/**
-	 * Adds key to the keys array
-	 * 
-	 * @param key
-	 *            to add
-	 * @see #setKeys(String...)
+	 * @see #setLabel(Label)
 	 */
-	public void addKey(String key) {
-		if (this.keys == null) {
-			this.keys = new ArrayList<String>();
+	public Label getLabel() {
+		if (label == null) {
+			label = new Label();
 		}
-		this.keys.add(key);
+		return label;
 	}
 
 	/**
-	 * Removes first occurrence of key in keys array
-	 * 
-	 * @param key
-	 *            to remove
-	 * @see #setKeys(String...)
+	 * Series labels are placed as close to the series as possible in a natural
+	 * way, seeking to avoid other series. The goal of this feature is to make
+	 * the chart more easily readable, like if a human designer placed the
+	 * labels in the optimal position. The series labels currently work with
+	 * series types having a `graph` or an `area`. Requires the
+	 * `series-label.js` module.
 	 */
-	public void removeKey(String key) {
-		this.keys.remove(key);
+	public void setLabel(Label label) {
+		this.label = label;
 	}
 
 	/**
-	 * @see #setLinkedTo(String)
+	 * @see #setLinecap(String)
 	 */
-	public String getLinkedTo() {
+	public String getLinecap() {
+		return linecap;
+	}
+
+	/**
+	 * The SVG value used for the `stroke-linecap` and `stroke-linejoin` of a
+	 * line graph. Round means that lines are rounded in the ends and bends.
+	 */
+	public void setLinecap(String linecap) {
+		this.linecap = linecap;
+	}
+
+	/**
+	 * @see #setLinkedTo(Number)
+	 */
+	public Number getLinkedTo() {
 		return linkedTo;
 	}
 
 	/**
-	 * The <a href="#series.id">id</a> of another series to link to.
-	 * Additionally, the value can be ":previous" to link to the previous
-	 * series. When two series are linked, only the first one appears in the
-	 * legend. Toggling the visibility of this also toggles the linked series.
+	 * The [id](#series.id) of another series to link to. Additionally, the
+	 * value can be ":previous" to link to the previous series. When two series
+	 * are linked, only the first one appears in the legend. Toggling the
+	 * visibility of this also toggles the linked series.
 	 */
-	public void setLinkedTo(String linkedTo) {
+	public void setLinkedTo(Number linkedTo) {
 		this.linkedTo = linkedTo;
 	}
 
 	/**
-	 * @see #setNegativeColor(boolean)
+	 * @see #setNavigatorOptions(NavigatorOptions)
 	 */
-	public boolean isNegativeColor() {
-		return negativeColor;
+	public NavigatorOptions getNavigatorOptions() {
+		if (navigatorOptions == null) {
+			navigatorOptions = new NavigatorOptions();
+		}
+		return navigatorOptions;
 	}
 
 	/**
-	 * Enable or disable the color for parts of the graph that are bellow
-	 * {@link #getThreshold()}. A negative color is applied by setting this
-	 * option to <code>true</code> combined with the
-	 * <code>.highcharts-negative</code> class name.
+	 * Options for the corresponding navigator series if `showInNavigator` is
+	 * `true` for this series. Available options are the same as any series,
+	 * documented at [plotOptions](#plotOptions.series) and [series](#series).
+	 * 
+	 * These options are merged with options in [navigator.series](
+	 * #navigator.series), and will take precedence if the same option is
+	 * defined both places.
 	 */
-	public void setNegativeColor(boolean negativeColor) {
-		this.negativeColor = negativeColor;
+	public void setNavigatorOptions(NavigatorOptions navigatorOptions) {
+		this.navigatorOptions = navigatorOptions;
 	}
 
 	/**
@@ -388,9 +498,8 @@ public class PlotOptionsGauge extends GaugeOptions {
 	/**
 	 * Allow the dial to overshoot the end of the perimeter axis by this many
 	 * degrees. Say if the gauge axis goes from 0 to 60, a value of 100, or
-	 * 1000, will show 5 degrees beyond the end of the axis.
-	 * <p>
-	 * Defaults to: 0
+	 * 1000, will show 5 degrees beyond the end of the axis when this option is
+	 * set to 5.
 	 */
 	public void setOvershoot(Number overshoot) {
 		this.overshoot = overshoot;
@@ -407,28 +516,103 @@ public class PlotOptionsGauge extends GaugeOptions {
 	}
 
 	/**
-	 * <p>
-	 * Options for the pivot or the center point of the gauge.
-	 * </p>
-	 * 
-	 * <p>
-	 * In <a href=
-	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
-	 * >styled mode</a>, the pivot is styled with the
-	 * <code>.highcharts-gauge-series .highcharts-pivot</code> rule.
-	 * </p>
+	 * Options for the pivot or the center point of the gauge. In styled mode,
+	 * the pivot is styled with the `.highcharts-gauge-series .highcharts-pivot`
+	 * rule.
 	 */
 	public void setPivot(Pivot pivot) {
 		this.pivot = pivot;
 	}
 
-	public String getPointDescriptionFormatter() {
-		return _fn_pointDescriptionFormatter;
+	/**
+	 * @see #setPoint(LabelPoint)
+	 */
+	public LabelPoint getPoint() {
+		if (point == null) {
+			point = new LabelPoint();
+		}
+		return point;
 	}
 
-	public void setPointDescriptionFormatter(
-			String _fn_pointDescriptionFormatter) {
-		this._fn_pointDescriptionFormatter = _fn_pointDescriptionFormatter;
+	/**
+	 * Properties for each single point.
+	 */
+	public void setPoint(LabelPoint point) {
+		this.point = point;
+	}
+
+	/**
+	 * @see #setPointInterval(Number)
+	 */
+	public Number getPointInterval() {
+		return pointInterval;
+	}
+
+	/**
+	 * If no x values are given for the points in a series, `pointInterval`
+	 * defines the interval of the x values. For example, if a series contains
+	 * one value every decade starting from year 0, set `pointInterval` to `10`.
+	 * In true `datetime` axes, the `pointInterval` is set in milliseconds. It
+	 * can be also be combined with `pointIntervalUnit` to draw irregular time
+	 * intervals. Please note that this options applies to the _series data_,
+	 * not the interval of the axis ticks, which is independent.
+	 */
+	public void setPointInterval(Number pointInterval) {
+		this.pointInterval = pointInterval;
+	}
+
+	/**
+	 * @see #setPointIntervalUnit(String)
+	 */
+	public String getPointIntervalUnit() {
+		return pointIntervalUnit;
+	}
+
+	/**
+	 * On datetime series, this allows for setting the
+	 * [pointInterval](#plotOptions.series.pointInterval) to irregular time
+	 * units, `day`, `month` and `year`. A day is usually the same as 24 hours,
+	 * but `pointIntervalUnit` also takes the DST crossover into consideration
+	 * when dealing with local time. Combine this option with `pointInterval` to
+	 * draw weeks, quarters, 6 months, 10 years etc. Please note that this
+	 * options applies to the _series data_, not the interval of the axis ticks,
+	 * which is independent.
+	 */
+	public void setPointIntervalUnit(String pointIntervalUnit) {
+		this.pointIntervalUnit = pointIntervalUnit;
+	}
+
+	/**
+	 * @see #setPointRange(Number)
+	 */
+	public Number getPointRange() {
+		return pointRange;
+	}
+
+	/**
+	 * The width of each point on the x axis. For example in a column chart with
+	 * one value each day, the pointRange would be 1 day (= 24 * 3600 1000
+	 * milliseconds). This is normally computed automatically, but this option
+	 * can be used to override the automatic value.
+	 */
+	public void setPointRange(Number pointRange) {
+		this.pointRange = pointRange;
+	}
+
+	/**
+	 * @see #setPointStart(Number)
+	 */
+	public Number getPointStart() {
+		return pointStart;
+	}
+
+	/**
+	 * If no x values are given for the points in a series, pointStart defines
+	 * on what value to start. For example, if a series contains one yearly
+	 * value starting from 1945, set pointStart to 1945.
+	 */
+	public void setPointStart(Number pointStart) {
+		this.pointStart = pointStart;
 	}
 
 	/**
@@ -439,11 +623,9 @@ public class PlotOptionsGauge extends GaugeOptions {
 	}
 
 	/**
-	 * Whether to select the series initially. If <code>showCheckbox</code> is
-	 * true, the checkbox next to the series name will be checked for a selected
-	 * series.
-	 * <p>
-	 * Defaults to: false
+	 * Whether to select the series initially. If `showCheckbox` is true, the
+	 * checkbox next to the series name in the legend will be checked for a
+	 * selected series.
 	 */
 	public void setSelected(Boolean selected) {
 		this.selected = selected;
@@ -459,9 +641,7 @@ public class PlotOptionsGauge extends GaugeOptions {
 	/**
 	 * If true, a checkbox is displayed next to the legend item to allow
 	 * selecting the series. The state of the checkbox is determined by the
-	 * <code>selected</code> option.
-	 * <p>
-	 * Defaults to: false
+	 * `selected` option.
 	 */
 	public void setShowCheckbox(Boolean showCheckbox) {
 		this.showCheckbox = showCheckbox;
@@ -483,6 +663,21 @@ public class PlotOptionsGauge extends GaugeOptions {
 	}
 
 	/**
+	 * @see #setShowInNavigator(Boolean)
+	 */
+	public Boolean getShowInNavigator() {
+		return showInNavigator;
+	}
+
+	/**
+	 * Whether or not to show the series in the navigator. Takes precedence over
+	 * [navigator.baseSeries](#navigator.baseSeries) if defined.
+	 */
+	public void setShowInNavigator(Boolean showInNavigator) {
+		this.showInNavigator = showInNavigator;
+	}
+
+	/**
 	 * @see #setSkipKeyboardNavigation(Boolean)
 	 */
 	public Boolean getSkipKeyboardNavigation() {
@@ -490,8 +685,8 @@ public class PlotOptionsGauge extends GaugeOptions {
 	}
 
 	/**
-	 * If set to <code>True</code>, the accessibility module will skip past the
-	 * points in this series for keyboard navigation.
+	 * If set to `True`, the accessibility module will skip past the points in
+	 * this series for keyboard navigation.
 	 */
 	public void setSkipKeyboardNavigation(Boolean skipKeyboardNavigation) {
 		this.skipKeyboardNavigation = skipKeyboardNavigation;
@@ -505,43 +700,19 @@ public class PlotOptionsGauge extends GaugeOptions {
 	}
 
 	/**
-	 * Sticky tracking of mouse events. When true, the <code>mouseOut</code>
-	 * event on a series isn't triggered until the mouse moves over another
-	 * series, or out of the plot area. When false, the <code>mouseOut</code>
-	 * event on a series is triggered when the mouse leaves the area around the
-	 * series' graph or markers. This also implies the tooltip. When
-	 * <code>stickyTracking</code> is false and <code>tooltip.shared</code> is
-	 * false, the tooltip will be hidden when moving the mouse between series.
-	 * Defaults to true for line and area type series, but to false for columns,
-	 * pies etc.
-	 * <p>
-	 * Defaults to: true
+	 * Sticky tracking of mouse events. When true, the `mouseOut` event on a
+	 * series isn't triggered until the mouse moves over another series, or out
+	 * of the plot area. When false, the `mouseOut` event on a series is
+	 * triggered when the mouse leaves the area around the series' graph or
+	 * markers. This also implies the tooltip when not shared. When
+	 * `stickyTracking` is false and `tooltip.shared` is false, the tooltip will
+	 * be hidden when moving the mouse between series. Defaults to true for line
+	 * and area type series, but to false for columns, pies etc.
 	 */
 	public void setStickyTracking(Boolean stickyTracking) {
 		this.stickyTracking = stickyTracking;
 	}
 
-	/**
-	 * @see #setThreshold(Number)
-	 */
-	public Number getThreshold() {
-		return threshold;
-	}
-
-	/**
-	 * The threshold, also called zero level or base level. For line type series
-	 * this is only used in conjunction with <a
-	 * href="#plotOptions.series.negativeColor">negativeColor</a>.
-	 * <p>
-	 * Defaults to: 0
-	 */
-	public void setThreshold(Number threshold) {
-		this.threshold = threshold;
-	}
-
-	/**
-	 * @see #setTooltip(SeriesTooltip)
-	 */
 	public SeriesTooltip getTooltip() {
 		if (tooltip == null) {
 			tooltip = new SeriesTooltip();
@@ -549,11 +720,6 @@ public class PlotOptionsGauge extends GaugeOptions {
 		return tooltip;
 	}
 
-	/**
-	 * A configuration object for the tooltip rendering of each single series.
-	 * Properties are inherited from <a href="#tooltip">tooltip</a>, but only
-	 * the following properties can be defined on a series level.
-	 */
 	public void setTooltip(SeriesTooltip tooltip) {
 		this.tooltip = tooltip;
 	}
@@ -567,8 +733,6 @@ public class PlotOptionsGauge extends GaugeOptions {
 
 	/**
 	 * Set the initial visibility of the series.
-	 * <p>
-	 * Defaults to: true
 	 */
 	public void setVisible(Boolean visible) {
 		this.visible = visible;
@@ -582,14 +746,33 @@ public class PlotOptionsGauge extends GaugeOptions {
 	}
 
 	/**
-	 * When this option is <code>true</code>, the dial will wrap around the
-	 * axes. For instance, in a full-range gauge going from 0 to 360, a value of
-	 * 400 will point to 40. When <code>wrap</code> is <code>false</code>, the
-	 * dial stops at 360.
-	 * <p>
-	 * Defaults to: true
+	 * When this option is `true`, the dial will wrap around the axes. For
+	 * instance, in a full-range gauge going from 0 to 360, a value of 400 will
+	 * point to 40\. When `wrap` is `false`, the dial stops at 360.
 	 */
 	public void setWrap(Boolean wrap) {
 		this.wrap = wrap;
+	}
+
+	public void setKeys(String... keys) {
+		this.keys = new ArrayList<String>(Arrays.asList(keys));
+	}
+
+	public void addKey(String key) {
+		if (this.keys == null) {
+			this.keys = new ArrayList<String>();
+		}
+		this.keys.add(key);
+	}
+
+	public void removeKey(String key) {
+		this.keys.remove(key);
+	}
+
+	/**
+	 * @see #setPointStart(Number)
+	 */
+	public void setPointStart(Instant instant) {
+		this.pointStart = Util.toHighchartsTS(instant);
 	}
 }
