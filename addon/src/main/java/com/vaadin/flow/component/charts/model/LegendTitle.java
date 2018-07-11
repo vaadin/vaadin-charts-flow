@@ -31,7 +31,7 @@ public class LegendTitle extends AbstractConfigurationObject {
 	}
 
 	public LegendTitle(String text) {
-		this.text = text;
+		setText(text);
 	}
 
 	/**

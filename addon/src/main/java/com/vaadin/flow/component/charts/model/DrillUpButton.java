@@ -18,6 +18,7 @@ package com.vaadin.flow.component.charts.model;
  */
 
 import javax.annotation.Generated;
+import com.vaadin.flow.component.charts.model.style.ButtonTheme;
 
 /**
  * Options for the button appearing when drilling down in a treemap.

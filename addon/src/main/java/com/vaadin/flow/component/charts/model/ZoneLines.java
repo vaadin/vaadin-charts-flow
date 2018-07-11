@@ -32,7 +32,7 @@ public class ZoneLines extends AbstractConfigurationObject {
 	}
 
 	public ZoneLines(Boolean enabled) {
-		this.enabled = enabled;
+		setEnabled(enabled);
 	}
 
 	/**

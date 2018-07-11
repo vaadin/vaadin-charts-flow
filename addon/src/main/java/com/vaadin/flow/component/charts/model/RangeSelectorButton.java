@@ -53,7 +53,6 @@ public class RangeSelectorButton extends AbstractConfigurationObject {
 
 	private Number count;
 	private DataGrouping dataGrouping;
-	private Events events;
 	private Number offsetMax;
 	private Number offsetMin;
 	private String text;
@@ -63,6 +62,18 @@ public class RangeSelectorButton extends AbstractConfigurationObject {
 	}
 
 	public RangeSelectorButton(String text) {
+		setText(text);
+	}
+
+	public RangeSelectorButton(RangeSelectorTimespan type, Number count,
+			String text) {
+		this.type = type;
+		this.count = count;
+		this.text = text;
+	}
+
+	public RangeSelectorButton(RangeSelectorTimespan type, String text) {
+		this.type = type;
 		this.text = text;
 	}
 
@@ -96,17 +107,6 @@ public class RangeSelectorButton extends AbstractConfigurationObject {
 	 */
 	public void setDataGrouping(DataGrouping dataGrouping) {
 		this.dataGrouping = dataGrouping;
-	}
-
-	public Events getEvents() {
-		if (events == null) {
-			events = new Events();
-		}
-		return events;
-	}
-
-	public void setEvents(Events events) {
-		this.events = events;
 	}
 
 	/**

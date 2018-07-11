@@ -49,7 +49,7 @@ public class Scrollbar extends AbstractConfigurationObject {
 	}
 
 	public Scrollbar(Boolean enabled) {
-		this.enabled = enabled;
+		setEnabled(enabled);
 	}
 
 	/**

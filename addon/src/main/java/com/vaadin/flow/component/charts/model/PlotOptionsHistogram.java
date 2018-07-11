@@ -93,7 +93,7 @@ public class PlotOptionsHistogram extends AbstractPlotOptions {
 	private boolean negativeColor;
 	private LabelPoint point;
 	private Number pointPadding;
-	private String pointPlacement;
+	private PointPlacement pointPlacement;
 	private Number pointRange;
 	private Number pointStart;
 	private Number pointWidth;
@@ -704,11 +704,11 @@ public class PlotOptionsHistogram extends AbstractPlotOptions {
 		this.pointPadding = pointPadding;
 	}
 
-	public String getPointPlacement() {
+	public PointPlacement getPointPlacement() {
 		return pointPlacement;
 	}
 
-	public void setPointPlacement(String pointPlacement) {
+	public void setPointPlacement(PointPlacement pointPlacement) {
 		this.pointPlacement = pointPlacement;
 	}
 

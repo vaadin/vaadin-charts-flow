@@ -87,7 +87,7 @@ public class PlotOptionsScatter extends AbstractPlotOptions {
 	private boolean negativeColor;
 	private LabelPoint point;
 	private Number pointInterval;
-	private String pointIntervalUnit;
+	private IntervalUnit pointIntervalUnit;
 	private Number pointRange;
 	private Number pointStart;
 	private Boolean selected;
@@ -666,9 +666,9 @@ public class PlotOptionsScatter extends AbstractPlotOptions {
 	}
 
 	/**
-	 * @see #setPointIntervalUnit(String)
+	 * @see #setPointIntervalUnit(IntervalUnit)
 	 */
-	public String getPointIntervalUnit() {
+	public IntervalUnit getPointIntervalUnit() {
 		return pointIntervalUnit;
 	}
 
@@ -682,7 +682,7 @@ public class PlotOptionsScatter extends AbstractPlotOptions {
 	 * options applies to the _series data_, not the interval of the axis ticks,
 	 * which is independent.
 	 */
-	public void setPointIntervalUnit(String pointIntervalUnit) {
+	public void setPointIntervalUnit(IntervalUnit pointIntervalUnit) {
 		this.pointIntervalUnit = pointIntervalUnit;
 	}
 

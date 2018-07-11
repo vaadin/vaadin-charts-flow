@@ -44,7 +44,7 @@ public class StackLabels extends AbstractConfigurationObject {
 	}
 
 	public StackLabels(Boolean enabled) {
-		this.enabled = enabled;
+		setEnabled(enabled);
 	}
 
 	/**

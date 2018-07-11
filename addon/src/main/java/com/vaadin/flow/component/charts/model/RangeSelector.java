@@ -53,7 +53,7 @@ public class RangeSelector extends AbstractConfigurationObject {
 	}
 
 	public RangeSelector(Boolean enabled) {
-		this.enabled = enabled;
+		setEnabled(enabled);
 	}
 
 	/**

@@ -45,11 +45,11 @@ public class ButtonOptions extends AbstractConfigurationObject {
 	}
 
 	public ButtonOptions(Boolean enabled) {
-		this.enabled = enabled;
+		setEnabled(enabled);
 	}
 
 	public ButtonOptions(String text) {
-		this.text = text;
+		setText(text);
 	}
 
 	/**

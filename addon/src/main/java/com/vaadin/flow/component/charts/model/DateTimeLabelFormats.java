@@ -55,6 +55,11 @@ public class DateTimeLabelFormats extends AbstractConfigurationObject {
 	public DateTimeLabelFormats() {
 	}
 
+	public DateTimeLabelFormats(String month, String year) {
+		this.month = month;
+		this.year = year;
+	}
+
 	public String getDay() {
 		return day;
 	}

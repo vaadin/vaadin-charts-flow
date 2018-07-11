@@ -39,7 +39,7 @@ public class Title extends AbstractConfigurationObject {
 	}
 
 	public Title(String text) {
-		this.text = text;
+		setText(text);
 	}
 
 	/**

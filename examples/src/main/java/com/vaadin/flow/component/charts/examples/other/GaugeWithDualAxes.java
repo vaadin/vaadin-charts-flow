@@ -4,7 +4,7 @@ import com.vaadin.flow.component.charts.AbstractChartExample;
 import com.vaadin.flow.component.charts.Chart;
 import com.vaadin.flow.component.charts.model.ChartType;
 import com.vaadin.flow.component.charts.model.Configuration;
-import com.vaadin.flow.component.charts.model.DataLabels;
+import com.vaadin.flow.component.charts.model.DataLabelsGauge;
 import com.vaadin.flow.component.charts.model.Labels;
 import com.vaadin.flow.component.charts.model.ListSeries;
 import com.vaadin.flow.component.charts.model.PlotOptionsGauge;
@@ -62,7 +62,7 @@ public class GaugeWithDualAxes extends AbstractChartExample {
         final ListSeries series = new ListSeries("Speed", 80);
 
         PlotOptionsGauge plotOptionsGauge = new PlotOptionsGauge();
-        plotOptionsGauge.setDataLabels(new DataLabels());
+        plotOptionsGauge.setDataLabels(new DataLabelsGauge());
         plotOptionsGauge
                 .getDataLabels()
                 .setFormatter(

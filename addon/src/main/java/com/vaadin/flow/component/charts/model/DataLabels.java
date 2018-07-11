@@ -55,7 +55,7 @@ public class DataLabels extends AbstractConfigurationObject {
 	}
 
 	public DataLabels(Boolean enabled) {
-		this.enabled = enabled;
+		setEnabled(enabled);
 	}
 
 	/**

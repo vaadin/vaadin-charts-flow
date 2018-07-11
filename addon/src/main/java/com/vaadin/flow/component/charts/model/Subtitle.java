@@ -41,7 +41,7 @@ public class Subtitle extends AbstractConfigurationObject {
 	}
 
 	public Subtitle(String text) {
-		this.text = text;
+		setText(text);
 	}
 
 	/**

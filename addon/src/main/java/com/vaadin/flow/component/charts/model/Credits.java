@@ -35,11 +35,11 @@ public class Credits extends AbstractConfigurationObject {
 	}
 
 	public Credits(Boolean enabled) {
-		this.enabled = enabled;
+		setEnabled(enabled);
 	}
 
 	public Credits(String text) {
-		this.text = text;
+		setText(text);
 	}
 
 	/**

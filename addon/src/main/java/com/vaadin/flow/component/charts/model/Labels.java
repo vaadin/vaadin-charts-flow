@@ -48,7 +48,7 @@ public class Labels extends AbstractConfigurationObject {
 	}
 
 	public Labels(Boolean enabled) {
-		this.enabled = enabled;
+		setEnabled(enabled);
 	}
 
 	/**

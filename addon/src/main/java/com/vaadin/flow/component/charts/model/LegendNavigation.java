@@ -38,7 +38,7 @@ public class LegendNavigation extends AbstractConfigurationObject {
 	}
 
 	public LegendNavigation(Boolean enabled) {
-		this.enabled = enabled;
+		setEnabled(enabled);
 	}
 
 	/**

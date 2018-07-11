@@ -18,7 +18,7 @@ package com.vaadin.flow.component.charts.model;
  */
 
 import javax.annotation.Generated;
-import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * Options for displaying a message like "No data to display". This feature
@@ -28,7 +28,7 @@ import java.util.LinkedHashMap;
 @Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/vaadin-charts-flow/issues/new")
 public class NoData extends AbstractConfigurationObject {
 
-	private LinkedHashMap<String, String> attr;
+	private Map<String, String> attr;
 	private Position position;
 	private Boolean useHTML;
 
@@ -36,19 +36,16 @@ public class NoData extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setAttr(LinkedHashMap)
+	 * @see #setAttr(Map)
 	 */
-	public LinkedHashMap<String, String> getAttr() {
-		if (attr == null) {
-			attr = new LinkedHashMap<String, String>();
-		}
+	public Map<String, String> getAttr() {
 		return attr;
 	}
 
 	/**
 	 * An object of additional SVG attributes for the no-data label.
 	 */
-	public void setAttr(LinkedHashMap<String, String> attr) {
+	public void setAttr(Map<String, String> attr) {
 		this.attr = attr;
 	}
 

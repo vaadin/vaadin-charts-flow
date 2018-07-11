@@ -69,7 +69,7 @@ public class Legend extends AbstractConfigurationObject {
 	}
 
 	public Legend(Boolean enabled) {
-		this.enabled = enabled;
+		setEnabled(enabled);
 	}
 
 	/**

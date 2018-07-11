@@ -34,7 +34,7 @@ public class FocusBorder extends AbstractConfigurationObject {
 	}
 
 	public FocusBorder(Boolean enabled) {
-		this.enabled = enabled;
+		setEnabled(enabled);
 	}
 
 	/**

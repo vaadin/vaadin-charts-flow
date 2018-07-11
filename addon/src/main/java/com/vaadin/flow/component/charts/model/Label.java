@@ -50,11 +50,11 @@ public class Label extends AbstractConfigurationObject {
 	}
 
 	public Label(Boolean enabled) {
-		this.enabled = enabled;
+		setEnabled(enabled);
 	}
 
 	public Label(String text) {
-		this.text = text;
+		setText(text);
 	}
 
 	/**

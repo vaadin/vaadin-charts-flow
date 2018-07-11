@@ -42,7 +42,7 @@ public class SankeyDataLabels extends AbstractConfigurationObject {
 	}
 
 	public SankeyDataLabels(Boolean enabled) {
-		this.enabled = enabled;
+		setEnabled(enabled);
 	}
 
 	public String getBackgroundColor() {

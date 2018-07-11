@@ -53,7 +53,7 @@ public class LabelOptions extends AbstractConfigurationObject {
 	}
 
 	public LabelOptions(String text) {
-		this.text = text;
+		setText(text);
 	}
 
 	/**

@@ -34,7 +34,7 @@ public class Hover extends AbstractConfigurationObject {
 	}
 
 	public Hover(Boolean enabled) {
-		this.enabled = enabled;
+		setEnabled(enabled);
 	}
 
 	/**

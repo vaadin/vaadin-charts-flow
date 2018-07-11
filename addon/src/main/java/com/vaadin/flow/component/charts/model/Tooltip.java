@@ -57,7 +57,7 @@ public class Tooltip extends AbstractConfigurationObject {
 	}
 
 	public Tooltip(Boolean enabled) {
-		this.enabled = enabled;
+		setEnabled(enabled);
 	}
 
 	/**

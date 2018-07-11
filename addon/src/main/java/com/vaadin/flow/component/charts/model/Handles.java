@@ -36,7 +36,7 @@ public class Handles extends AbstractConfigurationObject {
 	}
 
 	public Handles(Boolean enabled) {
-		this.enabled = enabled;
+		setEnabled(enabled);
 	}
 
 	/**

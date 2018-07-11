@@ -42,7 +42,7 @@ public class Options3d extends AbstractConfigurationObject {
 	}
 
 	public Options3d(Boolean enabled) {
-		this.enabled = enabled;
+		setEnabled(enabled);
 	}
 
 	/**

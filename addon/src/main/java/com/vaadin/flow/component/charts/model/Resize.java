@@ -42,7 +42,7 @@ public class Resize extends AbstractConfigurationObject {
 	}
 
 	public Resize(Boolean enabled) {
-		this.enabled = enabled;
+		setEnabled(enabled);
 	}
 
 	/**

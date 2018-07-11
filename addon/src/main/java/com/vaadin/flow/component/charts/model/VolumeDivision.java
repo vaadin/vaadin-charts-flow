@@ -32,7 +32,7 @@ public class VolumeDivision extends AbstractConfigurationObject {
 	}
 
 	public VolumeDivision(Boolean enabled) {
-		this.enabled = enabled;
+		setEnabled(enabled);
 	}
 
 	/**

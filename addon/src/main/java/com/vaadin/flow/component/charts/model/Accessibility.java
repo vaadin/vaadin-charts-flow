@@ -44,7 +44,7 @@ public class Accessibility extends AbstractConfigurationObject {
 	}
 
 	public Accessibility(Boolean enabled) {
-		this.enabled = enabled;
+		setEnabled(enabled);
 	}
 
 	/**

@@ -44,7 +44,7 @@ public class Boost extends AbstractConfigurationObject {
 	}
 
 	public Boost(Boolean enabled) {
-		this.enabled = enabled;
+		setEnabled(enabled);
 	}
 
 	/**

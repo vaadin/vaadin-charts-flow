@@ -49,7 +49,7 @@ public class DataLabelsPie extends AbstractConfigurationObject {
 	}
 
 	public DataLabelsPie(Boolean enabled) {
-		this.enabled = enabled;
+		setEnabled(enabled);
 	}
 
 	/**

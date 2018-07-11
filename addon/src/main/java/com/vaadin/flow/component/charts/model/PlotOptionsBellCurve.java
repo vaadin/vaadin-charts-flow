@@ -87,7 +87,7 @@ public class PlotOptionsBellCurve extends AbstractPlotOptions {
 	private NavigatorOptions navigatorOptions;
 	private boolean negativeColor;
 	private LabelPoint point;
-	private String pointPlacement;
+	private PointPlacement pointPlacement;
 	private Number pointRange;
 	private Number pointStart;
 	private Number pointsInInterval;
@@ -640,9 +640,9 @@ public class PlotOptionsBellCurve extends AbstractPlotOptions {
 	}
 
 	/**
-	 * @see #setPointPlacement(String)
+	 * @see #setPointPlacement(PointPlacement)
 	 */
-	public String getPointPlacement() {
+	public PointPlacement getPointPlacement() {
 		return pointPlacement;
 	}
 
@@ -662,7 +662,7 @@ public class PlotOptionsBellCurve extends AbstractPlotOptions {
 	 * needs to be set. Defaults to `null` in cartesian charts, `"between"` in
 	 * polar charts.
 	 */
-	public void setPointPlacement(String pointPlacement) {
+	public void setPointPlacement(PointPlacement pointPlacement) {
 		this.pointPlacement = pointPlacement;
 	}
 

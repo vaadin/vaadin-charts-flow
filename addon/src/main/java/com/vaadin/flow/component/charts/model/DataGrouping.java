@@ -37,7 +37,7 @@ public class DataGrouping extends AbstractConfigurationObject {
 	}
 
 	public DataGrouping(Boolean enabled) {
-		this.enabled = enabled;
+		setEnabled(enabled);
 	}
 
 	public Approximation getApproximation() {

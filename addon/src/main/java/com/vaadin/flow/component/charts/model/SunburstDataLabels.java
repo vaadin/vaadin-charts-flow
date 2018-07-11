@@ -46,7 +46,7 @@ public class SunburstDataLabels extends AbstractConfigurationObject {
 	}
 
 	public SunburstDataLabels(Boolean enabled) {
-		this.enabled = enabled;
+		setEnabled(enabled);
 	}
 
 	/**

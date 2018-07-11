@@ -18,6 +18,7 @@ package com.vaadin.flow.component.charts.model;
  */
 
 import javax.annotation.Generated;
+import com.vaadin.flow.component.charts.model.style.ButtonTheme;
 
 /**
  * The button that appears after a selection zoom, allowing the user to reset

@@ -29,7 +29,7 @@ public class DataLabelsPivotPoints extends AbstractConfigurationObject {
 	}
 
 	public DataLabelsPivotPoints(Boolean enabled) {
-		this.enabled = enabled;
+		setEnabled(enabled);
 	}
 
 	public Boolean getEnabled() {

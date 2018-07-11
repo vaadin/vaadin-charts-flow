@@ -85,8 +85,8 @@ public class PlotOptionsSeries extends AbstractPlotOptions {
 	private LabelPoint point;
 	private String _fn_pointDescriptionFormatter;
 	private Number pointInterval;
-	private String pointIntervalUnit;
-	private String pointPlacement;
+	private IntervalUnit pointIntervalUnit;
+	private PointPlacement pointPlacement;
 	private Number pointRange;
 	private Number pointStart;
 	private Boolean selected;
@@ -687,9 +687,9 @@ public class PlotOptionsSeries extends AbstractPlotOptions {
 	}
 
 	/**
-	 * @see #setPointIntervalUnit(String)
+	 * @see #setPointIntervalUnit(IntervalUnit)
 	 */
-	public String getPointIntervalUnit() {
+	public IntervalUnit getPointIntervalUnit() {
 		return pointIntervalUnit;
 	}
 
@@ -703,14 +703,14 @@ public class PlotOptionsSeries extends AbstractPlotOptions {
 	 * options applies to the _series data_, not the interval of the axis ticks,
 	 * which is independent.
 	 */
-	public void setPointIntervalUnit(String pointIntervalUnit) {
+	public void setPointIntervalUnit(IntervalUnit pointIntervalUnit) {
 		this.pointIntervalUnit = pointIntervalUnit;
 	}
 
 	/**
-	 * @see #setPointPlacement(String)
+	 * @see #setPointPlacement(PointPlacement)
 	 */
-	public String getPointPlacement() {
+	public PointPlacement getPointPlacement() {
 		return pointPlacement;
 	}
 
@@ -730,7 +730,7 @@ public class PlotOptionsSeries extends AbstractPlotOptions {
 	 * needs to be set. Defaults to `null` in cartesian charts, `"between"` in
 	 * polar charts.
 	 */
-	public void setPointPlacement(String pointPlacement) {
+	public void setPointPlacement(PointPlacement pointPlacement) {
 		this.pointPlacement = pointPlacement;
 	}
 

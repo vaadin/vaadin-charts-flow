@@ -29,7 +29,7 @@ public class Halo extends AbstractConfigurationObject {
 	}
 
 	public Halo(Boolean enabled) {
-		this.enabled = enabled;
+		setEnabled(enabled);
 	}
 
 	public Boolean getEnabled() {

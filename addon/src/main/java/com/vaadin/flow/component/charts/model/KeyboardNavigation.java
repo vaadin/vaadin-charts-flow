@@ -34,7 +34,7 @@ public class KeyboardNavigation extends AbstractConfigurationObject {
 	}
 
 	public KeyboardNavigation(Boolean enabled) {
-		this.enabled = enabled;
+		setEnabled(enabled);
 	}
 
 	/**

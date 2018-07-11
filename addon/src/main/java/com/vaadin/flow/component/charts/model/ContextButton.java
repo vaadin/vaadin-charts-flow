@@ -38,6 +38,14 @@ public class ContextButton extends ButtonOptions {
 	public ContextButton() {
 	}
 
+	public ContextButton(Boolean enabled) {
+		setEnabled(enabled);
+	}
+
+	public ContextButton(String text) {
+		setText(text);
+	}
+
 	/**
 	 * @see #set_titleKey(String)
 	 */

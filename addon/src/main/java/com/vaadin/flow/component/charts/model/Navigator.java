@@ -42,7 +42,7 @@ public class Navigator extends AbstractConfigurationObject {
 	}
 
 	public Navigator(Boolean enabled) {
-		this.enabled = enabled;
+		setEnabled(enabled);
 	}
 
 	/**

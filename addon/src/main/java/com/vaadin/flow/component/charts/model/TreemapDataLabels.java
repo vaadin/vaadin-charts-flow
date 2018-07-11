@@ -32,7 +32,7 @@ public class TreemapDataLabels extends DataLabels {
 	}
 
 	public TreemapDataLabels(Boolean enabled) {
-		this.enabled = enabled;
+		setEnabled(enabled);
 	}
 
 	public Boolean getDefer() {

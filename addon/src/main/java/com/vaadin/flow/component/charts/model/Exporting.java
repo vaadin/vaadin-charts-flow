@@ -18,7 +18,7 @@ package com.vaadin.flow.component.charts.model;
  */
 
 import javax.annotation.Generated;
-import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * Options for the exporting module. For an overview on the matter, see [the
@@ -35,9 +35,9 @@ public class Exporting extends AbstractConfigurationObject {
 	private String _fn_error;
 	private Boolean fallbackToExportServer;
 	private String filename;
-	private LinkedHashMap<String, String> formAttributes;
+	private Map<String, String> formAttributes;
 	private String libURL;
-	private LinkedHashMap<String, ExportingMenuItemDefinition> menuItemDefinitions;
+	private Map<String, ExportingMenuItemDefinition> menuItemDefinitions;
 	private Number printMaxWidth;
 	private Number scale;
 	private Boolean showTable;
@@ -54,7 +54,7 @@ public class Exporting extends AbstractConfigurationObject {
 	}
 
 	public Exporting(Boolean enabled) {
-		this.enabled = enabled;
+		setEnabled(enabled);
 	}
 
 	/**
@@ -200,12 +200,9 @@ public class Exporting extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setFormAttributes(LinkedHashMap)
+	 * @see #setFormAttributes(Map)
 	 */
-	public LinkedHashMap<String, String> getFormAttributes() {
-		if (formAttributes == null) {
-			formAttributes = new LinkedHashMap<String, String>();
-		}
+	public Map<String, String> getFormAttributes() {
 		return formAttributes;
 	}
 
@@ -215,7 +212,7 @@ public class Exporting extends AbstractConfigurationObject {
 	 * sure the generated image is received in another frame, or a custom
 	 * `enctype` or `encoding` can be set.
 	 */
-	public void setFormAttributes(LinkedHashMap<String, String> formAttributes) {
+	public void setFormAttributes(Map<String, String> formAttributes) {
 		this.formAttributes = formAttributes;
 	}
 
@@ -239,12 +236,9 @@ public class Exporting extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setMenuItemDefinitions(LinkedHashMap)
+	 * @see #setMenuItemDefinitions(Map)
 	 */
-	public LinkedHashMap<String, ExportingMenuItemDefinition> getMenuItemDefinitions() {
-		if (menuItemDefinitions == null) {
-			menuItemDefinitions = new LinkedHashMap<String, ExportingMenuItemDefinition>();
-		}
+	public Map<String, ExportingMenuItemDefinition> getMenuItemDefinitions() {
 		return menuItemDefinitions;
 	}
 
@@ -263,7 +257,7 @@ public class Exporting extends AbstractConfigurationObject {
 	 * </dl>
 	 */
 	public void setMenuItemDefinitions(
-			LinkedHashMap<String, ExportingMenuItemDefinition> menuItemDefinitions) {
+			Map<String, ExportingMenuItemDefinition> menuItemDefinitions) {
 		this.menuItemDefinitions = menuItemDefinitions;
 	}
 

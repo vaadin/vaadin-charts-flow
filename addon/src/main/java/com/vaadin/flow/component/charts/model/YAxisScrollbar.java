@@ -49,7 +49,7 @@ public class YAxisScrollbar extends AbstractConfigurationObject {
 	}
 
 	public YAxisScrollbar(Boolean enabled) {
-		this.enabled = enabled;
+		setEnabled(enabled);
 	}
 
 	/**

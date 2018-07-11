@@ -37,7 +37,7 @@ public class DataLabelsGauge extends DataLabels {
 	}
 
 	public DataLabelsGauge(Boolean enabled) {
-		this.enabled = enabled;
+		setEnabled(enabled);
 	}
 
 	public Boolean getCrop() {

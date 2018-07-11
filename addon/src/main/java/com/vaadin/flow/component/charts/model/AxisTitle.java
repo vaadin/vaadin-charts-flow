@@ -39,11 +39,11 @@ public class AxisTitle extends AbstractConfigurationObject {
 	}
 
 	public AxisTitle(Boolean enabled) {
-		this.enabled = enabled;
+		setEnabled(enabled);
 	}
 
 	public AxisTitle(String text) {
-		this.text = text;
+		setText(text);
 	}
 
 	/**

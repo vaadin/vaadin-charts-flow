@@ -32,6 +32,10 @@ public class AnnotationLabel extends LabelOptions {
 	public AnnotationLabel() {
 	}
 
+	public AnnotationLabel(String text) {
+		setText(text);
+	}
+
 	/**
 	 * @see #setPoint(LabelPoint)
 	 */

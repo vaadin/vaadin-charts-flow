@@ -33,7 +33,7 @@ public class Select extends AbstractConfigurationObject {
 	}
 
 	public Select(Boolean enabled) {
-		this.enabled = enabled;
+		setEnabled(enabled);
 	}
 
 	/**

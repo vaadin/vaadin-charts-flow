@@ -34,7 +34,7 @@ public class NavigatorTitle extends AbstractConfigurationObject {
 	}
 
 	public NavigatorTitle(String text) {
-		this.text = text;
+		setText(text);
 	}
 
 	public Boolean getReserveSpace() {

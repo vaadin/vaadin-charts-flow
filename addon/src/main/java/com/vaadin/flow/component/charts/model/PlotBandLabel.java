@@ -38,7 +38,7 @@ public class PlotBandLabel extends AbstractConfigurationObject {
 	}
 
 	public PlotBandLabel(String text) {
-		this.text = text;
+		setText(text);
 	}
 
 	/**

@@ -54,7 +54,7 @@ public class DataLabelsAreaRange extends AbstractConfigurationObject {
 	}
 
 	public DataLabelsAreaRange(Boolean enabled) {
-		this.enabled = enabled;
+		setEnabled(enabled);
 	}
 
 	/**

@@ -20,7 +20,7 @@ package com.vaadin.flow.component.charts.model;
 import javax.annotation.Generated;
 import java.util.ArrayList;
 import com.vaadin.flow.component.charts.model.style.Color;
-import java.util.LinkedHashMap;
+import java.util.Map;
 
 @Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/vaadin-charts-flow/issues/new")
 public class Data extends AbstractConfigurationObject {
@@ -48,7 +48,7 @@ public class Data extends AbstractConfigurationObject {
 	private Number partialFill;
 	private ArrayList<Object> rows;
 	private String rowsURL;
-	private LinkedHashMap<String, Integer> seriesMapping;
+	private Map<String, Integer> seriesMapping;
 	private Number startColumn;
 	private Number startRow;
 	private Boolean switchRowsAndColumns;
@@ -441,12 +441,9 @@ public class Data extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setSeriesMapping(LinkedHashMap)
+	 * @see #setSeriesMapping(Map)
 	 */
-	public LinkedHashMap<String, Integer> getSeriesMapping() {
-		if (seriesMapping == null) {
-			seriesMapping = new LinkedHashMap<String, Integer>();
-		}
+	public Map<String, Integer> getSeriesMapping() {
 		return seriesMapping;
 	}
 
@@ -454,7 +451,7 @@ public class Data extends AbstractConfigurationObject {
 	 * An array containing object with Point property names along with what
 	 * column id the property should be taken from.
 	 */
-	public void setSeriesMapping(LinkedHashMap<String, Integer> seriesMapping) {
+	public void setSeriesMapping(Map<String, Integer> seriesMapping) {
 		this.seriesMapping = seriesMapping;
 	}
 

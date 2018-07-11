@@ -42,7 +42,7 @@ public class Marker extends AbstractConfigurationObject {
 	}
 
 	public Marker(Boolean enabled) {
-		this.enabled = enabled;
+		setEnabled(enabled);
 	}
 
 	/**

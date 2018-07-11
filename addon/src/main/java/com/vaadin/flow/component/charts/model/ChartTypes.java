@@ -18,6 +18,7 @@ package com.vaadin.flow.component.charts.model;
  */
 
 import javax.annotation.Generated;
+import java.util.Map;
 
 /**
  * Chart type description strings. This is added to the chart information
