@@ -49,14 +49,14 @@ import javax.annotation.Generated;
  * </pre>
  */
 @Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/vaadin-charts-flow/issues/new")
-public class PlotOptionsErrorBars extends PlotOptionsBoxPlot {
+public class PlotOptionsErrorBar extends PlotOptionsBoxPlot {
 
 	private Boolean grouping;
 	private Number linkedTo;
 	private SeriesTooltip tooltip;
 	private Number whiskerWidth;
 
-	public PlotOptionsErrorBars() {
+	public PlotOptionsErrorBar() {
 	}
 
 	public Boolean getGrouping() {

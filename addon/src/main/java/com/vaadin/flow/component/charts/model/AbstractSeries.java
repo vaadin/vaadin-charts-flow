@@ -28,20 +28,22 @@ import com.vaadin.flow.component.charts.Chart;
 public abstract class AbstractSeries extends AbstractConfigurationObject
         implements Series {
 
+    private String id;
+    private Integer index;
+    private Integer legendIndex;
     private String name;
     private String stack;
-    private String id;
+    private Boolean visible;
+    private Integer xAxis;
+    private Integer yAxis;
+    private Integer zIndex;
 
     @JsonUnwrapped
     private AbstractPlotOptions plotOptions;
 
-    private Boolean visible;
-
     @JsonIgnore
     private Configuration configuration;
 
-    private Integer xAxis;
-    private Integer yAxis;
 
     public AbstractSeries() {
     }
@@ -247,5 +249,53 @@ public abstract class AbstractSeries extends AbstractConfigurationObject
         if (getConfiguration() != null) {
             getConfiguration().fireSeriesChanged(this);
         }
+    }
+
+    /**
+     * @see #setIndex(Integer)
+     */
+    public Integer getIndex() {
+        return index;
+    }
+
+    /**
+     * The index of the series in the chart, affecting the internal index
+     * in the `chart.series` array, the visible Z index as well as the order
+     * in the legend.
+     *
+     * @param index
+     */
+    public void setIndex(Integer index) {
+        this.index = index;
+    }
+
+    /**
+     * @see #setLegendIndex(Integer)
+     */
+    public Integer getLegendIndex() {
+        return legendIndex;
+    }
+
+    /**
+     * The sequential index of the series in the legend.
+     */
+    public void setLegendIndex(Integer legendIndex) {
+        this.legendIndex = legendIndex;
+    }
+
+    /**
+     * @see #setzIndex(Integer)
+     */
+    public Integer getzIndex() {
+        return zIndex;
+    }
+
+    /**
+     * Define the visual z index of the series.
+     *
+     * @param zIndex
+     */
+    public void setzIndex(Integer zIndex) {
+        this.zIndex = zIndex;
     }
 }
