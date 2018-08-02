@@ -51,8 +51,8 @@ public class AreaSpline extends AbstractChartExample {
 
         Tooltip tooltip = new Tooltip();
         // Customize tooltip formatting
-        tooltip.setHeaderFormat("");
-        tooltip.setPointFormat("{series.name}: {point.y} units");
+        tooltip.setShared(true);
+        tooltip.setValueSuffix(" units");
         conf.setTooltip(tooltip);
 
         PlotOptionsArea plotOptions = new PlotOptionsArea();
