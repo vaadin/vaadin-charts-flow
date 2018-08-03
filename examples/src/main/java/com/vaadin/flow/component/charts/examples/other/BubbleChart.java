@@ -19,7 +19,7 @@ public class BubbleChart extends AbstractChartExample {
         Configuration conf = chart.getConfiguration();
         conf.setTitle((String) null);
 
-        DataSeries dataSeries = new DataSeries();
+        DataSeries dataSeries = new DataSeries("All bubbles shown");
         dataSeries.add(item(9, 81, 13));
         dataSeries.add(item(98, 5, 39));
         dataSeries.add(item(51, 50, 23));
