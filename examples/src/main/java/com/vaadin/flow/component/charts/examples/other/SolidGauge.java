@@ -13,7 +13,7 @@ import com.vaadin.flow.component.charts.model.Pane;
 import com.vaadin.flow.component.charts.model.PlotOptionsSolidgauge;
 import com.vaadin.flow.component.charts.model.YAxis;
 
-public class Solidgauge extends AbstractChartExample {
+public class SolidGauge extends AbstractChartExample {
 
     @Override
     public void initDemo() {
@@ -54,7 +54,8 @@ public class Solidgauge extends AbstractChartExample {
 
         DataSeriesItem item = new DataSeriesItem();
         item.setY(80);
-        item.setColorIndex(2);
+//        item.setColorIndex(2);
+        item.setClassName("myClassName");
         DataLabels dataLabelsSeries = new DataLabels();
         dataLabelsSeries.setFormat("<div style=\"text-align:center\"><span style=\"font-size:25px;"
                 + "color:black' + '\">{y}</span><br/>"
