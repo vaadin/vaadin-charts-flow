@@ -14,8 +14,6 @@ import com.vaadin.flow.component.charts.model.SeriesTooltip;
 import com.vaadin.flow.component.charts.model.DataSeries;
 import com.vaadin.flow.component.charts.model.DataSeriesItem;
 
-
-
 public class Scatter extends AbstractChartExample {
     @Override
     public void initDemo() {

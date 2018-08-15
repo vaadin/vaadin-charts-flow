@@ -13,7 +13,6 @@ import com.vaadin.flow.component.charts.model.VerticalAlign;
 import com.vaadin.flow.component.charts.model.LayoutDirection;
 import com.vaadin.flow.component.charts.model.ListSeries;
 
-
 public class Spiderweb extends AbstractChartExample {
 
     @Override
