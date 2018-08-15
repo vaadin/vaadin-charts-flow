@@ -2,7 +2,18 @@ package com.vaadin.flow.component.charts.examples.other;
 
 import com.vaadin.flow.component.charts.AbstractChartExample;
 import com.vaadin.flow.component.charts.Chart;
-import com.vaadin.flow.component.charts.model.*;
+import com.vaadin.flow.component.charts.model.BoxPlotItem;
+import com.vaadin.flow.component.charts.model.DataSeries;
+import com.vaadin.flow.component.charts.model.DataSeriesItem;
+import com.vaadin.flow.component.charts.model.HorizontalAlign;
+import com.vaadin.flow.component.charts.model.Label;
+import com.vaadin.flow.component.charts.model.Legend;
+import com.vaadin.flow.component.charts.model.PlotLine;
+import com.vaadin.flow.component.charts.model.PlotOptionsBoxplot;
+import com.vaadin.flow.component.charts.model.PlotOptionsScatter;
+import com.vaadin.flow.component.charts.model.SeriesTooltip;
+import com.vaadin.flow.component.charts.model.XAxis;
+import com.vaadin.flow.component.charts.model.YAxis;
 import com.vaadin.flow.component.checkbox.Checkbox;
 
 public class BoxPlot extends AbstractChartExample {

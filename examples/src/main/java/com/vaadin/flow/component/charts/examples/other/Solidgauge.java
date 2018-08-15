@@ -2,16 +2,18 @@ package com.vaadin.flow.component.charts.examples.other;
 
 import com.vaadin.flow.component.charts.AbstractChartExample;
 import com.vaadin.flow.component.charts.Chart;
-import com.vaadin.flow.component.charts.model.*;
-
-import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
+import com.vaadin.flow.component.charts.model.Background;
+import com.vaadin.flow.component.charts.model.BackgroundShape;
+import com.vaadin.flow.component.charts.model.ChartType;
+import com.vaadin.flow.component.charts.model.Configuration;
+import com.vaadin.flow.component.charts.model.DataLabels;
+import com.vaadin.flow.component.charts.model.DataSeries;
+import com.vaadin.flow.component.charts.model.DataSeriesItem;
+import com.vaadin.flow.component.charts.model.Pane;
+import com.vaadin.flow.component.charts.model.PlotOptionsSolidgauge;
+import com.vaadin.flow.component.charts.model.YAxis;
 
 public class Solidgauge extends AbstractChartExample {
-
-    final Random random = new Random();
-
-    private int SPEED = 80;
 
     @Override
     public void initDemo() {

@@ -2,7 +2,17 @@ package com.vaadin.flow.component.charts.examples.other;
 
 import com.vaadin.flow.component.charts.AbstractChartExample;
 import com.vaadin.flow.component.charts.Chart;
-import com.vaadin.flow.component.charts.model.*;
+import com.vaadin.flow.component.charts.model.Configuration;
+import com.vaadin.flow.component.charts.model.Labels;
+import com.vaadin.flow.component.charts.model.ListSeries;
+import com.vaadin.flow.component.charts.model.PlotOptionsColumn;
+import com.vaadin.flow.component.charts.model.PlotOptionsErrorbar;
+import com.vaadin.flow.component.charts.model.RangeSeries;
+import com.vaadin.flow.component.charts.model.Series;
+import com.vaadin.flow.component.charts.model.SeriesTooltip;
+import com.vaadin.flow.component.charts.model.Tooltip;
+import com.vaadin.flow.component.charts.model.XAxis;
+import com.vaadin.flow.component.charts.model.YAxis;
 
 public class ErrorBarChart extends AbstractChartExample {
 

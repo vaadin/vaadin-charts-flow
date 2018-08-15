@@ -3,7 +3,11 @@ package com.vaadin.flow.component.charts.examples.timeline;
 import com.vaadin.flow.component.charts.AbstractChartExample;
 import com.vaadin.flow.component.charts.Chart;
 import com.vaadin.flow.component.charts.examples.timeline.util.StockPrices;
-import com.vaadin.flow.component.charts.model.*;
+import com.vaadin.flow.component.charts.model.ChartType;
+import com.vaadin.flow.component.charts.model.Configuration;
+import com.vaadin.flow.component.charts.model.DataSeries;
+import com.vaadin.flow.component.charts.model.DataSeriesItem;
+import com.vaadin.flow.component.charts.model.RangeSelector;
 
 public class Spline extends AbstractChartExample {
 

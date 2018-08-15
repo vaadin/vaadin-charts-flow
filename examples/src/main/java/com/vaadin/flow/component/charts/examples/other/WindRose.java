@@ -2,7 +2,18 @@ package com.vaadin.flow.component.charts.examples.other;
 
 import com.vaadin.flow.component.charts.AbstractChartExample;
 import com.vaadin.flow.component.charts.Chart;
-import com.vaadin.flow.component.charts.model.*;
+import com.vaadin.flow.component.charts.model.ChartType;
+import com.vaadin.flow.component.charts.model.Configuration;
+import com.vaadin.flow.component.charts.model.DataSeries;
+import com.vaadin.flow.component.charts.model.HorizontalAlign;
+import com.vaadin.flow.component.charts.model.LayoutDirection;
+import com.vaadin.flow.component.charts.model.Legend;
+import com.vaadin.flow.component.charts.model.PlotOptionsColumn;
+import com.vaadin.flow.component.charts.model.PointPlacement;
+import com.vaadin.flow.component.charts.model.Stacking;
+import com.vaadin.flow.component.charts.model.VerticalAlign;
+import com.vaadin.flow.component.charts.model.XAxis;
+import com.vaadin.flow.component.charts.model.YAxis;
 
 public class WindRose extends AbstractChartExample {
 

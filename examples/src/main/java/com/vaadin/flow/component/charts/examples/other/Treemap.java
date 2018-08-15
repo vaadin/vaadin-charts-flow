@@ -2,7 +2,16 @@ package com.vaadin.flow.component.charts.examples.other;
 
 import com.vaadin.flow.component.charts.AbstractChartExample;
 import com.vaadin.flow.component.charts.Chart;
-import com.vaadin.flow.component.charts.model.*;
+import com.vaadin.flow.component.charts.model.ChartType;
+import com.vaadin.flow.component.charts.model.Configuration;
+import com.vaadin.flow.component.charts.model.DataLabels;
+import com.vaadin.flow.component.charts.model.HorizontalAlign;
+import com.vaadin.flow.component.charts.model.Level;
+import com.vaadin.flow.component.charts.model.PlotOptionsTreemap;
+import com.vaadin.flow.component.charts.model.TreeMapLayoutAlgorithm;
+import com.vaadin.flow.component.charts.model.TreeSeries;
+import com.vaadin.flow.component.charts.model.TreeSeriesItem;
+import com.vaadin.flow.component.charts.model.VerticalAlign;
 
 public class Treemap extends AbstractChartExample {
 

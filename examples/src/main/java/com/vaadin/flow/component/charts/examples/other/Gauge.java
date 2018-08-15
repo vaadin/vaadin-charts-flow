@@ -2,7 +2,16 @@ package com.vaadin.flow.component.charts.examples.other;
 
 import com.vaadin.flow.component.charts.AbstractChartExample;
 import com.vaadin.flow.component.charts.Chart;
-import com.vaadin.flow.component.charts.model.*;
+import com.vaadin.flow.component.charts.model.ChartType;
+import com.vaadin.flow.component.charts.model.Configuration;
+import com.vaadin.flow.component.charts.model.Labels;
+import com.vaadin.flow.component.charts.model.ListSeries;
+import com.vaadin.flow.component.charts.model.Pane;
+import com.vaadin.flow.component.charts.model.PlotBand;
+import com.vaadin.flow.component.charts.model.PlotOptionsGauge;
+import com.vaadin.flow.component.charts.model.SeriesTooltip;
+import com.vaadin.flow.component.charts.model.TickPosition;
+import com.vaadin.flow.component.charts.model.YAxis;
 
 import java.util.Random;
 
