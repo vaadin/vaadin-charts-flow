@@ -14,7 +14,7 @@ import com.vaadin.flow.component.charts.model.Tooltip;
 import com.vaadin.flow.component.charts.model.XAxis;
 import com.vaadin.flow.component.charts.model.YAxis;
 
-public class ErrorBarChart extends AbstractChartExample {
+public class ErrorBar extends AbstractChartExample {
 
     @Override
     public void initDemo() {

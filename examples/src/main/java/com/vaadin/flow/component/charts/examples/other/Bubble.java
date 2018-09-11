@@ -9,7 +9,7 @@ import com.vaadin.flow.component.charts.model.DataSeriesItem;
 import com.vaadin.flow.component.charts.model.DataSeriesItem3d;
 import com.vaadin.flow.component.charts.model.PlotOptionsBubble;
 
-public class BubbleChart extends AbstractChartExample {
+public class Bubble extends AbstractChartExample {
 
     @Override
     public void initDemo() {

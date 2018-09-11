@@ -4,7 +4,7 @@ import com.vaadin.flow.component.charts.AbstractChartExample;
 import com.vaadin.flow.component.charts.Chart;
 import com.vaadin.flow.component.charts.model.*;
 
-public class ColumnChart extends AbstractChartExample {
+public class Column extends AbstractChartExample {
 
     @Override
     public void initDemo() {

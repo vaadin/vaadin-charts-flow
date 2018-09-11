@@ -28,10 +28,6 @@ public class AreaSplineRange extends AbstractChartExample {
         }
         configuration.setSeries(dataSeries);
 
-        RangeSelector rangeSelector = new RangeSelector();
-        rangeSelector.setSelected(2);
-        configuration.setRangeSelector(rangeSelector);
-
         chart.setTimeline(true);
         add(chart);
     }
