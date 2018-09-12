@@ -2,7 +2,13 @@ package com.vaadin.flow.component.charts.examples.column;
 
 import com.vaadin.flow.component.charts.AbstractChartExample;
 import com.vaadin.flow.component.charts.Chart;
-import com.vaadin.flow.component.charts.model.*;
+import com.vaadin.flow.component.charts.model.ChartType;
+import com.vaadin.flow.component.charts.model.Configuration;
+import com.vaadin.flow.component.charts.model.Crosshair;
+import com.vaadin.flow.component.charts.model.ListSeries;
+import com.vaadin.flow.component.charts.model.Tooltip;
+import com.vaadin.flow.component.charts.model.XAxis;
+import com.vaadin.flow.component.charts.model.YAxis;
 
 public class Column extends AbstractChartExample {
 
