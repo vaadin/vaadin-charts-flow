@@ -98,25 +98,6 @@
             <build>
                 <plugins>
                     <plugin>
-                        <groupId>com.lazerycode.selenium</groupId>
-                        <artifactId>driver-binary-downloader-maven-plugin</artifactId>
-                        <version>1.0.17</version>
-                        <configuration>
-                            <!-- root directory that downloaded driver binaries will be stored
-                                in -->
-                            <onlyGetDriversForHostOperatingSystem>true</onlyGetDriversForHostOperatingSystem>
-                            <rootStandaloneServerDirectory>.driver</rootStandaloneServerDirectory>
-                        </configuration>
-                        <executions>
-                            <execution>
-                                <goals>
-                                    <goal>selenium</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-
-                    <plugin>
                         <groupId>org.eclipse.jetty</groupId>
                         <artifactId>jetty-maven-plugin</artifactId>
                         <configuration>
