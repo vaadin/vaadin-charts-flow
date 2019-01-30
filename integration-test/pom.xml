@@ -100,7 +100,7 @@
                     <plugin>
                         <groupId>org.eclipse.jetty</groupId>
                         <artifactId>jetty-maven-plugin</artifactId>
-                        <configuration>
+                        <configuration combine.self="override">
                             <scanIntervalSeconds>-1</scanIntervalSeconds>
                             <stopPort>8081</stopPort>
                             <stopWait>5</stopWait>
@@ -124,18 +124,26 @@
                             <!-- start and stop jetty (running our app) when running integration
                                 tests -->
                             <execution>
-                                <id>start-jetty</id>
+                                <id>start</id>
                                 <phase>pre-integration-test</phase>
                                 <goals>
                                     <goal>start</goal>
                                 </goals>
                             </execution>
                             <execution>
-                                <id>stop-jetty</id>
+                                <id>stop</id>
                                 <phase>post-integration-test</phase>
                                 <goals>
                                     <goal>stop</goal>
                                 </goals>
+                            </execution>
+                            <execution>
+                                <id>start-jetty</id>
+                                <phase>none</phase>
+                            </execution>
+                            <execution>
+                                <id>stop-jetty</id>
+                                <phase>none</phase>
                             </execution>
                         </executions>
                     </plugin>
