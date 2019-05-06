@@ -39,6 +39,7 @@ public class MainView extends Div implements HasUrlParameter<String> {
 
     @Override
     public void setParameter(BeforeEvent event, @WildcardParameter String parameter) {
+        // workaround for https://github.com/vaadin/flow/issues/5509
         new ServerSideEvents();
         removeAll();
         Optional<Component> content = getContentFromParameter(parameter);
