@@ -22,7 +22,6 @@
         <maven.failsafe.plugin.version>2.20</maven.failsafe.plugin.version>
         <maven.war.plugin.version>3.1.0</maven.war.plugin.version>
         <sauce.options>--tunnel-identifier ${maven.build.timestamp}</sauce.options>
-        <jetty.resource.directory>${project.build.directory}/${project.build.finalName}</jetty.resource.directory>
     </properties>
 
     <dependencies>
@@ -142,7 +141,7 @@
                                 <containerIncludeJarPattern>^$</containerIncludeJarPattern>
 
                                 <resourceBases>
-                                    <resourceBase>${jetty.resource.directory}</resourceBase>
+                                    <resourceBase>${project.build.directory}/${project.build.finalName}</resourceBase>
                                 </resourceBases>
                             </webAppConfig>
                         </configuration>

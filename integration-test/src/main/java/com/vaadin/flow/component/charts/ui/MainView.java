@@ -45,8 +45,7 @@ public class MainView extends Div implements HasUrlParameter<String> {
         if (content.isPresent()) {
             add(content.get());
         } else {
-            setText("couldn't find dem"
-                    + "o for url: " + parameter);
+            setText("couldn't find demo for url: " + parameter);
         }
     }
 
