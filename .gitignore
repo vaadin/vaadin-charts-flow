@@ -30,6 +30,7 @@ demo/src/main/webapp/frontend-es6/
 package.json
 package-lock.json
 webpack.config.js
+webpack.generated.js
 node_modules/
 
 # Mac
