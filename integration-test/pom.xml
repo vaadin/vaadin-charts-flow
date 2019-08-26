@@ -35,12 +35,6 @@
             <artifactId>vaadin-lumo-theme</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>com.vaadin</groupId>
-            <artifactId>flow-server-compatibility-mode</artifactId>
-            <version>${flow.version}</version>
-        </dependency>
-
         <!-- TEST SCOPE -->
         <dependency>
             <groupId>com.vaadin</groupId>
