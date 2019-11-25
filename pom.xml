@@ -22,10 +22,33 @@
         <module>addon</module>
         <module>examples</module>
         <module>demo</module>
-        <module>integration-test</module>
-        <module>integration-test/pom-bower-mode.xml</module>
         <module>testbench</module>
     </modules>
+
+    <profiles>
+        <profile>
+            <id>npm-it</id>
+            <activation>
+                <property>
+                    <name>!release</name>
+                </property>
+            </activation>
+            <modules>
+                <module>integration-test</module>
+            </modules>
+        </profile>
+        <profile>
+            <id>bower-it</id>
+            <activation>
+                <property>
+                    <name>!release</name>
+                </property>
+            </activation>
+            <modules>
+                <module>integration-test/pom-bower-mode.xml</module>
+            </modules>
+        </profile>
+    </profiles>
 
     <organization>
         <name>Vaadin Ltd</name>
