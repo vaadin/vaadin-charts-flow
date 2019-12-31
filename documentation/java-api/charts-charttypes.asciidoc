@@ -714,7 +714,7 @@ pane.setBackground(bkg);
 [[charts.charttypes.solidgauge.axis]]
 === Axis Configuration
 
-A gauge only has an Y-axis. You must define the value range ( __min__ and
+A gauge only has an Y-axis. You must define the value range (__min__ and
 __max__).
 
 [source, java]
