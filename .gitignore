@@ -32,6 +32,8 @@ package-lock.json
 webpack.config.js
 webpack.generated.js
 node_modules/
+pnpm-lock.yaml
+tsconfig.json
 
 # Mac
 *.DS_Store

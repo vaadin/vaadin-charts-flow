@@ -83,8 +83,7 @@ public abstract class AbstractTBTest extends ParallelTest {
                 DesiredCapabilities.iphone(),
                 DesiredCapabilities.ipad(),
                 browserFactory.create(Browser.SAFARI, "11.0", Platform.SIERRA),
-                browserFactory.create(Browser.EDGE, "16", Platform.WIN10),
-                browserFactory.create(Browser.IE11, "11", Platform.WIN10)
+                browserFactory.create(Browser.EDGE, "16", Platform.WIN10)
                 );
     }
 
