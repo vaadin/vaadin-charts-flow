@@ -16,7 +16,7 @@
     <name>Vaadin Charts Parent</name>
 
     <inceptionYear>2014</inceptionYear>
-    <description>Parent project for Charts addon, demos and packaging</description>
+    <description>Parent project for Charts addon, examples and packaging</description>
 
     <modules>
         <module>addon</module>
