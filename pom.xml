@@ -27,6 +27,17 @@
 
     <profiles>
         <profile>
+            <id>demo</id>
+            <activation>
+                <property>
+                    <name>!verify</name>
+                </property>
+            </activation>
+            <modules>
+                <module>demo</module>
+            </modules>
+        </profile>
+        <profile>
             <id>npm-it</id>
             <activation>
                 <property>
