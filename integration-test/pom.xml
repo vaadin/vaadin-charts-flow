@@ -19,7 +19,7 @@
 
         <!-- Plugins -->
         <driver.binary.downloader.maven.plugin.version>1.0.14</driver.binary.downloader.maven.plugin.version>
-        <maven.failsafe.plugin.version>2.20</maven.failsafe.plugin.version>
+        <maven.failsafe.plugin.version>2.22.2</maven.failsafe.plugin.version>
         <maven.war.plugin.version>3.1.0</maven.war.plugin.version>
         <sauce.options>--tunnel-identifier ${maven.build.timestamp}</sauce.options>
     </properties>
