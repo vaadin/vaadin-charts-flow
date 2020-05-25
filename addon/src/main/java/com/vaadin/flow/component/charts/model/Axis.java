@@ -21,6 +21,7 @@ import java.util.Date;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.vaadin.flow.component.charts.model.style.Color;
 import com.vaadin.flow.component.charts.util.Util;
 
 public abstract class Axis extends AbstractConfigurationObject {
@@ -224,13 +225,13 @@ public abstract class Axis extends AbstractConfigurationObject {
     /**
      * @see #setAlternateGridColor(Color)
      */
-    public abstract Boolean getAlternateGridColor();
+    public abstract Color getAlternateGridColor();
 
     /**
      * When using an alternate grid color, a band is painted across the plot
      * area between every other grid line.
      */
-    public abstract void setAlternateGridColor(Boolean alternateGridColor);
+    public abstract void setAlternateGridColor(Color alternateGridColor);
 
     /**
      * @see #setCategories(String...)

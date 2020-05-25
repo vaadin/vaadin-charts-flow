@@ -16,6 +16,7 @@ import com.vaadin.flow.component.charts.model.Tooltip;
 import com.vaadin.flow.component.charts.model.VerticalAlign;
 import com.vaadin.flow.component.charts.model.XAxis;
 import com.vaadin.flow.component.charts.model.YAxis;
+import com.vaadin.flow.component.charts.model.style.SolidColor;
 
 public class AreaSpline extends AbstractChartExample {
 
