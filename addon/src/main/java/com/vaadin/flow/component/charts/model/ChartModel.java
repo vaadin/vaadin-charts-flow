@@ -54,6 +54,7 @@ public class ChartModel extends AbstractConfigurationObject {
 	private Number spacingLeft;
 	private Number spacingRight;
 	private Number spacingTop;
+	private Boolean styledMode = Boolean.TRUE;
 	private ChartType type;
 	private String typeDescription;
 	private Number width;
@@ -586,6 +587,24 @@ public class ChartModel extends AbstractConfigurationObject {
 	 */
 	public void setSpacingTop(Number spacingTop) {
 		this.spacingTop = spacingTop;
+	}
+
+	/**
+	 * @see #setStyledMode(Boolean)
+	 */
+	public Boolean getStyledMode() {
+		return styledMode;
+	}
+
+	/**
+	 * <p>
+	 *  Whether to apply styled mode. When in styled mode, no presentational attributes or CSS are applied to the chart SVG. Instead, CSS rules are required to style the chart. The default style sheet is available from https://code.highcharts.com/css/highcharts.css.
+	 * </p>
+     * <p>
+	 * Defaults to true.
+	 */
+	public void setStyledMode(Boolean styledMode) {
+		this.styledMode = styledMode;
 	}
 
 	/**
