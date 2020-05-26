@@ -1,10 +1,10 @@
 package com.vaadin.flow.component.charts.model.style;
 
-/*-
+/*
  * #%L
- * Vaadin Charts for Flow
+ * Vaadin Charts
  * %%
- * Copyright (C) 2014 - 2019 Vaadin Ltd
+ * Copyright (C) 2014 Vaadin Ltd
  * %%
  * This program is available under Commercial Vaadin Add-On License 3.0
  * (CVALv3).
@@ -17,33 +17,20 @@ package com.vaadin.flow.component.charts.model.style;
  * #L%
  */
 
-
 import com.vaadin.flow.component.charts.model.ChartEnum;
 
-/**
- * Font weight used by Style class
- */
-public enum FontWeight implements ChartEnum {
+public enum TickIntervalStyle implements ChartEnum {
 
-    /**
-     * Normal text
-     */
-    NORMAL("normal"),
+    AUTO("auto"), NONE("");
 
-    /**
-     * Bold text
-     */
-    BOLD("bold");
-
-    private String type;
-
-    private FontWeight(String type) {
+    private TickIntervalStyle(String type) {
         this.type = type;
     }
+
+    private String type;
 
     @Override
     public String toString() {
         return type;
     }
-
 }

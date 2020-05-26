@@ -43,6 +43,7 @@ public class PlotLine extends AbstractConfigurationObject {
 	private String id;
 	private Label label;
 	private Number value;
+	private Number width;
 	private Number zIndex;
 
 	public PlotLine() {

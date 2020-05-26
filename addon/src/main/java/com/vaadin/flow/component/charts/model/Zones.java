@@ -18,6 +18,8 @@ package com.vaadin.flow.component.charts.model;
  */
 
 
+import com.vaadin.flow.component.charts.model.style.Color;
+
 import javax.annotation.Generated;
 /**
  * <p>

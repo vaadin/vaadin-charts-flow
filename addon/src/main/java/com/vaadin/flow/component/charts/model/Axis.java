@@ -384,6 +384,26 @@ public abstract class Axis extends AbstractConfigurationObject {
     public abstract void setLabels(Labels labels);
 
     /**
+     * @see #setLineColor(Color)
+     */
+    public abstract Color getLineColor();
+
+    /**
+     * The color of the line marking the axis itself.
+     */
+    public abstract void setLineColor(Color lineColor);
+
+    /**
+     * @see #setLineWidth(Number)
+     */
+    public abstract Number getLineWidth();
+
+    /**
+     * The width of the line marking the axis itself.
+     */
+    public abstract void setLineWidth(Number lineWidth);
+
+    /**
      * @see #setLinkedTo(Number)
      */
     public abstract Number getLinkedTo();

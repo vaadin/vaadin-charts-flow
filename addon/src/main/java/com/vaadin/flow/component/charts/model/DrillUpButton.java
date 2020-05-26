@@ -1,5 +1,6 @@
 package com.vaadin.flow.component.charts.model;
 
+/*
  * #%L
  * Vaadin Charts for Flow
  * %%

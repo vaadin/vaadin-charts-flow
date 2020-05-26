@@ -19,6 +19,7 @@ package com.vaadin.flow.component.charts.model;
 
 
 import javax.annotation.Generated;
+import com.vaadin.flow.component.charts.model.style.Style;
 
 /**
  * Options regarding the chart area and plot area as well as general chart
@@ -30,6 +31,7 @@ public class ChartModel extends AbstractConfigurationObject {
 	private Boolean alignTicks;
 	private Boolean animation;
 	private Number borderRadius;
+	private Number borderWidth;
 	private String className;
 	private Number colorCount;
 	private String description;
@@ -45,15 +47,19 @@ public class ChartModel extends AbstractConfigurationObject {
 	private PanKey panKey;
 	private Boolean panning;
 	private Dimension pinchType;
+	private Number plotBorderWidth;
+	private Boolean plotShadow;
 	private Boolean polar;
 	private Boolean reflow;
 	private ResetZoomButton resetZoomButton;
+	private Boolean shadow;
 	private Boolean showAxes;
 	private Number[] spacing;
 	private Number spacingBottom;
 	private Number spacingLeft;
 	private Number spacingRight;
 	private Number spacingTop;
+	private Style style;
 	private Boolean styledMode = Boolean.TRUE;
 	private ChartType type;
 	private String typeDescription;
@@ -97,11 +103,31 @@ public class ChartModel extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * Set the overall animation for all chart updating. Animation can be
-	 * disabled throughout the chart by setting it to false here
 	 * <p>
-	 * The only animation not affected by this option is the initial series
-	 * animation, see <code>setAnimation</code> method in plot option classes
+	 * Set the overall animation for all chart updating. Animation can be
+	 * disabled throughout the chart by setting it to false here. It can be
+	 * overridden for each individual API method as a function parameter. The
+	 * only animation not affected by this option is the initial series
+	 * animation, see <a class="internal"
+	 * href="#plotOptions.series.animation">plotOptions.series.animation</a>.
+	 * </p>
+	 * 
+	 * <p>
+	 * The animation can either be set as a boolean or a configuration object.
+	 * If <code>true</code>, it will use the 'swing' jQuery easing and a
+	 * duration of 500 ms. If used as a configuration object, the following
+	 * properties are supported:
+	 * </p>
+	 * <dl>
+	 * <dt>duration</dt>
+	 * <dd>The duration of the animation in milliseconds.</dd>
+	 * 
+	 * <dt>easing</dt>
+	 * <dd>A string reference to an easing function set on the <code>Math</code>
+	 * object. See <a href=
+	 * "http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/plotoptions/series-animation-easing/"
+	 * >the easing demo</a>.</dd>
+	 * </dl>
 	 * <p>
 	 * Defaults to: true
 	 */
@@ -123,6 +149,22 @@ public class ChartModel extends AbstractConfigurationObject {
 	 */
 	public void setBorderRadius(Number borderRadius) {
 		this.borderRadius = borderRadius;
+	}
+
+	/**
+	 * @see #setBorderWidth(Number)
+	 */
+	public Number getBorderWidth() {
+		return borderWidth;
+	}
+
+	/**
+	 * The pixel width of the outer chart border.
+	 * <p>
+	 * Defaults to: 0
+	 */
+	public void setBorderWidth(Number borderWidth) {
+		this.borderWidth = borderWidth;
 	}
 
 	/**
@@ -423,6 +465,41 @@ public class ChartModel extends AbstractConfigurationObject {
 	}
 
 	/**
+	 * @see #setPlotBorderWidth(Number)
+	 */
+	public Number getPlotBorderWidth() {
+		return plotBorderWidth;
+	}
+
+	/**
+	 * The pixel width of the plot area border.
+	 * <p>
+	 * Defaults to: 0
+	 */
+	public void setPlotBorderWidth(Number plotBorderWidth) {
+		this.plotBorderWidth = plotBorderWidth;
+	}
+
+	/**
+	 * @see #setPlotShadow(Boolean)
+	 */
+	public Boolean getPlotShadow() {
+		return plotShadow;
+	}
+
+	/**
+	 * Whether to apply a drop shadow to the plot area. Requires that
+	 * plotBackgroundColor be set. The shadow can be an object configuration
+	 * containing <code>color</code>, <code>offsetX</code>, <code>offsetY</code>
+	 * , <code>opacity</code> and <code>width</code>.
+	 * <p>
+	 * Defaults to: false
+	 */
+	public void setPlotShadow(Boolean plotShadow) {
+		this.plotShadow = plotShadow;
+	}
+
+	/**
 	 * @see #setPolar(Boolean)
 	 */
 	public Boolean getPolar() {
@@ -473,6 +550,25 @@ public class ChartModel extends AbstractConfigurationObject {
 	 */
 	public void setResetZoomButton(ResetZoomButton resetZoomButton) {
 		this.resetZoomButton = resetZoomButton;
+	}
+
+	/**
+	 * @see #setShadow(Boolean)
+	 */
+	public Boolean getShadow() {
+		return shadow;
+	}
+
+	/**
+	 * Whether to apply a drop shadow to the outer chart area. Requires that
+	 * backgroundColor be set. The shadow can be an object configuration
+	 * containing <code>color</code>, <code>offsetX</code>, <code>offsetY</code>
+	 * , <code>opacity</code> and <code>width</code>.
+	 * <p>
+	 * Defaults to: false
+	 */
+	public void setShadow(Boolean shadow) {
+		this.shadow = shadow;
 	}
 
 	/**
@@ -590,21 +686,26 @@ public class ChartModel extends AbstractConfigurationObject {
 	}
 
 	/**
-	 * @see #setStyledMode(Boolean)
+	 * @see #setStyle(Style)
 	 */
-	public Boolean getStyledMode() {
-		return styledMode;
+	public Style getStyle() {
+		if (style == null) {
+			style = new Style();
+		}
+		return style;
 	}
 
 	/**
+	 * Additional CSS styles to apply inline to the container <code>div</code>.
+	 * Note that since the default font styles are applied in the renderer, it
+	 * is ignorant of the individual chart options and must be set globally.
 	 * <p>
-	 *  Whether to apply styled mode. When in styled mode, no presentational attributes or CSS are applied to the chart SVG. Instead, CSS rules are required to style the chart. The default style sheet is available from https://code.highcharts.com/css/highcharts.css.
-	 * </p>
-     * <p>
-	 * Defaults to true.
+	 * Defaults to: {"fontFamily":
+	 * "\"Lucida Grande\", \"Lucida Sans Unicode\", Verdana, Arial, Helvetica, sans-serif"
+	 * ,"fontSize":"12px"}
 	 */
-	public void setStyledMode(Boolean styledMode) {
-		this.styledMode = styledMode;
+	public void setStyle(Style style) {
+		this.style = style;
 	}
 
 	/**
