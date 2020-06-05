@@ -17,7 +17,10 @@ package com.vaadin.flow.component.charts;
  * #L%
  */
 
+import java.io.Serializable;
 import java.util.Arrays;
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.List;
 
 import com.vaadin.flow.component.AttachEvent;
@@ -56,10 +59,13 @@ import com.vaadin.flow.component.charts.events.SeriesShowEvent;
 import com.vaadin.flow.component.charts.events.XAxesExtremesSetEvent;
 import com.vaadin.flow.component.charts.events.YAxesExtremesSetEvent;
 import com.vaadin.flow.component.charts.events.internal.ConfigurationChangeListener;
+import com.vaadin.flow.component.charts.model.AbstractConfigurationObject;
 import com.vaadin.flow.component.charts.model.ChartType;
 import com.vaadin.flow.component.charts.model.Configuration;
 import com.vaadin.flow.component.charts.model.DataSeries;
 import com.vaadin.flow.component.charts.model.DataSeriesItem;
+import com.vaadin.flow.component.charts.model.DrilldownCallback;
+import com.vaadin.flow.component.charts.model.DrilldownCallback.DrilldownDetails;
 import com.vaadin.flow.component.charts.model.Series;
 import com.vaadin.flow.component.charts.util.ChartSerialization;
 import com.vaadin.flow.component.dependency.JsModule;
@@ -67,6 +73,7 @@ import com.vaadin.flow.component.dependency.NpmPackage;
 import com.vaadin.flow.shared.Registration;
 
 import elemental.json.JsonObject;
+import elemental.json.JsonValue;
 import elemental.json.impl.JreJsonFactory;
 
 @Tag("vaadin-chart")
@@ -87,11 +94,17 @@ public class Chart extends Component implements HasStyle, HasSize {
             ChartType.PIE, ChartType.GAUGE, ChartType.SOLIDGAUGE, ChartType.PYRAMID,
             ChartType.FUNNEL);
 
+    private final DrilldownHandler drilldownHandler = new DrilldownHandler();
+
+    private DrilldownCallback drilldownCallback;
+
     /**
      * Creates a new chart with default configuration
      */
     public Chart() {
         configuration = new Configuration();
+        addDrilldownListener(drilldownHandler::onDrilldown);
+        addChartDrillupListener(drilldownHandler::onDrillup);
     }
 
     /**
@@ -236,6 +249,14 @@ public class Chart extends Component implements HasStyle, HasSize {
         if(getElement().getNode().isAttached()) {
             getUI().ifPresent(ui -> beforeClientResponse(ui, true));
         }
+    }
+
+    public DrilldownCallback getDrilldownCallback() {
+        return drilldownCallback;
+    }
+
+    public void setDrilldownCallback(DrilldownCallback drilldownCallback) {
+        this.drilldownCallback = drilldownCallback;
     }
 
     /**
@@ -561,6 +582,65 @@ public class Chart extends Component implements HasStyle, HasSize {
     public Registration addYAxesExtremesSetListener(
             ComponentEventListener<YAxesExtremesSetEvent> listener) {
         return addListener(YAxesExtremesSetEvent.class, listener);
+    }
+
+    private class DrilldownHandler implements Serializable {
+        private final Deque<Series> stack = new LinkedList<>();
+
+        private void onDrilldown(DrilldownEvent details) {
+            if (getDrilldownCallback() == null) {
+                return;
+            }
+            final int seriesIndex = details.getSeriesItemIndex();
+            final int pointIndex = details.getItemIndex();
+            final Series series = resolveSeriesFor(seriesIndex);
+            DataSeriesItem item = null;
+            if (series instanceof DataSeries) {
+                DataSeries dataSeries = (DataSeries) series;
+                item = dataSeries.get(pointIndex);
+            }
+            final DrilldownDetails chartDrilldownEvent = new DrilldownDetails(
+                Chart.this, series, item, pointIndex);
+
+            Series drilldownSeries = getDrilldownCallback()
+                .handleDrilldown(chartDrilldownEvent);
+            if (drilldownSeries != null) {
+                stack.push(drilldownSeries);
+                callClientSideAddSeriesAsDrilldown(seriesIndex, pointIndex,
+                    drilldownSeries);
+            }
+        }
+
+        private void onDrillup(ChartDrillupEvent e) {
+            stack.pop();
+        }
+
+        private void callClientSideAddSeriesAsDrilldown(int seriesIndex,
+            int pointIndex, Series drilldownSeries) {
+            final String JS = "this.__callChartFunction($0, this.configuration.series[$1].data[$2], $3)";
+            wrapJSExpressionInTryCatchWrapper(JS, "addSeriesAsDrilldown", seriesIndex, pointIndex,
+                toJsonValue((AbstractConfigurationObject) drilldownSeries));
+        }
+
+        private void wrapJSExpressionInTryCatchWrapper(String expression, Serializable... args) {
+            final String JS = String.format(
+                "const f = function(){return %s;}.bind(this);"
+                    + "return Vaadin.Flow.tryCatchWrapper(f, 'Vaadin Charts', 'vaadin-charts-flow')();",
+                expression);
+            getElement().executeJs(JS, args);
+        }
+
+        private JsonValue toJsonValue(AbstractConfigurationObject series) {
+            return getJsonFactory().parse(ChartSerialization.toJSON(series));
+        }
+
+        private Series resolveSeriesFor(int seriesIndex) {
+            if (stack.isEmpty()) {
+                return getConfiguration().getSeries().get(seriesIndex);
+            } else {
+                return stack.peek();
+            }
+        }
     }
 
 }

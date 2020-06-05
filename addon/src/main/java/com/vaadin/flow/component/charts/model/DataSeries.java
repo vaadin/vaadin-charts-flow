@@ -226,6 +226,14 @@ public class DataSeries extends AbstractSeries {
         addSeriesToDrilldownConfiguration(series);
     }
 
+    public void addDrilldownToItem(DataSeriesItem item, Series series) {
+        if (series.getId() == null) {
+            throw new IllegalArgumentException("Series ID may not be null");
+        }
+        item.setDrilldown(series.getId());
+        addSeriesToDrilldownConfiguration(series);
+    }
+
     /**
      * Adds a new item to the series data and enables drilldown for it. Used for
      * lazy loading drilldown. Using async drilldown requires setting
