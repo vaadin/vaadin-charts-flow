@@ -52,11 +52,13 @@ public class PlotOptionsCandlestick extends OhlcOptions {
 	private Boolean grouping;
 	private ArrayList<String> keys;
 	private Number legendIndex;
+	private Color lineColor;
+	private Number lineWidth;
 	private String linkedTo;
 	private Number maxPointWidth;
 	private Number minPointLength;
 	private PlotOptionsSeries navigatorOptions;
-	private boolean negativeColor;
+	private Color negativeColor;
 	private String _fn_pointDescriptionFormatter;
 	private Number pointInterval;
 	private IntervalUnit pointIntervalUnit;
@@ -198,7 +200,7 @@ public class PlotOptionsCandlestick extends OhlcOptions {
 
 	/**
 	 * Adds color to the colors array
-	 * 
+	 *
 	 * @param color
 	 *            to add
 	 * @see #setColors(Color...)
@@ -212,7 +214,7 @@ public class PlotOptionsCandlestick extends OhlcOptions {
 
 	/**
 	 * Removes first occurrence of color in colors array
-	 * 
+	 *
 	 * @param color
 	 *            to remove
 	 * @see #setColors(Color...)
@@ -474,7 +476,7 @@ public class PlotOptionsCandlestick extends OhlcOptions {
 
 	/**
 	 * Adds key to the keys array
-	 * 
+	 *
 	 * @param key
 	 *            to add
 	 * @see #setKeys(String...)
@@ -488,7 +490,7 @@ public class PlotOptionsCandlestick extends OhlcOptions {
 
 	/**
 	 * Removes first occurrence of key in keys array
-	 * 
+	 *
 	 * @param key
 	 *            to remove
 	 * @see #setKeys(String...)
@@ -511,6 +513,57 @@ public class PlotOptionsCandlestick extends OhlcOptions {
 	 */
 	public void setLegendIndex(Number legendIndex) {
 		this.legendIndex = legendIndex;
+	}
+
+	/**
+	 * @see #setLineColor(Color)
+	 */
+	public Color getLineColor() {
+		return lineColor;
+	}
+
+	/**
+	 * <p>
+	 * The color of the line/border of the candlestick.
+	 * </p>
+	 *
+	 * <p>
+	 * In <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>, the line stroke can be set with the
+	 * <code>.highcharts-candlestick-series .highcahrts-point</code> rule.
+	 * </p>
+	 * <p>
+	 * Defaults to: #000000
+	 */
+	public void setLineColor(Color lineColor) {
+		this.lineColor = lineColor;
+	}
+
+	/**
+	 * @see #setLineWidth(Number)
+	 */
+	public Number getLineWidth() {
+		return lineWidth;
+	}
+
+	/**
+	 * <p>
+	 * The pixel width of the candlestick line/border. Defaults to
+	 * <code>1</code>.
+	 * </p>
+	 *
+	 * <p>
+	 * In <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>, the line stroke width can be set with the
+	 * <code>.highcharts-candlestick-series .highcahrts-point</code> rule.
+	 * </p>
+	 * <p>
+	 * Defaults to: 1
+	 */
+	public void setLineWidth(Number lineWidth) {
+		this.lineWidth = lineWidth;
 	}
 
 	/**
@@ -582,7 +635,7 @@ public class PlotOptionsCandlestick extends OhlcOptions {
 	 * class="internal" href="#plotOptions.series">plotOptions</a> and <a
 	 * class="internal" href="#series">series</a>.
 	 * </p>
-	 * 
+	 *
 	 * <p>
 	 * These options are merged with options in <a
 	 * href="#navigator.series">navigator.series</a>, and will take precedence
@@ -596,19 +649,19 @@ public class PlotOptionsCandlestick extends OhlcOptions {
 	}
 
 	/**
-	 * @see #setNegativeColor(boolean)
+	 * @see #setNegativeColor(Color)
 	 */
-	public boolean isNegativeColor() {
+	public Color getNegativeColor() {
 		return negativeColor;
 	}
 
 	/**
-	 * Enable or disable the color for parts of the graph that are bellow
-	 * {@link #getThreshold()}. A negative color is applied by setting this
-	 * option to <code>true</code> combined with the
-	 * <code>.highcharts-negative</code> class name.
+	 * The color for the parts of the graph or points that are below the <a
+	 * href="#plotOptions.series.threshold">threshold</a>.
+	 * <p>
+	 * Defaults to: null
 	 */
-	public void setNegativeColor(boolean negativeColor) {
+	public void setNegativeColor(Color negativeColor) {
 		this.negativeColor = negativeColor;
 	}
 
@@ -898,7 +951,7 @@ public class PlotOptionsCandlestick extends OhlcOptions {
 	 * plane (or <a href="#plotOptions.series.threshold">threshold</a> option)
 	 * unless the data actually crosses the plane.
 	 * </p>
-	 * 
+	 *
 	 * <p>
 	 * For example, if <code>softThreshold</code> is <code>false</code>, a
 	 * series of 0, 1, 2, 3 will make the Y axis show negative values according
@@ -1020,7 +1073,7 @@ public class PlotOptionsCandlestick extends OhlcOptions {
 	 * <p>
 	 * The fill color of the candlestick when values are rising.
 	 * </p>
-	 * 
+	 *
 	 * <p>
 	 * In <a href=
 	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
@@ -1101,7 +1154,7 @@ public class PlotOptionsCandlestick extends OhlcOptions {
 	 * axis, Y axis or Z axis for bubbles, according to the
 	 * <code>zoneAxis</code> option.
 	 * </p>
-	 * 
+	 *
 	 * <p>
 	 * In <a href=
 	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
@@ -1118,7 +1171,7 @@ public class PlotOptionsCandlestick extends OhlcOptions {
 
 	/**
 	 * Adds zone to the zones array
-	 * 
+	 *
 	 * @param zone
 	 *            to add
 	 * @see #setZones(Zones...)
@@ -1132,7 +1185,7 @@ public class PlotOptionsCandlestick extends OhlcOptions {
 
 	/**
 	 * Removes first occurrence of zone in zones array
-	 * 
+	 *
 	 * @param zone
 	 *            to remove
 	 * @see #setZones(Zones...)

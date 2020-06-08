@@ -52,9 +52,10 @@ public class PlotOptionsErrorbar extends AbstractPlotOptions {
 	private Boolean getExtremesFromAll;
 	private Number groupZPadding;
 	private ArrayList<String> keys;
+	private Number lineWidth;
 	private String linkedTo;
 	private Number maxPointWidth;
-	private boolean negativeColor;
+	private Color negativeColor;
 	private String _fn_pointDescriptionFormatter;
 	private Number pointInterval;
 	private IntervalUnit pointIntervalUnit;
@@ -475,6 +476,26 @@ public class PlotOptionsErrorbar extends AbstractPlotOptions {
 	}
 
 	/**
+	 * @see #setLineWidth(Number)
+	 */
+	public Number getLineWidth() {
+		return lineWidth;
+	}
+
+	/**
+	 * The width of the line surrounding the box. If any of <a
+	 * href="#plotOptions.boxplot.stemWidth">stemWidth</a>, <a
+	 * href="#plotOptions.boxplot.medianWidth">medianWidth</a> or <a
+	 * href="#plotOptions.boxplot.whiskerWidth">whiskerWidth</a> are
+	 * <code>null</code>, the lineWidth also applies to these lines.
+	 * <p>
+	 * Defaults to: 1
+	 */
+	public void setLineWidth(Number lineWidth) {
+		this.lineWidth = lineWidth;
+	}
+
+	/**
 	 * @see #setLinkedTo(String)
 	 */
 	public String getLinkedTo() {
@@ -510,19 +531,19 @@ public class PlotOptionsErrorbar extends AbstractPlotOptions {
 	}
 
 	/**
-	 * @see #setNegativeColor(boolean)
+	 * @see #setNegativeColor(Color)
 	 */
-	public boolean isNegativeColor() {
+	public Color getNegativeColor() {
 		return negativeColor;
 	}
 
 	/**
-	 * Enable or disable the color for parts of the graph that are bellow
-	 * {@link #getThreshold()}. A negative color is applied by setting this
-	 * option to <code>true</code> combined with the
-	 * <code>.highcharts-negative</code> class name.
+	 * The color for the parts of the graph or points that are below the <a
+	 * href="#plotOptions.series.threshold">threshold</a>.
+	 * <p>
+	 * Defaults to: null
 	 */
-	public void setNegativeColor(boolean negativeColor) {
+	public void setNegativeColor(Color negativeColor) {
 		this.negativeColor = negativeColor;
 	}
 

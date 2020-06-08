@@ -23,6 +23,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.time.Instant;
+
+import com.vaadin.flow.component.charts.model.style.Color;
 import com.vaadin.flow.component.charts.util.Util;
 
 @Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/vaadin-charts-flow/issues/new")
@@ -37,6 +39,7 @@ public class PlotOptionsLine extends PointOptions {
 	private Boolean connectNulls;
 	private Number cropThreshold;
 	private Cursor cursor;
+	private DashStyle dashStyle;
 	private DataLabels dataLabels;
 	private String description;
 	private Boolean enableMouseTracking;
@@ -44,10 +47,11 @@ public class PlotOptionsLine extends PointOptions {
 	private Dimension findNearestPointBy;
 	private Boolean getExtremesFromAll;
 	private ArrayList<String> keys;
+	private Number lineWidth;
 	private String linecap;
 	private String linkedTo;
 	private Marker marker;
-	private boolean negativeColor;
+	private Color negativeColor;
 	private String _fn_pointDescriptionFormatter;
 	private Number pointInterval;
 	private IntervalUnit pointIntervalUnit;
@@ -244,6 +248,38 @@ public class PlotOptionsLine extends PointOptions {
 	}
 
 	/**
+	 * @see #setDashStyle(DashStyle)
+	 */
+	public DashStyle getDashStyle() {
+		return dashStyle;
+	}
+
+	/**
+	 * A name for the dash style to use for the graph. Applies only to series
+	 * type having a graph, like <code>line</code>, <code>spline</code>,
+	 * <code>area</code> and <code>scatter</code> in case it has a
+	 * <code>lineWidth</code>. The value for the <code>dashStyle</code> include:
+	 * <ul>
+	 * <li>Solid</li>
+	 * <li>ShortDash</li>
+	 * <li>ShortDot</li>
+	 * <li>ShortDashDot</li>
+	 * <li>ShortDashDotDot</li>
+	 * <li>Dot</li>
+	 * <li>Dash</li>
+	 * <li>LongDash</li>
+	 * <li>DashDot</li>
+	 * <li>LongDashDot</li>
+	 * <li>LongDashDotDot</li>
+	 * </ul>
+	 * <p>
+	 * Defaults to: Solid
+	 */
+	public void setDashStyle(DashStyle dashStyle) {
+		this.dashStyle = dashStyle;
+	}
+
+	/**
 	 * @see #setDataLabels(DataLabels)
 	 */
 	public DataLabels getDataLabels() {
@@ -426,6 +462,22 @@ public class PlotOptionsLine extends PointOptions {
 	}
 
 	/**
+	 * @see #setLineWidth(Number)
+	 */
+	public Number getLineWidth() {
+		return lineWidth;
+	}
+
+	/**
+	 * Pixel with of the graph line.
+	 * <p>
+	 * Defaults to: 2
+	 */
+	public void setLineWidth(Number lineWidth) {
+		this.lineWidth = lineWidth;
+	}
+
+	/**
 	 * @see #setLinecap(String)
 	 */
 	public String getLinecap() {
@@ -490,19 +542,19 @@ public class PlotOptionsLine extends PointOptions {
 	}
 
 	/**
-	 * @see #setNegativeColor(boolean)
+	 * @see #setNegativeColor(Color)
 	 */
-	public boolean isNegativeColor() {
+	public Color getNegativeColor() {
 		return negativeColor;
 	}
 
 	/**
-	 * Enable or disable the color for parts of the graph that are bellow
-	 * {@link #getThreshold()}. A negative color is applied by setting this
-	 * option to <code>true</code> combined with the
-	 * <code>.highcharts-negative</code> class name.
+	 * The color for the parts of the graph or points that are below the <a
+	 * href="#plotOptions.series.threshold">threshold</a>.
+	 * <p>
+	 * Defaults to: null
 	 */
-	public void setNegativeColor(boolean negativeColor) {
+	public void setNegativeColor(Color negativeColor) {
 		this.negativeColor = negativeColor;
 	}
 

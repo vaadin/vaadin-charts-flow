@@ -38,6 +38,7 @@ public class PlotOptionsAreaspline extends AreaOptions {
 	private Boolean connectNulls;
 	private Number cropThreshold;
 	private Cursor cursor;
+	private DashStyle dashStyle;
 	private DataLabels dataLabels;
 	private String description;
 	private Boolean enableMouseTracking;
@@ -47,10 +48,13 @@ public class PlotOptionsAreaspline extends AreaOptions {
 	private Dimension findNearestPointBy;
 	private Boolean getExtremesFromAll;
 	private ArrayList<String> keys;
+	private Color lineColor;
+	private Number lineWidth;
 	private String linecap;
 	private String linkedTo;
 	private Marker marker;
-	private boolean negativeColor;
+	private Color negativeColor;
+	private Color negativeFillColor;
 	private String _fn_pointDescriptionFormatter;
 	private Number pointInterval;
 	private IntervalUnit pointIntervalUnit;
@@ -244,6 +248,38 @@ public class PlotOptionsAreaspline extends AreaOptions {
 	 */
 	public void setCursor(Cursor cursor) {
 		this.cursor = cursor;
+	}
+
+	/**
+	 * @see #setDashStyle(DashStyle)
+	 */
+	public DashStyle getDashStyle() {
+		return dashStyle;
+	}
+
+	/**
+	 * A name for the dash style to use for the graph. Applies only to series
+	 * type having a graph, like <code>line</code>, <code>spline</code>,
+	 * <code>area</code> and <code>scatter</code> in case it has a
+	 * <code>lineWidth</code>. The value for the <code>dashStyle</code> include:
+	 * <ul>
+	 * <li>Solid</li>
+	 * <li>ShortDash</li>
+	 * <li>ShortDot</li>
+	 * <li>ShortDashDot</li>
+	 * <li>ShortDashDotDot</li>
+	 * <li>Dot</li>
+	 * <li>Dash</li>
+	 * <li>LongDash</li>
+	 * <li>DashDot</li>
+	 * <li>LongDashDot</li>
+	 * <li>LongDashDotDot</li>
+	 * </ul>
+	 * <p>
+	 * Defaults to: Solid
+	 */
+	public void setDashStyle(DashStyle dashStyle) {
+		this.dashStyle = dashStyle;
 	}
 
 	/**
@@ -465,6 +501,39 @@ public class PlotOptionsAreaspline extends AreaOptions {
 	}
 
 	/**
+	 * @see #setLineColor(Color)
+	 */
+	public Color getLineColor() {
+		return lineColor;
+	}
+
+	/**
+	 * A separate color for the graph line. By default the line takes the
+	 * <code>color</code> of the series, but the lineColor setting allows
+	 * setting a separate color for the line without altering the
+	 * <code>fillColor</code>.
+	 */
+	public void setLineColor(Color lineColor) {
+		this.lineColor = lineColor;
+	}
+
+	/**
+	 * @see #setLineWidth(Number)
+	 */
+	public Number getLineWidth() {
+		return lineWidth;
+	}
+
+	/**
+	 * Pixel with of the graph line.
+	 * <p>
+	 * Defaults to: 2
+	 */
+	public void setLineWidth(Number lineWidth) {
+		this.lineWidth = lineWidth;
+	}
+
+	/**
 	 * @see #setLinecap(String)
 	 */
 	public String getLinecap() {
@@ -529,20 +598,34 @@ public class PlotOptionsAreaspline extends AreaOptions {
 	}
 
 	/**
-	 * @see #setNegativeColor(boolean)
+	 * @see #setNegativeColor(Color)
 	 */
-	public boolean isNegativeColor() {
+	public Color getNegativeColor() {
 		return negativeColor;
 	}
 
 	/**
-	 * Enable or disable the color for parts of the graph that are bellow
-	 * {@link #getThreshold()}. A negative color is applied by setting this
-	 * option to <code>true</code> combined with the
-	 * <code>.highcharts-negative</code> class name.
+	 * The color for the parts of the graph or points that are below the <a
+	 * href="#plotOptions.series.threshold">threshold</a>.
+	 * <p>
+	 * Defaults to: null
 	 */
-	public void setNegativeColor(boolean negativeColor) {
+	public void setNegativeColor(Color negativeColor) {
 		this.negativeColor = negativeColor;
+	}
+
+	/**
+	 * @see #setNegativeFillColor(Color)
+	 */
+	public Color getNegativeFillColor() {
+		return negativeFillColor;
+	}
+
+	/**
+	 * A separate color for the negative part of the area.
+	 */
+	public void setNegativeFillColor(Color negativeFillColor) {
+		this.negativeFillColor = negativeFillColor;
 	}
 
 	public String getPointDescriptionFormatter() {

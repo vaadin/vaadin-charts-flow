@@ -166,7 +166,7 @@ public abstract class Axis extends AbstractConfigurationObject {
      *            Whether or not to animate the rescaling.
      */
     public void setExtremes(Number minimum, Number maximum, boolean redraw,
-                            boolean animate) {
+            boolean animate) {
         min = minimum;
         max = maximum;
         if (configuration != null) {
@@ -181,12 +181,12 @@ public abstract class Axis extends AbstractConfigurationObject {
      * @see #setExtremes(Number, Number, boolean, boolean)
      */
     public void setExtremes(Date minimum, Date maximum, boolean redraw,
-                            boolean animate) {
+        boolean animate) {
         setMin(minimum);
         setMax(maximum);
         if (configuration != null) {
             configuration.fireAxesRescaled(this, min, max, redraw,
-                    animate);
+                animate);
         }
     }
 
@@ -319,7 +319,7 @@ public abstract class Axis extends AbstractConfigurationObject {
      * dateFormat.
      */
     public abstract void setDateTimeLabelFormats(
-            DateTimeLabelFormats dateTimeLabelFormats);
+        DateTimeLabelFormats dateTimeLabelFormats);
 
     /**
      * @see #setDescription(String)
@@ -730,6 +730,16 @@ public abstract class Axis extends AbstractConfigurationObject {
      * </p>
      */
     public abstract void setTickAmount(Number tickAmount);
+
+    /**
+     * @see #setTickColor(Color)
+     */
+    public abstract Color getTickColor();
+
+    /**
+     * Color for the main tick marks.
+     */
+    public abstract void setTickColor(Color tickColor);
 
     /**
      * @see #setTickInterval(Number)

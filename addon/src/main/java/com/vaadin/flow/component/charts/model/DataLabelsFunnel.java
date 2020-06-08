@@ -25,6 +25,8 @@ import com.vaadin.flow.component.charts.model.style.Color;
 @Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/vaadin-charts-flow/issues/new")
 public class DataLabelsFunnel extends AbstractDataLabels {
 
+	private Number borderRadius;
+	private Number borderWidth;
 	private String className;
 	private Color connectorColor;
 	private Number connectorPadding;
@@ -49,6 +51,38 @@ public class DataLabelsFunnel extends AbstractDataLabels {
 	private Number zIndex;
 
 	public DataLabelsFunnel() {
+	}
+
+	/**
+	 * @see #setBorderRadius(Number)
+	 */
+	public Number getBorderRadius() {
+		return borderRadius;
+	}
+
+	/**
+	 * The border radius in pixels for the data label.
+	 * <p>
+	 * Defaults to: 0
+	 */
+	public void setBorderRadius(Number borderRadius) {
+		this.borderRadius = borderRadius;
+	}
+
+	/**
+	 * @see #setBorderWidth(Number)
+	 */
+	public Number getBorderWidth() {
+		return borderWidth;
+	}
+
+	/**
+	 * The border width in pixels for the data label.
+	 * <p>
+	 * Defaults to: 0
+	 */
+	public void setBorderWidth(Number borderWidth) {
+		this.borderWidth = borderWidth;
 	}
 
 	/**

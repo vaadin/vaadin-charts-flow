@@ -320,6 +320,16 @@ public abstract class OhlcOptions extends AbstractPlotOptions {
     public abstract void setLegendIndex(Number legendIndex);
 
     /**
+     * @see #setLineWidth(Number)
+     */
+    public abstract Number getLineWidth();
+
+    /**
+     * The pixel width of the candlestick line/border.
+     */
+    public abstract void setLineWidth(Number lineWidth);
+
+    /**
      * @see #setLinkedTo(String)
      */
     public abstract String getLinkedTo();

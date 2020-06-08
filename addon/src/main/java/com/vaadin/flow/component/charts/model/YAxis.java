@@ -79,6 +79,7 @@ public class YAxis extends Axis {
 	private Number startOfWeek;
 	private Boolean startOnTick;
 	private Number tickAmount;
+	private Color tickColor;
 	private Number tickInterval;
 	private Number tickLength;
 	private Number tickPixelInterval;
@@ -1016,6 +1017,31 @@ public class YAxis extends Axis {
 	 */
 	public void setTickAmount(Number tickAmount) {
 		this.tickAmount = tickAmount;
+	}
+
+	/**
+	 * @see #setTickColor(Color)
+	 */
+	public Color getTickColor() {
+		return tickColor;
+	}
+
+	/**
+	 * <p>
+	 * Color for the main tick marks.
+	 * </p>
+	 *
+	 * <p>
+	 * In <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>, the stroke is given in the
+	 * <code>.highcharts-tick</code> class.
+	 * </p>
+	 * <p>
+	 * Defaults to: #ccd6eb
+	 */
+	public void setTickColor(Color tickColor) {
+		this.tickColor = tickColor;
 	}
 
 	/**
