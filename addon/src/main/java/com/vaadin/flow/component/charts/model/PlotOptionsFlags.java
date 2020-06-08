@@ -19,10 +19,9 @@ package com.vaadin.flow.component.charts.model;
 
 
 import javax.annotation.Generated;
+import com.vaadin.flow.component.charts.model.style.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
-
-import com.vaadin.flow.component.charts.model.style.Color;
 import com.vaadin.flow.component.charts.model.style.Style;
 
 /**
@@ -34,6 +33,7 @@ public class PlotOptionsFlags extends AbstractPlotOptions {
 	private Boolean allowPointSelect;
 	private Number animationLimit;
 	private String className;
+	private Color color;
 	private Number colorIndex;
 	private ArrayList<Color> colors;
 	private Number compareBase;
@@ -136,6 +136,37 @@ public class PlotOptionsFlags extends AbstractPlotOptions {
 	}
 
 	/**
+	 * @see #setColor(Color)
+	 */
+	public Color getColor() {
+		return color;
+	}
+
+	/**
+	 * <p>
+	 * The main color of the series. In line type series it applies to the line
+	 * and the point markers unless otherwise specified. In bar type series it
+	 * applies to the bars unless a color is specified per point. The default
+	 * value is pulled from the <code>options.colors</code> array.
+	 * </p>
+	 * 
+	 * <p>
+	 * In <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>, the color can be defined by the <a
+	 * href="#plotOptions.series.colorIndex">colorIndex</a> option. Also, the
+	 * series color can be set with the <code>.highcharts-series</code>,
+	 * <code>.highcharts-color-{n}</code>,
+	 * <code>.highcharts-{type}-series</code> or
+	 * <code>.highcharts-series-{n}</code> class, or individual classes given by
+	 * the <code>className</code> option.
+	 * </p>
+	 */
+	public void setColor(Color color) {
+		this.color = color;
+	}
+
+	/**
 	 * @see #setColorIndex(Number)
 	 */
 	public Number getColorIndex() {
@@ -176,7 +207,7 @@ public class PlotOptionsFlags extends AbstractPlotOptions {
 
 	/**
 	 * Adds color to the colors array
-	 *
+	 * 
 	 * @param color
 	 *            to add
 	 * @see #setColors(Color...)
@@ -454,7 +485,7 @@ public class PlotOptionsFlags extends AbstractPlotOptions {
 	 * <p>
 	 * The color of the line/border of the flag.
 	 * </p>
-	 *
+	 * 
 	 * <p>
 	 * In <a href=
 	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"

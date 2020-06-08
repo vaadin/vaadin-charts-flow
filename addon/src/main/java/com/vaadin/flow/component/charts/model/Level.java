@@ -20,6 +20,7 @@ package com.vaadin.flow.component.charts.model;
 
 import javax.annotation.Generated;
 import com.vaadin.flow.component.charts.model.style.Color;
+
 /**
  * Set options on specific levels. Takes precedence over series options, but not
  * point options.

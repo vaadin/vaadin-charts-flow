@@ -18,9 +18,8 @@ package com.vaadin.flow.component.charts.model;
  */
 
 
-import com.vaadin.flow.component.charts.model.style.Color;
-
 import javax.annotation.Generated;
+import com.vaadin.flow.component.charts.model.style.Color;
 
 /**
  * Options for the hovered series
@@ -101,7 +100,7 @@ public class Hover extends AbstractConfigurationObject {
 	 * 0.25. The halo can be disabled by setting the <code>halo</code> option to
 	 * <code>false</code>.
 	 * </p>
-	 *
+	 * 
 	 * <p>
 	 * In <a href=
 	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
@@ -237,7 +236,7 @@ public class Hover extends AbstractConfigurationObject {
 	 * How much to brighten the point on interaction. Requires the main color to
 	 * be defined in hex or rgb(a) format.
 	 * </p>
-	 *
+	 * 
 	 * <p>
 	 * In <a href=
 	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
