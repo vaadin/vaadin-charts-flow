@@ -118,6 +118,13 @@ public class Chart extends Component implements HasStyle, HasSize {
         getConfiguration().getChart().setType(type);
     }
 
+    static String wrapJSExpressionInTryCatchWrapper(String expression) {
+        return String.format(
+            "const f = function(){return %s;}.bind(this);"
+                + "return Vaadin.Flow.tryCatchWrapper(f, 'Vaadin Charts', 'vaadin-charts-flow')();",
+            expression);
+    }
+
     @Override
     protected void onAttach(AttachEvent attachEvent) {
         super.onAttach(attachEvent);
@@ -618,16 +625,9 @@ public class Chart extends Component implements HasStyle, HasSize {
         private void callClientSideAddSeriesAsDrilldown(int seriesIndex,
             int pointIndex, Series drilldownSeries) {
             final String JS = "this.__callChartFunction($0, this.configuration.series[$1].data[$2], $3)";
-            wrapJSExpressionInTryCatchWrapper(JS, "addSeriesAsDrilldown", seriesIndex, pointIndex,
+            getElement().executeJs(wrapJSExpressionInTryCatchWrapper(JS),
+                "addSeriesAsDrilldown", seriesIndex, pointIndex,
                 toJsonValue((AbstractConfigurationObject) drilldownSeries));
-        }
-
-        private void wrapJSExpressionInTryCatchWrapper(String expression, Serializable... args) {
-            final String JS = String.format(
-                "const f = function(){return %s;}.bind(this);"
-                    + "return Vaadin.Flow.tryCatchWrapper(f, 'Vaadin Charts', 'vaadin-charts-flow')();",
-                expression);
-            getElement().executeJs(JS, args);
         }
 
         private JsonValue toJsonValue(AbstractConfigurationObject series) {
