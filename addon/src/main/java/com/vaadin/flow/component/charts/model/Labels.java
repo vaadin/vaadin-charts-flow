@@ -18,9 +18,8 @@ package com.vaadin.flow.component.charts.model;
  */
 
 
-import com.vaadin.flow.component.charts.model.style.Style;
-
 import javax.annotation.Generated;
+import com.vaadin.flow.component.charts.model.style.Style;
 
 @Generated(value = "This class is generated and shouldn't be modified", comments = "Incorrect and missing API should be reported to https://github.com/vaadin/vaadin-charts-flow/issues/new")
 public class Labels extends AbstractConfigurationObject {
@@ -228,7 +227,7 @@ public class Labels extends AbstractConfigurationObject {
 	 * To show only every <em>n</em>'th label on the axis, set the step to
 	 * <em>n</em>. Setting the step to 2 shows every other label.
 	 * </p>
-	 *
+	 * 
 	 * <p>
 	 * By default, the step is calculated automatically to avoid overlap. To
 	 * prevent this, set it to 1. This usually only happens on a category axis,
@@ -257,7 +256,7 @@ public class Labels extends AbstractConfigurationObject {
 	 * prevent wrapping of category labels. Use
 	 * <code>textOverflow: 'none'</code> to prevent ellipsis (dots).
 	 * </p>
-	 *
+	 * 
 	 * <p>
 	 * In <a href=
 	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"

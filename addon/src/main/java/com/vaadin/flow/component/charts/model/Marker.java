@@ -18,9 +18,8 @@ package com.vaadin.flow.component.charts.model;
  */
 
 
-import com.vaadin.flow.component.charts.model.style.Color;
-
 import javax.annotation.Generated;
+import com.vaadin.flow.component.charts.model.style.Color;
 
 /**
  * In Highcharts 1.0, the appearance of all markers belonging to the hovered

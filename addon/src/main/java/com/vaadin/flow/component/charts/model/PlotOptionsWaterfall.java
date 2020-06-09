@@ -39,6 +39,7 @@ public class PlotOptionsWaterfall extends ColumnOptions {
 	private Number borderRadius;
 	private Number borderWidth;
 	private String className;
+	private Color color;
 	private Boolean colorByPoint;
 	private Number colorIndex;
 	private ArrayList<Color> colors;
@@ -157,7 +158,7 @@ public class PlotOptionsWaterfall extends ColumnOptions {
 	 * <p>
 	 * The color of the border of each waterfall column.
 	 * </p>
-	 *
+	 * 
 	 * <p>
 	 * In <a href=
 	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
@@ -198,7 +199,7 @@ public class PlotOptionsWaterfall extends ColumnOptions {
 	 * <p>
 	 * The width of the border surrounding each column or bar.
 	 * </p>
-	 *
+	 * 
 	 * <p>
 	 * In <a href=
 	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
@@ -224,6 +225,37 @@ public class PlotOptionsWaterfall extends ColumnOptions {
 	 */
 	public void setClassName(String className) {
 		this.className = className;
+	}
+
+	/**
+	 * @see #setColor(Color)
+	 */
+	public Color getColor() {
+		return color;
+	}
+
+	/**
+	 * <p>
+	 * The main color or the series. In line type series it applies to the line
+	 * and the point markers unless otherwise specified. In bar type series it
+	 * applies to the bars unless a color is specified per point. The default
+	 * value is pulled from the <code>options.colors</code> array.
+	 * </p>
+	 * 
+	 * <p>
+	 * In <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>, the color can be defined by the <a
+	 * href="#plotOptions.series.colorIndex">colorIndex</a> option. Also, the
+	 * series color can be set with the <code>.highcharts-series</code>,
+	 * <code>.highcharts-color-{n}</code>,
+	 * <code>.highcharts-{type}-series</code> or
+	 * <code>.highcharts-series-{n}</code> class, or individual classes given by
+	 * the <code>className</code> option.
+	 * </p>
+	 */
+	public void setColor(Color color) {
+		this.color = color;
 	}
 
 	/**
@@ -299,7 +331,7 @@ public class PlotOptionsWaterfall extends ColumnOptions {
 
 	/**
 	 * Removes first occurrence of color in colors array
-	 *
+	 * 
 	 * @param color
 	 *            to remove
 	 * @see #setColors(Color...)
@@ -370,7 +402,7 @@ public class PlotOptionsWaterfall extends ColumnOptions {
 	 * <li>LongDashDotDot</li>
 	 * </ul>
 	 * </p>
-	 *
+	 * 
 	 * <p>
 	 * In <a href=
 	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
@@ -677,7 +709,7 @@ public class PlotOptionsWaterfall extends ColumnOptions {
 	 * <p>
 	 * The color of the line that connects columns in a waterfall series.
 	 * </p>
-	 *
+	 * 
 	 * <p>
 	 * In <a href=
 	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"

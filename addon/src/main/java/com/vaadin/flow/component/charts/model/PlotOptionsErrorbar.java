@@ -19,9 +19,9 @@ package com.vaadin.flow.component.charts.model;
 
 
 import javax.annotation.Generated;
+import com.vaadin.flow.component.charts.model.style.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
-import com.vaadin.flow.component.charts.model.style.Color;
 import java.util.Date;
 import java.time.Instant;
 import com.vaadin.flow.component.charts.util.Util;
@@ -37,6 +37,7 @@ public class PlotOptionsErrorbar extends AbstractPlotOptions {
 	private Boolean allowPointSelect;
 	private Number animationLimit;
 	private String className;
+	private Color color;
 	private Boolean colorByPoint;
 	private Number colorIndex;
 	private ArrayList<Color> colors;
@@ -135,6 +136,24 @@ public class PlotOptionsErrorbar extends AbstractPlotOptions {
 	 */
 	public void setClassName(String className) {
 		this.className = className;
+	}
+
+	/**
+	 * @see #setColor(Color)
+	 */
+	public Color getColor() {
+		return color;
+	}
+
+	/**
+	 * The main color of the bars. This can be overridden by <a
+	 * href="#plotOptions.errorbar.stemColor">stemColor</a> and <a
+	 * href="#plotOptions.errorbar.whiskerColor">whiskerColor</a> individually.
+	 * <p>
+	 * Defaults to: #000000
+	 */
+	public void setColor(Color color) {
+		this.color = color;
 	}
 
 	/**

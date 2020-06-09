@@ -19,9 +19,9 @@ package com.vaadin.flow.component.charts.model;
 
 
 import javax.annotation.Generated;
+import com.vaadin.flow.component.charts.model.style.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
-import com.vaadin.flow.component.charts.model.style.Color;
 import java.util.Date;
 import java.time.Instant;
 import com.vaadin.flow.component.charts.util.Util;
@@ -36,6 +36,7 @@ public class PlotOptionsCandlestick extends OhlcOptions {
 	private Boolean animation;
 	private Number animationLimit;
 	private String className;
+	private Color color;
 	private Number colorIndex;
 	private ArrayList<Color> colors;
 	private Number compareBase;
@@ -160,6 +161,37 @@ public class PlotOptionsCandlestick extends OhlcOptions {
 	}
 
 	/**
+	 * @see #setColor(Color)
+	 */
+	public Color getColor() {
+		return color;
+	}
+
+	/**
+	 * <p>
+	 * The main color of the series. In line type series it applies to the line
+	 * and the point markers unless otherwise specified. In bar type series it
+	 * applies to the bars unless a color is specified per point. The default
+	 * value is pulled from the <code>options.colors</code> array.
+	 * </p>
+	 * 
+	 * <p>
+	 * In <a href=
+	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
+	 * >styled mode</a>, the color can be defined by the <a
+	 * href="#plotOptions.series.colorIndex">colorIndex</a> option. Also, the
+	 * series color can be set with the <code>.highcharts-series</code>,
+	 * <code>.highcharts-color-{n}</code>,
+	 * <code>.highcharts-{type}-series</code> or
+	 * <code>.highcharts-series-{n}</code> class, or individual classes given by
+	 * the <code>className</code> option.
+	 * </p>
+	 */
+	public void setColor(Color color) {
+		this.color = color;
+	}
+
+	/**
 	 * @see #setColorIndex(Number)
 	 */
 	public Number getColorIndex() {
@@ -200,7 +232,7 @@ public class PlotOptionsCandlestick extends OhlcOptions {
 
 	/**
 	 * Adds color to the colors array
-	 *
+	 * 
 	 * @param color
 	 *            to add
 	 * @see #setColors(Color...)
@@ -214,7 +246,7 @@ public class PlotOptionsCandlestick extends OhlcOptions {
 
 	/**
 	 * Removes first occurrence of color in colors array
-	 *
+	 * 
 	 * @param color
 	 *            to remove
 	 * @see #setColors(Color...)
@@ -476,7 +508,7 @@ public class PlotOptionsCandlestick extends OhlcOptions {
 
 	/**
 	 * Adds key to the keys array
-	 *
+	 * 
 	 * @param key
 	 *            to add
 	 * @see #setKeys(String...)
@@ -490,7 +522,7 @@ public class PlotOptionsCandlestick extends OhlcOptions {
 
 	/**
 	 * Removes first occurrence of key in keys array
-	 *
+	 * 
 	 * @param key
 	 *            to remove
 	 * @see #setKeys(String...)
@@ -526,7 +558,7 @@ public class PlotOptionsCandlestick extends OhlcOptions {
 	 * <p>
 	 * The color of the line/border of the candlestick.
 	 * </p>
-	 *
+	 * 
 	 * <p>
 	 * In <a href=
 	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
@@ -552,7 +584,7 @@ public class PlotOptionsCandlestick extends OhlcOptions {
 	 * The pixel width of the candlestick line/border. Defaults to
 	 * <code>1</code>.
 	 * </p>
-	 *
+	 * 
 	 * <p>
 	 * In <a href=
 	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
@@ -635,7 +667,7 @@ public class PlotOptionsCandlestick extends OhlcOptions {
 	 * class="internal" href="#plotOptions.series">plotOptions</a> and <a
 	 * class="internal" href="#series">series</a>.
 	 * </p>
-	 *
+	 * 
 	 * <p>
 	 * These options are merged with options in <a
 	 * href="#navigator.series">navigator.series</a>, and will take precedence
@@ -951,7 +983,7 @@ public class PlotOptionsCandlestick extends OhlcOptions {
 	 * plane (or <a href="#plotOptions.series.threshold">threshold</a> option)
 	 * unless the data actually crosses the plane.
 	 * </p>
-	 *
+	 * 
 	 * <p>
 	 * For example, if <code>softThreshold</code> is <code>false</code>, a
 	 * series of 0, 1, 2, 3 will make the Y axis show negative values according
@@ -1073,7 +1105,7 @@ public class PlotOptionsCandlestick extends OhlcOptions {
 	 * <p>
 	 * The fill color of the candlestick when values are rising.
 	 * </p>
-	 *
+	 * 
 	 * <p>
 	 * In <a href=
 	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
@@ -1154,7 +1186,7 @@ public class PlotOptionsCandlestick extends OhlcOptions {
 	 * axis, Y axis or Z axis for bubbles, according to the
 	 * <code>zoneAxis</code> option.
 	 * </p>
-	 *
+	 * 
 	 * <p>
 	 * In <a href=
 	 * "http://www.highcharts.com/docs/chart-design-and-style/style-by-css"
@@ -1171,7 +1203,7 @@ public class PlotOptionsCandlestick extends OhlcOptions {
 
 	/**
 	 * Adds zone to the zones array
-	 *
+	 * 
 	 * @param zone
 	 *            to add
 	 * @see #setZones(Zones...)
@@ -1185,7 +1217,7 @@ public class PlotOptionsCandlestick extends OhlcOptions {
 
 	/**
 	 * Removes first occurrence of zone in zones array
-	 *
+	 * 
 	 * @param zone
 	 *            to remove
 	 * @see #setZones(Zones...)
