@@ -1,5 +1,7 @@
 package com.vaadin.flow.component.charts;
 
+import java.util.Objects;
+
 import com.vaadin.flow.component.ComponentUtil;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.charts.model.AbstractConfigurationObject;
@@ -21,11 +23,10 @@ public class ChartOptions extends AbstractConfigurationObject {
     protected ChartOptions() {
     }
 
-    JreJsonFactory getJsonFactory() {
+    private JreJsonFactory getJsonFactory() {
         if (jsonFactory == null) {
             jsonFactory = new JreJsonFactory();
         }
-
         return jsonFactory;
     }
 
@@ -68,19 +69,22 @@ public class ChartOptions extends AbstractConfigurationObject {
      * extension has not yet been added, a new one is created and added.
      *
      * @param ui
-     *            the UI for which the ChartOptions should be returned
+     *            the UI for which the ChartOptions should be returned, not
+     *            <code>null</code>
      * @return the ChartOptions instance connected to the given UI
      */
     public static ChartOptions get(UI ui) {
-        ChartOptions optioner = ComponentUtil.getData(ui, ChartOptions.class);
+        Objects.requireNonNull(ui, "Given root items may not be null");
 
-        // Create new optioner if not found
-        if (optioner == null) {
-            optioner = new ChartOptions();
-            ComponentUtil.setData(ui, ChartOptions.class, optioner);
+        ChartOptions options = ComponentUtil.getData(ui, ChartOptions.class);
+
+        // Create new options if not found
+        if (options == null) {
+            options = new ChartOptions();
+            ComponentUtil.setData(ui, ChartOptions.class, options);
         }
 
-        return optioner;
+        return options;
 
     }
 
