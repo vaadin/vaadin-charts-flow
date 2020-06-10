@@ -14,6 +14,9 @@ import elemental.json.impl.JreJsonFactory;
 /**
  * The ChartOptions configures a page local global options like localized texts
  * for charts.
+ * <p>
+ * Use {@link ChartOptions#get()} or {@link ChartOptions#get(UI)} to get an
+ * instance for the current or specified {@link UI}.
  */
 public class ChartOptions extends AbstractConfigurationObject {
 
@@ -65,7 +68,7 @@ public class ChartOptions extends AbstractConfigurationObject {
     }
 
     /**
-     * Returns a ChartOptions extension for the given UI. If a ChartOptions
+     * Returns a ChartOptions instance for the given UI. If a ChartOptions
      * extension has not yet been added, a new one is created and added.
      *
      * @param ui
@@ -89,7 +92,7 @@ public class ChartOptions extends AbstractConfigurationObject {
     }
 
     /**
-     * Returns a ChartOptions for the current UI. If a ChartOptions extension
+     * Returns a ChartOptions instance for the current UI. If a ChartOptions extension
      * has not yet been added, a new one is created and added.
      *
      * @return a ChartOptions instance connected to the currently active UI
