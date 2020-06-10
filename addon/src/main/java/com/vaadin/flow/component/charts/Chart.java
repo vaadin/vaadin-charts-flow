@@ -94,7 +94,7 @@ public class Chart extends Component implements HasStyle, HasSize {
             ChartType.PIE, ChartType.GAUGE, ChartType.SOLIDGAUGE, ChartType.PYRAMID,
             ChartType.FUNNEL);
 
-    private final DrilldownHandler drilldownHandler = new DrilldownHandler();
+    private DrillCallbackHandler drillCallbackHandler;
 
     private DrilldownCallback drilldownCallback;
 
@@ -103,8 +103,6 @@ public class Chart extends Component implements HasStyle, HasSize {
      */
     public Chart() {
         configuration = new Configuration();
-        addDrilldownListener(drilldownHandler::onDrilldown);
-        addChartDrillupListener(drilldownHandler::onDrillup);
     }
 
     /**
@@ -264,6 +262,18 @@ public class Chart extends Component implements HasStyle, HasSize {
 
     public void setDrilldownCallback(DrilldownCallback drilldownCallback) {
         this.drilldownCallback = drilldownCallback;
+        updateDrillHandler();
+    }
+
+    private void updateDrillHandler() {
+        final boolean hasCallback = this.getDrilldownCallback() != null;
+        if (hasCallback && this.drillCallbackHandler == null) {
+            this.drillCallbackHandler = new DrillCallbackHandler();
+            this.drillCallbackHandler.register();
+        } else if (!hasCallback && this.drillCallbackHandler != null) {
+            this.drillCallbackHandler.unregister();
+            this.drillCallbackHandler = null;
+        }
     }
 
     /**
@@ -591,8 +601,27 @@ public class Chart extends Component implements HasStyle, HasSize {
         return addListener(YAxesExtremesSetEvent.class, listener);
     }
 
-    private class DrilldownHandler implements Serializable {
+    /*
+     * Handles Drilldown and Drillup events when using a callback.
+     */
+    private class DrillCallbackHandler implements Serializable {
         private final Deque<Series> stack = new LinkedList<>();
+        private Registration drilldownRegistration;
+        private Registration drillupRegistration;
+
+        private void register() {
+            drilldownRegistration = addDrilldownListener(this::onDrilldown);
+            drillupRegistration = addChartDrillupListener(this::onDrillup);
+        }
+
+        private void unregister() {
+            stack.clear();
+            drilldownRegistration.remove();
+            drillupRegistration.remove();
+
+            drilldownRegistration = null;
+            drillupRegistration = null;
+        }
 
         private void onDrilldown(DrilldownEvent details) {
             if (getDrilldownCallback() == null) {
@@ -609,7 +638,7 @@ public class Chart extends Component implements HasStyle, HasSize {
             final DrilldownDetails chartDrilldownEvent = new DrilldownDetails(
                 Chart.this, series, item, pointIndex);
 
-            Series drilldownSeries = getDrilldownCallback()
+            final Series drilldownSeries = getDrilldownCallback()
                 .handleDrilldown(chartDrilldownEvent);
             if (drilldownSeries != null) {
                 stack.push(drilldownSeries);
