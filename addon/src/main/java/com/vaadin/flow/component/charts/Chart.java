@@ -636,7 +636,7 @@ public class Chart extends Component implements HasStyle, HasSize {
                 item = dataSeries.get(pointIndex);
             }
             final DrilldownDetails chartDrilldownEvent = new DrilldownDetails(
-                Chart.this, series, item, pointIndex);
+                series, item, pointIndex);
 
             final Series drilldownSeries = getDrilldownCallback()
                 .handleDrilldown(chartDrilldownEvent);

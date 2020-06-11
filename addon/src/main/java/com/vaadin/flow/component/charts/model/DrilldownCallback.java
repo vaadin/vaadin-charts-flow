@@ -17,9 +17,6 @@ package com.vaadin.flow.component.charts.model;
  * #L%
  */
 
-import com.vaadin.flow.component.charts.Chart;
-import com.vaadin.flow.component.charts.events.DrilldownEvent;
-
 import java.io.Serializable;
 
 /**
@@ -52,14 +49,12 @@ public interface DrilldownCallback extends Serializable {
         private final int itemIndex;
 
         /**
-         * Construct a ChartDrilldownEvent
-         *
-         * @param source {@link Chart} in which the event was originated
+         * Construct a DrilldownDetails
          * @param series {@link Series} in which the event was originated
          * @param item {@link DataSeriesItem}
          * @param  itemIndex index of the item.
          */
-        public DrilldownDetails(Chart source, Series series, DataSeriesItem item,
+        public DrilldownDetails(Series series, DataSeriesItem item,
             int itemIndex) {
             this.series = series;
             this.item = item;
