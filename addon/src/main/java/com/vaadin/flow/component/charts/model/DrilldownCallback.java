@@ -27,12 +27,12 @@ import java.io.Serializable;
  * <p/>
  * DrilldownCallback is used for async drilldown.
  * <p/>
- * {@link com.vaadin.addon.charts.DrilldownCallback#handleDrilldown(DrilldownEvent)} is called when a
+ * {@link DrilldownCallback#handleDrilldown(DrilldownDetails)} is called when a
  * point with drilldown enabled is clicked and needs to return the Series to be
  * used as drilldown for the point.
  * <p/>
  * To enable async drilldown for a series item use
- * {@link DataSeries#addItemWithDrilldown(com.vaadin.addon.charts.model.DataSeriesItem)}
+ * {@link DataSeries#addItemWithDrilldown(com.vaadin.flow.component.charts.model.DataSeriesItem)}
  */
 public interface DrilldownCallback extends Serializable {
 
