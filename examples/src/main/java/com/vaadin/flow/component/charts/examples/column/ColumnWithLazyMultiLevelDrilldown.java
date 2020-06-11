@@ -28,7 +28,6 @@ import java.util.Map;
 public class ColumnWithLazyMultiLevelDrilldown extends AbstractChartExample {
 
     private Map<String, DataSeries> drillSeries;
-    private Configuration conf;
     private Div log;
 
     @Override
@@ -39,7 +38,7 @@ public class ColumnWithLazyMultiLevelDrilldown extends AbstractChartExample {
         final Chart chart = new Chart(ChartType.COLUMN);
         chart.setId("chart");
 
-        conf = chart.getConfiguration();
+        final Configuration conf = chart.getConfiguration();
 
         conf.setTitle("Global happiness index");
         conf.setSubTitle("Source: www.happyplanetindex.org");
