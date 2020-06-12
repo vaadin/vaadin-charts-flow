@@ -267,15 +267,11 @@ public class Chart extends Component implements HasStyle, HasSize {
 
     private void updateDrillHandler() {
         final boolean hasCallback = this.getDrilldownCallback() != null;
-
-        if(this.drillCallbackHandler != null) {
-            this.drillCallbackHandler.reset();
-        }
-
         if (hasCallback && this.drillCallbackHandler == null) {
             this.drillCallbackHandler = new DrillCallbackHandler();
             this.drillCallbackHandler.register();
-        } else if (!hasCallback && this.drillCallbackHandler != null) {
+        } else if (!hasCallback && this.drillCallbackHandler != null
+            && this.drillCallbackHandler.canBeUnregistered()) {
             this.drillCallbackHandler.unregister();
             this.drillCallbackHandler = null;
         }
@@ -620,15 +616,12 @@ public class Chart extends Component implements HasStyle, HasSize {
         }
 
         private void unregister() {
+            stack.clear();
             drilldownRegistration.remove();
             drillupRegistration.remove();
 
             drilldownRegistration = null;
             drillupRegistration = null;
-        }
-
-        private void reset() {
-            stack.clear();
         }
 
         private void onDrilldown(DrilldownEvent details) {
@@ -657,6 +650,11 @@ public class Chart extends Component implements HasStyle, HasSize {
 
         private void onDrillup(ChartDrillupEvent e) {
             stack.pop();
+            updateDrillHandler();
+        }
+
+        private boolean canBeUnregistered() {
+            return stack.isEmpty();
         }
 
         private void callClientSideAddSeriesAsDrilldown(int seriesIndex,
