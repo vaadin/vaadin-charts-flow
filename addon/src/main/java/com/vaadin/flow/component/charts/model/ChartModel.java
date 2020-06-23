@@ -68,7 +68,7 @@ public class ChartModel extends AbstractConfigurationObject {
 	private Number spacingRight;
 	private Number spacingTop;
 	private Style style;
-	private Boolean styledMode = Boolean.TRUE;
+	private Boolean styledMode = Boolean.FALSE;
 	private ChartType type;
 	private String typeDescription;
 	private Number width;
