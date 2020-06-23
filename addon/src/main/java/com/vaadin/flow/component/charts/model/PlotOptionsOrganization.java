@@ -32,29 +32,7 @@ public class PlotOptionsOrganization extends AbstractPlotOptions {
     private DataLabels dataLabels;
     private Color borderColor;
     private Number nodeWidth;
-
-    /*
-     * <p>Enable or disable the initial animation when a series is displayed.
-     The animation can also be set as a configuration object. Please
-     note that this option only applies to the initial animation of the
-     series itself. For other animations, see <a href="../highcharts/chart.animation">chart.animation</a> and the animation parameter under the API methods.
-     The following properties are supported:</p>
-     <ul>
-     <li><p><code>duration</code>: The duration of the animation in milliseconds.</p>
-     </li>
-     <li><p><code>easing</code>: Can be a string reference to an easing function set on
-     the <code>Math</code> object or a function. See the <em>Custom easing function</em>
-     demo below.</p>
-     </li>
-     </ul>
-     <p>Due to poor performance, animation is disabled in old IE browsers
-     for several chart types.</p>
-
-     */
-    //private Animation animation;
-
     private String boostBlending;
-
     private Number borderRadius;
     private Number borderWidth;
     private Boolean centerInCategory;
@@ -63,28 +41,13 @@ public class PlotOptionsOrganization extends AbstractPlotOptions {
     private Number colorIndex;
     private List<Color> colors;
     private String cursor;
-    /* <p>A reserved subspace to store options and values for customized
-     functionality. Here you can add additional data for your own event
-     callbacks and formatter callbacks.</p>
-     */
-    //private Highcharts.Dictionary.<*> custom;
-
     private DashStyle dashStyle;
     private String description;
     private Boolean enableMouseTracking;
-    /*
-     * <p>General event handlers for the series items. These event hooks can
-     also be attached to the series at run time using the
-     <code>Highcharts.addEvent</code> function.</p>
-
-     */
-    // private None events;
     private Boolean getExtremesFromAll;
     private Number hangingIndent;
     private Boolean includeInDataExport;
-
     private Label label;
-
     private Color linkColor;
     private String linkedTo;
     private Number linkLineWidth;
@@ -93,14 +56,6 @@ public class PlotOptionsOrganization extends AbstractPlotOptions {
     private Number minLinkWidth;
     private Number nodePadding;
     private Number opacity;
-    /* <p>Properties for each single point.</p>
-   //private  point;
-   /*
-    * <p>Same as
-    <a href="../highcharts/accessibility.pointDescriptionFormatter">accessibility.pointDescriptionFormatter</a>,
-    but for an individual series. Overrides the chart wide configuration.</p>
-    */
-    //private Function pointDescriptionFormatter;
     private Boolean selected;
     private Boolean showCheckbox;
     private Boolean showInLegend;
