@@ -1,10 +1,25 @@
 package com.vaadin.flow.component.charts.model;
 
+/*-
+ * #%L
+ * Vaadin Charts for Flow
+ * %%
+ * Copyright (C) 2014 - 2020 Vaadin Ltd
+ * %%
+ * This program is available under Commercial Vaadin Add-On License 3.0
+ * (CVALv3).
+ *
+ * See the file licensing.txt distributed with this software for more
+ * information about licensing.
+ *
+ * You should have received a copy of the CVALv3 along with this program.
+ * If not, see <https://vaadin.com/license/cval-3>.
+ * #L%
+ */
+
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.vaadin.flow.component.charts.model.style.Color;
-
-import java.util.List;
 
 /**
  * A collection of options for the individual nodes.
@@ -30,6 +45,20 @@ public class Node extends AbstractConfigurationObject {
     private String title;
 
     /**
+     * Default constructor.
+     */
+    public Node() {
+
+    }
+
+    /**
+     *
+     * @param id see {@link #setId(String)}
+     */
+    public Node(String id) {
+        this.id = id;
+    }
+    /**
      * @see #setColor(Color)
      */
     public Color getColor() {
@@ -51,7 +80,8 @@ public class Node extends AbstractConfigurationObject {
     }
 
     /**
-     * The color index of the auto generated node, especially for use in styled mode.
+     * The color index of the auto generated node, especially for use in styled
+     * mode.
      */
     public void setColorIndex(Number colorIndex) {
         this.colorIndex = colorIndex;
@@ -65,7 +95,11 @@ public class Node extends AbstractConfigurationObject {
     }
 
     /**
-     * An optional column index of where to place the node. The default behaviour is to place it next to the preceding node. Note that this option name is counter intuitive in inverted charts, like for example an organization chart rendered top down. In this case the "columns" are horizontal.
+     * An optional column index of where to place the node.
+     * The default behaviour is to place it next to the preceding node.
+     * Note that this option name is counter intuitive in inverted charts,
+     * like for example an organization chart rendered top down.
+     * In this case the "columns" are horizontal.
      */
     public void setColumn(Number column) {
         this.column = column;
@@ -93,7 +127,8 @@ public class Node extends AbstractConfigurationObject {
     }
 
     /**
-     * The job description for the node card, will be inserted by the default dataLabel.nodeFormatter.
+     * The job description for the node card, will be inserted by the default
+     * dataLabel.nodeFormatter.
      */
     public void setDescription(String description) {
         this.description = description;
@@ -107,7 +142,8 @@ public class Node extends AbstractConfigurationObject {
     }
 
     /**
-     * The id of the auto-generated node, referring to the from or to setting of the link.
+     * The id of the auto-generated node, referring to the from or to setting of
+     * the link.
      */
     public void setId(String id) {
         this.id = id;
@@ -121,7 +157,8 @@ public class Node extends AbstractConfigurationObject {
     }
 
     /**
-     * An image for the node card, will be inserted by the default dataLabel.nodeFormatter.
+     * An image for the node card, will be inserted by the default
+     * dataLabel.nodeFormatter.
      */
     public void setImage(String image) {
         this.image = image;
@@ -135,7 +172,9 @@ public class Node extends AbstractConfigurationObject {
     }
 
     /**
-     * Layout for the node's children. If hanging, this node's children will hang below their parent, allowing a tighter packing of nodes in the diagram
+     * Layout for the node's children. If hanging, this node's children will
+     * hang below their parent, allowing a tighter packing of nodes in the
+     * diagram
      */
     public void setLayout(Layout layout) {
         this.layout = layout;
@@ -149,7 +188,9 @@ public class Node extends AbstractConfigurationObject {
     }
 
     /**
-     * An optional level index of where to place the node. The default behaviour is to place it next to the preceding node. Alias of nodes.column, but in inverted sankeys and org charts, the levels are laid out as rows.
+     * An optional level index of where to place the node. The default behaviour
+     * is to place it next to the preceding node. Alias of nodes.column, but in
+     * inverted sankeys and org charts, the levels are laid out as rows.
      */
     public void setLevel(Number level) {
         this.level = level;
@@ -163,7 +204,9 @@ public class Node extends AbstractConfigurationObject {
     }
 
     /**
-     * The name to display for the node in data labels and tooltips. Use this when the name is different from the id. Where the id must be unique for each node, this is not necessary for the name
+     * The name to display for the node in data labels and tooltips. Use this
+     * when the name is different from the id. Where the id must be unique for
+     * each node, this is not necessary for the name
      */
     public void setName(String name) {
         this.name = name;
@@ -177,7 +220,11 @@ public class Node extends AbstractConfigurationObject {
     }
 
     /**
-     * In a horizontal layout, the vertical offset of a node in terms of weight. Positive values shift the node downwards, negative shift it upwards. In a vertical layout, like organization chart, the offset is horizontal. If a percentage string is given, the node is offset by the percentage of the node size plus nodePadding. Defaults to 0.
+     * In a horizontal layout, the vertical offset of a node in terms of weight.
+     * Positive values shift the node downwards, negative shift it upwards.
+     * In a vertical layout, like organization chart, the offset is horizontal.
+     * If a percentage string is given, the node is offset by the percentage of
+     * the node size plus nodePadding. Defaults to 0.
      */
     public void setOffset(String offset) {
         this.offset = offset;
@@ -191,7 +238,8 @@ public class Node extends AbstractConfigurationObject {
     }
 
     /**
-     * The job title for the node card, will be inserted by the default dataLabel.nodeFormatter.
+     * The job title for the node card, will be inserted by the default
+     * dataLabel.nodeFormatter.
      */
     public void setTitle(String title) {
         this.title = title;

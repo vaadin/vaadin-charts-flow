@@ -1,20 +1,33 @@
 package com.vaadin.flow.component.charts.examples.other;
 
+/*-
+ * #%L
+ * Vaadin Charts for Flow
+ * %%
+ * Copyright (C) 2014 - 2020 Vaadin Ltd
+ * %%
+ * This program is available under Commercial Vaadin Add-On License 3.0
+ * (CVALv3).
+ *
+ * See the file licensing.txt distributed with this software for more
+ * information about licensing.
+ *
+ * You should have received a copy of the CVALv3 along with this program.
+ * If not, see <https://vaadin.com/license/cval-3>.
+ * #L%
+ */
+
 import com.vaadin.flow.component.charts.AbstractChartExample;
 import com.vaadin.flow.component.charts.Chart;
 import com.vaadin.flow.component.charts.model.ChartType;
 import com.vaadin.flow.component.charts.model.Configuration;
 import com.vaadin.flow.component.charts.model.DataLabels;
-import com.vaadin.flow.component.charts.model.Exporting;
 import com.vaadin.flow.component.charts.model.Level;
-import com.vaadin.flow.component.charts.model.NodeSeries;
 import com.vaadin.flow.component.charts.model.Node;
+import com.vaadin.flow.component.charts.model.NodeSeries;
 import com.vaadin.flow.component.charts.model.PlotOptionsOrganization;
 import com.vaadin.flow.component.charts.model.Tooltip;
 import com.vaadin.flow.component.charts.model.style.SolidColor;
-
-import java.util.Arrays;
-import java.util.List;
 
 public class Organization extends AbstractChartExample {
 
@@ -26,9 +39,81 @@ public class Organization extends AbstractChartExample {
         conf.getTooltip().setEnabled(true);
         conf.getChart().setInverted(true);
         conf.getChart().setStyledMode(false);
-        //conf.setExporting(createExporting());
-        conf.setTooltip(createTooltip());
+        conf.getChart().setHeight("500px");
+        Tooltip tooltip = new Tooltip();
+        tooltip.setOutside(true);
+        conf.setTooltip(tooltip);
+        conf.setTitle("Acme organization chart");
 
+        NodeSeries series = createSeries();
+        conf.addSeries(series);
+
+        add(chart);
+    }
+
+    private NodeSeries createSeries() {
+        NodeSeries series = new NodeSeries();
+        Node acme = new Node("Acme");
+        Node headOffice = new Node("Head Office");
+        Node labs = new Node("Labs");
+        Node coyoteBuilding = new Node("Coyote Building");
+        Node roadRunnerBuilding = new Node("Road Runner Building");
+        Node sales = new Node("Sales");
+        Node marketing = new Node("Marketing");
+        Node accounting = new Node("Accounting");
+        Node administration = new Node("Administration");
+        Node mdsOffice = new Node("MD&apos;s Office");
+
+        Node josephMiler = new Node("Joseph Miler");
+        josephMiler.setTitle("Joseph Miler");
+
+        Node erikPerez = new Node("Erik Perez");
+        erikPerez.setTitle("Erik Perez");
+
+        Node emilyFox = new Node("Emily Fox");
+        emilyFox.setTitle("Emily Fox");
+
+        Node ewanHerbert = new Node("Ewan Herbert");
+        ewanHerbert.setTitle("Ewan Herbert");
+
+        Node kateKirby = new Node("Kate Kirby");
+        Node vaughnWhiting = new Node("Vaughn Whiting");
+        Node lisaWarner = new Node("Lisa Warner");
+        Node mollyDodd = new Node("Molly Dodd");
+        Node natashaKelly = new Node("Natasha Kelly");
+
+        Node managingDirector = new Node("Sally Brown");
+        managingDirector.setTitle("Managing Director");
+        managingDirector.setName("Sally Brown");
+        managingDirector.setColor(new SolidColor("#E4B651"));
+
+        series.add(acme, headOffice);
+        series.add(acme, labs);
+        series.add(headOffice, coyoteBuilding);
+        series.add(headOffice, roadRunnerBuilding);
+        series.add(coyoteBuilding, sales);
+        series.add(coyoteBuilding, marketing);
+        series.add(coyoteBuilding, accounting);
+        series.add(roadRunnerBuilding, administration);
+        series.add(roadRunnerBuilding, mdsOffice);
+        series.add(sales, josephMiler);
+        series.add(marketing, erikPerez);
+        series.add(accounting, emilyFox);
+        series.add(administration, ewanHerbert);
+        series.add(josephMiler, kateKirby);
+        series.add(josephMiler, vaughnWhiting);
+        series.add(erikPerez, lisaWarner);
+        series.add(ewanHerbert, mollyDodd);
+        series.add(ewanHerbert, natashaKelly);
+        series.add(mdsOffice, managingDirector);
+
+        PlotOptionsOrganization plotOptions = createPlotOptions();
+        series.setPlotOptions(plotOptions);
+
+        return series;
+    }
+
+    private PlotOptionsOrganization createPlotOptions() {
         PlotOptionsOrganization plotOptions = new PlotOptionsOrganization();
         plotOptions.setColorByPoint(false);
         plotOptions.setColor(new SolidColor("#007ad0"));
@@ -36,96 +121,38 @@ public class Organization extends AbstractChartExample {
         dataLabels.setColor(SolidColor.BLACK);
         plotOptions.setDataLabels(dataLabels);
         plotOptions.setBorderColor(SolidColor.WHITE);
-        plotOptions.setNodeWidth(100);
 
-        NodeSeries series = createSeries();
-        series.setPlotOptions(plotOptions);
+        Level level0 = new Level();
+        level0.setLevel(0);
+        level0.setColor(new SolidColor("#99AED3"));
 
-        createLevels().forEach(plotOptions::addLevel);
-        chart.getConfiguration().addSeries(series);
+        Level level1 = new Level();
+        level1.setLevel(1);
+        level1.setColor(new SolidColor("#CCE6C3"));
 
-        chart.getConfiguration().setTitle("Acme organization chart");
+        Level level2 = new Level();
+        level2.setLevel(2);
+        level2.setColor(new SolidColor("#E1F39D"));
 
-        add(chart);
+        Level level3 = new Level();
+        level3.setLevel(3);
+        level3.setColor(new SolidColor("#CCE6C3"));
+
+        Level level4 = new Level();
+        level4.setLevel(4);
+        level4.setColor(new SolidColor("#CABEDC"));
+
+        Level level5 = new Level();
+        level5.setLevel(5);
+        level5.setColor(new SolidColor("#CABDD4"));
+
+        plotOptions.addLevel(level0);
+        plotOptions.addLevel(level1);
+        plotOptions.addLevel(level2);
+        plotOptions.addLevel(level3);
+        plotOptions.addLevel(level4);
+
+        return plotOptions;
     }
 
-    private Exporting createExporting() {
-        Exporting exporting = new Exporting();
-        exporting.setAllowHTML(true);
-        exporting.setSourceWidth(800);
-        exporting.setSourceHeight(600);
-        return exporting;
-    }
-
-    private Tooltip createTooltip() {
-        Tooltip tooltip = new Tooltip();
-        tooltip.setOutside(true);
-        return tooltip;
-    }
-
-    private NodeSeries createSeries() {
-        NodeSeries series = new NodeSeries();
-        Node acme = createNode( "Acme" );
-        series.add(acme);
-        Node headOffice = add(series, acme,createNode("Head Office" ));
-        add(series, acme,createNode("Labs" ));
-        Node coyoteBuilding = add(series, headOffice,createNode("Coyote Building" ));
-        Node roadRunnerBuilding = add(series, headOffice,createNode("Road Runner Building" ));
-        Node sales = add(series, coyoteBuilding,createNode("Sales" ));
-        Node marketing = add(series, coyoteBuilding , createNode("Marketing" ));
-        Node accounting = add(series, coyoteBuilding, createNode("Accounting" ));
-        Node administration = add(series, roadRunnerBuilding, createNode("Administration" ));
-        Node mdsOffice = add(series, roadRunnerBuilding, createNode("MD&apos;s Office" ));
-        Node josephMiler = add(series, sales, createNode("Joseph Miler", "Head of Sales" ));
-        Node erikPerez = add(series, marketing, createNode("Erik Perez", "Head of Marketing" ));
-        Node emilyFox = add(series, accounting, createNode("Emily Fox", "Head of Accounting" ));
-        Node ewanHerbert = add(series, administration, createNode("Ewan Herbert", "Head of Admin" ));
-        Node kateKirby = add(series, josephMiler, createNode("Kate Kirby" ));
-        Node vaughnWhiting = add(series, josephMiler, createNode("Vaughn Whiting" ));
-        Node lisaWarner = add(series, erikPerez, createNode("Lisa Warner" ));
-        Node mollyDodd = add(series, ewanHerbert, createNode("Molly Dodd" ));
-        Node natashaKelly = add(series, ewanHerbert, createNode("Natasha Kelly" ));
-        Node directorNode = add(series, mdsOffice, createNode("Sally Brown", "Managing Director"));
-        directorNode.setName("Sally Brown");
-        directorNode.setColor(new SolidColor("#E4B651"));
-
-        return series;
-    }
-
-    private Node add(NodeSeries series, Node from, Node to) {
-       series.add(from, to);
-       return to;
-    }
-
-    private Node createNode(String id) {
-       Node node = new Node();
-       node.setId(id);
-       return node;
-    }
-
-    private Node createNode(String id, String title) {
-        Node node = createNode(id);
-        node.setTitle(title);
-        return node;
-    }
-
-    private List<Level> createLevels() {
-        Level level0 = createLevel(0, "#99AED3");
-        //level0.setHeight(125);
-        Level level1 = createLevel(1, "#CCE6C3");
-        //level1.setHeight(125);
-        Level level2 = createLevel(2, "#E1F39D");
-        Level level3 = createLevel(3, "#CCE6C3");
-        Level level4 = createLevel(4, "#CABEDC");
-        Level level5 = createLevel(5, "#CABDD4");
-        return Arrays.asList(level0, level1, level2, level3, level4, level5);
-    }
-
-    private Level createLevel(int levelNumber, String color) {
-        Level level = new Level();
-        level.setColor(new SolidColor(color));
-        level.setLevel(levelNumber);
-        level.setHeight(125);
-        return level;
-    }
 }

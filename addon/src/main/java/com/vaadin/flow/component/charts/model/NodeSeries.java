@@ -1,71 +1,106 @@
 package com.vaadin.flow.component.charts.model;
 
-import com.fasterxml.jackson.annotation.JsonIdentityReference;
+/*-
+ * #%L
+ * Vaadin Charts for Flow
+ * %%
+ * Copyright (C) 2014 - 2020 Vaadin Ltd
+ * %%
+ * This program is available under Commercial Vaadin Add-On License 3.0
+ * (CVALv3).
+ *
+ * See the file licensing.txt distributed with this software for more
+ * information about licensing.
+ *
+ * You should have received a copy of the CVALv3 along with this program.
+ * If not, see <https://vaadin.com/license/cval-3>.
+ * #L%
+ */
+
+import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-//TODO Link node ids to to and from. NodeSeriesItem.
-@JsonPropertyOrder({"nodes","values"})
+@JsonPropertyOrder({ "nodes", "values" })
 public class NodeSeries extends AbstractSeries {
-    private final String[] keys = new String[] { "to", "from" };
 
-    private List<Node> nodes;
-    private List<Link> data;
+    private List<NodeSeriesItem> data;
 
-    public void add(Node node) {
-        ensureNodes();
-        if(!nodes.contains(node)) {
-            nodes.add(node);
+    private static boolean containsNode(NodeSeriesItem item, Node node) {
+        return equals(item.getFrom(), node) || equals(item.getTo(), node);
+    }
+
+    private static boolean equals(Node node1, Node node2) {
+        return node1.getId().equals(node2.getId());
+    }
+
+    public void add(NodeSeriesItem nodeSeriesItem) {
+        validateNodeSeriesItem(nodeSeriesItem);
+        ensureLinks().add(nodeSeriesItem);
+    }
+
+    public NodeSeriesItem add(Node from, Node to) {
+        NodeSeriesItem item = new NodeSeriesItem(from, to);
+        add(item);
+        return item;
+    }
+
+    public void remove(NodeSeriesItem nodeSeriesItem) {
+        validateNodeSeriesItem(nodeSeriesItem);
+        if (data != null) {
+            data.remove(nodeSeriesItem);
         }
     }
 
-    public List<Node> getNodes() {
-        return nodes != null ?
-            Collections.unmodifiableList(nodes) :
-            Collections.emptyList();
-    }
-
-    public void add(Node parent, Node child) {
-        add(parent);
-        add(child);
-        addLink(parent, child);
-    }
-
-    public String[][] getData() {
-        if(data == null) {
-            return new String[0][0];
+    public void remove(Node node) {
+        if (node == null) {
+            throw new IllegalArgumentException("Node may not be null");
         }
-        return data.stream().map(Link::toArray).toArray(String[][]::new);
-    }
-
-    private void addLink(Node from, Node to) {
-       ensureLinks();
-       Link link = new Link();
-       link.from = from;
-       link.to = to;
-       data.add(link);
-    }
-
-    private void ensureNodes() {
-        nodes = nodes != null ? nodes : new ArrayList<>();
-    }
-
-    private void ensureLinks() {
-        data = data != null ? data : new ArrayList<>();
-    }
-
-    public class Link extends AbstractConfigurationObject {
-        @JsonIdentityReference
-        private Node from;
-
-        @JsonIdentityReference
-        private Node to;
-
-        private String[] toArray() {
-            return new String[]{from.getId(), to.getId()};
+        if (data != null) {
+            data = data.stream().filter(item -> !containsNode(item, node))
+                .collect(Collectors.toList());
         }
     }
+
+    @JsonGetter
+    public Collection<Node> getNodes() {
+        if (data == null) {
+            return Collections.emptyList();
+        }
+        return data.stream()
+            .flatMap(item -> Stream.of(item.getFrom(), item.getTo()))
+            .collect(LinkedHashMap<String, Node>::new,
+                (map, item) -> map.putIfAbsent(item.getId(), item),
+                (map1, map2) -> {
+                    throw new UnsupportedOperationException();
+                }).values();
+    }
+
+    private void validateNodeSeriesItem(NodeSeriesItem item) {
+        if (item == null) {
+            throw new IllegalArgumentException(
+                "NodeSeriesItem may not be null");
+        }
+        item.validate();
+        if (item.getFrom() == null) {
+            throw new IllegalArgumentException(
+                "NodeSeriesItem must have a from node");
+        }
+        if (item.getTo() == null) {
+            throw new IllegalArgumentException(
+                "NodeSeriesItem must have a to node");
+        }
+    }
+
+    private List<NodeSeriesItem> ensureLinks() {
+        return data = data != null ? data : new ArrayList<>();
+    }
+
 }

@@ -1,5 +1,22 @@
 package com.vaadin.flow.component.charts.model;
 
+/*-
+ * #%L
+ * Vaadin Charts for Flow
+ * %%
+ * Copyright (C) 2014 - 2020 Vaadin Ltd
+ * %%
+ * This program is available under Commercial Vaadin Add-On License 3.0
+ * (CVALv3).
+ *
+ * See the file licensing.txt distributed with this software for more
+ * information about licensing.
+ *
+ * You should have received a copy of the CVALv3 along with this program.
+ * If not, see <https://vaadin.com/license/cval-3>.
+ * #L%
+ */
+
 import com.vaadin.flow.component.charts.model.style.Color;
 
 import java.util.ArrayList;
@@ -15,9 +32,6 @@ public class PlotOptionsOrganization extends AbstractPlotOptions {
     private DataLabels dataLabels;
     private Color borderColor;
     private Number nodeWidth;
-
-    //TODO Remove. (Check other plot options)
-    private Accessibility accessibility;
 
     /*
      * <p>Enable or disable the initial animation when a series is displayed.
@@ -98,20 +112,6 @@ public class PlotOptionsOrganization extends AbstractPlotOptions {
     private Boolean visible;
 
     /**
-     * @see #setAccessibility(Accessibility)
-     */
-    public Accessibility getAccessibility() {
-        return accessibility;
-    }
-
-    /**
-     * <p>Accessibility options for a series.</p>
-     */
-    public void setAccessibility(Accessibility accessibility) {
-        this.accessibility = accessibility;
-    }
-
-    /**
      * @see #setBoostBlending(String)
      */
     public String getBoostBlending() {
@@ -148,10 +148,12 @@ public class PlotOptionsOrganization extends AbstractPlotOptions {
 
     /**
      * <p>The width of the border surrounding each column or bar. Defaults to
-     * <code>1</code> when there is room for a border, but to <code>0</code> when the columns are
-     * so dense that a border would cover the next column.</p>
-     * <p>In <a href="https://www.highcharts.com/docs/chart-design-and-style/style-by-css">styled mode</a>, the stroke width can be set with the
-     * <code>.highcharts-point</code> rule.</p>
+     * <code>1</code> when there is room for a border, but to <code>0</code>
+     * when the columns are so dense that a border would cover the next
+     * column.</p>
+     * <p>In <a href="https://www.highcharts.com/docs/chart-design-and-style/style-by-css">styled mode</a>,
+     * the stroke width can be set with the  <code>.highcharts-point</code>
+     * rule.</p>
      */
     public void setBorderWidth(Number borderWidth) {
         this.borderWidth = borderWidth;
@@ -214,7 +216,8 @@ public class PlotOptionsOrganization extends AbstractPlotOptions {
     }
 
     /**
-     * <p><a href="https://www.highcharts.com/docs/chart-design-and-style/style-by-css">Styled mode</a> only. A specific color index to use for the series, so
+     * <p><a href="https://www.highcharts.com/docs/chart-design-and-style/style-by-css">Styled mode</a>
+     * only. A specific color index to use for the series, so
      * its graphic representations are given the class name
      * <code>highcharts-color-{n}</code>.</p>
      */
@@ -231,7 +234,9 @@ public class PlotOptionsOrganization extends AbstractPlotOptions {
 
     /**
      * <p>A series specific or series type specific color set to apply instead
-     * of the global <a href="../highcharts/colors">colors</a> when <a href="../highcharts/plotOptions.column.colorByPoint">colorByPoint</a> is true.</p>
+     * of the global <a href="../highcharts/colors">colors</a> when
+     * <a href="../highcharts/plotOptions.column.colorByPoint">colorByPoint</a>
+     * is true.</p>
      */
     public void setColors(List<Color> colors) {
         this.colors = colors;
@@ -248,8 +253,9 @@ public class PlotOptionsOrganization extends AbstractPlotOptions {
      * <p>You can set the cursor to "pointer" if you have click events attached
      * to the series, to signal to the user that the points and lines can
      * be clicked.</p>
-     * <p>In <a href="https://www.highcharts.com/docs/chart-design-and-style/style-by-css">styled mode</a>, the series cursor can be set with the same classes
-     * as listed under <a href="../highcharts/plotOptions.series.color">series.color</a>.</p>
+     * <p>In <a href="https://www.highcharts.com/docs/chart-design-and-style/style-by-css">styled mode</a>,
+     * the series cursor can be set with the same classes * as listed under
+     * <a href="../highcharts/plotOptions.series.color">series.color</a>.</p>
      */
     public void setCursor(String cursor) {
         this.cursor = cursor;
@@ -331,7 +337,8 @@ public class PlotOptionsOrganization extends AbstractPlotOptions {
 
     /**
      * <p>The indentation in pixels of hanging nodes, nodes which parent has
-     * <a href="../highcharts/series.organization.nodes.layout">layout</a> set to <code>hanging</code>.</p>
+     * <a href="../highcharts/series.organization.nodes.layout">layout</a> set
+     * to <code>hanging</code>.</p>
      */
     public void setHangingIndent(Number hangingIndent) {
         this.hangingIndent = hangingIndent;
@@ -419,10 +426,11 @@ public class PlotOptionsOrganization extends AbstractPlotOptions {
     }
 
     /**
-     * <p>The <a href="../highcharts/series.id">id</a> of another series to link to. Additionally,
-     * the value can be ":previous" to link to the previous series. When
-     * two series are linked, only the first one appears in the legend.
-     * Toggling the visibility of this also toggles the linked series.</p>
+     * <p>The <a href="../highcharts/series.id">id</a> of another series to link
+     * to. Additionally, the value can be ":previous" to link to the previous
+     * series. When two series are linked, only the first one appears in the
+     * legend. Toggling the visibility of this also toggles the linked series.
+     * </p>
      * <p>If master series uses data sorting and linked series does not have
      * its own sorting definition, the linked series will be sorted in the
      * same order as the master one.</p>
@@ -773,7 +781,8 @@ public class PlotOptionsOrganization extends AbstractPlotOptions {
     }
 
     /**
-     * In a horizontal chart, the width of the nodes in pixels. Node that most organization charts are vertical, so the name of this option is counterintuitive.
+     * In a horizontal chart, the width of the nodes in pixels. Node that most
+     * organization charts are vertical, so the name of this option is counterintuitive.
      * Defaults to 50.
      */
     public void setNodeWidth(Number nodeWidth) {
