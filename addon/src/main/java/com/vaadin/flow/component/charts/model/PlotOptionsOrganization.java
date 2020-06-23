@@ -10,14 +10,13 @@ import java.util.stream.Collectors;
 public class PlotOptionsOrganization extends AbstractPlotOptions {
 
     private List<Level> levels;
-    private List<Node> nodes;
-    private String[] keys = new String[] { "to", "from" };
     private Boolean colorByPoint;
     private Color color;
     private DataLabels dataLabels;
     private Color borderColor;
     private Number nodeWidth;
 
+    //TODO Remove. (Check other plot options)
     private Accessibility accessibility;
 
     /*
@@ -353,22 +352,6 @@ public class PlotOptionsOrganization extends AbstractPlotOptions {
      */
     public void setIncludeInDataExport(Boolean includeInDataExport) {
         this.includeInDataExport = includeInDataExport;
-    }
-
-    /**
-     * @see #setKeys(String[])
-     */
-    public String[] getKeys() {
-        return keys;
-    }
-
-    /**
-     * <p>An array specifying which option maps to which key in the data point
-     * array. This makes it convenient to work with unstructured data arrays
-     * from different sources.</p>
-     */
-    public void setKeys(String... keys) {
-        this.keys = keys;
     }
 
     /**
@@ -711,51 +694,6 @@ public class PlotOptionsOrganization extends AbstractPlotOptions {
     public void removeLevel(Level level) {
         if (this.levels != null) {
             this.levels.remove(level);
-        }
-    }
-
-    /**
-     * @see #setNodes(Node...)
-     */
-    public Node[] getNodes() {
-        if (nodes == null) {
-            return new Node[] {};
-        }
-        return nodes.toArray(new Node[nodes.size()]);
-    }
-
-    /**
-     * A collection of options for the individual nodes.
-     * The nodes in an org chart are auto-generated instances of
-     * Highcharts.Point, but options can be applied here and linked by the id.
-     */
-    public void setNodes(Node... nodes) {
-        this.nodes = Arrays.stream(nodes)
-            .collect(Collectors.toCollection(ArrayList::new));
-    }
-
-    /**
-     * Adds node to the nodes array
-     *
-     * @param node to add
-     * @see #setNodes(Node...)
-     */
-    public void addNode(Node node) {
-        if (this.nodes == null) {
-            this.nodes = new ArrayList<>();
-        }
-        this.nodes.add(node);
-    }
-
-    /**
-     * Removes first occurrence of node in nodes array
-     *
-     * @param node to remove
-     * @see #setNodes(Node...)
-     */
-    public void removeNode(Node node) {
-        if (this.nodes != null) {
-            this.nodes.remove(node);
         }
     }
 

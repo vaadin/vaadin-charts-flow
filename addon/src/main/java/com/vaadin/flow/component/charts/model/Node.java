@@ -1,5 +1,7 @@
 package com.vaadin.flow.component.charts.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.vaadin.flow.component.charts.model.style.Color;
 
 import java.util.List;
@@ -9,11 +11,13 @@ import java.util.List;
  * The nodes in an org chart are auto-generated instances of Highcharts.Point,
  * but options can be applied here and linked by the id.
  */
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
+      property = "id")
 public class Node extends AbstractConfigurationObject {
     private Color color;
     private Number colorIndex;
     private Number column;
-    private List<DataLabels> dataLabels;
+    private DataLabels dataLabels;
     private String description;
 
     private String id;
@@ -22,7 +26,7 @@ public class Node extends AbstractConfigurationObject {
     private Layout layout;
     private Number level;
     private String name;
-    private String offset = "0";
+    private String offset;
     private String title;
 
     /**
@@ -68,16 +72,16 @@ public class Node extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #setDataLabels(List)
+     * @see #setDataLabels(DataLabels)
      */
-    public List<DataLabels> getDataLabels() {
+    public DataLabels getDataLabels() {
         return dataLabels;
     }
 
     /**
      * Individual data label for each node.
      */
-    public void setDataLabels(List<DataLabels> dataLabels) {
+    public void setDataLabels(DataLabels dataLabels) {
         this.dataLabels = dataLabels;
     }
 

@@ -5,24 +5,14 @@ import com.vaadin.flow.component.charts.Chart;
 import com.vaadin.flow.component.charts.model.ChartType;
 import com.vaadin.flow.component.charts.model.Configuration;
 import com.vaadin.flow.component.charts.model.DataLabels;
-import com.vaadin.flow.component.charts.model.DataSeries;
-import com.vaadin.flow.component.charts.model.DataSeriesItem;
 import com.vaadin.flow.component.charts.model.Exporting;
-import com.vaadin.flow.component.charts.model.HorizontalAlign;
 import com.vaadin.flow.component.charts.model.Level;
-import com.vaadin.flow.component.charts.model.LinkSeries;
+import com.vaadin.flow.component.charts.model.NodeSeries;
 import com.vaadin.flow.component.charts.model.Node;
 import com.vaadin.flow.component.charts.model.PlotOptionsOrganization;
-import com.vaadin.flow.component.charts.model.PlotOptionsTreemap;
 import com.vaadin.flow.component.charts.model.Tooltip;
-import com.vaadin.flow.component.charts.model.TreeMapLayoutAlgorithm;
-import com.vaadin.flow.component.charts.model.TreeSeries;
-import com.vaadin.flow.component.charts.model.TreeSeriesItem;
-import com.vaadin.flow.component.charts.model.VerticalAlign;
-import com.vaadin.flow.component.charts.model.style.Color;
 import com.vaadin.flow.component.charts.model.style.SolidColor;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -36,24 +26,22 @@ public class Organization extends AbstractChartExample {
         conf.getTooltip().setEnabled(true);
         conf.getChart().setInverted(true);
         conf.getChart().setStyledMode(false);
-        conf.setExporting(createExporting());
+        //conf.setExporting(createExporting());
         conf.setTooltip(createTooltip());
 
         PlotOptionsOrganization plotOptions = new PlotOptionsOrganization();
-        plotOptions.setKeys("from","to");
         plotOptions.setColorByPoint(false);
         plotOptions.setColor(new SolidColor("#007ad0"));
         DataLabels dataLabels = new DataLabels();
         dataLabels.setColor(SolidColor.BLACK);
         plotOptions.setDataLabels(dataLabels);
         plotOptions.setBorderColor(SolidColor.WHITE);
-        plotOptions.setNodeWidth(65);
+        plotOptions.setNodeWidth(100);
 
-        LinkSeries series = createSeries();
+        NodeSeries series = createSeries();
         series.setPlotOptions(plotOptions);
 
         createLevels().forEach(plotOptions::addLevel);
-        createNodes().forEach(plotOptions::addNode);
         chart.getConfiguration().addSeries(series);
 
         chart.getConfiguration().setTitle("Acme organization chart");
@@ -75,57 +63,38 @@ public class Organization extends AbstractChartExample {
         return tooltip;
     }
 
-    private LinkSeries createSeries() {
-        LinkSeries series = new LinkSeries();
-        series.add("Acme", "Head Office");
-        series.add("Acme", "Labs");
-        series.add("Head Office", "Coyote Building");
-        series.add("Head Office", "Road Runner Building");
-        series.add("Coyote Building", "Sales");
-        series.add("Coyote Building", "Marketing");
-        series.add("Coyote Building", "Accounting");
-        series.add("Road Runner Building", "Administration");
-        series.add("Road Runner Building", "MD&apos;s Office");
-        series.add("Sales", "Joseph Miler");
-        series.add("Marketing", "Erik Perez");
-        series.add("Accounting", "Emily Fox");
-        series.add("Administration", "Ewan Herbert");
-        series.add("MD&apos;s Office", "Sally Brown");
-        series.add("Joseph Miler", "Kate Kirby");
-        series.add("Joseph Miler", "Vaughn Whiting");
-        series.add("Erik Perez", "Lisa Warner");
-        series.add("Ewan Herbert", "Molly Dodd");
-        series.add("Ewan Herbert", "Natasha Kelly");
+    private NodeSeries createSeries() {
+        NodeSeries series = new NodeSeries();
+        Node acme = createNode( "Acme" );
+        series.add(acme);
+        Node headOffice = add(series, acme,createNode("Head Office" ));
+        add(series, acme,createNode("Labs" ));
+        Node coyoteBuilding = add(series, headOffice,createNode("Coyote Building" ));
+        Node roadRunnerBuilding = add(series, headOffice,createNode("Road Runner Building" ));
+        Node sales = add(series, coyoteBuilding,createNode("Sales" ));
+        Node marketing = add(series, coyoteBuilding , createNode("Marketing" ));
+        Node accounting = add(series, coyoteBuilding, createNode("Accounting" ));
+        Node administration = add(series, roadRunnerBuilding, createNode("Administration" ));
+        Node mdsOffice = add(series, roadRunnerBuilding, createNode("MD&apos;s Office" ));
+        Node josephMiler = add(series, sales, createNode("Joseph Miler", "Head of Sales" ));
+        Node erikPerez = add(series, marketing, createNode("Erik Perez", "Head of Marketing" ));
+        Node emilyFox = add(series, accounting, createNode("Emily Fox", "Head of Accounting" ));
+        Node ewanHerbert = add(series, administration, createNode("Ewan Herbert", "Head of Admin" ));
+        Node kateKirby = add(series, josephMiler, createNode("Kate Kirby" ));
+        Node vaughnWhiting = add(series, josephMiler, createNode("Vaughn Whiting" ));
+        Node lisaWarner = add(series, erikPerez, createNode("Lisa Warner" ));
+        Node mollyDodd = add(series, ewanHerbert, createNode("Molly Dodd" ));
+        Node natashaKelly = add(series, ewanHerbert, createNode("Natasha Kelly" ));
+        Node directorNode = add(series, mdsOffice, createNode("Sally Brown", "Managing Director"));
+        directorNode.setName("Sally Brown");
+        directorNode.setColor(new SolidColor("#E4B651"));
 
         return series;
     }
 
-    private List<Node> createNodes() {
-        List<Node> nodes = new ArrayList<>();
-        nodes.add(createNode( "Acme" ));
-        nodes.add(createNode("Head Office" ));
-        nodes.add(createNode("Labs" ));
-        nodes.add(createNode("Coyote Building" ));
-        nodes.add(createNode("Road Runner Building" ));
-        nodes.add(createNode("Sales" ));
-        nodes.add(createNode("Marketing" ));
-        nodes.add(createNode("Accounting" ));
-        nodes.add(createNode("Administration" ));
-        nodes.add(createNode("MD&apos;s Office" ));
-        nodes.add(createNode("Joseph Miler", "Head of Sales" ));
-        nodes.add(createNode("Erik Perez", "Head of Marketing" ));
-        nodes.add(createNode("Emily Fox", "Head of Accounting" ));
-        nodes.add(createNode("Ewan Herbert", "Head of Admin" ));
-        nodes.add(createNode("Lisa Warner" ));
-        nodes.add(createNode("Kate Kirby" ));
-        nodes.add(createNode("Vaughn Whiting" ));
-        nodes.add(createNode("Molly Dodd" ));
-        nodes.add(createNode("Natasha Kelly" ));
-        Node directorNode = createNode("Sally Brown", "Managing Director");
-        directorNode.setName("Sally Brown");
-        directorNode.setColor(new SolidColor("#E4B651"));
-        nodes.add(directorNode);
-        return nodes;
+    private Node add(NodeSeries series, Node from, Node to) {
+       series.add(from, to);
+       return to;
     }
 
     private Node createNode(String id) {
@@ -142,9 +111,9 @@ public class Organization extends AbstractChartExample {
 
     private List<Level> createLevels() {
         Level level0 = createLevel(0, "#99AED3");
-        level0.setHeight(25);
+        //level0.setHeight(125);
         Level level1 = createLevel(1, "#CCE6C3");
-        level1.setHeight(25);
+        //level1.setHeight(125);
         Level level2 = createLevel(2, "#E1F39D");
         Level level3 = createLevel(3, "#CCE6C3");
         Level level4 = createLevel(4, "#CABEDC");
@@ -152,10 +121,11 @@ public class Organization extends AbstractChartExample {
         return Arrays.asList(level0, level1, level2, level3, level4, level5);
     }
 
-    private Level createLevel(int level, String color) {
-        Level level5 = new Level();
-        level5.setColor(new SolidColor("#CABDD4"));
-        level5.setLevel(5);
-        return level5;
+    private Level createLevel(int levelNumber, String color) {
+        Level level = new Level();
+        level.setColor(new SolidColor(color));
+        level.setLevel(levelNumber);
+        level.setHeight(125);
+        return level;
     }
 }
