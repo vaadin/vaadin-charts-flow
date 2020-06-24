@@ -138,7 +138,7 @@ public class NodeSeries extends AbstractSeries {
     private void validate(Object object, String description) {
         if (object == null) {
             String message = description + " may not be null";
-            throw new IllegalArgumentException(description);
+            throw new IllegalArgumentException(message);
         }
     }
 
