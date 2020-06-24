@@ -45,6 +45,8 @@ public class NodeSeries extends AbstractSeries {
     public void add(NodeSeriesItem nodeSeriesItem) {
         validateNodeSeriesItem(nodeSeriesItem);
         ensureLinks().add(nodeSeriesItem);
+        addNode(nodeSeriesItem.getFrom());
+        addNode(nodeSeriesItem.getTo());
     }
 
     /**
@@ -56,8 +58,6 @@ public class NodeSeries extends AbstractSeries {
     public NodeSeriesItem add(Node from, Node to) {
         NodeSeriesItem item = new NodeSeriesItem(from, to);
         add(item);
-        addNode(from);
-        addNode(to);
         return item;
     }
 
