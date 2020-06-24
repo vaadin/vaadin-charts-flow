@@ -36,7 +36,6 @@ public class Level extends AbstractConfigurationObject {
 	private TreeMapLayoutAlgorithm layoutAlgorithm;
 	private TreeMapLayoutStartingDirection layoutStartingDirection;
 	private Number level;
-	private Number height;
 
 	public Level() {
 	}
@@ -167,11 +166,4 @@ public class Level extends AbstractConfigurationObject {
 		this.level = level;
 	}
 
-	public Number getHeight() {
-		return height;
-	}
-
-	public void setHeight(Number height) {
-		this.height = height;
-	}
 }
