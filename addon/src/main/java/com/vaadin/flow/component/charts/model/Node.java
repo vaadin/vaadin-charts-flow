@@ -38,7 +38,7 @@ public class Node extends AbstractConfigurationObject {
     private DataLabels dataLabels;
     private String description;
     private String image;
-    private Layout layout;
+    private NodeLayout layout;
     private Number level;
     private String name;
     private String offset;
@@ -185,9 +185,9 @@ public class Node extends AbstractConfigurationObject {
     }
 
     /**
-     * @see #setLayout(Layout)
+     * @see #setLayout(NodeLayout)
      */
-    public Layout getLayout() {
+    public NodeLayout getLayout() {
         return layout;
     }
 
@@ -196,7 +196,7 @@ public class Node extends AbstractConfigurationObject {
      * hang below their parent, allowing a tighter packing of nodes in the
      * diagram
      */
-    public void setLayout(Layout layout) {
+    public void setLayout(NodeLayout layout) {
         this.layout = layout;
     }
 
@@ -280,11 +280,4 @@ public class Node extends AbstractConfigurationObject {
         return Objects.hash(id);
     }
 
-    public enum Layout implements ChartEnum {
-        NORMAL, HANGING;
-
-        public String toString() {
-            return name().toLowerCase();
-        }
-    }
 }
