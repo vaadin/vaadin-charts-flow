@@ -24,6 +24,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Plot options for {@link ChartType#ORGANIZATION} charts.
+ */
 public class PlotOptionsOrganization extends AbstractPlotOptions {
 
     private List<Level> levels;

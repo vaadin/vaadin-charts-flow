@@ -21,6 +21,8 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.vaadin.flow.component.charts.model.style.Color;
 
+import java.util.Objects;
+
 /**
  * A collection of options for the individual nodes.
  * The nodes in an org chart are auto-generated instances of Highcharts.Point,
@@ -29,14 +31,12 @@ import com.vaadin.flow.component.charts.model.style.Color;
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
       property = "id")
 public class Node extends AbstractConfigurationObject {
+    private String id;
     private Color color;
     private Number colorIndex;
     private Number column;
     private DataLabels dataLabels;
     private String description;
-
-    private String id;
-
     private String image;
     private Layout layout;
     private Number level;
@@ -52,12 +52,32 @@ public class Node extends AbstractConfigurationObject {
     }
 
     /**
-     *
      * @param id see {@link #setId(String)}
      */
     public Node(String id) {
         this.id = id;
     }
+
+    /**
+     * @param id see {@link #setId(String)}
+     * @param name see {@link #setName(String)}
+     */
+    public Node(String id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    /**
+     * @param id see {@link #setId(String)}
+     * @param name see {@link #setName(String)}
+     * @param title see {@link #setTitle(String)}
+     */
+    public Node(String id, String name, String title) {
+        this.id = id;
+        this.name = name;
+        this.title = title;
+    }
+
     /**
      * @see #setColor(Color)
      */
@@ -243,6 +263,21 @@ public class Node extends AbstractConfigurationObject {
      */
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass() || id == null)
+            return false;
+        Node node = (Node) o;
+        return Objects.equals(id, node.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 
     public enum Layout implements ChartEnum {

@@ -20,6 +20,9 @@ package com.vaadin.flow.component.charts.model;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.vaadin.flow.component.charts.model.style.Color;
 
+/**
+ * Data for the {@link NodeSeries}. Represents a link between the from and to nodes.
+ */
 public class NodeSeriesItem extends AbstractConfigurationObject {
 
     private String id;
@@ -58,36 +61,32 @@ public class NodeSeriesItem extends AbstractConfigurationObject {
         this.to = to;
     }
 
+    /**
+     * @see #setFrom(Node)
+     */
     public Node getFrom() {
         return from;
     }
 
+    /**
+     * @param from The node that the link runs from.
+     */
     public void setFrom(Node from) {
-        validateNodeValue(from);
         this.from = from;
     }
 
+    /**
+     * @see #setTo(Node)
+     */
     public Node getTo() {
         return to;
     }
 
+    /**
+     * @param to The node that the link runs to.
+     */
     public void setTo(Node to) {
-        validateNodeValue(to);
         this.to = to;
-    }
-
-    void validate() {
-        validateNodeValue(from);
-        validateNodeValue(to);
-    }
-
-    private void validateNodeValue(Node node) {
-        if (node == null) {
-            throw new IllegalArgumentException("Node may not be null");
-        }
-        if (node.getId() == null) {
-            throw new IllegalArgumentException("Node id may not be null");
-        }
     }
 
     /**

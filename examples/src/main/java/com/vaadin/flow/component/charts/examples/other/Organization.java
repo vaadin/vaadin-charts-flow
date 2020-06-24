@@ -65,16 +65,16 @@ public class Organization extends AbstractChartExample {
         Node mdsOffice = new Node("MD&apos;s Office");
 
         Node josephMiler = new Node("Joseph Miler");
-        josephMiler.setTitle("Joseph Miler");
+        josephMiler.setTitle("Head of Sales");
 
         Node erikPerez = new Node("Erik Perez");
-        erikPerez.setTitle("Erik Perez");
+        erikPerez.setTitle("Head of Marketing");
 
         Node emilyFox = new Node("Emily Fox");
-        emilyFox.setTitle("Emily Fox");
+        emilyFox.setTitle("Head of Accounting");
 
         Node ewanHerbert = new Node("Ewan Herbert");
-        ewanHerbert.setTitle("Ewan Herbert");
+        ewanHerbert.setTitle("Head of Admin");
 
         Node kateKirby = new Node("Kate Kirby");
         Node vaughnWhiting = new Node("Vaughn Whiting");
@@ -82,9 +82,8 @@ public class Organization extends AbstractChartExample {
         Node mollyDodd = new Node("Molly Dodd");
         Node natashaKelly = new Node("Natasha Kelly");
 
-        Node managingDirector = new Node("Sally Brown");
-        managingDirector.setTitle("Managing Director");
-        managingDirector.setName("Sally Brown");
+        Node managingDirector = new Node("Sally Brown", "Sally Brown",
+            "Managing Director");
         managingDirector.setColor(new SolidColor("#E4B651"));
 
         series.add(acme, headOffice);
