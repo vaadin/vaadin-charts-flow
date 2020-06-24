@@ -31,7 +31,7 @@ import java.util.Set;
 @JsonPropertyOrder({ "nodes", "values" })
 public class NodeSeries extends AbstractSeries {
 
-    private LinkedHashSet<Node> nodes;
+    private Set<Node> nodes;
     private List<NodeSeriesItem> data;
 
     /**
@@ -44,7 +44,7 @@ public class NodeSeries extends AbstractSeries {
      */
     public void add(NodeSeriesItem nodeSeriesItem) {
         validateNodeSeriesItem(nodeSeriesItem);
-        ensureLinks().add(nodeSeriesItem);
+        ensureData().add(nodeSeriesItem);
         addNode(nodeSeriesItem.getFrom());
         addNode(nodeSeriesItem.getTo());
     }
@@ -122,11 +122,11 @@ public class NodeSeries extends AbstractSeries {
         validateNode(item.getTo(), "To node");
     }
 
-    private List<NodeSeriesItem> ensureLinks() {
+    private List<NodeSeriesItem> ensureData() {
         return data = data != null ? data : new ArrayList<>();
     }
 
-    private LinkedHashSet<Node> ensureNodes() {
+    private Set<Node> ensureNodes() {
         return nodes = nodes != null ? nodes : new LinkedHashSet<>();
     }
 
