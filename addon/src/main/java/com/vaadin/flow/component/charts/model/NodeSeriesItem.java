@@ -53,10 +53,18 @@ public class NodeSeriesItem extends AbstractConfigurationObject {
 
     private Number weight;
 
+    /**
+     * Default constructor.
+     */
     public NodeSeriesItem() {
     }
 
-    NodeSeriesItem(Node from, Node to) {
+    /**
+     *
+     * @param from see {@link #setFrom(Node)}
+     * @param to see {@link #setTo(Node)}
+     */
+    public NodeSeriesItem(Node from, Node to) {
         this.from = from;
         this.to = to;
     }

@@ -20,9 +20,10 @@ package com.vaadin.flow.component.charts.model;
 import com.vaadin.flow.component.charts.model.style.Color;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.function.IntFunction;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Plot options for {@link ChartType#ORGANIZATION} charts.
@@ -184,10 +185,10 @@ public class PlotOptionsOrganization extends AbstractPlotOptions {
     }
 
     /**
-     * @see #setColors(List<Color>)
+     * @see #setColors(Color...)
      */
-    public List<Color> getColors() {
-        return colors;
+    public Color[] getColors() {
+        return toArray(colors, Color[]::new);
     }
 
     /**
@@ -196,8 +197,31 @@ public class PlotOptionsOrganization extends AbstractPlotOptions {
      * <a href="../highcharts/plotOptions.column.colorByPoint">colorByPoint</a>
      * is true.</p>
      */
-    public void setColors(List<Color> colors) {
-        this.colors = colors;
+    public void setColors(Color... colors) {
+        this.colors = toList(colors);
+    }
+
+    /**
+     * Adds color to the colors array
+     *
+     * @param color to add
+     * @see #setColors(Color...)
+     */
+    public void addColor(Color color) {
+        if (this.colors == null) {
+            this.colors = new ArrayList<>();
+        }
+        this.colors.add(color);
+    }
+
+    /**
+     * Removes first occurrence of color in colors array
+     *
+     * @param color to remove
+     * @see #setColors(Color...)
+     */
+    public void removeColor(Color color) {
+        safeRemove(this.colors, color);
     }
 
     /**
@@ -339,18 +363,10 @@ public class PlotOptionsOrganization extends AbstractPlotOptions {
     }
 
     /**
-     * @see #setLevels(List<Level>)
+     * @see #setLevels(Level...)
      */
-    public List<Level> getLevels() {
-        return levels;
-    }
-
-    /**
-     * <p>Set options on specific levels. Takes precedence over series options,
-     * but not node and link options.</p>
-     */
-    public void setLevels(List<Level> levels) {
-        this.levels = levels;
+    public Level[] getLevels() {
+        return toArray(levels, Level[]::new);
     }
 
     /**
@@ -358,8 +374,47 @@ public class PlotOptionsOrganization extends AbstractPlotOptions {
      * not point options.
      */
     public void setLevels(Level... levels) {
-        this.levels = Arrays.stream(levels)
+        this.levels = toList(levels);
+    }
+
+    private <T> T[] toArray(List<T> list, IntFunction<T[]> generator) {
+        return list != null ?
+            list.stream().toArray(generator) :
+            generator.apply(0);
+    }
+
+    private <T> List<T> toList(T... items) {
+        return Stream.of(items)
             .collect(Collectors.toCollection(ArrayList::new));
+    }
+
+    /**
+     * Adds level to the levels array
+     *
+     * @param level to add
+     * @see #setLevels(Level...)
+     */
+    public void addLevel(Level level) {
+        if (this.levels == null) {
+            this.levels = new ArrayList<>();
+        }
+        this.levels.add(level);
+    }
+
+    /**
+     * Removes first occurrence of level in levels array
+     *
+     * @param level to remove
+     * @see #setLevels(Level...)
+     */
+    public void removeLevel(Level level) {
+        safeRemove(this.levels, level);
+    }
+
+    private <T> void safeRemove(List<T> list, T item) {
+        if (list != null) {
+            list.remove(item);
+        }
     }
 
     /**
@@ -636,31 +691,6 @@ public class PlotOptionsOrganization extends AbstractPlotOptions {
      */
     public void setVisible(Boolean visible) {
         this.visible = visible;
-    }
-
-    /**
-     * Adds level to the levels array
-     *
-     * @param level to add
-     * @see #setLevels(Level...)
-     */
-    public void addLevel(Level level) {
-        if (this.levels == null) {
-            this.levels = new ArrayList<>();
-        }
-        this.levels.add(level);
-    }
-
-    /**
-     * Removes first occurrence of level in levels array
-     *
-     * @param level to remove
-     * @see #setLevels(Level...)
-     */
-    public void removeLevel(Level level) {
-        if (this.levels != null) {
-            this.levels.remove(level);
-        }
     }
 
     /**
