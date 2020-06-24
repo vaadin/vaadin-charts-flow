@@ -24,9 +24,9 @@ import com.vaadin.flow.component.charts.model.Configuration;
 import com.vaadin.flow.component.charts.model.DataLabels;
 import com.vaadin.flow.component.charts.model.Level;
 import com.vaadin.flow.component.charts.model.Node;
+import com.vaadin.flow.component.charts.model.NodeLayout;
 import com.vaadin.flow.component.charts.model.NodeSeries;
 import com.vaadin.flow.component.charts.model.PlotOptionsOrganization;
-import com.vaadin.flow.component.charts.model.Tooltip;
 import com.vaadin.flow.component.charts.model.style.SolidColor;
 
 public class Organization extends AbstractChartExample {
@@ -36,13 +36,9 @@ public class Organization extends AbstractChartExample {
         Chart chart = new Chart(ChartType.ORGANIZATION);
 
         Configuration conf = chart.getConfiguration();
-        conf.getTooltip().setEnabled(true);
         conf.getChart().setInverted(true);
-        conf.getChart().setStyledMode(false);
         conf.getChart().setHeight("500px");
-        Tooltip tooltip = new Tooltip();
-        tooltip.setOutside(true);
-        conf.setTooltip(tooltip);
+        conf.getTooltip().setOutside(true);
         conf.setTitle("Acme organization chart");
 
         NodeSeries series = createSeries();
@@ -53,6 +49,7 @@ public class Organization extends AbstractChartExample {
 
     private NodeSeries createSeries() {
         NodeSeries series = new NodeSeries();
+        series.setName("Acme");
         Node acme = new Node("Acme");
         Node headOffice = new Node("Head Office");
         Node labs = new Node("Labs");
@@ -62,19 +59,22 @@ public class Organization extends AbstractChartExample {
         Node marketing = new Node("Marketing");
         Node accounting = new Node("Accounting");
         Node administration = new Node("Administration");
-        Node mdsOffice = new Node("MD&apos;s Office");
+        Node mdsOffice = new Node("MD's Office");
 
         Node josephMiler = new Node("Joseph Miler");
         josephMiler.setTitle("Head of Sales");
+        josephMiler.setLayout(NodeLayout.HANGING);
 
         Node erikPerez = new Node("Erik Perez");
         erikPerez.setTitle("Head of Marketing");
+        erikPerez.setLayout(NodeLayout.HANGING);
 
         Node emilyFox = new Node("Emily Fox");
         emilyFox.setTitle("Head of Accounting");
 
         Node ewanHerbert = new Node("Ewan Herbert");
         ewanHerbert.setTitle("Head of Admin");
+        ewanHerbert.setLayout(NodeLayout.HANGING);
 
         Node kateKirby = new Node("Kate Kirby");
         Node vaughnWhiting = new Node("Vaughn Whiting");
@@ -83,7 +83,7 @@ public class Organization extends AbstractChartExample {
         Node natashaKelly = new Node("Natasha Kelly");
 
         Node managingDirector = new Node("Sally Brown", "Sally Brown",
-            "Managing Director");
+                "Managing Director");
         managingDirector.setColor(new SolidColor("#E4B651"));
 
         series.add(acme, headOffice);
