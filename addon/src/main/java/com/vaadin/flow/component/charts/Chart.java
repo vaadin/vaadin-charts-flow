@@ -92,7 +92,7 @@ public class Chart extends Component implements HasStyle, HasSize {
 
     private final static List<ChartType> TIMELINE_NOT_SUPPORTED = Arrays.asList(
             ChartType.PIE, ChartType.GAUGE, ChartType.SOLIDGAUGE, ChartType.PYRAMID,
-            ChartType.FUNNEL);
+            ChartType.FUNNEL, ChartType.ORGANIZATION);
 
     private DrillCallbackHandler drillCallbackHandler;
 
@@ -203,6 +203,7 @@ public class Chart extends Component implements HasStyle, HasSize {
      * <li>ChartType.SOLIDGAUGE</li>
      * <li>ChartType.PYRAMID</li>
      * <li>ChartType.FUNNEL</li>
+     * <li>ChartType.ORGANIZATION</li>
      * </ul>
      * Enabling timeline in these unsupported chart types
      * results in an <code>IllegalArgumentException</code>
