@@ -65,6 +65,7 @@ import com.vaadin.flow.component.charts.model.Configuration;
 import com.vaadin.flow.component.charts.model.DataSeries;
 import com.vaadin.flow.component.charts.model.DataSeriesItem;
 import com.vaadin.flow.component.charts.model.DrilldownCallback;
+import com.vaadin.flow.component.charts.model.PlotOptionsTimeline;
 import com.vaadin.flow.component.charts.model.DrilldownCallback.DrilldownDetails;
 import com.vaadin.flow.component.charts.model.Series;
 import com.vaadin.flow.component.charts.util.ChartSerialization;
@@ -77,7 +78,7 @@ import elemental.json.JsonValue;
 import elemental.json.impl.JreJsonFactory;
 
 @Tag("vaadin-chart")
-@NpmPackage(value="@vaadin/vaadin-charts", version = "7.0.0-alpha5")
+@NpmPackage(value="@vaadin/vaadin-charts", version = "7.0.0-alpha6")
 @JsModule("@vaadin/vaadin-charts/vaadin-chart.js")
 public class Chart extends Component implements HasStyle, HasSize {
 
@@ -195,8 +196,8 @@ public class Chart extends Component implements HasStyle, HasSize {
     }
 
     /**
-     * Determines if the chart is a timeline chart or a normal chart.
-     * The following chart types do not support timeline:
+     * Determines if the chart is in timeline mode or in normal mode. The
+     * following chart types do not support timeline mode:
      * <ul>
      * <li>ChartType.PIE</li>
      * <li>ChartType.GAUGE</li>
@@ -205,10 +206,14 @@ public class Chart extends Component implements HasStyle, HasSize {
      * <li>ChartType.FUNNEL</li>
      * <li>ChartType.ORGANIZATION</li>
      * </ul>
-     * Enabling timeline in these unsupported chart types
-     * results in an <code>IllegalArgumentException</code>
-     *
-     * @param timeline true for timeline chart
+     * Enabling timeline mode in these unsupported chart types results in an
+     * <code>IllegalArgumentException</code>
+     * <p>
+     * Note: for Timeline chart type see {@link ChartType.TIMELINE} and
+     * {@link PlotOptionsTimeline}.
+     * 
+     * @param timeline
+     *            true for timeline chart
      */
     public void setTimeline(Boolean timeline) {
         getElement().setProperty("timeline", timeline);
