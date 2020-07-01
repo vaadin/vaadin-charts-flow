@@ -44,12 +44,10 @@ public class PlotOptionsXrange extends AbstractPlotOptions {
     private Cursor cursor;
     private DashStyle dashStyle;
     private DataLabels dataLabels;
-    private Number depth;
     private String description;
     private Boolean enableMouseTracking;
     private Boolean grouping;
     private Number groupPadding;
-    private Number groupZPadding;
     private ArrayList<String> keys;
     private String linkedTo;
     private Number maxPointWidth;
@@ -371,23 +369,6 @@ public class PlotOptionsXrange extends AbstractPlotOptions {
     }
 
     /**
-     * @see #setDepth(Number)
-     */
-    public Number getDepth() {
-        return depth;
-    }
-
-    /**
-     * Depth of the columns in a 3D column chart. Requires
-     * <code>highcharts-3d.js</code>.
-     * <p>
-     * Defaults to: 25
-     */
-    public void setDepth(Number depth) {
-        this.depth = depth;
-    }
-
-    /**
      * @see #setDescription(String)
      */
     public String getDescription() {
@@ -441,23 +422,6 @@ public class PlotOptionsXrange extends AbstractPlotOptions {
      */
     public void setGroupPadding(Number groupPadding) {
         this.groupPadding = groupPadding;
-    }
-
-    /**
-     * @see #setGroupZPadding(Number)
-     */
-    public Number getGroupZPadding() {
-        return groupZPadding;
-    }
-
-    /**
-     * The spacing between columns on the Z Axis in a 3D chart. Requires
-     * <code>highcharts-3d.js</code>.
-     * <p>
-     * Defaults to: 1
-     */
-    public void setGroupZPadding(Number groupZPadding) {
-        this.groupZPadding = groupZPadding;
     }
 
     /**
