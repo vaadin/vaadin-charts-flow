@@ -169,7 +169,7 @@ public class PlotOptionsArearange extends AreaOptions {
 	}
 
 	/**
-	 * @see setClip(Boolean)
+	 * @see #setClip(Boolean)
 	 */
 	public Boolean getClip() {
 		return clip;
@@ -235,7 +235,7 @@ public class PlotOptionsArearange extends AreaOptions {
 	}
 
 	/**
-	 * @see setColorKey(String)
+	 * @see #setColorKey(String)
 	 */
 	public String getColorKey() {
 		return colorKey;
@@ -269,7 +269,7 @@ public class PlotOptionsArearange extends AreaOptions {
 	}
 
 	/**
-	 * @see setCrisp(Boolean)
+	 * @see #setCrisp(Boolean)
 	 */
 	public Boolean getCrisp() {
 		return crisp;
@@ -524,7 +524,7 @@ public class PlotOptionsArearange extends AreaOptions {
 	}
 
 	/**
-	 * @see setIncludeInDataExport(Boolean)
+	 * @see #setIncludeInDataExport(Boolean)
 	 */
 	public Boolean getIncludeInDataExport() {
 		return includeInDataExport;
@@ -683,7 +683,7 @@ public class PlotOptionsArearange extends AreaOptions {
 	}
 
 	/**
-	 * @see setOpacity(Number)
+	 * @see #setOpacity(Number)
 	 */
 	public Number getOpacity() {
 		return opacity;
