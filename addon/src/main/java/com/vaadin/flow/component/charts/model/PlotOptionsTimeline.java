@@ -24,7 +24,6 @@ public class PlotOptionsTimeline extends AbstractPlotOptions {
     private Boolean enableMouseTracking;
     private Boolean exposeElementToA11y;
     private Boolean ignoreHiddenPoint;
-    private Boolean includeInDataExport;
     private ArrayList<String> keys;
     private String legendType;
     private String linecap;
@@ -327,21 +326,6 @@ public class PlotOptionsTimeline extends AbstractPlotOptions {
      */
     public void setIgnoreHiddenPoint(Boolean ignoreHiddenPoint) {
         this.ignoreHiddenPoint = ignoreHiddenPoint;
-    }
-
-    /**
-     * @see #setIgnoreHiddenPoint(Boolean)
-     */
-    public Boolean getIncludeInDataExport() {
-        return includeInDataExport;
-    }
-
-    /**
-     * When set to false will prevent the series data from being included in any form of data export.
-     * Defaults to <code>undefined</code>.
-     */
-    public void setIncludeInDataExport(Boolean includeInDataExport) {
-        this.includeInDataExport = includeInDataExport;
     }
 
     /**
