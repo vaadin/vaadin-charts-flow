@@ -55,7 +55,7 @@ public class AxisStyle extends AbstractConfigurationObject {
      * setting the minor tick interval to 1 puts one tick on each of 0.1, 1, 10,
      * 100 etc. Setting the minor tick interval to 0.1 produces 9 ticks between
      * 1 and 10, 10 and 100 etc. A minor tick interval of
-     * {@link TickIntervalStyle#AUTO} on a log axis results in a best guess,
+     * {@link TickIntervalStyle#AUTO}on a log axis results in a best guess,
      * attempting to enter approximately 5 minor ticks between each major tick.
      * Defaults to null.
      * 
