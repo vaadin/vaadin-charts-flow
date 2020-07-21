@@ -51,7 +51,6 @@ public class PlotOptionsAreaspline extends AreaOptions {
 	private Number fillOpacity;
 	private Dimension findNearestPointBy;
 	private Boolean getExtremesFromAll;
-	private Boolean includeInDataExport;
 	private ArrayList<String> keys;
 	private Color lineColor;
 	private Number lineWidth;
@@ -544,22 +543,6 @@ public class PlotOptionsAreaspline extends AreaOptions {
 	 */
 	public void setGetExtremesFromAll(Boolean getExtremesFromAll) {
 		this.getExtremesFromAll = getExtremesFromAll;
-	}
-
-	/**
-	 * @see #setIncludeInDataExport(Boolean)
-	 */
-	public Boolean getIncludeInDataExport() {
-		return includeInDataExport;
-	}
-
-	/**
-	 * When set to <code>false</code> will prevent the series data from being included in any form of data export.
-	 * <p>
-	 * Defaults to <code>undefined</code>.
-	 */
-	public void setIncludeInDataExport(Boolean includeInDataExport) {
-		this.includeInDataExport = includeInDataExport;
 	}
 
 	/**

@@ -287,17 +287,6 @@ public abstract class AreaOptions extends AbstractPlotOptions {
     public abstract void setGetExtremesFromAll(Boolean getExtremesFromAll);
 
     /**
-     * @see #setIncludeInDataExport(Boolean)
-     */
-    public abstract Boolean getIncludeInDataExport();
-
-    /**
-     * When set to <code>false</code> will prevent the series data
-     * from being included in any form of data export.
-     */
-    public abstract void setIncludeInDataExport(Boolean includeInDataExport);
-
-    /**
      * @see #setKeys(String...)
      */
     public abstract String[] getKeys();
