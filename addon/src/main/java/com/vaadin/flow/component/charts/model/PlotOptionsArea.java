@@ -167,7 +167,7 @@ public class PlotOptionsArea extends AreaOptions {
 	}
 
 	/**
-	 * @see setClip(Boolean)
+	 * @see #setClip(Boolean)
 	 */
 	public Boolean getClip() {
 		return clip;
@@ -233,7 +233,7 @@ public class PlotOptionsArea extends AreaOptions {
 	}
 
 	/**
-	 * @see setColorKey(String)
+	 * @see #setColorKey(String)
 	 */
 	public String getColorKey() {
 		return colorKey;
@@ -717,7 +717,7 @@ public class PlotOptionsArea extends AreaOptions {
 	}
 
 	/**
-	 * @see setOpacity(Boolean)
+	 * @see #setOpacity(Number)
 	 */
 	public Number getOpacity() {
 		return opacity;
