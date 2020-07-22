@@ -27,10 +27,11 @@ demo/src/main/webapp/frontend-es5/
 demo/src/main/webapp/frontend-es6/
 
 # The following files are generated/updated by flow-maven-plugin
-package.json
-package-lock.json
-webpack.config.js
-webpack.generated.js
+package*.json
+pnpm-lock.yaml
+webpack.*.js
+tsconfig.json
+types.d.ts
 node_modules/
 
 # Mac
