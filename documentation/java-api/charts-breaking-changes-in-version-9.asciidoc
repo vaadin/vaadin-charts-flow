@@ -27,8 +27,8 @@ If you are migrating your project to platform V17, there might be different
 approaches related with which styling option you will pick.
 
 NOTE: While no error is thrown if different styling options are used on a same
-project, we recommend using only one across all charts, since having both could
-lead to unexpected results.
+project, *only one option should be used across all charts*, since having both
+could lead to unexpected results.
 
 === From a V8 or older project
 
@@ -81,3 +81,22 @@ API for styling the charts.
 To keep using CSS styling, make sure your project is importing the Charts
 default theme module and enable the `styledMode` as described on this same topic
 at the previous section.
+
+=== Running Charts 9 in V14
+
+While Charts 9 is released for V17, a project running V14 in *npm mode* could
+use the new Charts by overriding the version at the project's POM file:
+
+[source, xml]
+----
+<dependency>
+    <groupId>com.vaadin</groupId>
+    <artifactId>vaadin-charts-flow</artifactId>
+    <version>9.0.0</version>
+</dependency>
+----
+
+NOTE: Check the latest version on the https://github.com/vaadin/vaadin-charts-flow/releases[Charts release page].
+
+Then, to start using it, check the "From a V10+ project" instructions presented
+on this page.
