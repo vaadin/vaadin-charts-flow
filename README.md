@@ -1,3 +1,7 @@
+ ⚠️ **This repository is deprecated**
+- Sources for this flow component can be found at https://github.com/vaadin/vaadin-flow-component
+- Tickets has been moved to the web component repository https://github.com/vaadin/vaadin-charts/issues
+
 # Vaadin Charts
 
 Vaadin Charts for Flow is a UI component add-on for Vaadin 10 which provides means to create multiple different types of charts in Vaadin applications.
